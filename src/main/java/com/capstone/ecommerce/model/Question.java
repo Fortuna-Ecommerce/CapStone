@@ -5,25 +5,25 @@ import java.security.PrivateKey;
 
 @Entity
 @Table(name = "questions")
-public class Questions {
+public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(nullable = false)
     private String question;
 
     @Column
     private String answer;
 
     @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Products product;
+    @JoinColumn(name = "product")
+    private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Users user;
+    @JoinColumn(name = "user", nullable = false)
+    private User user;
 
     public long getId() {
         return id;
@@ -49,19 +49,19 @@ public class Questions {
         this.answer = answer;
     }
 
-    public Products getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(Products product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 
-    public Users getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Users user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

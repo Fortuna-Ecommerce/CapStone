@@ -4,25 +4,24 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "reviews")
-public class Reviews {
+public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(nullable = false)
     private int rating;
 
     @Column
     private String text;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private long user_id;
+    @JoinColumn(name = "user")
+    private User user;
 
-    @OneToOne
-    @JoinColumn (name = "product_id")
-    private Products product;
+    @ManyToOne
+    private Product product;
 
     public long getId() {
         return id;
@@ -48,19 +47,19 @@ public class Reviews {
         this.text = text;
     }
 
-    public long getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Products getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(Products product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 }

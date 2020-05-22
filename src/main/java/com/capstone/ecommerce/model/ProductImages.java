@@ -10,12 +10,12 @@ public class ProductImages {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String path;
 
     @ManyToOne
-    @JoinColumn (name = "product_id")
-    private Products product;
+    @JoinColumn (name = "product", nullable = false)
+    private Product product;
 
     public long getId() {
         return id;
@@ -33,11 +33,11 @@ public class ProductImages {
         this.path = path;
     }
 
-    public Products getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(Products product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 }
