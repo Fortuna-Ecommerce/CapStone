@@ -5,7 +5,7 @@ import java.security.PrivateKey;
 
 @Entity
 @Table(name = "questions")
-public class Questions {
+public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
