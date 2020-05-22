@@ -24,7 +24,7 @@ public class ProductsController {
 
     @GetMapping("/products")
     public String productsIndex() {
-        List<Products> products = productRepo.findAll());
+        List<Products> products = productRepo.findAll();
         return "products/index";
     }
 
