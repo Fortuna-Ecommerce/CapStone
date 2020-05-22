@@ -10,11 +10,11 @@ public class ProductImages {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String path;
 
     @ManyToOne
-    @JoinColumn (name = "product_id")
+    @JoinColumn (name = "product", nullable = false)
     private Products product;
 
     public long getId() {

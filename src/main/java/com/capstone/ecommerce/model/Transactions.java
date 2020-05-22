@@ -1,6 +1,7 @@
 package com.capstone.ecommerce.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "transactions")
@@ -10,13 +11,13 @@ public class Transactions {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToMany
-    @JoinColumn(name = "product_id")
-    private long productId;
+    @OneToMany
+    @JoinColumn(name = "products")
+    private List<Products> products;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private long userId;
+    @JoinColumn(name = "user")
+    private Users user;
 
     public long getId() {
         return id;
@@ -26,19 +27,18 @@ public class Transactions {
         this.id = id;
     }
 
-    public long getProductId() {
-        return productId;
+    public List<Products> getProducts() {
+        return products;
+    }
+    public void setProducts(List<Products> products) {
+        this.products = products;
     }
 
-    public void setProductId(long productId) {
-        this.productId = productId;
+    public Users getUser() {
+        return user;
     }
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser(Users user) {
+        this.user = user;
     }
 }

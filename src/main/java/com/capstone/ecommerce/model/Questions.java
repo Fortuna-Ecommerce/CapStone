@@ -18,11 +18,11 @@ public class Questions {
     private String answer;
 
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product")
     private Products product;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user")
     private Users user;
 
     public long getId() {

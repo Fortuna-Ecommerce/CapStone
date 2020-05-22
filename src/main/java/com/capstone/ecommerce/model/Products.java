@@ -29,8 +29,14 @@ public class Products {
     @Column(nullable = false)
     private long quantity;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "products")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<ProductImages> images;
+
+    @ManyToOne
+    private Transactions transaction;
+
+    @OneToMany
+    private List<Reviews> reviews;
 
     public long getId() {
         return id;
