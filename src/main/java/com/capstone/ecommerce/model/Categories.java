@@ -15,4 +15,27 @@ public class Categories {
 
     @Column Boolean kid;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Boolean getAdult() {
+        return adult;
+    }
+
+    public void setAdult(Boolean adult) {
+        this.adult = adult;
+    }
+
+    public Boolean getKid() {
+        return kid;
+    }
+
+    public void setKid(Boolean kid) {
+        this.kid = kid;
+    }
 }
