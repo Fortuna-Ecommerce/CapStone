@@ -25,8 +25,15 @@ public class ProductsController {
     @GetMapping("/products")
     public String productsIndex() {
         List<Products> products = productRepo.findAll());
-        return "products/index";
+        return "products";
     }
+
+    @GetMapping("products/t-shirts")
+    public String tshirts() {
+
+    }
+
+
 
     @GetMapping("products/{id}")
     public String individualProduct(Model model, @PathVariable long id) {
