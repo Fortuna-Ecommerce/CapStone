@@ -5,19 +5,28 @@ import java.util.List;
 
 @Entity
 @Table(name = "products")
-public class Products {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(unique = true)
+    @Column
     private String name;
+
+    @Column(nullable = false)
+    private char color;
 
     @Column(nullable = false)
     private String size;
 
-    @Column
+    @Column(nullable = false)
+    private char gender;
+
+    @Column(nullable = false)
+    private String type;
+
+    @Column(precision = 5, scale = 2)
     private float price;
 
     @Column
@@ -26,17 +35,21 @@ public class Products {
     @Column
     private int onSpecial;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "int UNSIGNED default 1", nullable = false)
     private long quantity;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<ProductImages> images;
 
     @ManyToOne
-    private Transactions transaction;
+    private Transaction transaction;
 
     @OneToMany
-    private List<Reviews> reviews;
+    private List<Review> reviews;
+
+    @ManyToMany
+    @JoinColumn(name = "categories")
+    private List<Tag> categories;
 
     public long getId() {
         return id;
@@ -54,12 +67,36 @@ public class Products {
         this.name = name;
     }
 
+    public char getColor() {
+        return color;
+    }
+
+    public void setColor(char color) {
+        this.color = color;
+    }
+
     public String getSize() {
         return size;
     }
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public char getGender() {
+        return gender;
+    }
+
+    public void setGender(char gender) {
+        this.gender = gender;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public float getPrice() {
@@ -102,8 +139,28 @@ public class Products {
         this.images = images;
     }
 
-    //    @Column
-//    private List<ProductsCategories> categories;
+    public Transaction getTransaction() {
+        return transaction;
+    }
 
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
+    }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public List<Tag> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Tag> categories) {
+        this.categories = categories;
+    }
 }
+

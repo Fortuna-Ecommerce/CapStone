@@ -15,7 +15,7 @@ public class ProductImages {
 
     @ManyToOne
     @JoinColumn (name = "product", nullable = false)
-    private Products product;
+    private Product product;
 
     public long getId() {
         return id;
@@ -33,11 +33,11 @@ public class ProductImages {
         this.path = path;
     }
 
-    public Products getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(Products product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 }

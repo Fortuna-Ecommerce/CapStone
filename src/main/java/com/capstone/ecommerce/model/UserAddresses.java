@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class UserAddresses {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
         private String street;
@@ -18,7 +18,7 @@ public class UserAddresses {
         private int zipCode;
 
         @ManyToOne(fetch = FetchType.LAZY)
-        private Users user;
+        private User user;
 
     }
 

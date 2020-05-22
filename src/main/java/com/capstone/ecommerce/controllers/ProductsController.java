@@ -1,6 +1,6 @@
 package com.capstone.ecommerce.controllers;
 
-import com.capstone.ecommerce.model.Products;
+import com.capstone.ecommerce.model.Product;
 import com.capstone.ecommerce.repositories.ProductRepository;
 import com.capstone.ecommerce.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
@@ -24,13 +24,13 @@ public class ProductsController {
 
     @GetMapping("/products")
     public String productsIndex() {
-        List<Products> products = productRepo.findAll();
+        List<Product> products = productRepo.findAll();
         return "products/index";
     }
 
     @GetMapping("products/{id}")
     public String individualProduct(Model model, @PathVariable long id) {
-        Products aProduct = productRepo.getOne(id);
+        Product aProduct = productRepo.getOne(id);
         model.addAttribute("title","View a Single Product");
         model.addAttribute("product", aProduct);
         return "products/show";

@@ -4,13 +4,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "reviews")
-public class Reviews {
+public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(nullable = false)
     private int rating;
 
     @Column
@@ -18,10 +18,10 @@ public class Reviews {
 
     @ManyToOne
     @JoinColumn(name = "user")
-    private Users user;
+    private User user;
 
     @ManyToOne
-    private Products product;
+    private Product product;
 
     public long getId() {
         return id;
@@ -47,19 +47,19 @@ public class Reviews {
         this.text = text;
     }
 
-    public Users getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Users user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public Products getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(Products product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 }

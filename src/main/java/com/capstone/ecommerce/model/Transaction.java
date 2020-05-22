@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "transactions")
-public class Transactions {
+public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,11 +13,11 @@ public class Transactions {
 
     @OneToMany
     @JoinColumn(name = "products")
-    private List<Products> products;
+    private List<Product> products;
 
     @ManyToOne
     @JoinColumn(name = "user")
-    private Users user;
+    private User user;
 
     public long getId() {
         return id;
@@ -27,18 +27,18 @@ public class Transactions {
         this.id = id;
     }
 
-    public List<Products> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
-    public void setProducts(List<Products> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 
-    public Users getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Users user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

@@ -1,6 +1,6 @@
 package com.capstone.ecommerce.repositories;
 
-import org.apache.catalina.User;
+import com.capstone.ecommerce.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
