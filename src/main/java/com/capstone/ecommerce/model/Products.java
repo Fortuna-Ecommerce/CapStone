@@ -32,8 +32,9 @@ public class Products {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "products")
     private List<ProductImages> images;
 
-    @Column
-    private List<ProductsCategories> categories;
+
+//    @Column
+//    private List<ProductsCategories> categories;
 
 
 }
