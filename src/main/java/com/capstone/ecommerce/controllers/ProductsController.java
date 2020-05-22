@@ -34,7 +34,6 @@ public class ProductsController {
     }
 
 
-
     @GetMapping("products/{id}")
     public String individualProduct(Model model, @PathVariable long id) {
         Product aProduct = productRepo.getOne(id);
