@@ -28,10 +28,10 @@ public class ProductsController {
         return "products";
     }
 
-    @GetMapping("products/t-shirts")
-    public String tshirts() {
-
-    }
+//    @GetMapping("products/t-shirts")
+//    public String tshirts() {
+//
+//    }
 
 
     @GetMapping("products/{id}")
