@@ -9,13 +9,6 @@ public class DaoFactory {
 
     private static Config config = new Config();
 
-    public static Ads getAdsDao() {
-        if (adsDao == null) {
-            adsDao = new MySQLAdsDao(config);
-        }
-        return adsDao;
-    }
-
     public static Users getUsersDao() {
         if (usersDao == null) {
             usersDao = new MySQLUsersDao(config);
@@ -23,7 +16,7 @@ public class DaoFactory {
         return usersDao;
     }
 
-    public static Admin getAdImagesDao(){
+    public static Admin getAdminDao(){
         if (adminDao == null) {
             adminDao = new MySQLAdminDao(config);
         }
