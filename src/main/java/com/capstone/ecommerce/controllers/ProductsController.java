@@ -13,7 +13,6 @@ import java.util.List;
 @Controller
 public class ProductsController {
     private ProductRepository productRepo;
-
 //  CONSTRUCTOR
     public ProductsController(ProductRepository productRepo) {
         this.productRepo = productRepo;
