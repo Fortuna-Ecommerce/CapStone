@@ -22,7 +22,7 @@ public class ProductsController {
     public String productsIndex(Model model) {
         List<Product> products = productRepo.findAll();
         model.addAttribute("allProducts", products);
-        return "products";
+        return "products/products";
     }
 
     @GetMapping("products/t-shirts")

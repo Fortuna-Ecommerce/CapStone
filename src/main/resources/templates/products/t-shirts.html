@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head"/>
+<div th:replace="partials :: head" /></div>
 <body>
-<nav th:replace="fragments/navbar :: navbar"></nav>
+<nav th:replace="partials :: navbar" />
 <div class="container mt-4">
-<div th:text="${products}"></div>
+
+    <h1>Memeist shirts in town!</h1>
 
 </div>
-<div th:include="/fragments/footer :: footer"></div>
+<footer th:replace="partials :: footer" />
 </body>
 </html>
