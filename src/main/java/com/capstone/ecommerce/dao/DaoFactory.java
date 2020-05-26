@@ -1,11 +1,11 @@
 package com.capstone.ecommerce.dao;
 
 public class DaoFactory {
-    private static Ads adsDao;
+    private static Products ProductsDao;
     private static Users usersDao;
     private static Admin adminDao;
     private static Categories CategoriesDao;
-    private static Products ProductsDao;
+
 
     private static Config config = new Config();
 
