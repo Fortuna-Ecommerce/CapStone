@@ -51,6 +51,10 @@ public class Product {
     @JoinColumn(name = "categories")
     private List<Tag> categories;
 
+    public Product(long id, long user_id, String title, String description) {
+
+    }
+
     public long getId() {
         return id;
     }

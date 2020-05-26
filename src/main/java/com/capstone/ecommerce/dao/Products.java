@@ -24,7 +24,7 @@ public interface Products {
     Object findById(long id);
 
     //Take a single ad and post information
-    List<Products> getByTitle(String title);
+    List<Product> getByTitle(String title);
 
     List<Product> createProductsFromResults(ResultSet rs);
 }
