@@ -12,34 +12,57 @@ import java.util.List;
 
 @Controller
 public class ProductsController {
-
     private ProductRepository productRepo;
-    private UserRepository userDao;
 
 //  CONSTRUCTOR
-    public ProductsController(ProductRepository productRepo, UserRepository userDao) {
+    public ProductsController(ProductRepository productRepo) {
         this.productRepo = productRepo;
-        this.userDao = userDao;
     }
 
     @GetMapping("/products")
-    public String productsIndex() {
+    public String productsIndex(Model model) {
         List<Product> products = productRepo.findAll();
+        model.addAttribute("allProducts", products);
         return "products";
     }
 
-//    @GetMapping("products/t-shirts")
-//    public String tshirts() {
-//
-//    }
+    @GetMapping("products/t-shirts")
+    public String viewTshirts(Model model) {
+        model.addAttribute("products", productRepo.findAll());
+        return "products/t-shirts";
+    }
 
+    @GetMapping("products/pullover")
+    public String viewPullover(Model model) {
+        model.addAttribute("products", productRepo.findAll());
+        return "products/pullover";
+    }
 
-    @GetMapping("products/{id}")
-    public String individualProduct(Model model, @PathVariable long id) {
+    @GetMapping("products/hats")
+    public String viewHats(Model model) {
+        model.addAttribute("products", productRepo.findAll());
+        return "products/hats";
+    }
+
+    @GetMapping("products/t-shirts/{id}")
+    public String individualTshirt(Model model, @PathVariable long id) {
         Product aProduct = productRepo.getOne(id);
-        model.addAttribute("title","View a Single Product");
-        model.addAttribute("product", aProduct);
-        return "products/show";
+        model.addAttribute("tshirt", aProduct);
+        return "products/t-shirts/show";
+    }
+
+    @GetMapping("products/pullover/{id}")
+    public String individualPullover(Model model, @PathVariable long id) {
+        Product aProduct = productRepo.getOne(id);
+        model.addAttribute("pullover", aProduct);
+        return "products/pullover/show";
+    }
+
+    @GetMapping("products/hats/{id}")
+    public String individualHat(Model model, @PathVariable long id) {
+        Product aProduct = productRepo.getOne(id);
+        model.addAttribute("hat", aProduct);
+        return "products/hats/show";
     }
 
 }
