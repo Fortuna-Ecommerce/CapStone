@@ -19,14 +19,20 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
+    private String stripeToken;
+
+    @Column(columnDefinition = "tinyint(1) default 0", nullable = false)
     private Boolean isAdmin;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Transaction> transactions;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserAddresses> addresses;
+    private List<ShipAddresses> ship_addresses;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<BillAddresses> bill_addresses;
 
     public long getId() {
         return id;
@@ -58,6 +64,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getStripeToken() {
+        return stripeToken;
+    }
+
+    public void setStripeToken(String stripeToken) {
+        this.stripeToken = stripeToken;
     }
 
     public Boolean getAdmin() {
