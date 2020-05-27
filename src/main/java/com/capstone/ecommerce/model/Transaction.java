@@ -18,7 +18,10 @@ public class Transaction {
     private String transactionType;
 
     @Column(nullable = false, columnDefinition = "DATETIME")
-    private LocalDateTime dateTime;
+    private LocalDateTime dateTimeCreation;
+
+    @Column(nullable = true, columnDefinition = "DATETIME")
+    private LocalDateTime dateTimeModification;
 
     @Column(nullable = false)
     private String stripeTransToken;
