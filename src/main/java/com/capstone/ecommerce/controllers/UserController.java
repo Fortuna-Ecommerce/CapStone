@@ -70,4 +70,34 @@ class UserController {
         return "/user/products/tshirts";
     }
 
+    @GetMapping("/user/products/hats/{id}")
+    @ResponseBody
+    public String sortHatsById(){
+        return "/user/products/hats/{id}";
+    }
+
+    @GetMapping("/user/products/tshirts/price/{id}")
+    @ResponseBody
+    public String sortHatsByPrice(){
+        return "/user/products/hats/price/{id}";
+    }
+
+    @GetMapping("/user/products/hats/category/{id}")
+    @ResponseBody
+    public String sortHatsByCategory(){
+        return "/user/products/hats/category/{id}";
+        }
+
+    @GetMapping("/user/products/hats/reviews")
+    @ResponseBody
+    public String sortHatsByReviews(){
+        return "/user/products/hats/reviews";
+    }
+
+    @GetMapping("/user/products/hats")
+    @ResponseBody
+    public String viewAllHats(){
+        return "/user/products/hats";
+    }
+
 }
