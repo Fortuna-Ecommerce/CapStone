@@ -12,7 +12,7 @@ public class ShoppingCart {
     private long id;
 
     @OneToOne
-    @JoinColumn(name = "transaction")
+    @JoinColumn(name = "transaction", referencedColumnName="id")
     private Transaction transaction;
 
     @ManyToMany
@@ -20,9 +20,8 @@ public class ShoppingCart {
     @JoinTable(
         name = "shopping_cart_product",
         joinColumns = @JoinColumn(name = "shopping_cart_id"),
-        inverseJoinColumns = @JoinColumn(name = "product_id"),
-        schema="ecommerce"
-    )
+        inverseJoinColumns = @JoinColumn(name = "product_id"))
+
     private List<Product> productList;
 
     public long getId() {
