@@ -16,17 +16,15 @@ public class DatabaseSeeder implements CommandLineRunner {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
-    private final ShoppingCartRepository shoppingCartRepository;
     private final TransactionRepository transactionRepository;
     private final AddressRepository addressRepository;
 
     @Value("${app.env}")
     private String environment;
 
-    public DatabaseSeeder(ProductRepository productRepository, UserRepository userRepository, ShoppingCartRepository shoppingCartRepository, TransactionRepository transactionRepository, AddressRepository addressRepository) {
+    public DatabaseSeeder(ProductRepository productRepository, UserRepository userRepository, TransactionRepository transactionRepository, AddressRepository addressRepository) {
         this.productRepository = productRepository;
         this.userRepository = userRepository;
-        this.shoppingCartRepository = shoppingCartRepository;
         this.transactionRepository = transactionRepository;
         this.addressRepository = addressRepository;
     }
@@ -64,15 +62,16 @@ public class DatabaseSeeder implements CommandLineRunner {
     //generate a handful of products and return it after saving
     private List<Product> seedProducts(){
 
-               Product product1 = new Product("Rage meme", "Blue", "XL", "Shirt", 22.22, "Angry guy melting down", 0,
+               Product product1 = new Product("Rage meme", "Blue", "XL", "Shirt", 22.22, "Angry guy melting down",
+                       false,
                        5);
-        Product product2 = new Product("Pepe punch", "Gray", "L", "Shirt", 28.22, "Frog person threatening pose", 0,
+        Product product2 = new Product("Pepe punch", "Gray", "L", "Shirt", 28.22, "Frog person threatening pose", false,
                 23);
-        Product product3 = new Product("Pepe sad", "Purple", "XL", "Hoodie", 35.78, "Frog person very down", 30, 1000);
+        Product product3 = new Product("Pepe sad", "Purple", "XL", "Hoodie", 35.78, "Frog person very down", true, 1000);
         Product product4 = new Product("NPC face", "Red", "OSFM", "Hat", 15.99, "Fellow with straight line mouth and " +
                 "angly " +
-                        "eyebrows", 0, 9);
-        Product product5 = new Product("Rage meme", "White", "S", "Hoodie", 35.99, "Angry guy melting down", 0, 0);
+                        "eyebrows", false, 9);
+        Product product5 = new Product("Rage meme", "White", "S", "Hoodie", 35.99, "Angry guy melting down", false, 0);
         productRepository.save(product1);
         productRepository.save(product2);
         productRepository.save(product3);
@@ -88,10 +87,10 @@ public class DatabaseSeeder implements CommandLineRunner {
     }
 
     private List<Address> seedAddresses(List<User> users){
-               Address address1 = new Address(false, "Jeremy", "T", "Nolan Dr", 10101, "San Antonio", "TX", 78230);
-        Address address2 =  new Address(true, "Jeremy", "T", "Nolan Dr", 10101, "San Antonio", "TX", 78230);
-        Address address3 = new Address(false, "Joe", "Shmoe", "Telari St", 131, "New York", "NY", 10043);
-        Address address4 = new Address(true, "Joe", "Shmoe", "Telari St", 131, "New York", "NY", 10043);
+               Address address1 = new Address("Shipping", "Jeremy", "T", "10101 Nolan Dr", "San Antonio", "TX",78230);
+        Address address2 =  new Address("Billing", "Jeremy", "T", "10101 Nolan Dr", "San Antonio", "TX", 78230);
+        Address address3 = new Address("Shipping", "Joe", "Shmoe", "131 Telari St", "New York", "NY", 10043);
+        Address address4 = new Address("Billing", "Joe", "Shmoe", "131 Telari St", "New York", "NY", 10043);
         address1.setUser(users.get(1));
         address2.setUser(users.get(1));
         address3.setUser(users.get(4));
@@ -108,74 +107,68 @@ public class DatabaseSeeder implements CommandLineRunner {
         return addresses;
     }
 
-    //generate a handful of shopping carts
-
-    private List<ShoppingCart> seedShoppingCarts(List<Product> products){
-        List<Product> testingProducts = new ArrayList<>();
-        ShoppingCart test1 = new ShoppingCart();
-        ShoppingCart test2 = new ShoppingCart();
-        ShoppingCart test3 = new ShoppingCart();
-        ShoppingCart test4 = new ShoppingCart();
-        products.remove(4);
-        test1.setProductList(products);
-        test2.setProductList(products);
-        test3.setProductList(products);
-        test4.setProductList(products);
-        shoppingCartRepository.save(test1);
-        shoppingCartRepository.save(test2);
-        shoppingCartRepository.save(test3);
-        shoppingCartRepository.save(test4);
-        List<ShoppingCart> shoppingCarts = new ArrayList<>();
-        shoppingCarts.add(test1);
-        shoppingCarts.add(test2);
-        shoppingCarts.add(test3);
-        shoppingCarts.add(test4);
-        return shoppingCarts;
-    }
+//    //generate a handful of shopping carts
+//
+//    private List<ShoppingCart> seedShoppingCarts(List<Product> products){
+//        List<Product> testingProducts = new ArrayList<>();
+//        ShoppingCart test1 = new ShoppingCart();
+//        ShoppingCart test2 = new ShoppingCart();
+//        ShoppingCart test3 = new ShoppingCart();
+//        ShoppingCart test4 = new ShoppingCart();
+//
+//        test1.setProductList(products);
+//        test2.setProductList(products);
+//        test3.setProductList(products);
+//        test4.setProductList(products);
+//        shoppingCartRepository.save(test1);
+//        shoppingCartRepository.save(test2);
+//        shoppingCartRepository.save(test3);
+//        shoppingCartRepository.save(test4);
+//        List<ShoppingCart> shoppingCarts = new ArrayList<>();
+//        shoppingCarts.add(test1);
+//        shoppingCarts.add(test2);
+//        shoppingCarts.add(test3);
+//        shoppingCarts.add(test4);
+//        return shoppingCarts;
+//    }
 
 
 
 
     // generate a handful of transactions, and assign a user/ShoppingCart to each one
-    private void seedTransactions(List<ShoppingCart> shoppingCarts, List<User> users, List<Address> addresses) {
+    private void seedTransactions(List<Product> products, List<User> users, List<Address> addresses) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date testDate = new Date();
-        Transaction test1 = new Transaction("Sale", "Complete", formatter.format(testDate),
-                null, "Teststripe");
-        Transaction test2 = new Transaction("Return", "Pending", formatter.format(testDate), formatter.format(testDate),
-                        "Teststripe");
+        Transaction test1 = new Transaction("Sale", "Complete", formatter.format(testDate), null);
+        Transaction test2 = new Transaction("Return", "Pending", formatter.format(testDate), formatter.format(testDate));
         Transaction test3 = new Transaction("Sale", "Cancelled", formatter.format(testDate),
-                formatter.format(testDate),
-                        "Teststripe");
+                formatter.format(testDate));
         Transaction test4 = new Transaction("Return", "Complete", formatter.format(testDate),
-                formatter.format(testDate),
-                        "Teststripe");
+                formatter.format(testDate));
+
+        products.remove(4);
 
         test1.setUser(users.get(0));
-        test1.setBill_address(addresses.get(1));
-        test1.setShip_address(addresses.get(0));
-        test1.setShoppingCart(shoppingCarts.get(0));
+        test1.setProducts(products);
 
         test2.setUser(users.get(0));
-        test2.setBill_address(addresses.get(1));
-        test2.setShip_address(addresses.get(0));
-        test2.setShoppingCart(shoppingCarts.get(1));
+        test2.setProducts(products);
 
         test3.setUser(users.get(4));
-        test3.setBill_address(addresses.get(3));
-        test3.setShip_address(addresses.get(2));
-        test3.setShoppingCart(shoppingCarts.get(2));
+        test3.setProducts(products);
 
         test4.setUser(users.get(4));
-        test4.setBill_address(addresses.get(3));
-        test4.setShip_address(addresses.get(2));
-        test4.setShoppingCart(shoppingCarts.get(3));
+        test4.setProducts(products);
 
         transactionRepository.save(test1);
         transactionRepository.save(test2);
         transactionRepository.save(test3);
         transactionRepository.save(test4);
     }
+
+
+
+
 
     @Override
     public void run(String... strings) throws Exception {
@@ -186,8 +179,6 @@ public class DatabaseSeeder implements CommandLineRunner {
 
         log.info("Deleting transactions...");
         transactionRepository.deleteAll();
-        log.info("Deleting shoppingCarts...");
-        shoppingCartRepository.deleteAll();
         log.info("Deleting addresses...");
         addressRepository.deleteAll();
         log.info("Deleting products...");
@@ -200,10 +191,8 @@ public class DatabaseSeeder implements CommandLineRunner {
         List<Product> products = seedProducts();
         log.info("Seeding addresses...");
         List<Address> addresses = seedAddresses(users);
-        log.info("Seeding shoppingCarts...");
-        List<ShoppingCart> shoppingCarts = seedShoppingCarts(products);
         log.info("Seeding transactions...");
-        seedTransactions(shoppingCarts, users, addresses);
+        seedTransactions(products, users, addresses);
 
 
         log.info("Finished running seeders!");

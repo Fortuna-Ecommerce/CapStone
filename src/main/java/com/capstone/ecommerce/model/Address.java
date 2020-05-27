@@ -10,8 +10,8 @@ public class Address {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
-        @Column(nullable = false, columnDefinition = "tinyint(1)")
-        private Boolean type;//0 - shipping, 1 - billing
+        @Column(nullable = false)
+        private String address_type;
 
         @Column(nullable = false, length = 75)
         private String first_name;
@@ -21,9 +21,6 @@ public class Address {
 
         @Column(nullable = false, length = 75)
         private String street;
-
-        @Column(nullable = false, length = 12)
-        private int houseNumber;
 
         @Column(nullable = false, length = 40)
         private String city;
@@ -35,20 +32,18 @@ public class Address {
         private int zipCode;
 
         @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "user_id")
         private User user;
-
-        @OneToOne
-        private Transaction transaction;
 
         public Address() {
         }
 
-        public Address(Boolean type, String first_name, String last_name, String street, int houseNumber, String city, String state, int zipCode) {
-                this.type = type;
+        public Address(String address_type, String first_name, String last_name, String street, String city,
+                       String state, int zipCode) {
+                this.address_type = address_type;
                 this.first_name = first_name;
                 this.last_name = last_name;
                 this.street = street;
-                this.houseNumber = houseNumber;
                 this.city = city;
                 this.state = state;
                 this.zipCode = zipCode;
@@ -62,12 +57,12 @@ public class Address {
                 this.id = id;
         }
 
-        public Boolean getType() {
-                return type;
+        public String getType() {
+                return address_type;
         }
 
-        public void setType(Boolean type) {
-                this.type = type;
+        public void setType(String address_type) {
+                this.address_type = address_type;
         }
 
         public String getFirst_name() {
@@ -94,13 +89,6 @@ public class Address {
                 this.street = street;
         }
 
-        public int getHouseNumber() {
-                return houseNumber;
-        }
-
-        public void setHouseNumber(int houseNumber) {
-                this.houseNumber = houseNumber;
-        }
 
         public String getCity() {
                 return city;
@@ -134,12 +122,5 @@ public class Address {
                 this.user = user;
         }
 
-        public Transaction getTransaction() {
-                return transaction;
-        }
-
-        public void setTransaction(Transaction transaction) {
-                this.transaction = transaction;
-        }
 }
 
