@@ -21,9 +21,6 @@ public class Product {
     private String size;
 
     @Column(nullable = false)
-    private char gender;
-
-    @Column(nullable = false)
     private String type;
 
     @Column(precision = 5, scale = 2)
@@ -41,15 +38,29 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<ProductImages> images;
 
-    @ManyToOne
-    private Transaction transaction;
-
     @OneToMany
     private List<Review> reviews;
 
+    @OneToMany
+    private List<Question> questions;
+
+//    @ManyToOne
+//    private ShoppingCart shoppingCart;
+
     @ManyToMany
-    @JoinColumn(name = "categories")
-    private List<Tag> categories;
+            (fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "product_genres",
+            joinColumns = { @JoinColumn(name = "product_id") },
+            inverseJoinColumns = { @JoinColumn(name = "genre_id") })
+    private List<Genre> genres;
+
+    public Product() {
+    }
+
 
     public long getId() {
         return id;
@@ -81,14 +92,6 @@ public class Product {
 
     public void setSize(String size) {
         this.size = size;
-    }
-
-    public char getGender() {
-        return gender;
-    }
-
-    public void setGender(char gender) {
-        this.gender = gender;
     }
 
     public String getType() {
@@ -138,14 +141,14 @@ public class Product {
     public void setImages(List<ProductImages> images) {
         this.images = images;
     }
-
-    public Transaction getTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
-    }
+//
+//    public Transaction getTransaction() {
+//        return transaction;
+//    }
+//
+//    public void setTransaction(Transaction transaction) {
+//        this.transaction = transaction;
+//    }
 
     public List<Review> getReviews() {
         return reviews;
@@ -155,12 +158,12 @@ public class Product {
         this.reviews = reviews;
     }
 
-    public List<Tag> getCategories() {
-        return categories;
+    public List<Genre> getGenres() {
+        return genres;
     }
 
-    public void setCategories(List<Tag> categories) {
-        this.categories = categories;
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 }
 
