@@ -1,14 +1,10 @@
 package com.capstone.ecommerce.model;
 
-import org.hibernate.mapping.Join;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "transactions_details")
+@Table(name = "transactions")
 public class Transaction {
 
     @Id
@@ -19,44 +15,33 @@ public class Transaction {
     private String transactionType;
 
     @Column(nullable = false)
-    private String transactionState;
+    private String transactionStatus;
 
     @Column(nullable = false, columnDefinition = "DATETIME")
-    private String dateTimeCreation;
+    private String created_at;
 
     @Column(nullable = true, columnDefinition = "DATETIME")
-    private String dateTimeModification;
-
-    @Column(nullable = false)
-    private String stripeTransToken;
-
-    @OneToOne
-    @JoinColumn(name = "final_purchase", referencedColumnName="id", nullable = false)
-    private ShoppingCart shoppingCart;
+    private String modified_at;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "ship_address", nullable = false)
-    private Address ship_address;
-
-    @OneToOne
-    @JoinColumn(name = "bill_address", nullable = false)
-    private Address bill_address;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Product> products;
 
     public Transaction() {
     }
 
-    public Transaction(String transactionType, String transactionState, String dateTimeCreation,
-                       String dateTimeModification, String stripeTransToken) {
+    public Transaction(String transactionType, String transactionStatus, String created_at,
+                       String modified_at) {
         this.transactionType = transactionType;
-        this.transactionState = transactionState;
-        this.dateTimeCreation = dateTimeCreation;
-        this.dateTimeModification = dateTimeModification;
-        this.stripeTransToken = stripeTransToken;
+        this.transactionStatus = transactionStatus;
+        this.created_at = created_at;
+        this.modified_at = modified_at;
     }
+
+
 
     public long getId() {
         return id;
@@ -64,14 +49,6 @@ public class Transaction {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getTransactionType() {
@@ -82,59 +59,43 @@ public class Transaction {
         this.transactionType = transactionType;
     }
 
-    public String getTransactionState() {
-        return transactionState;
+    public String getTransactionStatus() {
+        return transactionStatus;
     }
 
-    public void setTransactionState(String transactionState) {
-        this.transactionState = transactionState;
+    public void setTransactionStatus(String transactionStatus) {
+        this.transactionStatus = transactionStatus;
     }
 
-    public String getDateTimeCreation() {
-        return dateTimeCreation;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setDateTimeCreation(String dateTimeCreation) {
-        this.dateTimeCreation = dateTimeCreation;
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 
-    public String getDateTimeModification() {
-        return dateTimeModification;
+    public String getModified_at() {
+        return modified_at;
     }
 
-    public void setDateTimeModification(String dateTimeModification) {
-        this.dateTimeModification = dateTimeModification;
+    public void setModified_at(String modified_at) {
+        this.modified_at = modified_at;
     }
 
-    public String getStripeTransToken() {
-        return stripeTransToken;
+    public User getUser() {
+        return user;
     }
 
-    public void setStripeTransToken(String stripeTransToken) {
-        this.stripeTransToken = stripeTransToken;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setShoppingCart(ShoppingCart shoppingCart) {
-        this.shoppingCart = shoppingCart;
-    }
-
-    public Address getShip_address() {
-        return ship_address;
-    }
-
-    public void setShip_address(Address ship_address) {
-        this.ship_address = ship_address;
-    }
-
-    public Address getBill_address() {
-        return bill_address;
-    }
-
-    public void setBill_address(Address bill_address) {
-        this.bill_address = bill_address;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }

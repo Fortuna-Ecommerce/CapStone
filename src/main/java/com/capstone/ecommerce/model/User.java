@@ -1,5 +1,7 @@
 package com.capstone.ecommerce.model;
 
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -29,10 +31,12 @@ public class User {
     private List<Transaction> transactions;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Address> ship_addresses;
+    @Where(clause = "address_type = 'shipping'")
+    private List<Address> ship_address;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Address> bill_addresses;
+    @Where(clause = "address_type = 'billing'")
+    private List<Address> bill_address;
 
     public User() {
     }
@@ -98,5 +102,29 @@ public class User {
 
     public void setAdmin(Boolean admin) {
         isAdmin = admin;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public List<Address> getShip_address() {
+        return ship_address;
+    }
+
+    public void setShip_address(List<Address> ship_address) {
+        this.ship_address = ship_address;
+    }
+
+    public List<Address> getBill_address() {
+        return bill_address;
+    }
+
+    public void setBill_address(List<Address> bill_address) {
+        this.bill_address = bill_address;
     }
 }
