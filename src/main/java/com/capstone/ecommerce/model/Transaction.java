@@ -4,6 +4,7 @@ import org.hibernate.mapping.Join;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,16 +22,16 @@ public class Transaction {
     private String transactionState;
 
     @Column(nullable = false, columnDefinition = "DATETIME")
-    private LocalDateTime dateTimeCreation;
+    private String dateTimeCreation;
 
     @Column(nullable = true, columnDefinition = "DATETIME")
-    private LocalDateTime dateTimeModification;
+    private String dateTimeModification;
 
     @Column(nullable = false)
     private String stripeTransToken;
 
     @OneToOne
-    @JoinColumn(name = "final_purchase", referencedColumnName="transaction", nullable = false)
+    @JoinColumn(name = "final_purchase", referencedColumnName="id", nullable = false)
     private ShoppingCart shoppingCart;
 
     @ManyToOne
@@ -39,13 +40,22 @@ public class Transaction {
 
     @OneToOne
     @JoinColumn(name = "ship_address", nullable = false)
-    private ShipAddresses ship_address;
+    private Address ship_address;
 
     @OneToOne
     @JoinColumn(name = "bill_address", nullable = false)
-    private BillAddresses bill_address;
+    private Address bill_address;
 
     public Transaction() {
+    }
+
+    public Transaction(String transactionType, String transactionState, String dateTimeCreation,
+                       String dateTimeModification, String stripeTransToken) {
+        this.transactionType = transactionType;
+        this.transactionState = transactionState;
+        this.dateTimeCreation = dateTimeCreation;
+        this.dateTimeModification = dateTimeModification;
+        this.stripeTransToken = stripeTransToken;
     }
 
     public long getId() {
@@ -80,19 +90,19 @@ public class Transaction {
         this.transactionState = transactionState;
     }
 
-    public LocalDateTime getDateTimeCreation() {
+    public String getDateTimeCreation() {
         return dateTimeCreation;
     }
 
-    public void setDateTimeCreation(LocalDateTime dateTimeCreation) {
+    public void setDateTimeCreation(String dateTimeCreation) {
         this.dateTimeCreation = dateTimeCreation;
     }
 
-    public LocalDateTime getDateTimeModification() {
+    public String getDateTimeModification() {
         return dateTimeModification;
     }
 
-    public void setDateTimeModification(LocalDateTime dateTimeModification) {
+    public void setDateTimeModification(String dateTimeModification) {
         this.dateTimeModification = dateTimeModification;
     }
 
@@ -112,19 +122,19 @@ public class Transaction {
         this.shoppingCart = shoppingCart;
     }
 
-    public ShipAddresses getShip_address() {
+    public Address getShip_address() {
         return ship_address;
     }
 
-    public void setShip_address(ShipAddresses ship_address) {
+    public void setShip_address(Address ship_address) {
         this.ship_address = ship_address;
     }
 
-    public BillAddresses getBill_address() {
+    public Address getBill_address() {
         return bill_address;
     }
 
-    public void setBill_address(BillAddresses bill_address) {
+    public void setBill_address(Address bill_address) {
         this.bill_address = bill_address;
     }
 }

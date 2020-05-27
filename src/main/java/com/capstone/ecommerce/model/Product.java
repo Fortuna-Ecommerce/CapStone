@@ -11,11 +11,11 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
-    private char color;
+    private String color;
 
     @Column(nullable = false)
     private String size;
@@ -23,14 +23,15 @@ public class Product {
     @Column(nullable = false)
     private String type;
 
-    @Column(precision = 5, scale = 2)
-    private float price;
+    @Column(precision = 5, scale = 2, nullable = false)
+    private double price;
 
     @Column
     private String description;
 
     @Column
     private int onSpecial;
+    //0 or number to discount item with - multiply it to get percentage
 
     @Column(columnDefinition = "int UNSIGNED default 1", nullable = false)
     private long quantity;
@@ -61,6 +62,19 @@ public class Product {
     public Product() {
     }
 
+    public Product(String name, String color, String size, String type, double price, String description,
+                   int onSpecial,
+                   int quantity) {
+        this.name = name;
+        this.color = color;
+        this.size = size;
+        this.type = type;
+        this.price = price;
+        this.description = description;
+        this.onSpecial = onSpecial;
+        this.quantity = quantity;
+    }
+
 
     public long getId() {
         return id;
@@ -78,11 +92,11 @@ public class Product {
         this.name = name;
     }
 
-    public char getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(char color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
@@ -102,7 +116,7 @@ public class Product {
         this.type = type;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 

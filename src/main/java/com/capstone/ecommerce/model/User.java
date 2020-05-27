@@ -29,10 +29,28 @@ public class User {
     private List<Transaction> transactions;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<ShipAddresses> ship_addresses;
+    private List<Address> ship_addresses;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<BillAddresses> bill_addresses;
+    private List<Address> bill_addresses;
+
+    public User() {
+    }
+
+    public User(String username, String email, String password, Boolean isAdmin){
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.isAdmin = isAdmin;
+    }
+
+    public User(User copy){
+        id = copy.id;
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+        isAdmin = copy.isAdmin;
+    }
 
     public long getId() {
         return id;
