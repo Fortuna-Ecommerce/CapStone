@@ -17,6 +17,9 @@ public class Transaction {
     @Column(nullable = false)
     private String transactionType;
 
+    @Column(nullable = false)
+    private String transactionState;
+
     @Column(nullable = false, columnDefinition = "DATETIME")
     private LocalDateTime dateTimeCreation;
 
@@ -69,12 +72,28 @@ public class Transaction {
         this.transactionType = transactionType;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public String getTransactionState() {
+        return transactionState;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setTransactionState(String transactionState) {
+        this.transactionState = transactionState;
+    }
+
+    public LocalDateTime getDateTimeCreation() {
+        return dateTimeCreation;
+    }
+
+    public void setDateTimeCreation(LocalDateTime dateTimeCreation) {
+        this.dateTimeCreation = dateTimeCreation;
+    }
+
+    public LocalDateTime getDateTimeModification() {
+        return dateTimeModification;
+    }
+
+    public void setDateTimeModification(LocalDateTime dateTimeModification) {
+        this.dateTimeModification = dateTimeModification;
     }
 
     public String getStripeTransToken() {
