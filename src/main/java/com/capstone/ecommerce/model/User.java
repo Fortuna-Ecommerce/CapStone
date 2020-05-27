@@ -34,6 +34,14 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<BillAddresses> bill_addresses;
 
+    public User(User user) {
+
+    }
+
+    public User() {
+        
+    }
+
     public long getId() {
         return id;
     }
