@@ -87,10 +87,11 @@ public class DatabaseSeeder implements CommandLineRunner {
     }
 
     private List<Address> seedAddresses(List<User> users){
-               Address address1 = new Address("Shipping", "Jeremy", "T", "10101 Nolan Dr", "San Antonio", "TX",78230);
-        Address address2 =  new Address("Billing", "Jeremy", "T", "10101 Nolan Dr", "San Antonio", "TX", 78230);
-        Address address3 = new Address("Shipping", "Joe", "Shmoe", "131 Telari St", "New York", "NY", 10043);
-        Address address4 = new Address("Billing", "Joe", "Shmoe", "131 Telari St", "New York", "NY", 10043);
+               Address address1 = new Address("Shipping", "Jeremy", "T", "10101 Nolan Dr", null, "San Antonio", "TX",
+                       78230);
+        Address address2 =  new Address("Billing", "Jeremy", "T", "10101 Nolan Dr", null, "San Antonio", "TX", 78230);
+        Address address3 = new Address("Shipping", "Joe", "Shmoe", "131 Telari St", null, "New York", "NY", 10043);
+        Address address4 = new Address("Billing", "Joe", "Shmoe", "131 Telari St", null, "New York", "NY", 10043);
         address1.setUser(users.get(1));
         address2.setUser(users.get(1));
         address3.setUser(users.get(4));
@@ -149,16 +150,16 @@ public class DatabaseSeeder implements CommandLineRunner {
         products.remove(4);
 
         test1.setUser(users.get(0));
-        test1.setProducts(products);
+        test1.setProduct(products);
 
         test2.setUser(users.get(0));
-        test2.setProducts(products);
+        test2.setProduct(products);
 
         test3.setUser(users.get(4));
-        test3.setProducts(products);
+        test3.setProduct(products);
 
         test4.setUser(users.get(4));
-        test4.setProducts(products);
+        test4.setProduct(products);
 
         transactionRepository.save(test1);
         transactionRepository.save(test2);
