@@ -56,6 +56,14 @@ public class User {
         isAdmin = copy.isAdmin;
     }
 
+    public User(User user) {
+
+    }
+
+    public User() {
+        
+    }
+
     public long getId() {
         return id;
     }
