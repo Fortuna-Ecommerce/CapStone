@@ -37,12 +37,12 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<ProductImages> images;
-
-    @OneToMany
-    private List<Review> reviews;
-
-    @OneToMany
-    private List<Question> questions;
+//
+//    @OneToMany
+//    private List<Review> reviews;
+//
+//    @OneToMany
+//    private List<Question> questions;
 
 
     @ManyToMany
@@ -152,14 +152,6 @@ public class Product {
 
     public void setImages(List<ProductImages> images) {
         this.images = images;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
     }
 
     public List<Categories> getCategories() {
