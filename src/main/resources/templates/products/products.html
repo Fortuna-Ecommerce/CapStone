@@ -6,6 +6,14 @@
 <div class="container mt-4">
 
     <h1>All of the greatest internet pictures and text on fancy clothes!</h1>
+    <div class="container" style="text-align: center">
+        <div th:each="product : ${allProducts}">
+            <a th:href="@{'/products/'${product.id}}"><h1 style="font-weight: bold" th:text="${product.name}">
+            </h1></a>
+            <p style="" th:text="${product.description}"> </p>
+            <br>
+        </div>
+    </div>
 
 </div>
 <footer th:replace="partials :: footer" />
