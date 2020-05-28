@@ -2,9 +2,11 @@ package com.capstone.ecommerce.controllers;
 
 import com.capstone.ecommerce.model.User;
 import com.capstone.ecommerce.repositories.UserRepository;
+import org.dom4j.rule.Mode;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import com.capstone.ecommerce.repositories.ProductRepository;
 
 import java.util.Optional;
 
@@ -16,7 +18,7 @@ public class UserController {
         this.userRepo = userRepo;
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/profile/id")
     @ResponseBody
     public String userProfile(Model model) {
         Optional<User> users = userRepo.findById();
@@ -57,6 +59,12 @@ public class UserController {
     public String viewTshirts(Model model){
         model.addAttribute("allProducts", productRepo.findAll());
         return "/user/products/tshirts";
+    }
+    @GetMapping("/user/products/tshirt/{id}/checkout/shipping/billing/confirmation")
+    @ResponseBody
+    public String buyProduct(Model model){
+        model.addAttribute("allProducts", productRepo.findAll());
+        return "/user/products/tshirt/{id}/checkout/shipping/billing/confirmation";
     }
 
 }
