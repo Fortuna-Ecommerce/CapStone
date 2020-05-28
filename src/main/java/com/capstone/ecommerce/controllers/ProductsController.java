@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -62,6 +64,14 @@ public class ProductsController {
         Product aProduct = productRepo.getOne(id);
         model.addAttribute("hat", aProduct);
         return "products/hats/show";
+    }
+
+    //  SEARCH
+    @PostMapping("/posts/search")
+    public String searchProduct(@RequestParam (name = "keyword") String keyword, Model model) {
+        List<Product> products = productRepo.findAll();
+        model.addAttribute("products", products);
+        return "products/index";
     }
 
 }
