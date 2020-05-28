@@ -14,7 +14,7 @@ public class Product {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, length = 7)
+    @Column(nullable = false, length = 6)
     private String color;
 
     @Column(nullable = false)
