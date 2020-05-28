@@ -14,7 +14,7 @@ public class ProductImages {
     private String path;
 
     @ManyToOne
-    @JoinColumn (name = "product", nullable = false)
+    @JoinColumn (name = "product_id", nullable = false)
     private Product product;
 
     public long getId() {
