@@ -62,16 +62,16 @@ public class DatabaseSeeder implements CommandLineRunner {
     //generate a handful of products and return it after saving
     private List<Product> seedProducts(){
 
-               Product product1 = new Product("Rage meme", "Blue", "XL", "Shirt", 22.22, "Angry guy melting down",
+               Product product1 = new Product("Rage meme", "5DADE2", "XL", "Shirt", 22.22, "Angry guy melting down",
                        false,
                        5);
-        Product product2 = new Product("Pepe punch", "Gray", "L", "Shirt", 28.22, "Frog person threatening pose", false,
+        Product product2 = new Product("Pepe punch", "95A5A6", "L", "Shirt", 28.22, "Frog person threatening pose", false,
                 23);
-        Product product3 = new Product("Pepe sad", "Purple", "XL", "Hoodie", 35.78, "Frog person very down", true, 1000);
-        Product product4 = new Product("NPC face", "Red", "OSFM", "Hat", 15.99, "Fellow with straight line mouth and " +
+        Product product3 = new Product("Pepe sad", "8E44AD", "XL", "Hoodie", 35.78, "Frog person very down", true, 1000);
+        Product product4 = new Product("NPC face", "E74C3C", "OSFM", "Hat", 15.99, "Fellow with straight line mouth and " +
                 "angly " +
                         "eyebrows", false, 9);
-        Product product5 = new Product("Rage meme", "White", "S", "Hoodie", 35.99, "Angry guy melting down", false, 0);
+        Product product5 = new Product("Rage meme", "FDFEFE", "S", "Hoodie", 35.99, "Angry guy melting down", false, 0);
         productRepository.save(product1);
         productRepository.save(product2);
         productRepository.save(product3);
