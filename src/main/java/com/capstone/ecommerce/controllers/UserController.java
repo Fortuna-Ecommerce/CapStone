@@ -2,69 +2,36 @@ package com.capstone.ecommerce.controllers;
 
 import com.capstone.ecommerce.model.User;
 import com.capstone.ecommerce.repositories.UserRepository;
-import org.dom4j.rule.Mode;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import com.capstone.ecommerce.repositories.ProductRepository;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Optional;
-
+@Controller
 public class UserController {
-    private UserRepository userRepo;
+    private UserRepository users;
+    private PasswordEncoder passwordEncoder;
 
-    //Constructor
-    public UserController(UserRepository userRepo) {
-        this.userRepo = userRepo;
+    public UserController(UserRepository users, PasswordEncoder passwordEncoder) {
+        this.users = users;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/profile/id")
-    @ResponseBody
-    public String userProfile(Model model) {
-        Optional<User> users = userRepo.findById();
-        model.addAttribute("allUsers", users);
-        return "/user/profile";
+    @GetMapping("/register")
+    public String showSignupForm(Model model){
+        model.addAttribute("user", new User());
+        return "users/register";
     }
 
-    @GetMapping("/user/{id}/profile/create")
-    @ResponseBody
-    public String userProfileCreate(Model model){
-        model.addAttribute("allUsers", userRepo.findAll());
-        return "/user/{id}/profile/create";
+    @PostMapping("/register")
+    public String saveUser(@ModelAttribute User user){
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
+        user.setAdmin(false);
+        users.save(user);
+        return "redirect:/login";
     }
-
-    @GetMapping("/user/{id}/profile/edit")
-    @ResponseBody
-    public String userProfileEdit(Model model){
-        model.addAttribute("allUsers", userRepo.findAll());
-        return "/user/{id}/profile/edit";
-    }
-
-    @GetMapping("/user/profile/{id}")
-        @ResponseBody
-    public String viewUserProfile(Model model){
-        model.addAttribute("allUsers", userRepo.findAll());
-        return "/user/profile/{id}";
-        }
-
-    @GetMapping("/user/products/tshirts/{id}/review")
-    @ResponseBody
-    public String viewReviewsSubmitted(Model model){
-        model.addAttribute("allUsers", userRepo.findAll());
-        return "/user/products/tshirts/{id}/review";
-    }
-
-    @GetMapping("/user/products/tshirts")
-    @ResponseBody
-    public String viewTshirts(Model model){
-        model.addAttribute("allProducts", productRepo.findAll());
-        return "/user/products/tshirts";
-    }
-    @GetMapping("/user/products/tshirt/{id}/checkout/shipping/billing/confirmation")
-    @ResponseBody
-    public String buyProduct(Model model){
-        model.addAttribute("allProducts", productRepo.findAll());
-        return "/user/products/tshirt/{id}/checkout/shipping/billing/confirmation";
-    }
-
 }
+

@@ -1,13 +1,10 @@
 package com.capstone.ecommerce.model;
 
-import org.hibernate.mapping.Join;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "transactions_details")
+@Table(name = "transactions")
 public class Transaction {
 
     @Id
@@ -18,35 +15,33 @@ public class Transaction {
     private String transactionType;
 
     @Column(nullable = false)
-    private String transactionState;
+    private String transactionStatus;
 
     @Column(nullable = false, columnDefinition = "DATETIME")
-    private LocalDateTime dateTimeCreation;
+    private String created_at;
 
     @Column(nullable = true, columnDefinition = "DATETIME")
-    private LocalDateTime dateTimeModification;
-
-    @Column(nullable = false)
-    private String stripeTransToken;
-
-    @OneToOne
-    @JoinColumn(name = "final_purchase", referencedColumnName="transaction", nullable = false)
-    private ShoppingCart shoppingCart;
+    private String modified_at;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "ship_address", nullable = false)
-    private ShipAddresses ship_address;
-
-    @OneToOne
-    @JoinColumn(name = "bill_address", nullable = false)
-    private BillAddresses bill_address;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Product> product;
 
     public Transaction() {
     }
+
+    public Transaction(String transactionType, String transactionStatus, String created_at,
+                       String modified_at) {
+        this.transactionType = transactionType;
+        this.transactionStatus = transactionStatus;
+        this.created_at = created_at;
+        this.modified_at = modified_at;
+    }
+
+
 
     public long getId() {
         return id;
@@ -54,14 +49,6 @@ public class Transaction {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getTransactionType() {
@@ -72,59 +59,43 @@ public class Transaction {
         this.transactionType = transactionType;
     }
 
-    public String getTransactionState() {
-        return transactionState;
+    public String getTransactionStatus() {
+        return transactionStatus;
     }
 
-    public void setTransactionState(String transactionState) {
-        this.transactionState = transactionState;
+    public void setTransactionStatus(String transactionStatus) {
+        this.transactionStatus = transactionStatus;
     }
 
-    public LocalDateTime getDateTimeCreation() {
-        return dateTimeCreation;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setDateTimeCreation(LocalDateTime dateTimeCreation) {
-        this.dateTimeCreation = dateTimeCreation;
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 
-    public LocalDateTime getDateTimeModification() {
-        return dateTimeModification;
+    public String getModified_at() {
+        return modified_at;
     }
 
-    public void setDateTimeModification(LocalDateTime dateTimeModification) {
-        this.dateTimeModification = dateTimeModification;
+    public void setModified_at(String modified_at) {
+        this.modified_at = modified_at;
     }
 
-    public String getStripeTransToken() {
-        return stripeTransToken;
+    public User getUser() {
+        return user;
     }
 
-    public void setStripeTransToken(String stripeTransToken) {
-        this.stripeTransToken = stripeTransToken;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
+    public List<Product> getProduct() {
+        return product;
     }
 
-    public void setShoppingCart(ShoppingCart shoppingCart) {
-        this.shoppingCart = shoppingCart;
-    }
-
-    public ShipAddresses getShip_address() {
-        return ship_address;
-    }
-
-    public void setShip_address(ShipAddresses ship_address) {
-        this.ship_address = ship_address;
-    }
-
-    public BillAddresses getBill_address() {
-        return bill_address;
-    }
-
-    public void setBill_address(BillAddresses bill_address) {
-        this.bill_address = bill_address;
+    public void setProduct(List<Product> product) {
+        this.product = product;
     }
 }
