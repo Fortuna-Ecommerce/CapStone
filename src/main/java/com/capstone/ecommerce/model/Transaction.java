@@ -28,7 +28,7 @@ public class Transaction {
     private User user;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    private List<Product> products;
+    private List<Product> product;
 
     public Transaction() {
     }
@@ -91,11 +91,11 @@ public class Transaction {
         this.user = user;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Product> getProduct() {
+        return product;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProduct(List<Product> product) {
+        this.product = product;
     }
 }

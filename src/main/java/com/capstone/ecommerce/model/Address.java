@@ -20,7 +20,10 @@ public class Address {
         private String last_name;
 
         @Column(nullable = false, length = 75)
-        private String street;
+        private String street1;
+
+        @Column(nullable = true, length = 75)
+        private String street2;
 
         @Column(nullable = false, length = 40)
         private String city;
@@ -38,12 +41,14 @@ public class Address {
         public Address() {
         }
 
-        public Address(String address_type, String first_name, String last_name, String street, String city,
+        public Address(String address_type, String first_name, String last_name, String street1, String street2,
+                       String city,
                        String state, int zipCode) {
                 this.address_type = address_type;
                 this.first_name = first_name;
                 this.last_name = last_name;
-                this.street = street;
+                this.street1 = street1;
+                this.street2 = street2;
                 this.city = city;
                 this.state = state;
                 this.zipCode = zipCode;
@@ -55,14 +60,6 @@ public class Address {
 
         public void setId(int id) {
                 this.id = id;
-        }
-
-        public String getType() {
-                return address_type;
-        }
-
-        public void setType(String address_type) {
-                this.address_type = address_type;
         }
 
         public String getFirst_name() {
@@ -81,14 +78,29 @@ public class Address {
                 this.last_name = last_name;
         }
 
-        public String getStreet() {
-                return street;
+        public String getAddress_type() {
+                return address_type;
         }
 
-        public void setStreet(String street) {
-                this.street = street;
+        public void setAddress_type(String address_type) {
+                this.address_type = address_type;
         }
 
+        public String getStreet1() {
+                return street1;
+        }
+
+        public void setStreet1(String street1) {
+                this.street1 = street1;
+        }
+
+        public String getStreet2() {
+                return street2;
+        }
+
+        public void setStreet2(String street2) {
+                this.street2 = street2;
+        }
 
         public String getCity() {
                 return city;
