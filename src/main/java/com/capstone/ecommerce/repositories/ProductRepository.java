@@ -10,10 +10,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 //  void save(List<Product> products);
 
+//  List<Product> findAll(String keyword);
+
   @Query("SELECT p FROM Product p WHERE p.name LIKE %?1%")
-  List<Product> findAll(String keyword);
-
-//  Product findByTitle(String title);
-
+  List<Product> findByNameContaining(String keyword);
 
 }

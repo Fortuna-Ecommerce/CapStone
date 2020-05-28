@@ -67,9 +67,9 @@ public class ProductsController {
     }
 
     //  SEARCH
-    @PostMapping("/posts/search")
+    @PostMapping("/products/search")
     public String searchProduct(@RequestParam (name = "keyword") String keyword, Model model) {
-        List<Product> products = productRepo.findAll();
+        List<Product> products = productRepo.findByNameContaining(keyword);
         model.addAttribute("products", products);
         return "products/index";
     }
