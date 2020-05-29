@@ -1,6 +1,7 @@
 package com.capstone.ecommerce.controllers;
 
 import com.capstone.ecommerce.model.Product;
+import com.capstone.ecommerce.model.ProductImages;
 import com.capstone.ecommerce.repositories.ProductRepository;
 import com.capstone.ecommerce.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ public class ProductsController {
         this.productRepo = productRepo;
     }
 
-    @GetMapping("/products")
+    @GetMapping("/products/all")
     public String productsIndex(Model model) {
         List<Product> products = productRepo.findAll();
         model.addAttribute("allProducts", products);
@@ -46,9 +47,9 @@ public class ProductsController {
     }
 
     @GetMapping("products/t-shirts/{id}")
-    public String individualTshirt(Model model, @PathVariable long id) {
-        Product aProduct = productRepo.getOne(id);
-        model.addAttribute("tshirt", aProduct);
+    public String individualTshirt(Model model, @PathVariable("id") long id) {
+        Product tshirt = productRepo.getOne(id);
+        model.addAttribute("tshirt", tshirt);
         return "products/t-shirts/show";
     }
 
@@ -73,5 +74,13 @@ public class ProductsController {
         model.addAttribute("products", products);
         return "products/index";
     }
+
+    public ProductImages getImage(@PathVariable String path, Model model) {
+        ProductImages image = productRepo.getFilePath(path);
+        model.addAttribute("path", path);
+        return image;
+    }
+
+
 
 }
