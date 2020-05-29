@@ -2,11 +2,12 @@ package com.capstone.ecommerce.controllers;
 
 import com.capstone.ecommerce.model.Product;
 import com.capstone.ecommerce.repositories.ProductRepository;
-import com.capstone.ecommerce.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ProductsController {
         this.productRepo = productRepo;
     }
 
-    @GetMapping("/products")
+    @GetMapping("/products/all")
     public String productsIndex(Model model) {
         List<Product> products = productRepo.findAll();
         model.addAttribute("allProducts", products);
@@ -44,9 +45,9 @@ public class ProductsController {
     }
 
     @GetMapping("products/t-shirts/{id}")
-    public String individualTshirt(Model model, @PathVariable long id) {
-        Product aProduct = productRepo.getOne(id);
-        model.addAttribute("tshirt", aProduct);
+    public String individualTshirt(Model model, @PathVariable("id") long id) {
+        Product tshirt = productRepo.getOne(id);
+        model.addAttribute("tshirt", tshirt);
         return "products/t-shirts/show";
     }
 
@@ -63,5 +64,21 @@ public class ProductsController {
         model.addAttribute("hat", aProduct);
         return "products/hats/show";
     }
+
+    //  SEARCH
+    @PostMapping("/products/search")
+    public String searchProduct(@RequestParam (name = "keyword") String keyword, Model model) {
+        List<Product> products = productRepo.findByNameContaining(keyword);
+        model.addAttribute("products", products);
+        return "products/index";
+    }
+
+//    public ProductImages getImage(@PathVariable String path, Model model) {
+//        ProductImages image = productRepo.getFilePath(path);
+//        model.addAttribute("path", path);
+//        return image;
+//    }
+
+
 
 }

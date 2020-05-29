@@ -35,11 +35,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                /* Login configuration */
+/*
+                    MAKE A PLAN FOR ALL ROLES AND PERMISSIONS
+                    ENSURE ALL PATHS ARE ROUTED CORRECTLY
+
+*/
+
+  /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
-//                .defaultSuccessUrl("/ads") // user's home page, it can be any URL
-                .defaultSuccessUrl("/posts") // user's home page, it can be any URL
+                .defaultSuccessUrl("/products/t-shirts") // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
@@ -48,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/ads", "/posts") // anyone can see the home and the ads pages
+                .antMatchers("/", "home") // anyone can see the home and the ads pages
                 .permitAll()
                 /* Pages that require authentication */
                 .and()
