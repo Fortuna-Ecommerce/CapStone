@@ -1,5 +1,7 @@
 package com.capstone.ecommerce.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -33,11 +35,15 @@ public class Product {
     private int onSpecial;
     //0 or number to discount item with - multiply it to get percentage
 
+
     @Column(columnDefinition = "int UNSIGNED default 1", nullable = false)
     private long quantity;
 
+    @Column
+    private String image;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private List<ProductImages> images;
+    private List<ProductImages> productImages;
 
     @OneToMany
     private List<Review> reviews;
@@ -64,7 +70,7 @@ public class Product {
 
     public Product(String name, String color, String size, String type, double price, String description,
                    int onSpecial,
-                   int quantity) {
+                   int quantity, String image) {
         this.name = name;
         this.color = color;
         this.size = size;
@@ -73,6 +79,7 @@ public class Product {
         this.description = description;
         this.onSpecial = onSpecial;
         this.quantity = quantity;
+        this.image = image;
     }
 
 
@@ -148,14 +155,23 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public List<ProductImages> getImages() {
-        return images;
+    public String getImage() {
+        return image;
     }
 
-    public void setImages(List<ProductImages> images) {
-        this.images = images;
+    public void setImage(String image) {
+        this.image = image;
     }
-//
+
+    public List<ProductImages> getProductImages() {
+        return productImages;
+    }
+
+    public void setProductImages(List<ProductImages> productImages) {
+        this.productImages = productImages;
+    }
+
+    //
 //    public Transaction getTransaction() {
 //        return transaction;
 //    }
@@ -179,5 +195,7 @@ public class Product {
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
     }
+
+
 }
 

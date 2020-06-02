@@ -1,7 +1,6 @@
 package com.capstone.ecommerce.repositories;
 
 import com.capstone.ecommerce.model.Product;
-import com.capstone.ecommerce.model.ProductImages;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,10 +12,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 //  List<Product> findAll(String keyword);
 
+//  Product getProductById(long id);
+
+//SEARCH METHOD
   @Query("SELECT p FROM Product p WHERE p.name LIKE %?1%")
   List<Product> findByNameContaining(String keyword);
 
-  @Query("SELECT path FROM product_images")
-  ProductImages getFilePath(String path);
 
 }

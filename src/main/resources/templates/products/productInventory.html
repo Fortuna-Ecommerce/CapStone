@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="partials :: head" /></div>
+<body>
+<nav th:replace="partials :: navbar" />
+<div class="container mt-4">
+
+    <h1>Product Inventory</h1>
+    <div class="container col-md-4" style="text-align: center">
+        <div th:each="product : ${products}">
+            <img th:src="@{/img/${product.getImage()}}"/>
+            <a th:href="${product.id}">
+                <h1 style="font-weight: bold" th:text="${product.name}"></h1>
+            </a>
+        </div>
+    </div>
+
+</div>
+<footer th:replace="partials :: footer" />
+</body>
+</html>
