@@ -1,19 +1,39 @@
 package com.capstone.ecommerce.model;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Where;
 
+import javax.management.relation.Role;
 import javax.persistence.*;
 import java.util.List;
 
 @Entity //Interacts with databases
 @Table(name="users")//Creates Table in database
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "userCache")
 public class User {
-    // Generates column named Id in database
+    public static String getRoleAdmin() {
+        return ROLE_ADMIN;
+    }
+
+    public static String getRoleUser() {
+        return ROLE_USER;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
+    public static final String ROLE_USER = "ROLE_USER";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    //Creates new column named username that is not null, unique, and a varchar(50)
     @Column(nullable = false, unique = true, length = 50)
     private String username;
 
@@ -26,9 +46,8 @@ public class User {
     @Column(nullable = true)
     private String stripeToken;
 
-    //Makes a new column declares the type of Boolean, sets default value to false, which is named isAdmin
-    @Column(columnDefinition = "tinyint(1) default 0", nullable = false)
-    private Boolean isAdmin;
+    @Column(nullable = false)
+    private String role;
 
     //Makes a new Table of Transactions which is based on columns from other tables (user), has a one to many relationship between user and transaction.
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -47,11 +66,11 @@ public class User {
     }
 
     //Creates the User object and specifies what the User object consists of
-    public User(String username, String email, String password, Boolean isAdmin) {
+    public User(String username, String email, String password, String role) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.isAdmin = isAdmin;
+        this.role = role;
     }
 
     //Creates a copy of the User object for user manipulation (update)
@@ -60,7 +79,7 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
-        isAdmin = copy.isAdmin;
+        role = copy.role;
     }
 
 
@@ -110,13 +129,13 @@ public class User {
         this.stripeToken = stripeToken;
     }
 
-    public Boolean getAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(Boolean admin) {
-        isAdmin = admin;
-    }
+//    public Boolean getAdmin() {
+//        return isAdmin;
+//    }
+//
+//    public void setAdmin(Boolean admin) {
+//        isAdmin = admin;
+//    }
 
     public List<Transaction> getTransactions() {
         return transactions;
