@@ -72,6 +72,21 @@ public class ProductsController {
         model.addAttribute("products", products);
         return "products/index";
     }
+    // ADMIN DISABLE PRODUCT
+    @PostMapping("/products/disable/{id}")
+    public String disableAd(Long id) {
+        Product product = productRepo.getOne(id);
+        product.disableProduct();
+        productRepo.save(product);
+        return "redirect:/products/all";
+    }
+    @PostMapping("/products/enable/{id}")
+    public String enableProduct(Long id) {
+        Product product = productRepo.getOne(id);
+        product.enableProduct();
+        productRepo.save(product);
+        return "redirect:/products/" + product.getId();
+    }
 
 //    public ProductImages getImage(@PathVariable String path, Model model) {
 //        ProductImages image = productRepo.getFilePath(path);

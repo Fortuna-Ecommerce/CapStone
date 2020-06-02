@@ -35,11 +35,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-/*
-                    MAKE A PLAN FOR ALL ROLES AND PERMISSIONS
-                    ENSURE ALL PATHS ARE ROUTED CORRECTLY
-
-*/
 
   /* Login configuration */
                 .formLogin()
@@ -62,9 +57,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/ads/create", // only authenticated users can create ads
                         "/ads/{id}/edit", // only authenticated users can edit ads
                         "/posts/create", // only authenticated users can create posts
-                        "/posts/{id}/edit" // only authenticated users can edit posts
+                        "/product/edit/{id}" // only authenticated users can edit posts
                 )
                 .authenticated()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/product/disabled/?")
+                .hasAuthority("ADMIN") // only admins can disable products
+
+
         ;
     }
 }

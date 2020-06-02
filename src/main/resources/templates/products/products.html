@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
     <title>Here Is Your Profile</title>
@@ -16,6 +16,11 @@
             </h1></a>
             <p style="" th:text="${product.description}"> </p>
             <br>
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <form th:action="@{'/products/disable/'${product.id}}">
+                    <button>Disable</button>
+                </form>
+            </div>
         </div>
     </div>
 

@@ -56,6 +56,16 @@ public class Product {
             inverseJoinColumns = { @JoinColumn(name = "category_id") })
     private List<Categories> categories;
 
+    // ADMIN DISABLE PRODUCT
+    @Column
+    private boolean disabled = false;
+
+    public void disableProduct() {
+        this.disabled = true;
+    }
+    public void enableProduct() {
+        this.disabled = false;
+    }
 
     public Product() {
     }
