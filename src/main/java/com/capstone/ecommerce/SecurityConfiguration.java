@@ -44,6 +44,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
+//                .defaultSuccessUrl("/ads") // user's home page, it can be any URL
+                .defaultSuccessUrl("/products") // user's home page, it can be any URL
                 .defaultSuccessUrl("/products/t-shirts") // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
@@ -52,17 +54,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login?logout") // append a query string value
                 /* Pages that can be viewed without having to log in */
                 .and()
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "home") // anyone can see the home and the ads pages
+                .antMatchers("/", "/products") // anyone can see the home and the products pages
                 .permitAll()
                 /* Pages that require authentication */
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/ads/create", // only authenticated users can create ads
-                        "/ads/{id}/edit", // only authenticated users can edit ads
-                        "/posts/create", // only authenticated users can create posts
-                        "/posts/{id}/edit" // only authenticated users can edit posts
+                       "/cart", //only authenticated users can see a shopping cart
+                       "/checkout" //only authenticated users can see the checkout paget
+//                        "/ads/create", // only authenticated users can create ads
+//                        "/ads/{id}/edit", // only authenticated users can edit ads
+//                        "/posts/create", // only authenticated users can create posts
+//                         "/posts/{id}/edit" // only authenticated users can edit posts
                 )
                 .authenticated()
         ;

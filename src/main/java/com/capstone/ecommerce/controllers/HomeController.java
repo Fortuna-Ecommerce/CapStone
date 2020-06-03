@@ -1,13 +1,20 @@
 package com.capstone.ecommerce.controllers;
 
 import com.capstone.ecommerce.model.Product;
+import com.capstone.ecommerce.model.ShoppingCart;
 import com.capstone.ecommerce.model.ProductImages;
 import com.capstone.ecommerce.repositories.ProductImagesRepository;
 import com.capstone.ecommerce.repositories.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -16,6 +23,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
+@SessionAttributes("products")
 public class HomeController {
     private ProductRepository productRepo;
     private ProductImagesRepository productImagesRepo;
@@ -26,9 +34,16 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String welcome() {
+    public String welcome(Model model) {
+
+        if(model.getAttribute("products") == null) {
+            ShoppingCart products = new ShoppingCart();
+            model.addAttribute("products", products);
+        }
+
         return "home";
     }
+
 
     @GetMapping("products/productInventory")
     public String getProducts(Model model) {

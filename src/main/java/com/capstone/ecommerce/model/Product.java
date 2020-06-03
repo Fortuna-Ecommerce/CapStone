@@ -31,8 +31,8 @@ public class Product {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(columnDefinition = "tinyint(1) default 0")
-    private Boolean onSpecial;
+    @Column(columnDefinition = "tinyint(1) default 0", name = "on_special")
+    private Boolean special;
 
 
     @Column(columnDefinition = "int UNSIGNED default 1", nullable = false)
@@ -64,6 +64,7 @@ public class Product {
         this.type = type;
         this.price = price;
         this.description = description;
+        this.special = onSpecial;
         this.quantity = quantity;
         this.image = image;
     }
@@ -125,12 +126,12 @@ public class Product {
         this.description = description;
     }
 
-    public Boolean getOnSpecial() {
-        return onSpecial;
+    public Boolean getSpecial() {
+        return special;
     }
 
-    public void setOnSpecial(Boolean onSpecial) {
-        this.onSpecial = onSpecial;
+    public void setSpecial(Boolean special) {
+        this.special = special;
     }
 
     public long getQuantity() {
