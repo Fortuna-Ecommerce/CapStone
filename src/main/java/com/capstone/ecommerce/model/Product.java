@@ -57,14 +57,13 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String color, String size, String type, double price, String description,
+    public Product(String name, String color, String size, String type, double price, String description, Long quantity, String image) {
         this.name = name;
         this.color = color;
         this.size = size;
         this.type = type;
         this.price = price;
         this.description = description;
-        this.onSpecial = onSpecial;
         this.quantity = quantity;
         this.image = image;
     }
