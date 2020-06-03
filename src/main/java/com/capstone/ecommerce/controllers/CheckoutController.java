@@ -207,11 +207,11 @@ public class CheckoutController{
         String name = ship_address.getFirstname() + " " + ship_address.getLastname();
         String email = shopper.getEmail();
         model.addAttribute("total", total);
-//        if(shopper.getStripeToken() == null){
-//            String customerId = stripeService.createCustomer(token, email);
-//            shopper.setStripeToken(customerId);
-//            this.userRepo.save(shopper);
-//        }
+        if(shopper.getStripeToken() == null){
+            String customerId = stripeService.createCustomer(token, email);
+            shopper.setStripeToken(customerId);
+            this.userRepo.save(shopper);
+        }
         try {
             String id = stripeService.chargeNewCard(token, total);
 //        System.out.println(charge.getId());

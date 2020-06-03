@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,8 @@ public class ShoppingCartController {
 
     @GetMapping("/cart")
     public String getCart(Model model,
-                          @ModelAttribute("products") ShoppingCart products) {
+                          @ModelAttribute("products") ShoppingCart products,
+                          @ModelAttribute("error") String error) {
         double total = 0.00;
         if (products != null) {
             for (Product product : products) {
@@ -43,6 +45,7 @@ public class ShoppingCartController {
             total = Math.round(total * 100.00) / 100.00;
         }
         model.addAttribute("total", total);
+        model.addAttribute("error", error);
         return "purchases/cart";
     }
 
@@ -51,7 +54,27 @@ public class ShoppingCartController {
             Model model,
             @ModelAttribute("products") ShoppingCart products,
             @RequestParam("cartAddId") Integer id,
-            @RequestParam("cartAddQuantity") Integer quantity) {
+            @RequestParam("cartAddQuantity") Integer quantity,
+            RedirectAttributes redir) {
+
+        String error = "";
+        if(quantity == null){
+            error = "Can't order nothing! Please put in a number!";
+            redir.addFlashAttribute("error", error);
+            model.addAttribute("product", this.productRepo.getOne((long)id));
+            model.addAttribute("products", products);
+            return "redirect:products/"+(long)id;
+        }
+
+        if(this.productRepo.getOne((long)id).getQuantity() < (long)quantity){
+            error = "You can't order that many, sorry! Check inventory above and try again!";
+            redir.addFlashAttribute("error", error);
+            model.addAttribute("product", this.productRepo.getOne((long)id));
+            model.addAttribute("products", products);
+            return "redirect:products/"+(long)id;
+        }
+
+
 
         double total = 0.00;
         boolean found = false;
@@ -65,7 +88,6 @@ public class ShoppingCartController {
             System.out.println(found);
             for (Product product : products) {
                 if (product.getId() == addProduct.getId()) {
-                    System.out.println(product);
                     product.setQuantity(quantity + product.getQuantity());
                     product.setPrice(((product.getPrice() + addProduct.getPrice()) * 100) / 100);
                     found = true;
@@ -73,11 +95,9 @@ public class ShoppingCartController {
                 }
             }
             if (!found) {
-                System.out.println("test");
                 products.add(addProduct);
             }
         } else {
-            System.out.println("initial");
             products.add(addProduct);
         }
         found = false;
@@ -86,11 +106,14 @@ public class ShoppingCartController {
             total = total + product.getPrice();
         }
 
-//        List<Product> originals = comparison(products);
+        List<Product> originals = comparison(products);
+        for(Product product : products){
+
+        }
         total = Math.round(total * 100.00) / 100.00;
         model.addAttribute("total", total);
         model.addAttribute("products", products);
-//        model.addAttribute("originals", originals);
+        model.addAttribute("originals", originals);
 
         return "redirect:cart";
     }

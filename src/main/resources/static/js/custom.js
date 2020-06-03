@@ -83,4 +83,63 @@
         }
 
 
+
+    // document.getElementById( 'validate' ).addEventListener( 'click', function ( e ) {
+    //     validation();
+    //     e.preventDefault()
+    // } )
+    //
+    // function validation() {
+    //     var ordered = document.querySelectorAll( 'input[id^="units_ordered"]' ),
+    //         inventory = document.querySelectorAll( 'input[id^="inventory"]' );
+    //
+    //     document.getElementById( 'error' ).innerHTML = '';
+    //
+    //     ordered.forEach( function ( item, index ) {
+    //         var ordered_val = Number( item.value ) || 0,
+    //             inventory_val = Number( inventory[ index ].value ) || 0;
+    //
+    //
+    //             if ( ordered_val <= inventory_val ) {
+    //                 return true
+    //             } else {
+    //                 document.getElementById( 'error' ).innerHTML += 'Row ' + +( index + 1 ) + ': Ordered units of a product cannot be greater than the number of products present in inventory whose value is ' + inventory_val + '<br/>';
+    //                 return false
+    //             }
+    //
+    //     })
+    // }
+
+
+    // document.getElementById( 'addProduct' ).addEventListener( 'click', function ( e ) {
+    //     validation();
+    //     e.preventDefault()
+    // } );
+
+    // function validation() {
+    //     var ordered = document.querySelectorAll( 'input[id^="amountOrdered"]' ),
+    //         inventory = document.querySelectorAll( 'id="amountOnHand"' );
+    //
+    //     document.getElementById( 'error' ).innerHTML = '';
+    //
+    //     // ordered.forEach(
+    //         function validating( item ) {
+    //         var ordered_val = Number( item.value ),
+    //             inventory_val = Number( inventory.value );
+    //
+    //
+    //             if ( ordered_val <= inventory_val ) {
+    //                 return true
+    //             } else {
+    //                 document.getElementById( 'error' ).innerHTML += 'Ordered units of a product cannot be greater' +
+    //                     ' than the number of products on hand - ' + inventory_val + ' - Please select a lower' +
+    //                     ' quantity<br/>';
+    //                 return false
+    //             }
+    //
+    //     }
+    //     // )
+    // }
+
+
 })();

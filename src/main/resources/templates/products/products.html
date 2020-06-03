@@ -10,7 +10,8 @@
         <div th:each="product : ${showProducts}">
             <a th:href="@{'/products/'+${product.id}}"><h1 style="font-weight: bold" th:text="${product.name}">
             </h1></a>
-            <p style="" th:text="${product.description}"> </p>
+            <p style="font-weight:bold" th:text="${product.type}"></p>
+            <p th:text="${product.description}"> </p>
             <br>
         </div>
     </div>
