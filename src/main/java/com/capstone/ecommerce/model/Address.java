@@ -10,8 +10,8 @@ public class Address {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
-        @Column(nullable = false, columnDefinition = "tinyint(1)")
-        private Boolean type;//0 - shipping, 1 - billing
+        @Column(nullable = false)
+        private String address_type;
 
         @Column(nullable = false, length = 75)
         private String first_name;
@@ -20,10 +20,10 @@ public class Address {
         private String last_name;
 
         @Column(nullable = false, length = 75)
-        private String street;
+        private String street1;
 
-        @Column(nullable = false, length = 12)
-        private int houseNumber;
+        @Column(nullable = true, length = 75)
+        private String street2;
 
         @Column(nullable = false, length = 40)
         private String city;
@@ -35,20 +35,20 @@ public class Address {
         private int zipCode;
 
         @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "user_id")
         private User user;
-
-        @OneToOne
-        private Transaction transaction;
 
         public Address() {
         }
 
-        public Address(Boolean type, String first_name, String last_name, String street, int houseNumber, String city, String state, int zipCode) {
-                this.type = type;
+        public Address(String address_type, String first_name, String last_name, String street1, String street2,
+                       String city,
+                       String state, int zipCode) {
+                this.address_type = address_type;
                 this.first_name = first_name;
                 this.last_name = last_name;
-                this.street = street;
-                this.houseNumber = houseNumber;
+                this.street1 = street1;
+                this.street2 = street2;
                 this.city = city;
                 this.state = state;
                 this.zipCode = zipCode;
@@ -60,14 +60,6 @@ public class Address {
 
         public void setId(int id) {
                 this.id = id;
-        }
-
-        public Boolean getType() {
-                return type;
-        }
-
-        public void setType(Boolean type) {
-                this.type = type;
         }
 
         public String getFirst_name() {
@@ -86,20 +78,28 @@ public class Address {
                 this.last_name = last_name;
         }
 
-        public String getStreet() {
-                return street;
+        public String getAddress_type() {
+                return address_type;
         }
 
-        public void setStreet(String street) {
-                this.street = street;
+        public void setAddress_type(String address_type) {
+                this.address_type = address_type;
         }
 
-        public int getHouseNumber() {
-                return houseNumber;
+        public String getStreet1() {
+                return street1;
         }
 
-        public void setHouseNumber(int houseNumber) {
-                this.houseNumber = houseNumber;
+        public void setStreet1(String street1) {
+                this.street1 = street1;
+        }
+
+        public String getStreet2() {
+                return street2;
+        }
+
+        public void setStreet2(String street2) {
+                this.street2 = street2;
         }
 
         public String getCity() {
@@ -134,12 +134,5 @@ public class Address {
                 this.user = user;
         }
 
-        public Transaction getTransaction() {
-                return transaction;
-        }
-
-        public void setTransaction(Transaction transaction) {
-                this.transaction = transaction;
-        }
 }
 
