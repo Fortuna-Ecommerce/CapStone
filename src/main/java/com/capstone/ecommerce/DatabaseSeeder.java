@@ -1,34 +1,42 @@
-//package com.capstone.ecommerce;
+package com.capstone.ecommerce;
 //
-//import com.capstone.ecommerce.model.*;
-//import com.capstone.ecommerce.repositories.*;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.boot.CommandLineRunner;
-//import org.springframework.stereotype.Component;
-//
-//import java.text.SimpleDateFormat;
-//import java.util.*;
-//
-//@Component
-//public class DatabaseSeeder implements CommandLineRunner {
-//    private final Logger log = LoggerFactory.getLogger(this.getClass());
-//    private final ProductRepository productRepository;
-//    private final UserRepository userRepository;
-//    private final TransactionRepository transactionRepository;
-//    private final AddressRepository addressRepository;
-//
-//    @Value("${app.env}")
-//    private String environment;
-//
-//    public DatabaseSeeder(ProductRepository productRepository, UserRepository userRepository, TransactionRepository transactionRepository, AddressRepository addressRepository) {
-//        this.productRepository = productRepository;
-//        this.userRepository = userRepository;
-//        this.transactionRepository = transactionRepository;
-//        this.addressRepository = addressRepository;
-//    }
-//
+import com.capstone.ecommerce.model.*;
+import com.capstone.ecommerce.repositories.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+@Component
+public class DatabaseSeeder implements CommandLineRunner {
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private final ProductRepository productRepository;
+    private final UserRepository userRepository;
+    private final TransactionRepository transactionRepository;
+    private final AddressRepository addressRepository;
+
+    @Value("${app.env}")
+    private String environment;
+
+    //
+    public DatabaseSeeder(ProductRepository productRepository, UserRepository userRepository, TransactionRepository transactionRepository, AddressRepository addressRepository) {
+        this.productRepository = productRepository;
+        this.userRepository = userRepository;
+        this.transactionRepository = transactionRepository;
+        this.addressRepository = addressRepository;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+
+    }
+}
+
 //    // generate a list of users and return it after saving
 ////    private List<User> seedUsers() {
 ////
