@@ -127,11 +127,6 @@ public class ProductsController {
         model.addAttribute("showProducts", chosenProducts);
         return "products/products";
 
-//    public String searchProduct(@RequestParam (name = "keyword") String keyword, Model model) {
-//        List<Product> products = productRepo.findByNameContaining(keyword);
-//        model.addAttribute("products", products);
-//        return "products/index";
-//    }
 
 
     }
