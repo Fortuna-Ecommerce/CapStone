@@ -1,5 +1,7 @@
 package com.capstone.ecommerce.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class Product {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 6)
     private String color;
 
     @Column(nullable = false)
@@ -26,27 +28,19 @@ public class Product {
     @Column(precision = 5, scale = 2, nullable = false)
     private double price;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column
-    private int onSpecial;
-    //0 or number to discount item with - multiply it to get percentage
+    @Column(columnDefinition = "tinyint(1) default 0")
+    private Boolean onSpecial;
+
 
     @Column(columnDefinition = "int UNSIGNED default 1", nullable = false)
     private long quantity;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private List<ProductImages> images;
+    @Column
+    private String image;
 
-    @OneToMany
-    private List<Review> reviews;
-
-    @OneToMany
-    private List<Question> questions;
-
-//    @ManyToOne
-//    private ShoppingCart shoppingCart;
 
     @ManyToMany
             (fetch = FetchType.LAZY,
@@ -54,25 +48,24 @@ public class Product {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
             })
-    @JoinTable(name = "product_genres",
+    @JoinTable(name = "product_categories",
             joinColumns = { @JoinColumn(name = "product_id") },
-            inverseJoinColumns = { @JoinColumn(name = "genre_id") })
-    private List<Genre> genres;
+            inverseJoinColumns = { @JoinColumn(name = "category_id") })
+    private List<Categories> categories;
+
 
     public Product() {
     }
 
-    public Product(String name, String color, String size, String type, double price, String description,
-                   int onSpecial,
-                   int quantity) {
+    public Product(String name, String color, String size, String type, double price, String description, Long quantity, String image) {
         this.name = name;
         this.color = color;
         this.size = size;
         this.type = type;
         this.price = price;
         this.description = description;
-        this.onSpecial = onSpecial;
         this.quantity = quantity;
+        this.image = image;
     }
 
 
@@ -120,7 +113,7 @@ public class Product {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -132,11 +125,11 @@ public class Product {
         this.description = description;
     }
 
-    public int getOnSpecial() {
+    public Boolean getOnSpecial() {
         return onSpecial;
     }
 
-    public void setOnSpecial(int onSpecial) {
+    public void setOnSpecial(Boolean onSpecial) {
         this.onSpecial = onSpecial;
     }
 
@@ -148,14 +141,15 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public List<ProductImages> getImages() {
-        return images;
+    public String getImage() {
+        return image;
     }
 
-    public void setImages(List<ProductImages> images) {
-        this.images = images;
+    public void setImage(String image) {
+        this.image = image;
     }
-//
+
+    //
 //    public Transaction getTransaction() {
 //        return transaction;
 //    }
@@ -164,20 +158,15 @@ public class Product {
 //        this.transaction = transaction;
 //    }
 
-    public List<Review> getReviews() {
-        return reviews;
+
+    public List<Categories> getCategories() {
+        return categories;
     }
 
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
+    public void setCategories(List<Categories> categories) {
+        this.categories = categories;
     }
 
-    public List<Genre> getGenres() {
-        return genres;
-    }
 
-    public void setGenres(List<Genre> genres) {
-        this.genres = genres;
-    }
 }
 

@@ -4,15 +4,15 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "genres")
-public class Genre {
+@Table(name = "categories")
+public class Categories {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column
-    private String genre;
+    private String category;
 
     @ManyToMany
             (fetch = FetchType.LAZY,
@@ -20,7 +20,7 @@ public class Genre {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
             },
-            mappedBy = "genres")
+            mappedBy = "categories")
     private List<Product> products;
 
 
@@ -33,12 +33,12 @@ public class Genre {
     }
 
 
-    public String getGenre() {
-        return genre;
+    public String getCategory() {
+        return category;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setCategory(String genre) {
+        this.category = genre;
     }
 
     public List<Product> getProducts() {
