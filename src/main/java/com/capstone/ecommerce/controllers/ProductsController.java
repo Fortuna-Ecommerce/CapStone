@@ -3,7 +3,6 @@ package com.capstone.ecommerce.controllers;
 import com.capstone.ecommerce.model.Categories;
 import com.capstone.ecommerce.model.Product;
 import com.capstone.ecommerce.model.ShoppingCart;
-//import com.capstone.ecommerce.repositories.CategoriesRepository;
 import com.capstone.ecommerce.repositories.ProductRepository;
 import com.capstone.ecommerce.repositories.UserRepository;
 import org.apache.commons.lang3.StringUtils;
@@ -33,7 +32,7 @@ public class ProductsController {
 
     private ProductRepository imagesRepo;
 
-//  CONSTRUCTOR
+    //  CONSTRUCTOR
     public ProductsController(ProductRepository productRepo, ProductRepository imagesRepo) {
         this.productRepo = productRepo;
         this.imagesRepo = imagesRepo;
@@ -41,7 +40,7 @@ public class ProductsController {
 
     @GetMapping("/products/all")
     public String productsIndex(Model model) {
-        if(model.getAttribute("products") == null) {
+        if (model.getAttribute("products") == null) {
             ShoppingCart blankProducts = new ShoppingCart();
             model.addAttribute("products", blankProducts);
         }
@@ -91,12 +90,12 @@ public class ProductsController {
     }
 
     @GetMapping("/products/{id}")
-    public String singleProduct(Model model, @PathVariable long id){
+    public String singleProduct(Model model, @PathVariable long id) {
         Product aProduct = productRepo.getOne(id);
         model.addAttribute("product", aProduct);
         List<Categories> categories = aProduct.getCategories();
         String cNames = "";
-        for(Categories category: categories){
+        for (Categories category : categories) {
             cNames = cNames + category.getCategory() + ", ";
         }
         cNames = StringUtils.chop(cNames);
@@ -107,14 +106,14 @@ public class ProductsController {
 
     //  SEARCH
     @PostMapping("/products/search")
-    public String searchProduct(@RequestParam (name = "keyword") String keyword,
-                                @RequestParam (name = "choice") String choice,
+    public String searchProduct(@RequestParam(name = "keyword") String keyword,
+                                @RequestParam(name = "choice") String choice,
                                 Model model) {
         List<Product> chosenProducts = new ArrayList<>();
         int i = 1;
-        if(choice.equals("name")){
+        if (choice.equals("name")) {
             chosenProducts = productRepo.findByNameContaining(keyword);
-        } else if (choice.equals("category")){
+        } else if (choice.equals("category")) {
             chosenProducts = productRepo.findByCategoriesContaining(keyword);
 //            for(i = 0; i < chosenProducts.size(); i++){
 //              for(Product product : chosenProducts){
@@ -127,12 +126,13 @@ public class ProductsController {
 
         model.addAttribute("showProducts", chosenProducts);
         return "products/products";
-      
-    public String searchProduct(@RequestParam (name = "keyword") String keyword, Model model) {
-        List<Product> products = productRepo.findByNameContaining(keyword);
-        model.addAttribute("products", products);
-        return "products/index";
+
+//    public String searchProduct(@RequestParam (name = "keyword") String keyword, Model model) {
+//        List<Product> products = productRepo.findByNameContaining(keyword);
+//        model.addAttribute("products", products);
+//        return "products/index";
+//    }
+
+
     }
-
-
 }

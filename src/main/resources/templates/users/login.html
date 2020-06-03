@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Log In</title>
+<!--<head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <title>Log In</title>-->
 
-</head>
+<!--</head>-->
+<!--<body>-->
+<div th:replace="partials :: head" /></div>
 <body>
+<nav th:replace="partials :: navbar" />
 <!--<div th:replace="partials/partials :: top_banner"></div>-->
 <!--<div th:replace="partials/partials :: standard_nav"></div>-->
 <div class="container">
@@ -27,6 +30,6 @@
 </form>
 </div>
 
-
+<footer th:replace="partials :: footer" />
 </body>
 </html>

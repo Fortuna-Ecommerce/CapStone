@@ -30,8 +30,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 //  Product findByTitle(String title);
 
 //SEARCH METHOD
-  @Query("SELECT p FROM Product p WHERE p.name LIKE %?1%")
-  List<Product> findByNameContaining(String keyword);
+//  @Query("SELECT p FROM Product p WHERE p.name LIKE %?1%")
+//  List<Product> findByNameContaining(String keyword);
 
 
 }

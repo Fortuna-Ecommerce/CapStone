@@ -64,7 +64,6 @@ public class Product {
         this.type = type;
         this.price = price;
         this.description = description;
-        this.special = onSpecial;
         this.quantity = quantity;
         this.image = image;
     }

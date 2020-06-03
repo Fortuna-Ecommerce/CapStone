@@ -108,7 +108,6 @@
 ////        return addresses;
 ////    }
 //
-=======
 //    private List<User> seedUsers() {
 //
 //        User user1 = new User("Jeremy", "j@gmail.com", "$2a$12$wT4XqVfLKl51xFIu2QGbau2qjg9BOAFYNWt9h.7EepGAXcbESEF0O",

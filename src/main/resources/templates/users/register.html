@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Sign up</title>
+<!--<head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <title>Sign up</title>-->
 
-</head>
+<!--</head>-->
+<!--<body>-->
+<div th:replace="partials :: head" /></div>
 <body>
-
+<nav th:replace="partials :: navbar" />
 <div class="container">
 
 <h1>Create an account</h1>
@@ -24,7 +26,7 @@
 </form>
 </div>
 
-
+<footer th:replace="partials :: footer" />
 
 </body>
 </html>
