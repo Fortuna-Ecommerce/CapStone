@@ -1,18 +1,18 @@
 package com.capstone.ecommerce.controllers;
 
 import com.capstone.ecommerce.model.Product;
+import com.capstone.ecommerce.model.ShoppingCart;
 import com.capstone.ecommerce.repositories.ProductRepository;
 import com.capstone.ecommerce.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@SessionAttributes("products")
 public class ProductsController {
     private ProductRepository productRepo;
 //  CONSTRUCTOR
@@ -22,28 +22,32 @@ public class ProductsController {
 
     @GetMapping("/products")
     public String productsIndex(Model model) {
-        List<Product> products = productRepo.findAll();
-        model.addAttribute("allProducts", products);
+        if(model.getAttribute("products") == null) {
+            ShoppingCart blankProducts = new ShoppingCart();
+            model.addAttribute("products", blankProducts);
+        }
+        List<Product> allProducts = productRepo.findAll();
+        model.addAttribute("showProducts", allProducts);
         return "products/products";
     }
 
-    @GetMapping("products/t-shirts")
-    public String viewTshirts(Model model) {
-        model.addAttribute("products", productRepo.findAll());
-        return "products/t-shirts";
-    }
-
-    @GetMapping("products/pullover")
-    public String viewPullover(Model model) {
-        model.addAttribute("products", productRepo.findAll());
-        return "products/pullover";
-    }
-
-    @GetMapping("products/hats")
-    public String viewHats(Model model) {
-        model.addAttribute("products", productRepo.findAll());
-        return "products/hats";
-    }
+//    @GetMapping("products/t-shirts")
+//    public String viewTshirts(Model model) {
+//        model.addAttribute("products", productRepo.findAll());
+//        return "products/t-shirts";
+//    }
+//
+//    @GetMapping("products/pullover")
+//    public String viewPullover(Model model) {
+//        model.addAttribute("products", productRepo.findAll());
+//        return "products/pullover";
+//    }
+//
+//    @GetMapping("products/hats")
+//    public String viewHats(Model model) {
+//        model.addAttribute("products", productRepo.findAll());
+//        return "products/hats";
+//    }
 
     @GetMapping("products/t-shirts/{id}")
     public String individualTshirt(Model model, @PathVariable long id) {
@@ -66,12 +70,19 @@ public class ProductsController {
         return "products/hats/show";
     }
 
+    @GetMapping("/products/{id}")
+    public String singleProduct(Model model, @PathVariable long id){
+        Product aProduct = productRepo.getOne(id);
+        model.addAttribute("product", aProduct);
+        return "products/product";
+    }
+
     //  SEARCH
-    @PostMapping("/posts/search")
+    @PostMapping("/products/search")
     public String searchProduct(@RequestParam (name = "keyword") String keyword, Model model) {
-        List<Product> products = productRepo.findAll();
-        model.addAttribute("products", products);
-        return "products/index";
+        List<Product> chosenProducts = productRepo.findByNameContaining(keyword);
+        model.addAttribute("showProducts", chosenProducts);
+        return "products/products";
     }
 
 }

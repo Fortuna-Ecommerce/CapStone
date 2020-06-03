@@ -31,11 +31,11 @@ public class User {
     private List<Transaction> transactions;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @Where(clause = "address_type = 'shipping'")
+    @Where(clause = "address_type = 'Shipping'")
     private List<Address> ship_address;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @Where(clause = "address_type = 'billing'")
+    @Where(clause = "address_type = 'Billing'")
     private List<Address> bill_address;
 
     public User() {
@@ -56,13 +56,7 @@ public class User {
         isAdmin = copy.isAdmin;
     }
 
-    public User(User user) {
 
-    }
-
-    public User() {
-        
-    }
 
     public long getId() {
         return id;

@@ -10,14 +10,14 @@ public class Address {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
-        @Column(nullable = false)
-        private String address_type;
+        @Column(nullable = false, name = "address_type")
+        private String addresstype;
 
-        @Column(nullable = false, length = 75)
-        private String first_name;
+        @Column(nullable = false, length = 75, name = "first_name")
+        private String firstname;
 
-        @Column(nullable = false, length = 75)
-        private String last_name;
+        @Column(nullable = false, length = 75, name = "last_name")
+        private String lastname;
 
         @Column(nullable = false, length = 75)
         private String street1;
@@ -31,8 +31,8 @@ public class Address {
         @Column(nullable = false, length = 2)
         private String state;
 
-        @Column(nullable = false, length = 5)
-        private int zipCode;
+        @Column(nullable = false, length = 5, name = "zip_code")
+        private int zipcode;
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "user_id")
@@ -44,14 +44,14 @@ public class Address {
         public Address(String address_type, String first_name, String last_name, String street1, String street2,
                        String city,
                        String state, int zipCode) {
-                this.address_type = address_type;
-                this.first_name = first_name;
-                this.last_name = last_name;
+                this.addresstype = address_type;
+                this.firstname = first_name;
+                this.lastname = last_name;
                 this.street1 = street1;
                 this.street2 = street2;
                 this.city = city;
                 this.state = state;
-                this.zipCode = zipCode;
+                this.zipcode = zipCode;
         }
 
         public int getId() {
@@ -62,28 +62,28 @@ public class Address {
                 this.id = id;
         }
 
-        public String getFirst_name() {
-                return first_name;
+        public String getFirstname() {
+                return firstname;
         }
 
-        public void setFirst_name(String first_name) {
-                this.first_name = first_name;
+        public void setFirstname(String first_name) {
+                this.firstname = first_name;
         }
 
-        public String getLast_name() {
-                return last_name;
+        public String getLastname() {
+                return lastname;
         }
 
-        public void setLast_name(String last_name) {
-                this.last_name = last_name;
+        public void setLastname(String last_name) {
+                this.lastname = last_name;
         }
 
-        public String getAddress_type() {
-                return address_type;
+        public String getAddresstype() {
+                return addresstype;
         }
 
-        public void setAddress_type(String address_type) {
-                this.address_type = address_type;
+        public void setAddresstype(String address_type) {
+                this.addresstype = address_type;
         }
 
         public String getStreet1() {
@@ -118,12 +118,12 @@ public class Address {
                 this.state = state;
         }
 
-        public int getZipCode() {
-                return zipCode;
+        public int getZipcode() {
+                return zipcode;
         }
 
-        public void setZipCode(int zipCode) {
-                this.zipCode = zipCode;
+        public void setZipcode(int zipCode) {
+                this.zipcode = zipCode;
         }
 
         public User getUser() {
