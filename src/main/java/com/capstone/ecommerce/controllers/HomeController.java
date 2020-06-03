@@ -30,38 +30,42 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("admin/productList")
+    @GetMapping("products/productInventory")
     public String getProducts(Model model) {
         List<Product> products = productRepo.findAll();
         model.addAttribute("products", products);
         return "products/productInventory";
     }
 
-//    @PostMapping("admin/productInventory/addProduct")
-//    public String addProductPost(@ModelAttribute("product") Product product, HttpServletRequest request) {
-//        productRepo.save(product);
-//        ProductImages productImage = product.getProductImage();
-//        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-//        path = Paths.get(rootDirectory + "\\resources\\static\\img\\" + product.getId()+ ".jpg");
-//
-////        if (productImage !=null && !productImage.isEmpty()) {
-////            try {
-////            } catch (Exception e) {
-////                e.printStackTrace();
-////                throw new RuntimeException("Product image failed", e);
-////            }
-////        }
-//        return "redirect:admin/productList";
-//    }
+//  ADD
 
-    @PostMapping("admin/productInventory/deleteProduct/{id}")
-    public String deleteProductPost(@PathVariable String id, Product product) {
-        productRepo.delete(product);
+    @GetMapping("products/productInventory/add")
+    public String showAddProduct() {
+        return "products/productInventory";
+    }
+
+    @PostMapping("products/productInventory/add")
+    public String addProductPost(@RequestParam (name = "name") String name,
+                                 @RequestParam (name = "desc") String desc,
+                                 @RequestParam (name = "image") String image,
+                                 @RequestParam (name = "quan") Long quan) {
+        Product product = new Product();
+        product.setName(name);
+        product.setDescription(desc);
+        product.setImage(image);
+        product.setQuantity(quan);
+        productRepo.save(product);
+        return "redirect:products/productInventory";
+    }
+//  DELETE
+    @PostMapping("productInventory/{id}/delete")
+    public String deleteProductPost(@PathVariable long id) {
+        productRepo.deleteById(id);
         return "redirect:products/productInventory";
     }
 
     //  SEARCH
-    @PostMapping("admin/productsInventory/search")
+    @PostMapping("productsInventory/search")
     public String searchProduct(@RequestParam (name = "keyword") String keyword, Model model) {
         List<Product> products = productRepo.findByNameContaining(keyword);
         model.addAttribute("products", products);

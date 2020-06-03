@@ -6,12 +6,66 @@
 <div class="container mt-4">
 
     <h1>Product Inventory</h1>
-    <div class="container col-md-4" style="text-align: center">
-        <div th:each="product : ${products}">
-            <img th:src="@{/img/${product.getImage()}}"/>
-            <a th:href="${product.id}">
-                <h1 style="font-weight: bold" th:text="${product.name}"></h1>
-            </a>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">T-shirts</th>
+            <th scope="col">Color</th>
+            <th scope="col">Image</th>
+            <th scope="col">Quantity</th>
+        </tr>
+        </thead>
+        <tbody th:each="product : ${products}">
+        <tr>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.getDescription()}"></td>
+            <td><img th:src="@{/img/${product.getImage()}}"/></td>
+            <td th:text="${product.getQuantity()}"></td>
+            <td><form th:action="@{/productInventory/${product.id}/delete}" th:method="POST" class="text-right">
+                <button class="btn btn-primary">Delete</button>
+            </form></td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+       Add a product
+    </button>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add a product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form th:method="post" th:action="@{/products/productInventory/add}">
+                        <div class="form-group">
+                            <label for="productName">Product Name</label>
+                            <input type="text" class="form-control" id="productName" aria-describedby="productName" name="name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productColor">Product Color</label>
+                            <input type="text" class="form-control" id="productColor" aria-describedby="productColor" name="desc">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productQuantity">Product Quantity</label>
+                            <input type="text" class="form-control" id="productQuantity" aria-describedby="productQuantity" name="quan">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+<!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+                </div>
+            </div>
         </div>
     </div>
 
