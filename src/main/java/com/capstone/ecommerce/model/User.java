@@ -11,24 +11,6 @@ import java.util.List;
 @Table(name="users")//Creates Table in database
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "userCache")
 public class User {
-    public static String getRoleAdmin() {
-        return ROLE_ADMIN;
-    }
-
-    public static String getRoleUser() {
-        return ROLE_USER;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public static final String ROLE_ADMIN = "ROLE_ADMIN";
-    public static final String ROLE_USER = "ROLE_USER";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,8 +28,7 @@ public class User {
     @Column(nullable = true)
     private String stripeToken;
 
-    @Column(nullable = false)
-    private String role;
+
 
     //Makes a new Table of Transactions which is based on columns from other tables (user), has a one to many relationship between user and transaction.
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -70,7 +51,6 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.role = role;
     }
 
     //Creates a copy of the User object for user manipulation (update)
@@ -79,7 +59,6 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
-        role = copy.role;
     }
 
 

@@ -3,6 +3,7 @@ package com.capstone.ecommerce.controllers;
 
 import com.capstone.ecommerce.model.User;
 import com.capstone.ecommerce.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,14 +37,15 @@ public class UserController {
     public String saveUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
-        user.setRole(User.ROLE_USER);
         users.save(user);
         return "redirect:/login";
     }
 
-        @GetMapping("/users/profile/{id}")
-        public String viewProfile(@PathVariable String name, Model model) {
-            model.addAttribute("id", name);
+        @GetMapping("/users/profile/")
+        public String viewProfile(Model model) {
+        SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+
             return "/users/profile";
         }
 
