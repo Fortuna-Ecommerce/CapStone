@@ -35,11 +35,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                /* Login configuration */
+/*
+                    MAKE A PLAN FOR ALL ROLES AND PERMISSIONS
+                    ENSURE ALL PATHS ARE ROUTED CORRECTLY
+
+*/
+
+  /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
 //                .defaultSuccessUrl("/ads") // user's home page, it can be any URL
-                .defaultSuccessUrl("/posts") // user's home page, it can be any URL
+                .defaultSuccessUrl("/products/all") // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
@@ -47,17 +53,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login?logout") // append a query string value
                 /* Pages that can be viewed without having to log in */
                 .and()
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/ads", "/posts") // anyone can see the home and the ads pages
+                .antMatchers("/", "/products") // anyone can see the home and the products pages
                 .permitAll()
                 /* Pages that require authentication */
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/ads/create", // only authenticated users can create ads
-                        "/ads/{id}/edit", // only authenticated users can edit ads
-                        "/posts/create", // only authenticated users can create posts
-                        "/posts/{id}/edit" // only authenticated users can edit posts
+                       "/users/profile/{id}",
+                        "/cart", //only authenticated users can see a shopping cart
+                       "/checkout" //only authenticated users can see the checkout paget
+//                        "/ads/create", // only authenticated users can create ads
+//                        "/ads/{id}/edit", // only authenticated users can edit ads
+//                        "/posts/create", // only authenticated users can create posts
+//                         "/posts/{id}/edit" // only authenticated users can edit posts
                 )
                 .authenticated()
         ;

@@ -29,20 +29,15 @@ public class Product {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(columnDefinition = "tinyint(1) default 0")
-    private Boolean onSpecial;
+    @Column(columnDefinition = "tinyint(1) default 0", name = "on_special")
+    private Boolean special;
+
 
     @Column(columnDefinition = "int UNSIGNED default 1", nullable = false)
     private long quantity;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private List<ProductImages> images;
-//
-//    @OneToMany
-//    private List<Review> reviews;
-//
-//    @OneToMany
-//    private List<Question> questions;
+    @Column
+    private String image;
 
 
     @ManyToMany
@@ -60,17 +55,16 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String color, String size, String type, double price, String description,
-                   Boolean onSpecial,
-                   int quantity) {
+    public Product(String name, String color, String size, String type, double price, String description, Boolean onSpecial, Long quantity) {
         this.name = name;
         this.color = color;
         this.size = size;
         this.type = type;
         this.price = price;
         this.description = description;
-        this.onSpecial = onSpecial;
+        this.special = onSpecial;
         this.quantity = quantity;
+//        this.image = image;
     }
 
 
@@ -130,12 +124,12 @@ public class Product {
         this.description = description;
     }
 
-    public Boolean getOnSpecial() {
-        return onSpecial;
+    public Boolean getSpecial() {
+        return special;
     }
 
-    public void setOnSpecial(Boolean onSpecial) {
-        this.onSpecial = onSpecial;
+    public void setSpecial(Boolean special) {
+        this.special = special;
     }
 
     public long getQuantity() {
@@ -146,13 +140,23 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public List<ProductImages> getImages() {
-        return images;
+    public String getImage() {
+        return image;
     }
 
-    public void setImages(List<ProductImages> images) {
-        this.images = images;
+    public void setImage(String image) {
+        this.image = image;
     }
+
+    //
+//    public Transaction getTransaction() {
+//        return transaction;
+//    }
+//
+//    public void setTransaction(Transaction transaction) {
+//        this.transaction = transaction;
+//    }
+
 
     public List<Categories> getCategories() {
         return categories;
@@ -161,5 +165,7 @@ public class Product {
     public void setCategories(List<Categories> categories) {
         this.categories = categories;
     }
+
+
 }
 

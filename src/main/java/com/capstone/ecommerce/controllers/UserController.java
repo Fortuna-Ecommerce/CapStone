@@ -7,13 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+    //Tells controller where to get info from
 @Controller
 public class UserController {
     private UserRepository users;
     private PasswordEncoder passwordEncoder;
 
+
+    //Stores info in variable so it can be used elsewhere, allows information to be malleable
     public UserController(UserRepository users, PasswordEncoder passwordEncoder) {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
@@ -25,6 +29,8 @@ public class UserController {
         return "users/register";
     }
 
+
+
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
@@ -33,5 +39,16 @@ public class UserController {
         users.save(user);
         return "redirect:/login";
     }
+<<<<<<< HEAD
 }
 
+=======
+
+        @GetMapping("/users/profile/{name}")
+        public String findByUsername(@PathVariable String name, Model model) {
+            model.addAttribute("name", name);
+
+            return "/users/profile";
+        }
+    }
+>>>>>>> f0daf8378c7c3869657e87629e956c4cc04190c1
