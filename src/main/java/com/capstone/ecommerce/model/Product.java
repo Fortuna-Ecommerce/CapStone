@@ -1,5 +1,7 @@
 package com.capstone.ecommerce.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -32,17 +34,12 @@ public class Product {
     @Column(columnDefinition = "tinyint(1) default 0")
     private Boolean onSpecial;
 
+
     @Column(columnDefinition = "int UNSIGNED default 1", nullable = false)
     private long quantity;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private List<ProductImages> images;
-//
-//    @OneToMany
-//    private List<Review> reviews;
-//
-//    @OneToMany
-//    private List<Question> questions;
+    @Column
+    private String image;
 
 
     @ManyToMany
@@ -61,8 +58,6 @@ public class Product {
     }
 
     public Product(String name, String color, String size, String type, double price, String description,
-                   Boolean onSpecial,
-                   int quantity) {
         this.name = name;
         this.color = color;
         this.size = size;
@@ -71,6 +66,7 @@ public class Product {
         this.description = description;
         this.onSpecial = onSpecial;
         this.quantity = quantity;
+        this.image = image;
     }
 
 
@@ -146,13 +142,23 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public List<ProductImages> getImages() {
-        return images;
+    public String getImage() {
+        return image;
     }
 
-    public void setImages(List<ProductImages> images) {
-        this.images = images;
+    public void setImage(String image) {
+        this.image = image;
     }
+
+    //
+//    public Transaction getTransaction() {
+//        return transaction;
+//    }
+//
+//    public void setTransaction(Transaction transaction) {
+//        this.transaction = transaction;
+//    }
+
 
     public List<Categories> getCategories() {
         return categories;
@@ -161,5 +167,7 @@ public class Product {
     public void setCategories(List<Categories> categories) {
         this.categories = categories;
     }
+
+
 }
 

@@ -4,19 +4,28 @@ import com.capstone.ecommerce.model.Product;
 import com.capstone.ecommerce.repositories.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class ProductsController {
     private ProductRepository productRepo;
+    private ProductRepository imagesRepo;
+
 //  CONSTRUCTOR
-    public ProductsController(ProductRepository productRepo) {
+    public ProductsController(ProductRepository productRepo, ProductRepository imagesRepo) {
         this.productRepo = productRepo;
+        this.imagesRepo = imagesRepo;
     }
 
     @GetMapping("/products/all")
@@ -72,13 +81,6 @@ public class ProductsController {
         model.addAttribute("products", products);
         return "products/index";
     }
-
-//    public ProductImages getImage(@PathVariable String path, Model model) {
-//        ProductImages image = productRepo.getFilePath(path);
-//        model.addAttribute("path", path);
-//        return image;
-//    }
-
 
 
 }

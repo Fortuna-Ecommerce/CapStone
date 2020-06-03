@@ -72,16 +72,6 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-
-<!--        Stripe API Dependency-->
-
-        <dependency>
-            <groupId>com.stripe</groupId>
-            <artifactId>stripe-java</artifactId>
-            <version>19.14.0</version>
-        </dependency>
-
-
     </dependencies>
     <build>
         <plugins>
