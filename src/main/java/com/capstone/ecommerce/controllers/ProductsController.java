@@ -28,8 +28,8 @@ import java.util.List;
 @Controller
 @SessionAttributes("products")
 public class ProductsController {
-    private ProductRepository productRepo;
 
+    private ProductRepository productRepo;
     private ProductRepository imagesRepo;
 
     //  CONSTRUCTOR
