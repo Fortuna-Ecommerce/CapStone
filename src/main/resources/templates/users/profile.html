@@ -1,14 +1,23 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<div th:replace="partials :: head" /></div>
 
-<!--<body>-->
+<body>
+<nav th:replace="partials :: navbar" />
 
-<!--<div class="container mt-4">-->
+<div class="container mt-4">
+        <h1>Welcome to the site!</h1>
 
-<!--    <h1>Welcome to the site!</h1>-->
+    <div sec:authorize="isAuthenticated()">
 
-<!--</div>-->
+        <h1>Hello Admin</h1>
+<!--        User ID: <span th:text="${#authentication.principal.id}"/>-->
+<!--        Username: <span th:text="${#authentication.principal.username}"/>-->
+<!--        Email: <span th:text="${#authentication.principal.email}"/>-->
+    </div>
+</div>
+<footer th:replace="partials :: footer" />
 
-<!--</body>-->
-<!--</html>-->
+</body>
+</html>
 

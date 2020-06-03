@@ -1,7 +1,5 @@
 package com.capstone.ecommerce.model;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -57,7 +55,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String color, String size, String type, double price, String description, Long quantity, String image) {
+    public Product(String name, String color, String size, String type, double price, String description, Boolean onSpecial, Long quantity, String image) {
         this.name = name;
         this.color = color;
         this.size = size;

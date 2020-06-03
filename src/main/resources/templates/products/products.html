@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="partials :: head" /></div>
 <head>
     <meta charset="UTF-8" />
     <title>Here Is Your Profile</title>
 </head>
 <body>
+<nav th:replace="partials :: navbar" />
 
 
 <h1>Hello, <span th:text="${name}">Welcome</span>!</h1>
@@ -21,5 +23,7 @@
     </div>
 
 
+<footer th:replace="partials :: footer" />
 </body>
 </html>
+
