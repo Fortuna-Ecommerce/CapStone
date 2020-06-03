@@ -11,6 +11,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,14 +30,16 @@ import java.util.List;
 @SessionAttributes("products")
 public class ProductsController {
     private ProductRepository productRepo;
-//    private CategoriesRepository categoriesRepo;
+
+    private ProductRepository imagesRepo;
+
 //  CONSTRUCTOR
-    public ProductsController(ProductRepository productRepo) {
+    public ProductsController(ProductRepository productRepo, ProductRepository imagesRepo) {
         this.productRepo = productRepo;
-//        this.categoriesRepo = categoriesRepo;
+        this.imagesRepo = imagesRepo;
     }
 
-    @GetMapping("/products")
+    @GetMapping("/products/all")
     public String productsIndex(Model model) {
         if(model.getAttribute("products") == null) {
             ShoppingCart blankProducts = new ShoppingCart();
@@ -56,9 +70,9 @@ public class ProductsController {
 //    }
 
     @GetMapping("products/t-shirts/{id}")
-    public String individualTshirt(Model model, @PathVariable long id) {
-        Product aProduct = productRepo.getOne(id);
-        model.addAttribute("tshirt", aProduct);
+    public String individualTshirt(Model model, @PathVariable("id") long id) {
+        Product tshirt = productRepo.getOne(id);
+        model.addAttribute("tshirt", tshirt);
         return "products/t-shirts/show";
     }
 
@@ -113,6 +127,12 @@ public class ProductsController {
 
         model.addAttribute("showProducts", chosenProducts);
         return "products/products";
+      
+    public String searchProduct(@RequestParam (name = "keyword") String keyword, Model model) {
+        List<Product> products = productRepo.findByNameContaining(keyword);
+        model.addAttribute("products", products);
+        return "products/index";
     }
+
 
 }

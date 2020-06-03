@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="partials :: head" /></div>
+<body>
+<nav th:replace="partials :: navbar" />
+<div class="container mt-4">
+
+    <h1>Product Inventory</h1>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">T-shirts</th>
+            <th scope="col">Color</th>
+            <th scope="col">Size</th>
+            <th scope="col">Type</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Image</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.getColor()}"></td>
+            <td th:text="${product.getSize()}"></td>
+            <td th:text="${product.getType()}"></td>
+            <td th:text="${product.getPrice()}"></td>
+            <td th:text="${product.getQuantity()}"></td>
+            <td><img th:src="@{/img/${product.getImage()}}"/></td>
+            <td><form th:action="@{/productInventory/delete}" th:method="POST" class="text-right">
+                <input th:name="hidden" th:value="${product.id}">
+                <button th:name="deleteId" class="btn btn-primary">Delete</button>
+            </form></td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+       Add a product
+    </button>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add a product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form th:method="post" th:action="@{/products/productInventory/add}">
+                        <div class="form-group">
+                            <label for="productName">Product Name</label>
+                            <input type="text" class="form-control" id="productName" aria-describedby="productName" name="name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productColor">Product Color</label>
+                            <input type="text" class="form-control" id="productColor" aria-describedby="productColor" name="color">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productSize">Product Size</label>
+                            <input type="text" class="form-control" id="productSize" aria-describedby="productQuantity" name="size">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productType">Product Type</label>
+                            <input type="text" class="form-control" id="productType" aria-describedby="productType" name="type">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productPrice">Product Price</label>
+                            <input type="text" class="form-control" id="productPrice" aria-describedby="productPrice" name="price">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productQuan">Product Quantity</label>
+                            <input type="text" class="form-control" id="productQuan" aria-describedby="productQuan" name="quan">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+<!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<footer th:replace="partials :: footer" />
+</body>
+</html>

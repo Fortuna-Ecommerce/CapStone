@@ -1,5 +1,7 @@
 package com.capstone.ecommerce.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -32,17 +34,12 @@ public class Product {
     @Column(columnDefinition = "tinyint(1) default 0", name = "on_special")
     private Boolean special;
 
+
     @Column(columnDefinition = "int UNSIGNED default 1", nullable = false)
     private long quantity;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private List<ProductImages> images;
-//
-//    @OneToMany
-//    private List<Review> reviews;
-//
-//    @OneToMany
-//    private List<Question> questions;
+    @Column
+    private String image;
 
 
     @ManyToMany
@@ -60,9 +57,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String color, String size, String type, double price, String description,
-                   Boolean onSpecial,
-                   int quantity) {
+    public Product(String name, String color, String size, String type, double price, String description, Long quantity, String image) {
         this.name = name;
         this.color = color;
         this.size = size;
@@ -71,6 +66,7 @@ public class Product {
         this.description = description;
         this.special = onSpecial;
         this.quantity = quantity;
+        this.image = image;
     }
 
 
@@ -146,13 +142,23 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public List<ProductImages> getImages() {
-        return images;
+    public String getImage() {
+        return image;
     }
 
-    public void setImages(List<ProductImages> images) {
-        this.images = images;
+    public void setImage(String image) {
+        this.image = image;
     }
+
+    //
+//    public Transaction getTransaction() {
+//        return transaction;
+//    }
+//
+//    public void setTransaction(Transaction transaction) {
+//        this.transaction = transaction;
+//    }
+
 
     public List<Categories> getCategories() {
         return categories;

@@ -35,11 +35,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                /* Login configuration */
+/*
+                    MAKE A PLAN FOR ALL ROLES AND PERMISSIONS
+                    ENSURE ALL PATHS ARE ROUTED CORRECTLY
+
+*/
+
+  /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
 //                .defaultSuccessUrl("/ads") // user's home page, it can be any URL
                 .defaultSuccessUrl("/products") // user's home page, it can be any URL
+                .defaultSuccessUrl("/products/t-shirts") // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
@@ -55,12 +62,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-//                        "/cart", //only authenticated users can see a shopping cart
-//                        "/checkout" //only authenticated users can see the checkout paget
+                       "/cart", //only authenticated users can see a shopping cart
+                       "/checkout" //only authenticated users can see the checkout paget
 //                        "/ads/create", // only authenticated users can create ads
 //                        "/ads/{id}/edit", // only authenticated users can edit ads
 //                        "/posts/create", // only authenticated users can create posts
-                        "/posts/{id}/edit" // only authenticated users can edit posts
+//                         "/posts/{id}/edit" // only authenticated users can edit posts
                 )
                 .authenticated()
         ;

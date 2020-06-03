@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="partials :: head" /></div>
+<head>
+    <meta charset="UTF-8" />
+    <title>Here Is Your Profile</title>
+</head>
 <body>
-<nav th:replace="partials :: navbar" />
-<div class="container mt-4">
+
+
+<h1>Hello, <span th:text="${name}">Welcome</span>!</h1>
 
     <h1>All of the greatest internet pictures and text on fancy clothes!</h1>
     <div class="container" style="text-align: center">
@@ -16,7 +20,6 @@
         </div>
     </div>
 
-</div>
-<footer th:replace="partials :: footer" />
+
 </body>
 </html>

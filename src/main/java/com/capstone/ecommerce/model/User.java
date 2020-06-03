@@ -5,13 +5,15 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
-@Table(name="users")
+@Entity //Interacts with databases
+@Table(name="users")//Creates Table in database
 public class User {
+    // Generates column named Id in database
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    //Creates new column named username that is not null, unique, and a varchar(50)
     @Column(nullable = false, unique = true, length = 50)
     private String username;
 
@@ -24,12 +26,15 @@ public class User {
     @Column(nullable = true)
     private String stripeToken;
 
+    //Makes a new column declares the type of Boolean, sets default value to false, which is named isAdmin
     @Column(columnDefinition = "tinyint(1) default 0", nullable = false)
     private Boolean isAdmin;
 
+    //Makes a new Table of Transactions which is based on columns from other tables (user), has a one to many relationship between user and transaction.
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Transaction> transactions;
 
+    //Declares when accessing addresses it distinguishes between billing and shipping and cascades each address respectively (if shipping address is changed, shipping address is updated)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @Where(clause = "address_type = 'Shipping'")
     private List<Address> ship_address;
@@ -41,14 +46,16 @@ public class User {
     public User() {
     }
 
-    public User(String username, String email, String password, Boolean isAdmin){
+    //Creates the User object and specifies what the User object consists of
+    public User(String username, String email, String password, Boolean isAdmin) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
     }
 
-    public User(User copy){
+    //Creates a copy of the User object for user manipulation (update)
+    public User(User copy) {
         id = copy.id;
         email = copy.email;
         username = copy.username;
@@ -56,6 +63,10 @@ public class User {
         isAdmin = copy.isAdmin;
     }
 
+
+
+
+    // Getters and Setters for User Model
 
 
     public long getId() {
