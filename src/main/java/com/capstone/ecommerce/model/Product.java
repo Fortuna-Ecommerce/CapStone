@@ -55,7 +55,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String color, String size, String type, double price, String description, Boolean onSpecial, Long quantity, String image) {
+    public Product(String name, String color, String size, String type, double price, String description, Boolean onSpecial, Long quantity) {
         this.name = name;
         this.color = color;
         this.size = size;
@@ -64,7 +64,7 @@ public class Product {
         this.description = description;
         this.special = onSpecial;
         this.quantity = quantity;
-        this.image = image;
+//        this.image = image;
     }
 
 

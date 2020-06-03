@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //import com.capstone.ecommerce.repositories.CategoriesRepository;
@@ -92,13 +93,36 @@ public class ProductsController {
         return "products/product";
     }
 
-    //  SEARCH
     @PostMapping("/products/search")
+    public String searchProduct(@RequestParam(name = "keyword") String keyword,
+                                @RequestParam(name = "choice") String choice,
+                                Model model) {
+        List<Product> chosenProducts = new ArrayList<>();
+        int i = 1;
+        if (choice.equals("name")) {
+            chosenProducts = productRepo.findByNameContaining(keyword);
+        } else if (choice.equals("category")) {
+            chosenProducts = productRepo.findByCategoriesContaining(keyword);
+//            for(i = 0; i < chosenProducts.size(); i++){
+//              for(Product product : chosenProducts){
+//                    if(chosenProducts.get(i).getId() == product.getId()){
+//                        chosenProducts.remove(chosenProducts.get(i));
+//                    }
+//                }
+//            }
+        }
 
-    public String searchProduct(@RequestParam(name = "keyword") String keyword, Model model) {
-        List<Product> products = productRepo.findByNameContaining(keyword);
-        model.addAttribute("products", products);
-        return "products/index";
+        model.addAttribute("showProducts", chosenProducts);
+        return "products/products";
     }
+    //  SEARCH
+
+//    @PostMapping("/products/search")
+//
+//    public String searchProduct(@RequestParam(name = "keyword") String keyword, Model model) {
+//        List<Product> products = productRepo.findByNameContaining(keyword);
+//        model.addAttribute("products", products);
+//        return "products/index";
+//    }
 
 }

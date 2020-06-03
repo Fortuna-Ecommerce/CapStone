@@ -9,9 +9,9 @@
 <nav th:replace="partials :: navbar" />
 
 
-<h1>Hello, <span th:text="${name}">Welcome</span>!</h1>
+<!--<h1>Hello, <span th:text="${name}">Welcome</span>!</h1>-->
 
-    <h1>All of the greatest internet pictures and text on fancy clothes!</h1>
+<h1 style="text-align: center">All of the greatest internet pictures and text on fancy clothes!</h1><br>
     <div class="container" style="text-align: center">
         <div th:each="product : ${showProducts}">
             <a th:href="@{'/products/'+${product.id}}"><h1 style="font-weight: bold" th:text="${product.name}">

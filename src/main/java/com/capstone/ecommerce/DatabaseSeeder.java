@@ -59,54 +59,54 @@ public class DatabaseSeeder implements CommandLineRunner {
 //    }
 
 
-//    //generate a handful of products and return it after saving
-//    private List<Product> seedProducts(){
-//
-//               Product product1 = new Product("Rage meme", "5DADE2", "XL", "Shirt", 22.22, "Angry guy melting down",
-//                       false,
-//                       5);
-//        Product product2 = new Product("Pepe punch", "95A5A6", "L", "Shirt", 28.22, "Frog person threatening pose", false,
-//                23);
-//        Product product3 = new Product("Pepe sad", "8E44AD", "XL", "Hoodie", 35.78, "Frog person very down", true, 1000);
-//        Product product4 = new Product("NPC face", "E74C3C", "OSFM", "Hat", 15.99, "Fellow with straight line mouth and " +
-//                "angly " +
-//                        "eyebrows", false, 9);
-//        Product product5 = new Product("Rage meme", "FDFEFE", "S", "Hoodie", 35.99, "Angry guy melting down", false, 0);
-//        productRepository.save(product1);
-//        productRepository.save(product2);
-//        productRepository.save(product3);
-//        productRepository.save(product4);
-//        productRepository.save(product5);
-//        List<Product> products = new ArrayList<>();
-//        products.add(product1);
-//        products.add(product2);
-//        products.add(product3);
-//        products.add(product4);
-//        products.add(product5);
-//        return products;
-//    }
+    //generate a handful of products and return it after saving
+    private List<Product> seedProducts(){
 
-    private List<Address> seedAddresses(List<User> users){
-               Address address1 = new Address("Shipping", "Jeremy", "T", "10101 Nolan Dr", null, "San Antonio", "TX",
-                       78230);
-        Address address2 =  new Address("Billing", "Jeremy", "T", "10101 Nolan Dr", null, "San Antonio", "TX", 78230);
-        Address address3 = new Address("Shipping", "Joe", "Shmoe", "131 Telari St", null, "New York", "NY", 10043);
-        Address address4 = new Address("Billing", "Joe", "Shmoe", "131 Telari St", null, "New York", "NY", 10043);
-        address1.setUser(users.get(1));
-        address2.setUser(users.get(1));
-        address3.setUser(users.get(4));
-        address4.setUser(users.get(4));
-        addressRepository.save(address1);
-        addressRepository.save(address2);
-        addressRepository.save(address3);
-        addressRepository.save(address4);
-        List<Address> addresses = new ArrayList<>();
-       addresses.add(address1);
-        addresses.add(address2);
-        addresses.add(address3);
-        addresses.add(address4);
-        return addresses;
+               Product product1 = new Product("Rage meme", "5DADE2", "XL", "Shirt", 22.22, "Angry guy melting down",
+                       false,
+                       (long) 5);
+        Product product2 = new Product("Pepe punch", "95A5A6", "L", "Shirt", 28.22, "Frog person threatening pose", false,
+                (long) 23);
+        Product product3 = new Product("Pepe sad", "8E44AD", "XL", "Hoodie", 35.78, "Frog person very down", true, (long) 1000);
+        Product product4 = new Product("NPC face", "E74C3C", "OSFM", "Hat", 15.99, "Fellow with straight line mouth and " +
+                "angly " +
+                        "eyebrows", false, (long) 9);
+        Product product5 = new Product("Rage meme", "FDFEFE", "S", "Hoodie", 35.99, "Angry guy melting down", false, (long) 0);
+        productRepository.save(product1);
+        productRepository.save(product2);
+        productRepository.save(product3);
+        productRepository.save(product4);
+        productRepository.save(product5);
+        List<Product> products = new ArrayList<>();
+        products.add(product1);
+        products.add(product2);
+        products.add(product3);
+        products.add(product4);
+        products.add(product5);
+        return products;
     }
+
+//    private List<Address> seedAddresses(List<User> users){
+//               Address address1 = new Address("Shipping", "Jeremy", "T", "10101 Nolan Dr", null, "San Antonio", "TX",
+//                       78230);
+//        Address address2 =  new Address("Billing", "Jeremy", "T", "10101 Nolan Dr", null, "San Antonio", "TX", 78230);
+//        Address address3 = new Address("Shipping", "Joe", "Shmoe", "131 Telari St", null, "New York", "NY", 10043);
+//        Address address4 = new Address("Billing", "Joe", "Shmoe", "131 Telari St", null, "New York", "NY", 10043);
+//        address1.setUser(users.get(1));
+//        address2.setUser(users.get(1));
+//        address3.setUser(users.get(4));
+//        address4.setUser(users.get(4));
+//        addressRepository.save(address1);
+//        addressRepository.save(address2);
+//        addressRepository.save(address3);
+//        addressRepository.save(address4);
+//        List<Address> addresses = new ArrayList<>();
+//       addresses.add(address1);
+//        addresses.add(address2);
+//        addresses.add(address3);
+//        addresses.add(address4);
+//        return addresses;
+//    }
 
 //    //generate a handful of shopping carts
 //
@@ -137,35 +137,35 @@ public class DatabaseSeeder implements CommandLineRunner {
 
 
     // generate a handful of transactions, and assign a user/ShoppingCart to each one
-    private void seedTransactions(List<Product> products, List<User> users, List<Address> addresses) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date testDate = new Date();
-        Transaction test1 = new Transaction("Sale", "Complete", formatter.format(testDate), null);
-        Transaction test2 = new Transaction("Return", "Pending", formatter.format(testDate), formatter.format(testDate));
-        Transaction test3 = new Transaction("Sale", "Cancelled", formatter.format(testDate),
-                formatter.format(testDate));
-        Transaction test4 = new Transaction("Return", "Complete", formatter.format(testDate),
-                formatter.format(testDate));
-
-        products.remove(4);
-
-        test1.setUser(users.get(0));
-        test1.setProduct(products);
-
-        test2.setUser(users.get(0));
-        test2.setProduct(products);
-
-        test3.setUser(users.get(4));
-        test3.setProduct(products);
-
-        test4.setUser(users.get(4));
-        test4.setProduct(products);
-
-        transactionRepository.save(test1);
-        transactionRepository.save(test2);
-        transactionRepository.save(test3);
-        transactionRepository.save(test4);
-    }
+//    private void seedTransactions(List<Product> products, List<User> users, List<Address> addresses) {
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Date testDate = new Date();
+//        Transaction test1 = new Transaction("Sale", "Complete", formatter.format(testDate), null);
+//        Transaction test2 = new Transaction("Return", "Pending", formatter.format(testDate), formatter.format(testDate));
+//        Transaction test3 = new Transaction("Sale", "Cancelled", formatter.format(testDate),
+//                formatter.format(testDate));
+//        Transaction test4 = new Transaction("Return", "Complete", formatter.format(testDate),
+//                formatter.format(testDate));
+//
+//        products.remove(4);
+//
+//        test1.setUser(users.get(0));
+//        test1.setProduct(products);
+//
+//        test2.setUser(users.get(0));
+//        test2.setProduct(products);
+//
+//        test3.setUser(users.get(4));
+//        test3.setProduct(products);
+//
+//        test4.setUser(users.get(4));
+//        test4.setProduct(products);
+//
+//        transactionRepository.save(test1);
+//        transactionRepository.save(test2);
+//        transactionRepository.save(test3);
+//        transactionRepository.save(test4);
+//    }
 
 
 
@@ -178,18 +178,18 @@ public class DatabaseSeeder implements CommandLineRunner {
             return;
         }
 
-        log.info("Deleting transactions...");
-        transactionRepository.deleteAll();
-        log.info("Deleting addresses...");
-        addressRepository.deleteAll();
+//        log.info("Deleting transactions...");
+//        transactionRepository.deleteAll();
+//        log.info("Deleting addresses...");
+//        addressRepository.deleteAll();
         log.info("Deleting products...");
         productRepository.deleteAll();
-        log.info("Deleting users...");
-        userRepository.deleteAll();
-        log.info("Seeding users...");
+//        log.info("Deleting users...");
+//        userRepository.deleteAll();
+//        log.info("Seeding users...");
 //        List<User> users = seedUsers();
-//        log.info("Seeding products...");
-//        List<Product> products = seedProducts();
+        log.info("Seeding products...");
+        List<Product> products = seedProducts();
 //        log.info("Seeding addresses...");
 //        List<Address> addresses = seedAddresses(users);
 //        log.info("Seeding transactions...");
