@@ -46,8 +46,8 @@ public class CheckoutController{
         return comparing;
     }
 
-    @Value("${STRIPE_PUBLIC_KEY}")
-    private String stripePublicKey;
+//    @Value("${STRIPE_PUBLIC_KEY}")
+    private String stripePublicKey = "pk_test_B1PgkqwpndJUHJCdlY0I9leL00c395TbE5"
 
 
     @GetMapping("/baddress")
