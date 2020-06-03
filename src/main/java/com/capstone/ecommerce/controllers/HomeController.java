@@ -46,22 +46,28 @@ public class HomeController {
 
     @PostMapping("products/productInventory/add")
     public String addProductPost(@RequestParam (name = "name") String name,
-                                 @RequestParam (name = "desc") String desc,
-                                 @RequestParam (name = "image") String image,
-                                 @RequestParam (name = "quan") Long quan) {
+                                 @RequestParam (name = "color") String color,
+                                 @RequestParam (name = "size") String size,
+                                 @RequestParam (name = "type") String type,
+                                 @RequestParam (name = "price") float price,
+                                 @RequestParam (name = "quan") long quan) {
         Product product = new Product();
         product.setName(name);
-        product.setDescription(desc);
-        product.setImage(image);
+        product.setColor(color);
+        product.setSize(size);
+        product.setType(type);
+        product.setPrice(price);
         product.setQuantity(quan);
+
         productRepo.save(product);
-        return "redirect:products/productInventory";
+        return "redirect:/products/productInventory";
     }
+
 //  DELETE
-    @PostMapping("productInventory/{id}/delete")
-    public String deleteProductPost(@PathVariable long id) {
+    @PostMapping("productInventory/delete")
+    public String deleteProductPost(@RequestParam (name = "deleteId") long id) {
         productRepo.deleteById(id);
-        return "redirect:products/productInventory";
+        return "redirect:/products/productInventory";
     }
 
     //  SEARCH

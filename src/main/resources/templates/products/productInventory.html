@@ -11,18 +11,25 @@
         <tr>
             <th scope="col">T-shirts</th>
             <th scope="col">Color</th>
-            <th scope="col">Image</th>
+            <th scope="col">Size</th>
+            <th scope="col">Type</th>
+            <th scope="col">Price</th>
             <th scope="col">Quantity</th>
+            <th scope="col">Image</th>
         </tr>
         </thead>
-        <tbody th:each="product : ${products}">
-        <tr>
+        <tbody>
+        <tr th:each="product : ${products}">
             <td th:text="${product.name}"></td>
-            <td th:text="${product.getDescription()}"></td>
-            <td><img th:src="@{/img/${product.getImage()}}"/></td>
+            <td th:text="${product.getColor()}"></td>
+            <td th:text="${product.getSize()}"></td>
+            <td th:text="${product.getType()}"></td>
+            <td th:text="${product.getPrice()}"></td>
             <td th:text="${product.getQuantity()}"></td>
-            <td><form th:action="@{/productInventory/${product.id}/delete}" th:method="POST" class="text-right">
-                <button class="btn btn-primary">Delete</button>
+            <td><img th:src="@{/img/${product.getImage()}}"/></td>
+            <td><form th:action="@{/productInventory/delete}" th:method="POST" class="text-right">
+                <input th:name="hidden" th:value="${product.id}">
+                <button th:name="deleteId" class="btn btn-primary">Delete</button>
             </form></td>
         </tr>
         </tbody>
@@ -50,15 +57,30 @@
 
                         <div class="form-group">
                             <label for="productColor">Product Color</label>
-                            <input type="text" class="form-control" id="productColor" aria-describedby="productColor" name="desc">
+                            <input type="text" class="form-control" id="productColor" aria-describedby="productColor" name="color">
                         </div>
 
                         <div class="form-group">
-                            <label for="productQuantity">Product Quantity</label>
-                            <input type="text" class="form-control" id="productQuantity" aria-describedby="productQuantity" name="quan">
+                            <label for="productSize">Product Size</label>
+                            <input type="text" class="form-control" id="productSize" aria-describedby="productQuantity" name="size">
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="form-group">
+                            <label for="productType">Product Type</label>
+                            <input type="text" class="form-control" id="productType" aria-describedby="productType" name="type">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productPrice">Product Price</label>
+                            <input type="text" class="form-control" id="productPrice" aria-describedby="productPrice" name="price">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productQuan">Product Quantity</label>
+                            <input type="text" class="form-control" id="productQuan" aria-describedby="productQuan" name="quan">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </form>
                 </div>
                 <div class="modal-footer">
