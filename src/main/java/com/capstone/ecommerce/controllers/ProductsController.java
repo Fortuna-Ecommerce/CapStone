@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class ProductsController {
         this.imagesRepo = imagesRepo;
     }
 
-        public List<Product> seedProducts() {
+        public void seedProducts() {
 
             Product product1 = new Product("Rage meme", "5DADE2", "XL", "Shirt", 22.22, "Angry guy melting down",
                     false,
@@ -50,7 +51,6 @@ public class ProductsController {
             products.add(product3);
             products.add(product4);
             products.add(product5);
-            return products;
         }
 
     @GetMapping("/products/all")
@@ -106,8 +106,14 @@ public class ProductsController {
 
     @GetMapping("/products/{id}")
     public String singleProduct(Model model, @PathVariable long id) {
+        double salePrice = 0;
         Product aProduct = productRepo.getOne(id);
         model.addAttribute("product", aProduct);
+        if(aProduct.getSpecial() == true){
+            salePrice = aProduct.getPrice() - (aProduct.getPrice()*0.42);
+            salePrice = Math.round(salePrice * 100.00) / 100.00;
+        }
+        model.addAttribute("salePrice", salePrice);
         List<Categories> categories = aProduct.getCategories();
         String cNames = "";
         for (Categories category : categories) {
@@ -122,7 +128,7 @@ public class ProductsController {
     @PostMapping("/products/search")
     public String searchProduct(@RequestParam(name = "keyword") String keyword,
                                 @RequestParam(name = "choice") String choice,
-                                Model model) {
+                                RedirectAttributes redirectAttributes) {
         List<Product> chosenProducts = new ArrayList<>();
         int i = 1;
         if (choice.equals("name")) {
@@ -138,7 +144,15 @@ public class ProductsController {
 //            }
         }
 
-        model.addAttribute("showProducts", chosenProducts);
+        redirectAttributes.addFlashAttribute("showProducts", chosenProducts);
+        return "redirect:search";
+    }
+
+    @GetMapping("/products/search")
+    public String searchProductLander(Model model,
+                                      @ModelAttribute   ("showProducts") ArrayList<Product> showProducts){
+        System.out.println(showProducts);
+        model.addAttribute("showProducts", showProducts);
         return "products/products";
     }
 
