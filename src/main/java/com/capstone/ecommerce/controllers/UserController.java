@@ -41,11 +41,10 @@ public class UserController {
         return "redirect:/login";
     }
 
-        @GetMapping("/users/profile/{id}")
-        public String viewProfile(@PathVariable String name, Model model) {
-            model.addAttribute("id", name);
+        @GetMapping("/users/profile/{name}")
+        public String findByUsername(@PathVariable String name, Model model) {
+            model.addAttribute("name", name);
+
             return "/users/profile";
         }
-
-
-}
+    }

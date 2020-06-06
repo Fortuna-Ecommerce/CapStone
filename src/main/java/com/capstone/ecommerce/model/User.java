@@ -36,11 +36,11 @@ public class User {
 
     //Declares when accessing addresses it distinguishes between billing and shipping and cascades each address respectively (if shipping address is changed, shipping address is updated)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @Where(clause = "address_type = 'Shipping'")
+    @Where(clause = "address_type = 'shipping'")
     private List<Address> ship_address;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @Where(clause = "address_type = 'Billing'")
+    @Where(clause = "address_type = 'billing'")
     private List<Address> bill_address;
 
     public User() {
@@ -61,7 +61,10 @@ public class User {
         username = copy.username;
         password = copy.password;
         isAdmin = copy.isAdmin;
+        stripeToken = copy.stripeToken;
     }
+
+
 
 
 
