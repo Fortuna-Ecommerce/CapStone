@@ -77,21 +77,43 @@ public class HomeController {
         return "redirect:/products/productInventory";
     }
 
-//  DELETE
-//    @GetMapping("productInventory/{id}/delete")
-////    public String getDeleteProduct(@PathVariable long id, Model model) {
-////        Product aProduct = productRepo.getOne(id);
-////        model.addAttribute("aProduct", aProduct);
-////        return "products/productInventory";
-////    }
+//  EDIT
+    @GetMapping("/productsInventory/edit/{id}")
+    public String editProductForm(@PathVariable long id, Model model) {
+            Product productToEdit = productRepo.getOne(id);
+            model.addAttribute("product", productToEdit);
+            return "redirect:/products/productInventory";
+    }
 
+    @PostMapping("/productsInventory/edit/{id}")
+    public String editProduct(@PathVariable long id,
+                              @RequestParam (name = "name") String name,
+                              @RequestParam (name = "color") String color,
+                              @RequestParam (name = "size") String size,
+                              @RequestParam (name = "type") String type,
+                              @RequestParam (name = "price") float price,
+                              @RequestParam (name = "quan") long quan) {
+        Product product = productRepo.getOne(id);
+        product.setName(name);
+        product.setColor(color);
+        product.setSize(size);
+        product.setType(type);
+        product.setPrice(price);
+        product.setQuantity(quan);
+        productRepo.save(product);
+        return "redirect:/products/productInventory";
+    }
+
+
+    //  DELETE
     @GetMapping("/productsInventory/delete/{id}")
     public String deleteProduct(@PathVariable long id) {
         productRepo.deleteById(id);
         return "redirect:/products/productInventory";
     }
 
-    //  SEARCH
+
+//  SEARCH
     @PostMapping("productsInventory/search")
     public String searchProduct(@RequestParam (name = "keyword") String keyword, Model model) {
         List<Product> products = productRepo.findByNameContaining(keyword);
