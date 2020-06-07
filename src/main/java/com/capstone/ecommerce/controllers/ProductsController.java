@@ -152,7 +152,6 @@ public class ProductsController {
     @GetMapping("/products/search")
     public String searchProductLander(Model model,
                                       @ModelAttribute   ("showProducts") ArrayList<Product> showProducts){
-            System.out.println(showProducts);
             model.addAttribute("showProducts", showProducts);
             return "products/products";
         }
@@ -172,4 +171,3 @@ public class ProductsController {
 
 
     }
-}

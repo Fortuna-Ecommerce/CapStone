@@ -21,7 +21,6 @@
 <!--<h1>Hello, <span th:text="${name}">Welcome</span>!</h1>-->
 
 <h1 style="text-align: center">All of the greatest internet pictures and text on fancy clothes!</h1><br>
->>>>>>> f5c2bc4100a1305917fa1147db666271798bcabf
     <div class="container" style="text-align: center">
         <div th:each="product : ${showProducts}">
             <a th:href="@{'/products/'+${product.id}}"><h1 style="font-weight: bold" th:text="${product.name}">
@@ -32,10 +31,6 @@
         </div>
     </div>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> f5c2bc4100a1305917fa1147db666271798bcabf
 <footer th:replace="partials :: footer" />
 </body>
 </html>
