@@ -44,7 +44,6 @@ public class HomeController {
         return "home";
     }
 
-
     @GetMapping("products/productInventory")
     public String getProducts(Model model) {
         List<Product> products = productRepo.findAll();
@@ -78,10 +77,19 @@ public class HomeController {
         return "redirect:/products/productInventory";
     }
 
-    //  DELETE
-    @PostMapping("productInventory/delete")
-    public String deleteProductPost(@RequestParam (name = "deleteId") long id) {
+//  DELETE
+//    @GetMapping("productInventory/{id}/delete")
+////    public String getDeleteProduct(@PathVariable long id, Model model) {
+////        Product aProduct = productRepo.getOne(id);
+////        model.addAttribute("aProduct", aProduct);
+////        return "products/productInventory";
+////    }
+
+    @GetMapping("productInventory/{id}/delete")
+    public String deleteProduct(@PathVariable long id) {
+        System.out.println(id);
         productRepo.deleteById(id);
+        System.out.println(id);
         return "redirect:/products/productInventory";
     }
 
