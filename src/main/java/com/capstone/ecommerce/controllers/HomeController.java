@@ -78,7 +78,7 @@ public class HomeController {
         return "redirect:/products/productInventory";
     }
 
-//  DELETE
+    //  DELETE
     @PostMapping("productInventory/delete")
     public String deleteProductPost(@RequestParam (name = "deleteId") long id) {
         productRepo.deleteById(id);
