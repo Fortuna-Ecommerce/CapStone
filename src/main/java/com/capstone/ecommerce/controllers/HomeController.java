@@ -85,11 +85,9 @@ public class HomeController {
 ////        return "products/productInventory";
 ////    }
 
-    @GetMapping("productInventory/{id}/delete")
+    @GetMapping("/productsInventory/delete/{id}")
     public String deleteProduct(@PathVariable long id) {
-        System.out.println(id);
         productRepo.deleteById(id);
-        System.out.println(id);
         return "redirect:/products/productInventory";
     }
 
