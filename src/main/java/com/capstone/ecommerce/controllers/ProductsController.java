@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 //import com.capstone.ecommerce.repositories.CategoriesRepository;
@@ -109,7 +111,7 @@ public class ProductsController {
         double salePrice = 0;
         Product aProduct = productRepo.getOne(id);
         model.addAttribute("product", aProduct);
-        if(aProduct.getSpecial() == true){
+            if(aProduct.getSpecial() == true){
             salePrice = aProduct.getPrice() - (aProduct.getPrice()*0.42);
             salePrice = Math.round(salePrice * 100.00) / 100.00;
         }
@@ -136,6 +138,9 @@ public class ProductsController {
             chosenProducts = productRepo.findByNameContaining(keyword);
         } else if (choice.equals("category")) {
             chosenProducts = productRepo.findByCategoriesContaining(keyword);
+            LinkedHashSet<Product> theChosen = new LinkedHashSet<>(chosenProducts);
+            chosenProducts.clear();
+            chosenProducts.addAll(theChosen);
 //            for(i = 0; i < chosenProducts.size(); i++){
 //              for(Product product : chosenProducts){
 //                    if(chosenProducts.get(i).getId() == product.getId()){

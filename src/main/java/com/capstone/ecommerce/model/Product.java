@@ -53,16 +53,20 @@ public class Product {
     private List<Categories> categories;
 
 
+
+
     public Product() {
     }
 
-    public Product(String name, String color, String size, String type, double price, String description, Boolean onSpecial, Long quantity) {
+    public Product(String name, String color, String size, String type, double price, String description,
+                   Boolean special, Long quantity) {
         this.name = name;
         this.color = color;
         this.size = size;
         this.type = type;
         this.price = price;
         this.description = description;
+        this.special = special;
         this.quantity = quantity;
 //        this.image = image;
     }

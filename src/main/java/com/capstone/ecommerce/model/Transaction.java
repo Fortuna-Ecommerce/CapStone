@@ -2,6 +2,7 @@ package com.capstone.ecommerce.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "transactions")
@@ -30,8 +31,11 @@ public class Transaction {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Product> product;
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    private List<Product> product;
+
+    @OneToMany(mappedBy = "transaction")
+    Set<Transactions_Product> transactions_products;
 
     public Transaction() {
     }
@@ -102,11 +106,19 @@ public class Transaction {
         this.user = user;
     }
 
-    public List<Product> getProduct() {
-        return product;
+//    public List<Product> getProduct() {
+//        return product;
+//    }
+//
+//    public void setProduct(List<Product> product) {
+//        this.product = product;
+//    }
+
+    public Set<Transactions_Product> getTransactions_products() {
+        return transactions_products;
     }
 
-    public void setProduct(List<Product> product) {
-        this.product = product;
+    public void setTransactions_products(Set<Transactions_Product> transactions_products) {
+        this.transactions_products = transactions_products;
     }
 }

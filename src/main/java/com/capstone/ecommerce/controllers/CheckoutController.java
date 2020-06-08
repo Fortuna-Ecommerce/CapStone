@@ -3,13 +3,9 @@ package com.capstone.ecommerce.controllers;
 
 
 import com.capstone.ecommerce.model.*;
-import com.capstone.ecommerce.repositories.AddressRepository;
-import com.capstone.ecommerce.repositories.ProductRepository;
-import com.capstone.ecommerce.repositories.TransactionRepository;
-import com.capstone.ecommerce.repositories.UserRepository;
+import com.capstone.ecommerce.repositories.*;
 import com.capstone.ecommerce.services.StripeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,12 +25,14 @@ public class CheckoutController{
     private final TransactionRepository transactionRepo;
     private final AddressRepository addressRepo;
     private final ProductRepository productRepo;
+    private final TransactionProductRepository transProdRepo;
 
-    public CheckoutController(UserRepository userRepo, TransactionRepository transactionRepo, AddressRepository addressRepo, ProductRepository productRepo) {
+    public CheckoutController(UserRepository userRepo, TransactionRepository transactionRepo, AddressRepository addressRepo, ProductRepository productRepo, TransactionProductRepository transProdRepo) {
         this.userRepo = userRepo;
         this.transactionRepo = transactionRepo;
         this.addressRepo = addressRepo;
         this.productRepo = productRepo;
+        this.transProdRepo = transProdRepo;
     }
 
     public List<Product> comparison(List<Product> purchasableProducts) {
@@ -214,23 +212,27 @@ public class CheckoutController{
             this.userRepo.save(testShopper);
         }
         try {
-            System.out.println("test");
             String id = stripeService.chargeExistingCard(testShopper.getStripeToken(), total);
-        System.out.println(id);
             newTransaction.setUser(testShopper);
             newTransaction.setStripeTransID(id);
             newTransaction.setCreated_at(formatter.format(saleDate));
             newTransaction.setTransactionStatus("Paid - Pending shipment");
             newTransaction.setTransactionType("Sale");
-            newTransaction.setProduct(products);
             this.transactionRepo.save(newTransaction);
+            Transaction thisTransaction = this.transactionRepo.findByStripeTransID(id);
+            for(Product product: products){
+                Transactions_Product TransProd = new Transactions_Product();
+                TransProd.setProduct(product);
+                TransProd.setTransaction(thisTransaction);
+                TransProd.setQuantity(product.getQuantity());
+                this.transProdRepo.save(TransProd);
+            }
             for(int i = 0; i < originals.size(); i++){
                 originals.get(i).setQuantity(originals.get(i).getQuantity() - products.get(i).getQuantity());
                 this.productRepo.save(originals.get(i));
             }
             products = new ShoppingCart();
             model.addAttribute("products", products);
-            System.out.println("Last line");
         } catch(Exception e) {
             isError = true;
             errMessage = "There was a problem with your card - please try again or contact your issuing agency!";
