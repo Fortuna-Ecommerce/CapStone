@@ -17,12 +17,23 @@ public class Categories {
     @ManyToMany
             (fetch = FetchType.LAZY,
             cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
+                    CascadeType.ALL
             },
             mappedBy = "categories")
     private List<Product> products;
 
+    public Categories() {
+    }
+
+    public Categories(String category) {
+        this.category = category;
+    }
+
+    public Categories(long id, String category, List<Product> products) {
+        this.id = id;
+        this.category = category;
+        this.products = products;
+    }
 
     public long getId() {
         return id;

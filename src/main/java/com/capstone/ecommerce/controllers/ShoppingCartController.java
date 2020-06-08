@@ -55,10 +55,11 @@ public class ShoppingCartController {
             @ModelAttribute("products") ShoppingCart products,
             @RequestParam("cartAddId") Integer id,
             @RequestParam("cartAddQuantity") Integer quantity,
+            @RequestParam("price") String price,
             RedirectAttributes redir) {
-
+        double setPrice = Double.parseDouble(price);
         String error = "";
-        if(quantity == null){
+        if(quantity == null || quantity == 0){
             error = "Can't order nothing! Please put in a number!";
             redir.addFlashAttribute("error", error);
             model.addAttribute("product", this.productRepo.getOne((long)id));
@@ -82,14 +83,14 @@ public class ShoppingCartController {
 
         if (quantity != null) {
             addProduct.setQuantity(quantity);
-            addProduct.setPrice(quantity * addProduct.getPrice());
+            addProduct.setPrice(quantity * setPrice);
         }
         if (products.size() > 0) {
             System.out.println(found);
             for (Product product : products) {
                 if (product.getId() == addProduct.getId()) {
                     product.setQuantity(quantity + product.getQuantity());
-                    product.setPrice(((product.getPrice() + addProduct.getPrice()) * 100) / 100);
+                    product.setPrice(((setPrice * product.getQuantity()) * 100) / 100);
                     found = true;
                     break;
                 }
@@ -107,9 +108,9 @@ public class ShoppingCartController {
         }
 
         List<Product> originals = comparison(products);
-        for(Product product : products){
-
-        }
+//        for(Product produzt : products){
+//
+//        }
         total = Math.round(total * 100.00) / 100.00;
         model.addAttribute("total", total);
         model.addAttribute("products", products);

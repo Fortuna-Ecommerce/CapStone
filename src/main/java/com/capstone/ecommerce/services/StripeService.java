@@ -44,7 +44,7 @@ public class StripeService {
         return id;
     }
 
-    public String chargeExistingCard(long customerId, double amount) throws StripeException {
+    public String chargeExistingCard(String customerId, double amount) throws StripeException {
         Map<String, Object> chargeParams = new HashMap<>();
         chargeParams.put("amount", (int)(amount * 100));
         chargeParams.put("currency", "USD");

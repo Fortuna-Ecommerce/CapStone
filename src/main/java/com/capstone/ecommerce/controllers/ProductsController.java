@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,31 @@ public class ProductsController {
         this.productRepo = productRepo;
         this.imagesRepo = imagesRepo;
     }
+
+        public void seedProducts() {
+
+            Product product1 = new Product("Rage meme", "5DADE2", "XL", "Shirt", 22.22, "Angry guy melting down",
+                    false,
+                    (long) 5);
+            Product product2 = new Product("Pepe punch", "95A5A6", "L", "Shirt", 28.22, "Frog person threatening pose", false,
+                    (long) 23);
+            Product product3 = new Product("Pepe sad", "8E44AD", "XL", "Hoodie", 35.78, "Frog person very down", true, (long) 1000);
+            Product product4 = new Product("NPC face", "E74C3C", "OSFM", "Hat", 15.99, "Fellow with straight line mouth and " +
+                    "angly " +
+                    "eyebrows", false, (long) 9);
+            Product product5 = new Product("Rage meme", "FDFEFE", "S", "Hoodie", 35.99, "Angry guy melting down", false, (long) 0);
+            productRepo.save(product1);
+            productRepo.save(product2);
+            productRepo.save(product3);
+            productRepo.save(product4);
+            productRepo.save(product5);
+            List<Product> products = new ArrayList<>();
+            products.add(product1);
+            products.add(product2);
+            products.add(product3);
+            products.add(product4);
+            products.add(product5);
+        }
 
     @GetMapping("/products/all")
     public String productsIndex(Model model) {
@@ -104,7 +130,7 @@ public class ProductsController {
     @PostMapping("/products/search")
     public String searchProduct(@RequestParam(name = "keyword") String keyword,
                                 @RequestParam(name = "choice") String choice,
-                                Model model) {
+                                RedirectAttributes redirectAttributes) {
         List<Product> chosenProducts = new ArrayList<>();
         int i = 1;
         if (choice.equals("name")) {
@@ -120,8 +146,20 @@ public class ProductsController {
 //            }
         }
 
-        model.addAttribute("showProducts", chosenProducts);
+        redirectAttributes.addFlashAttribute("showProducts", chosenProducts);
+        return "redirect:search";
+    }
+
+    @GetMapping("/products/search")
+    public String searchProductLander(Model model,
+                                      @ModelAttribute   ("showProducts") ArrayList<Product> showProducts){
+        System.out.println(showProducts);
+        model.addAttribute("showProducts", showProducts);
         return "products/products";
+    }
+
+    public void main(String[] args) {
+        seedProducts();
     }
     //  SEARCH
 

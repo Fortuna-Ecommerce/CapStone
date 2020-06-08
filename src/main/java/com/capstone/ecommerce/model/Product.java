@@ -1,5 +1,7 @@
 package com.capstone.ecommerce.model;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -43,8 +45,7 @@ public class Product {
     @ManyToMany
             (fetch = FetchType.LAZY,
             cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
+                    CascadeType.ALL
             })
     @JoinTable(name = "product_categories",
             joinColumns = { @JoinColumn(name = "product_id") },
@@ -67,6 +68,20 @@ public class Product {
 //        this.image = image;
     }
 
+    public Product(long id, String image, List<Categories> categories, String name, String color, String size,
+                   String type, double price, String description, Boolean onSpecial, Long quantity) {
+        this.id = id;
+        this.image = image;
+        this.categories = categories;
+        this.name = name;
+        this.color = color;
+        this.size = size;
+        this.type = type;
+        this.price = price;
+        this.description = description;
+        this.special = onSpecial;
+        this.quantity = quantity;
+    }
 
     public long getId() {
         return id;
@@ -162,6 +177,7 @@ public class Product {
         return categories;
     }
 
+    @Transactional
     public void setCategories(List<Categories> categories) {
         this.categories = categories;
     }
