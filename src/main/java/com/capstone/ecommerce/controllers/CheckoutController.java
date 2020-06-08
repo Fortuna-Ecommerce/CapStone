@@ -50,6 +50,9 @@ public class CheckoutController{
 
     @GetMapping("/baddress")
     public String goToBillAddress(Model model) {
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "home";
+        }
         User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Address bill_address = this.addressRepo.findByUserAndAddresstype(shopper, "Billing");
         if (bill_address != null) {
@@ -66,6 +69,9 @@ public class CheckoutController{
     @PostMapping("/baddress")
     public String submitBillAddress(Model model,
                                     Address bill_address) {
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "home";
+        }
         User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        if (bill_address.getId() > 0) {
 //            this.addressRepo.save(bill_address);
@@ -90,6 +96,9 @@ public class CheckoutController{
     public String submitShipAddress(Model model,
                                     Address ship_address,
                                     @ModelAttribute("products") ShoppingCart products) {
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "home";
+        }
         double total = 0.00;
         User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        if (ship_address.getId() > 0) {
@@ -116,6 +125,9 @@ public class CheckoutController{
 
     @GetMapping("/addresses")
     public String goToAddressEntry(Model model) {
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "home";
+        }
         User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Address ship_address = this.addressRepo.findByUserAndAddresstype(shopper, "Shipping");
         Address bill_address = this.addressRepo.findByUserAndAddresstype(shopper, "Billing");
@@ -143,6 +155,9 @@ public class CheckoutController{
                                   Address bill_address,
                                   Address ship_address,
                                   @ModelAttribute("products") ShoppingCart products) {
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "home";
+        }
         User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (bill_address.getId() > 0) {
 
@@ -194,6 +209,9 @@ public class CheckoutController{
                          @ModelAttribute("products") ShoppingCart products,
                          @RequestParam (name= "total") double total,
                         @RequestParam (name = "token") String token) throws Exception {
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "home";
+        }
         List<Product> originals = new ArrayList<>();
         originals = comparison(products);
         boolean isError = false;
@@ -218,6 +236,7 @@ public class CheckoutController{
             newTransaction.setCreated_at(formatter.format(saleDate));
             newTransaction.setTransactionStatus("Paid - Pending shipment");
             newTransaction.setTransactionType("Sale");
+            newTransaction.setFinalAmount(total);
             this.transactionRepo.save(newTransaction);
             Transaction thisTransaction = this.transactionRepo.findByStripeTransID(id);
             for(Product product: products){
@@ -254,7 +273,9 @@ public class CheckoutController{
 
     @GetMapping("/result")
     private String goToResult(Model model){
-
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "home";
+        }
         return "purchases/result";
     }
 

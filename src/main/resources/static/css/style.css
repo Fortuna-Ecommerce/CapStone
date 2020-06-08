@@ -36,4 +36,9 @@
     border: 1px solid black;
     float: right;
     margin-left: 5px;
+
+}
+
+.transactionTable{
+    margin-left: -22%;
 }

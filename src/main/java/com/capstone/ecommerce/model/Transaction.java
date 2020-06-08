@@ -13,6 +13,9 @@ public class Transaction {
     private long id;
 
     @Column(nullable = false)
+    private double finalAmount;
+
+    @Column(nullable = false)
     private String stripeTransID;
 
     @Column(nullable = false)
@@ -56,6 +59,14 @@ public class Transaction {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public double getFinalAmount() {
+        return finalAmount;
+    }
+
+    public void setFinalAmount(double finalAmount) {
+        this.finalAmount = finalAmount;
     }
 
     public String getStripeTransID() {
