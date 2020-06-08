@@ -1,28 +1,32 @@
 package com.capstone.ecommerce.controllers;
 
 
+import com.capstone.ecommerce.model.Address;
+import com.capstone.ecommerce.model.Product;
 import com.capstone.ecommerce.model.User;
+import com.capstone.ecommerce.repositories.AddressRepository;
 import com.capstone.ecommerce.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-    //Tells controller where to get info from
+import java.util.List;
+
+//Tells controller where to get info from
 @Controller
 public class UserController {
         private UserRepository users;
         private PasswordEncoder passwordEncoder;
+        private AddressRepository addressRepository;
 
 
         //Stores info in variable so it can be used elsewhere, allows information to be malleable
-        public UserController(UserRepository users, PasswordEncoder passwordEncoder) {
+        public UserController(UserRepository users, PasswordEncoder passwordEncoder, AddressRepository addyRepo) {
             this.users = users;
             this.passwordEncoder = passwordEncoder;
+            this.addressRepository = addyRepo;
         }
 
         @GetMapping("/register")
@@ -46,6 +50,38 @@ public class UserController {
             // Get Current user and store to model to be sent to HTML
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", user);
-            return "users/profile";
-        }
+                List<Address> addresses = addressRepository.findAll();
+                model.addAttribute("addresses", addresses);
+                return "users/profile";
+            }
+    @GetMapping("users/addresses/add")
+    public String showEditAddress() {
+        return "users/addresses";
     }
+    @PostMapping("users/addresses/add")
+    public String addAddressPost(@RequestParam(name = "first_name") String firstName,
+                                 @RequestParam (name = "last_name") String lastName,
+                                 @RequestParam (name = "address_type") String type,
+                                 @RequestParam (name = "street_1") String street1,
+                                 @RequestParam (name = "street_2") String street2,
+                                 @RequestParam (name = "city") String city,
+                                 @RequestParam (name = "zipcode") int zipcode,
+                                 @RequestParam (name = "state") String state)
+
+    {
+        Address address = new Address();
+        address.setAddresstype(type);
+        address.setFirstname(firstName);
+        address.setLastname(lastName);
+        address.setStreet1(street1);
+        address.setStreet2(street2);
+        address.setCity(city);
+        address.setState(state);
+        address.setZipcode(zipcode);
+        addressRepository.save(address);
+        return "redirect:/users/profile";
+    }
+
+
+    }
+
