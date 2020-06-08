@@ -45,7 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
 //                .defaultSuccessUrl("/ads") // user's home page, it can be any URL
-                .defaultSuccessUrl("/products/all") // user's home page, it can be any URL
+                .defaultSuccessUrl("/users/profile") // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
@@ -55,19 +55,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/products") // anyone can see the home and the products pages
+                .antMatchers("/", "/products/all") // anyone can see the home and the products pages
                 .permitAll()
                 /* Pages that require authentication */
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                       "/users/profile/{id}",
+                       "/users/profile",
                         "/cart", //only authenticated users can see a shopping cart
                        "/checkout" //only authenticated users can see the checkout paget
-//                        "/ads/create", // only authenticated users can create ads
-//                        "/ads/{id}/edit", // only authenticated users can edit ads
-//                        "/posts/create", // only authenticated users can create posts
-//                         "/posts/{id}/edit" // only authenticated users can edit posts
                 )
                 .authenticated()
         ;
