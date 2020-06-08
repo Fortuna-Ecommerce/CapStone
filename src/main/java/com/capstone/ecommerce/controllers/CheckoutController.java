@@ -6,7 +6,7 @@ import com.capstone.ecommerce.model.*;
 import com.capstone.ecommerce.repositories.AddressRepository;
 import com.capstone.ecommerce.repositories.ProductRepository;
 import com.capstone.ecommerce.repositories.TransactionRepository;
-import com.capstone.ecommerce.repositories.*;
+import com.capstone.ecommerce.repositories.UserRepository;
 import com.capstone.ecommerce.services.StripeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -5,12 +5,6 @@
     const options = {
         "url": "https://cdn.filestackcontent.com/api/file/s7tdGfE5RRKFUxwsZoYv",
         "size": 8331,
-        "resize": {
-            "width": 500,
-            "height": 500,
-            "fit": "clip",
-            "align": "top"
-        },
         "type": "image/png",
         "filename": "watermark.png",
         "key": "a1RyBxiglW92bS2SRmqM_watermark.png"
