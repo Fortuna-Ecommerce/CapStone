@@ -106,14 +106,8 @@ public class ProductsController {
 
     @GetMapping("/products/{id}")
     public String singleProduct(Model model, @PathVariable long id) {
-        double salePrice = 0;
         Product aProduct = productRepo.getOne(id);
         model.addAttribute("product", aProduct);
-        if(aProduct.getSpecial() == true){
-            salePrice = aProduct.getPrice() - (aProduct.getPrice()*0.42);
-            salePrice = Math.round(salePrice * 100.00) / 100.00;
-        }
-        model.addAttribute("salePrice", salePrice);
         List<Categories> categories = aProduct.getCategories();
         String cNames = "";
         for (Categories category : categories) {

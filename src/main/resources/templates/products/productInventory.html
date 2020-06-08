@@ -31,7 +31,7 @@
             <td th:text="${product.getPrice()}"></td>
             <td th:text="${product.getQuantity()}"></td>
             <td><button th:id="fs-upload" type="button" class="btn btn-primary">Upload</button></td>
-            <td><img th:src="@{'https://cdn.filestackcontent.com/'+${product.getImage()}}" alt="image"></td>
+            <td><img th:src="@{${product.getImage()}}" alt="image"></td>
             <td><a th:href="@{'/productsInventory/edit/'+${product.id}}" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Edit</a></td>
             <td><a th:href="@{'/productsInventory/delete/'+${product.id}}" class="btn btn-primary">Delete</a></td>
         </tr>
