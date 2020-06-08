@@ -5,9 +5,11 @@ import com.capstone.ecommerce.model.ShoppingCart;
 import com.capstone.ecommerce.model.User;
 import com.capstone.ecommerce.repositories.ProductImagesRepository;
 import com.capstone.ecommerce.repositories.ProductRepository;
+import com.capstone.ecommerce.repositories.TransactionProductRepository;
 import com.capstone.ecommerce.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +25,13 @@ public class HomeController {
     private ProductRepository productRepo;
     private ProductImagesRepository productImagesRepo;
     private final UserRepository userRepo;
+    private final TransactionProductRepository transProdRepo;
 
-
-    public HomeController(ProductRepository productRepo, ProductImagesRepository productImagesRepo, UserRepository userRepo) {
+    public HomeController(ProductRepository productRepo, ProductImagesRepository productImagesRepo, UserRepository userRepo, TransactionProductRepository transProdRepo) {
         this.productRepo = productRepo;
         this.productImagesRepo = productImagesRepo;
         this.userRepo = userRepo;
+        this.transProdRepo = transProdRepo;
     }
 
 
@@ -111,6 +114,7 @@ public class HomeController {
     }
 
 //  DELETE
+    @Transactional
     @PostMapping("productInventory/delete")
     public String deleteProductPost(@RequestParam (name = "deleteId") long id, Model model) {
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
@@ -118,8 +122,11 @@ public class HomeController {
         }
         User person = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = this.userRepo.getOne(person.getId());
+        Product product = productRepo.findById(id);
         if(user.getAdmin()){
             model.addAttribute("user", user);
+//            transProdRepo.deleteByProductId(id);
+            transProdRepo.deleteByProduct(product);
             productRepo.deleteById(id);
             return "redirect:/products/productInventory";
         }

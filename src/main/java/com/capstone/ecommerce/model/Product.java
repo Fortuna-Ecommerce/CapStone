@@ -4,6 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "products")
@@ -51,8 +52,6 @@ public class Product {
             joinColumns = { @JoinColumn(name = "product_id") },
             inverseJoinColumns = { @JoinColumn(name = "category_id") })
     private List<Categories> categories;
-
-
 
 
     public Product() {
@@ -180,11 +179,32 @@ public class Product {
         return categories;
     }
 
-    @Transactional
+
     public void setCategories(List<Categories> categories) {
         this.categories = categories;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id &&
+                Double.compare(product.price, price) == 0 &&
+                quantity == product.quantity &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(color, product.color) &&
+                Objects.equals(size, product.size) &&
+                Objects.equals(type, product.type) &&
+                Objects.equals(description, product.description) &&
+                Objects.equals(special, product.special) &&
+                Objects.equals(image, product.image) &&
+                Objects.equals(categories, product.categories);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, color, size, type, price, description, special, quantity, image, categories);
+    }
 }
 
