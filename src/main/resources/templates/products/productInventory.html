@@ -44,11 +44,12 @@
     </table>
 
 <!--ADD PRODUCT MODAL-->
+
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-       Add a product
+        Add a product
     </button>
-    </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -102,54 +103,58 @@
             </div>
         </div>
     </div>
-<br>
-<!--Edit Modal -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form th:method="post" th:action="@{/productsInventory/edit/${product.id}}">
-                    <div class="form-group">
-                        <label for="editName">Product Name</label>
-                        <input type="text" class="form-control" id="editName" aria-describedby="editName" name="name">
-                    </div>
+    <br>
+    <!--Edit Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:method="post" th:action="@{/productsInventory/edit/${product.id}}">
+                        <div class="form-group">
+                            <label for="editName">Product Name</label>
+                            <input type="text" class="form-control" id="editName" aria-describedby="editName" name="name">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="editColor">Product Color</label>
-                        <input type="text" class="form-control" id="editColor" aria-describedby="editColor" name="color">
-                    </div>
+                        <div class="form-group">
+                            <label for="editColor">Product Color</label>
+                            <input type="text" class="form-control" id="editColor" aria-describedby="editColor" name="color">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="editSize">Product Size</label>
-                        <input type="text" class="form-control" id="editSize" aria-describedby="editQuantity" name="size">
-                    </div>
+                        <div class="form-group">
+                            <label for="editSize">Product Size</label>
+                            <input type="text" class="form-control" id="editSize" aria-describedby="editQuantity" name="size">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="editType">Product Type</label>
-                        <input type="text" class="form-control" id="editType" aria-describedby="editType" name="type">
-                    </div>
+                        <div class="form-group">
+                            <label for="editType">Product Type</label>
+                            <input type="text" class="form-control" id="editType" aria-describedby="editType" name="type">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="editPrice">Product Price</label>
-                        <input type="text" class="form-control" id="editPrice" aria-describedby="editPrice" name="price">
-                    </div>
+                        <div class="form-group">
+                            <label for="editPrice">Product Price</label>
+                            <input type="text" class="form-control" id="editPrice" aria-describedby="editPrice" name="price">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="editQuan">Product Quantity</label>
-                        <input type="text" class="form-control" id="editQuan" aria-describedby="editQuan" name="quan">
-                    </div>
+                        <div class="form-group">
+                            <label for="editQuan">Product Quantity</label>
+                            <input type="text" class="form-control" id="editQuan" aria-describedby="editQuan" name="quan">
+                        </div>
 
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </form>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
             </div>
         </div>
+
     </div>
+</div>
+
 <footer th:replace="partials :: footer" />
 </body>
 </html>

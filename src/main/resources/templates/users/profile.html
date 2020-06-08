@@ -19,7 +19,7 @@
 
     </div>
 </div>
-    <h1>Welcome to the site!</h1>
+
 
     <div sec:authorize="isAuthenticated()">
 
@@ -27,7 +27,8 @@
             <div class="profile-info-container center-align">
                 <div class="row space-left">
                     <div class="col s12">
-                        <h1 class="profile-username" th:text="'Welcome, ' + ${#authentication.name}"></h1>
+                        <h1 class="profile-username" style="text-align: center"
+                            th:text="'Welcome, ' + ${#authentication.name}"></h1>
                         <div th:each="address : ${addresses}">
                             <p style="font-weight: bold" th:text="${address.getAddresstype()}">
                             </p>

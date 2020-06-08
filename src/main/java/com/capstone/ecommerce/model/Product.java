@@ -26,7 +26,7 @@ public class Product {
     @Column(nullable = false)
     private String type;
 
-    @Column(precision = 5, scale = 2, nullable = false)
+    @Column(columnDefinition="Decimal(5,2)", nullable = false)
     private double price;
 
     @Column(columnDefinition = "TEXT")
