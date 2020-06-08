@@ -88,46 +88,12 @@ public class UserController {
             return "users/profile";
         }
 
-
-
-//        @PostMapping("/register")
-//        public String saveUser(@ModelAttribute User user) {
-//            String hash = passwordEncoder.encode(user.getPassword());
-//            user.setPassword(hash);
-//            user.setAdmin(false);
-//            users.save(user);
-//            return "redirect:/login";
-//        }
-//
-//        @GetMapping("/users/profile")
-//        public String viewProfile(Model model) {
-//            // Get Current user and store to model to be sent to HTML
-//            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//            model.addAttribute("user", user);
-//            return "users/profile";
-//        }
-//
-//    }
-//    }
-
-//    @GetMapping("/users/profile")
-//    public String viewProfile(Model model) {
-//        // Get Current user and store to model to be sent to HTML
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("user", user);
-//        List<Address> addresses = addressRepository.findAll();
-//        model.addAttribute("addresses", addresses);
-//        return "users/profile";
-//    }
-
-
-
-    @GetMapping("users/addresses/add")
+    @GetMapping("/users/addresses")
     public String showAddAddress() {
         return "users/addresses";
     }
 
-    @PostMapping("users/addresses/add")
+    @PostMapping("users/addresses")
     public String addAddressPost(@RequestParam(name = "first_name") String firstName,
                                  @RequestParam(name = "last_name") String lastName,
                                  @RequestParam(name = "address_type") String type,
@@ -146,7 +112,7 @@ public class UserController {
         address.setState(state);
         address.setZipcode(zipcode);
         addressRepository.save(address);
-        return "users/profile";
+        return "redirect:users/profile";
     }
 
     @GetMapping("/users/addresses/edit/{id}")
