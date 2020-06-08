@@ -5,12 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 import java.util.List;
 
+//Represents the "DAO" and how to access the information on the object
 public interface UserRepository extends JpaRepository<User, Long> {
 
 
     Optional<User> findById(long id);
 
-    //Represents the "DAO" and how to access the information on the object
+
         User findByUsername(String username);
 
         void save(List<User> users);
