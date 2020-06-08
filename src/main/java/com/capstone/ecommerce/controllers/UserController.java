@@ -1,6 +1,7 @@
 package com.capstone.ecommerce.controllers;
 
 
+
 import com.capstone.ecommerce.model.ShoppingCart;
 
 import com.capstone.ecommerce.model.Address;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+
 import java.util.List;
 
 //Tells controller where to get info from
@@ -34,7 +36,6 @@ public class UserController {
     private AddressRepository addressRepository;
 
         //Stores info in variable so it can be used elsewhere, allows information to be malleable
-
 
 
 
@@ -119,6 +120,8 @@ public class UserController {
 //        return "users/profile";
 //    }
 
+
+
     @GetMapping("users/addresses/add")
     public String showAddAddress() {
         return "users/addresses";
@@ -143,7 +146,7 @@ public class UserController {
         address.setState(state);
         address.setZipcode(zipcode);
         addressRepository.save(address);
-        return "redirect:/users/profile";
+        return "users/profile";
     }
 
     @GetMapping("/users/addresses/edit/{id}")
@@ -202,4 +205,3 @@ public class UserController {
 
 
 }
-
