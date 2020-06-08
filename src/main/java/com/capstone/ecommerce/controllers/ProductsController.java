@@ -228,9 +228,9 @@ public class ProductsController {
 //        seedProducts();
 //    }
 
-    public void main(String[] args) {
-        seedProducts();
-    }
+//    public void main(String[] args) {
+//        seedProducts();
+//    }
 
     //  SEARCH
 //    @PostMapping("/products/search")
