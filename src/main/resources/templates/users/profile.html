@@ -5,9 +5,17 @@
 <nav th:replace="partials :: navbar"></nav>
 
 <div class="container mt-4">
-    <h1>Welcome to the site!</h1>
+
 
     <div sec:authorize="isAuthenticated()">
+
+        <h1 style="text-align: center">Hello <span th:text="${user.username}"></span>!</h1><br>
+
+        <div style="text-align: center;" th:if="${user.getAdmin() == true}">
+            <form th:action="@{/admin}" th:method="get">
+                <button class="btn-link btn text-white btn-secondary text-center">Admin Portal</button>
+            </form>
+        </div>
 
         <div class="col s12 m6 l4">
             <div class="profile-info-container center-align">
@@ -36,12 +44,22 @@
                         <a href="/users/addresses/edit">Edit Addresses</a>
 
 
+
+
+
+    </div>
+</div>
+
+
+
+
                     </div>
                 </div>
             </div>
-            <footer th:replace="partials :: footer"></footer>
+<!--            <footer th:replace="partials :: footer"></footer>-->
         </div>
     </div>
+<footer th:replace="partials :: footer"></footer>
 </body>
 </html>
 

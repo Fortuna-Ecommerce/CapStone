@@ -1,26 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+    <title></title>
+</head>
 <div th:replace="partials :: head" /></div>
 
 <body>
 <nav th:replace="partials :: navbar" />
 
-<!--<form action='/charge' method='POST' id='checkout-form' xmlns:th="http://www.w3.org/1999/xhtml">-->
-<!--    <input type='hidden' th:value='${amount/100}' name='amount' />-->
-<!--    <h1>Price:<span th:text='${amount/100}' /></h1>-->
-<!--    <script-->
-<!--            src='https://checkout.stripe.com/checkout.js'-->
-<!--            class='stripe-button'-->
-<!--            th:attr='data-key=${stripePublicKey},-->
-<!--         data-amount=${amount}'-->
-<!--            data-name='StackAbuse Services'-->
-<!--            data-description='Product Checkout'-->
-<!--            data-image-->
-<!--                    ='http://www.stackabuse.com/assets/images/sa-java-dark.svg?v=b5a08453df'-->
-<!--            data-locale='auto'-->
-<!--            data-zip-code='false'>-->
-<!--    </script>-->
-<!--</form>-->
 
 <h1>Please verify all of your information, then click the button to submit payment information and complete the transaction!</h1>
 
@@ -146,12 +135,6 @@
                             <p class="lead mb-4">
                                 Please fill the form below to complete the order payment
                             </p>
-<!--                            <div class="card mb-4">-->
-<!--                                <div class="card-body">-->
-<!--                                    <h5>Leather Bag</h5>-->
-<!--                                    <p class="lead">USD 9.99</p>-->
-<!--                                </div>-->
-<!--                            </div>-->
                             <form action="/charge" id="payment-form" method="post">
                                 <input type="hidden" th:value="${total+5.00}" name="total" id="total">
                                 <input id="api-key" type="hidden" th:value="${stripePublicKey}" name="token">
@@ -187,47 +170,6 @@
 </div>
 
 
-
-
-
-
-
-
-<!--<form action="/charge" method="post" id="payment-form">-->
-<!--&lt;!&ndash;    <input type="hidden" th:value="${total+5.00}" name="total">&ndash;&gt;-->
-<!--&lt;!&ndash;    <label>Price:<span th:text='${total+5.00}'/></label>&ndash;&gt;-->
-<!--    <div class="form-row ">-->
-<!--        <label for="card-element">-->
-<!--            Credit or debit card-->
-<!--        </label>-->
-<!--        <div id="card-element" class="form-control" >-->
-<!--            &lt;!&ndash; A Stripe Element will be inserted here. &ndash;&gt;-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash; Used to display form errors. &ndash;&gt;-->
-<!--        <div id="card-errors" role="alert"></div>-->
-<!--    </div>-->
-
-<!--    <button>Submit Payment</button>-->
-<!--</form>-->
-
-<!--    <form action='/charge' method='POST' id='checkout-form'>-->
-<!--        <input type="hidden" th:value="${total+5.00}" name="total">-->
-<!--    <label>Price:<span th:text='${total+5.00}'/></label>-->
-<!--    &lt;!&ndash; NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf &ndash;&gt;-->
-<!--    <script-->
-<!--            src='https://checkout.stripe.com/checkout.js'-->
-<!--            class='stripe-button'-->
-<!--            th:attr='data-key=${stripePublicKey},-->
-<!--         data-amount=${(total+5.00)*100},-->
-<!--         data-currency=${currency}'-->
-<!--            data-name='MemeTees'-->
-<!--            data-description='Memey purchase'-->
-<!--            data-locale='auto'-->
-<!--            data-zip-code='false'>-->
-<!--        // data-image='null'-->
-<!--    </script>-->
-<!--</form>-->
 
 <footer th:replace="partials :: footer" />
 </body>

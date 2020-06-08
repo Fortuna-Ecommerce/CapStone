@@ -62,8 +62,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                        "/users/profile",
-                        "/cart", //only authenticated users can see a shopping cart
-                       "/checkout" //only authenticated users can see the checkout paget
+//                        "/cart", //only authenticated users can see a shopping cart
+                       "/checkout", //only authenticated users can see the checkout paget
+                        "/users/adminportal",
+                        "/users/profile"//only authenticated users can see the checkout paget
+//                        "/ads/create", // only authenticated users can create ads
+//                        "/ads/{id}/edit", // only authenticated users can edit ads
+//                        "/posts/create", // only authenticated users can create posts
+//                         "/posts/{id}/edit" // only authenticated users can edit posts
+
                 )
                 .authenticated()
         ;

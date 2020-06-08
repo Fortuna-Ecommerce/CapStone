@@ -68,7 +68,7 @@ public class ShoppingCartController {
         }
 
         if(this.productRepo.getOne((long)id).getQuantity() < (long)quantity){
-            error = "You can't order that many, sorry! Check inventory above and try again!";
+            error = "You can't order that many, sorry! Try a lower number please!";
             redir.addFlashAttribute("error", error);
             model.addAttribute("product", this.productRepo.getOne((long)id));
             model.addAttribute("products", products);
