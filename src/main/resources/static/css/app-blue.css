@@ -855,7 +855,8 @@ body {
   -ms-transform: scale(1.25);
   -o-transform: scale(1.25);
   transform: scale(1.25);
-  -webkit-filter: blur-moz-filter: blur(2px);
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
   -ms-filter: blur(2px);
   -o-filter: blur(2px);
   filter: blur(2px);
@@ -1080,19 +1081,19 @@ body {
   padding: 200px 20px 0 20px;
 }
 .cover1 {
-  background-image: url('../heading/heading1.jpg');
+  background-image: url('../images/heading/heading1.jpg');
 }
 .cover2 {
-  background-image: url('../heading/heading2.jpg');
+  background-image: url('../images/heading/heading2.jpg');
 }
 .cover3 {
-  background-image: url('../heading/heading4.jpg');
+  background-image: url('../images/heading/heading4.jpg');
 }
 .cover4 {
-  background-image: url('../heading/heading5.jpg');
+  background-image: url('../images/heading/heading5.jpg');
 }
 .cover5 {
-  background-image: url('../heading/heading6.jpg');
+  background-image: url('../images/heading/heading6.jpg');
 }
 .tooltip .tooltip-inner {
   background-color: #2196F3;
