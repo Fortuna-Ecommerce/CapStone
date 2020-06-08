@@ -7,9 +7,34 @@
 <div class="container mt-4">
 
 <h1 style="text-align: center">Edit Addresses</h1>
+    <div class="col s12 m6 l4">
+        <div class="profile-info-container center-align">
+            <div class="row space-left">
+                <div class="col s12">
+                    <h1 class="profile-username" th:text="'Welcome, ' + ${#authentication.name}"></h1>
+                    <div th:each="address : ${addresses}">
+                        <a href="users/addresses/edit/{id}" style="font-weight: bold" th:text="${address.getStreet1()}">
+                        </a>
+                        <p style="font-weight: bold" th:text="${address.getAddresstype()}">
+                        </p>
+                        <p style="font-weight: bold" th:text="${address.getCity()}">
+                        </p>
+                        <p style="font-weight: bold" th:text="${address.getFirstname()}">
+                        </p>
+                        <p style="font-weight: bold" th:text="${address.getLastname()}">
+                        </p>
+                        <p style="font-weight: bold" th:text="${address.getState()}">
+                        </p>
+                        <p style="font-weight: bold" th:text="${address.getStreet2()}">
+                        </p>
+                        <p style="font-weight: bold" th:text="${address.getZipcode()}">
+                        </p>
+                    </div>
+<!--                    <a href="/users/addresses/add">Add Addresses</a>-->
+<!--                    <a href="/users/addresses/edit">Edit Addresses</a>-->
 
             <div class="modal-body">
-                <form th:method="post" th:action="@{/users/addresses/}">
+                <form th:method="post" th:action="@{/users/addresses/edit/}">
                     <div class="form-group">
                         <label for="first_name">First Name</label>
                         <input type="text" class="form-control" id="first_name" aria-describedby="first_name"

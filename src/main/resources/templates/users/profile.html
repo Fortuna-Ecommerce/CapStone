@@ -13,15 +13,28 @@
             <div class="profile-info-container center-align">
                 <div class="row space-left">
                     <div class="col s12">
-                        <h4 class="profile-username" th:text="'Welcome, ' + ${#authentication.name}"></h4>
+                        <h1 class="profile-username" th:text="'Welcome, ' + ${#authentication.name}"></h1>
                         <div th:each="address : ${addresses}">
-                            <h1 style="font-weight: bold" th:text="${address.getFirstname()}">
-                            </h1>
-                            <h1 style="font-weight: bold" th:text="${address.getStreet1()}">
-                            </h1>
-                            <br>
+                            <p style="font-weight: bold" th:text="${address.getAddresstype()}">
+                            </p>
+                            <p style="font-weight: bold" th:text="${address.getCity()}">
+                            </p>
+                            <p style="font-weight: bold" th:text="${address.getFirstname()}">
+                            </p>
+                            <p style="font-weight: bold" th:text="${address.getLastname()}">
+                            </p>
+                            <p style="font-weight: bold" th:text="${address.getState()}">
+                            </p>
+                            <p style="font-weight: bold" th:text="${address.getStreet1()}">
+                            </p>
+                            <p style="font-weight: bold" th:text="${address.getStreet2()}">
+                            </p>
+                            <p style="font-weight: bold" th:text="${address.getZipcode()}">
+                            </p>
                         </div>
-                        <a href="/users/addresses/add">Edit Addresses</a>
+                        <a href="/users/addresses/add">Add Addresses</a>
+                        <a href="/users/addresses/edit">Edit Addresses</a>
+
 
                     </div>
                 </div>
