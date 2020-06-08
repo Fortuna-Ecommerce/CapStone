@@ -33,12 +33,15 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String welcome(Model model) {
+    public String welcome(Model model, Model model2) {
 
         if(model.getAttribute("products") == null) {
             ShoppingCart products = new ShoppingCart();
             model.addAttribute("products", products);
         }
+//      MADE CHANGE HERE
+        List<Product> allProducts = productRepo.findAll();
+        model2.addAttribute("showProducts", allProducts);
 
         return "home";
     }

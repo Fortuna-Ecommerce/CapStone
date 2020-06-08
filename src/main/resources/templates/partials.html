@@ -17,161 +17,162 @@
     <!-- include stylesheets, etc here -->
 </head>
 <body>
-<nav th:fragment="navbar" class="navbar navbar-expand-sm navbar-light bg-light mb-3">
-    <ul class="collapse navbar-collapse justify-content-between" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/products/all">Collection</a>
-            </li>
+<!--<nav th:fragment="navbar" class="navbar navbar-expand-sm navbar-light bg-light mb-3">-->
+<!--    <ul class="collapse navbar-collapse justify-content-between" id="navbarNav">-->
+<!--        <ul class="navbar-nav">-->
 <!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="/products/t-shirts">T-Shirts</a>-->
+<!--                <a class="nav-link" href="/">Home</a>-->
 <!--            </li>-->
-            <li class="nav-item">
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="/products/all">Collection</a>-->
+<!--            </li>-->
 
-                <a class="nav-link" href="/users/profile">Profile</a>
+<!--            <li class="nav-item">-->
 
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/products/productInventory">Inventory page</a>
-            </li>
-            <form method="post" action="/products/search" class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-                       name="keyword">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text bg-light" style="border: none">
-                            <input type="radio" name="choice" value="name" checked>
-                            <span class="ml-1">Name Search</span>
-                        </div>
-                        <div class="input-group-text bg-light" style="border:none">
-                            <input type="radio" name="choice" value="category">
-                            <span class="ml-1">Category Search</span>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </ul>
+<!--                <a class="nav-link" href="/users/profile">Profile</a>-->
 
-        <ul class="navbar-nav">
-            <li class="nav-item" sec:authorize="isAuthenticated()">
-                <form th:action="@{/cart}" th:method="get">
-                    <button class="btn-link btn text-white btn-secondary">Go to cart</button>
-                </form>
-            </li>
-            <li class="nav-item"sec:authorize="isAnonymous()">
-                <form th:action="@{/register}" th:method="get">
-                    <button class="btn-link btn text-white btn-secondary">Register</button>
-                </form>
-            </li>
-            <li class="nav-item"sec:authorize="isAnonymous()">
-                <form th:action="@{/login}" th:method="get">
-                    <button class="btn-link btn text-white btn-secondary">Login</button>
-                </form>
-            </li>
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="/products/productInventory">Inventory page</a>-->
+<!--            </li>-->
+<!--            <form method="post" action="/products/search" class="form-inline my-2 my-lg-0">-->
+<!--                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"-->
+<!--                       name="keyword">-->
+<!--                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+<!--                <div class="input-group">-->
+<!--                    <div class="input-group-prepend">-->
+<!--                        <div class="input-group-text bg-light" style="border: none">-->
+<!--                            <input type="radio" name="choice" value="name" checked>-->
+<!--                            <span class="ml-1">Name Search</span>-->
+<!--                        </div>-->
+<!--                        <div class="input-group-text bg-light" style="border:none">-->
+<!--                            <input type="radio" name="choice" value="category">-->
+<!--                            <span class="ml-1">Category Search</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </ul>-->
 
-            <li class="nav-item" sec:authorize="isAuthenticated()">
-                <form th:action="@{/logout}" th:method="post">
-                    <button class="btn-link btn text-white btn-secondary">Logout</button>
-                </form>
-            </li>
+<!--        <ul class="navbar-nav">-->
+<!--            <li class="nav-item" sec:authorize="isAuthenticated()">-->
+<!--                <form th:action="@{/cart}" th:method="get">-->
+<!--                    <button class="btn-link btn text-white btn-secondary">Go to cart</button>-->
+<!--                </form>-->
+<!--            </li>-->
+<!--            <li class="nav-item"sec:authorize="isAnonymous()">-->
+<!--                <form th:action="@{/register}" th:method="get">-->
+<!--                    <button class="btn-link btn text-white btn-secondary">Register</button>-->
+<!--                </form>-->
+<!--            </li>-->
+<!--            <li class="nav-item"sec:authorize="isAnonymous()">-->
+<!--                <form th:action="@{/login}" th:method="get">-->
+<!--                    <button class="btn-link btn text-white btn-secondary">Login</button>-->
+<!--                </form>-->
+<!--            </li>-->
 
-        </ul>
-    </ul>
-</nav>
+<!--            <li class="nav-item" sec:authorize="isAuthenticated()">-->
+<!--                <form th:action="@{/logout}" th:method="post">-->
+<!--                    <button class="btn-link btn text-white btn-secondary">Logout</button>-->
+<!--                </form>-->
+<!--            </li>-->
+
+<!--        </ul>-->
+<!--    </ul>-->
+<!--</nav>-->
+
 <!--NEW NAVBAR-->
-<nav class="navbar navbar-default navbar-fixed-top navbar-transparent" id="navbar">
-    <div class="navbar-header">
-        <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#menu"
-                aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a href="home.html" class="navbar-brand">
-            EasyShop
-        </a>
-    </div>
-    <div class="collapse navbar-collapse pull-right" id="menu">
-        <ul class="nav navbar-nav">
-            <li>
-                <a href="index.html">
-                    <i class="fa fa-home"></i>
-                    Home
-                </a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">
-                    <i class="fa fa-file-code-o"></i>
-                    Pages <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
+<div th:fragment="navbar" class="container mt-4">
+    <div class="wrapper">
+        <nav class="navbar navbar-default navbar-fixed-top navbar-transparent" id="navbar">
+            <div class="navbar-header">
+                <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#menu"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">Meme Tees</a>
+            </div>
+            <div class="collapse navbar-collapse pull-right" id="menu">
+                <ul class="nav navbar-nav">
                     <li>
-                        <a href="error404.html">
-                            Page 404
-                        </a>
+                        <a class="nav-link" href="/products/all">Collection</a>
                     </li>
                     <li>
-                        <a href="login.html">
-                            Login
-                        </a>
+                        <a href="/"><i class="fa fa-home"></i>Home</a>
                     </li>
                     <li>
-                        <a href="register.html">
-                            Register
-                        </a>
+                        <form method="post" action="/products/search" class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                                   name="keyword">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-light" style="border: none">
+                                        <input type="radio" name="choice" value="name" checked>
+                                        <span class="ml-1">Name Search</span>
+                                    </div>
+                                    <div class="input-group-text bg-light" style="border:none">
+                                        <input type="radio" name="choice" value="category">
+                                        <span class="ml-1">Category Search</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </li>
                     <li>
-                        <a href="buttons.html">
-                            Buttons
-                        </a>
+                        <a href="/products/productInventory">Product Inventory</a>
                     </li>
-                    <li>
-                        <a href="forms.html">
-                            Form Elements
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-file-code-o"></i>Menu <span class="caret"></span>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="error404.html">Page 404</a>
+                            </li>
+                            <li>
+                                <a href="login.html">Login</a>
+                            </li>
+                            <li>
+                                <a href="register.html">Register</a>
+                            </li>
+                            <li>
+                                <a href="buttons.html">Buttons</a>
+                            </li>
+                            <li>
+                                <a href="forms.html">Form Elements</a>
+                            </li>
+                            <li>
+                                <a href="widgets.html">Widgets</a>
+                            </li>
+                            <li>
+                                <a href="icons.html">Icons</a>
+                            </li>
+                            <li>
+                                <a href="checkoutSuccess.html">Checkout success</a>
+                            </li>
+                            <li>
+                                <a href="checkoutCancel.html">Checkout cancel</a>
+                            </li>
+                            <li>
+                                <a href="checkoutError.html">Checkout error</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="widgets.html">
-                            Widgets
-                        </a>
-                    </li>
-                    <li>
-                        <a href="icons.html">
-                            Icons
-                        </a>
-                    </li>
-                    <li>
-                        <a href="checkoutSuccess.html">
-                            Checkout success
-                        </a>
-                    </li>
-                    <li>
-                        <a href="checkoutCancel.html">
-                            Checkout cancel
-                        </a>
-                    </li>
-                    <li>
-                        <a href="checkoutError.html">
-                            Checkout error
-                        </a>
+                    <li sec:authorize="isAuthenticated()">
+                        <form th:action="@{/cart}" th:method="get">
+                            <i class="fa fa-cart-plus"></i><button class="btn-link btn text-white btn-secondary">Go to cart</button>
+                        </form>
                     </li>
                 </ul>
-            </li>
-            <li>
-                <a href="cart.html">
-                    <i class="fa fa-cart-plus"></i>
-                    Cart
-                </a>
-            </li>
-        </ul>
+
+            </div>
+        </nav>
     </div>
-</nav>
+</div>
 
 <div th:fragment="footer">
     <script th:src="@{//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js}"></script>
