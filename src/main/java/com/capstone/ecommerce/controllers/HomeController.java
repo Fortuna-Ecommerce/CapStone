@@ -26,7 +26,6 @@ import java.util.List;
 @SessionAttributes("products")
 public class HomeController {
     private ProductRepository productRepo;
-    private ProductImagesRepository productImagesRepo;
 
 
     public HomeController(ProductRepository productRepo) {
@@ -64,7 +63,8 @@ public class HomeController {
                                  @RequestParam (name = "size") String size,
                                  @RequestParam (name = "type") String type,
                                  @RequestParam (name = "price") float price,
-                                 @RequestParam (name = "quan") long quan) {
+                                 @RequestParam (name = "quan") long quan,
+                                 @RequestParam (name = "image") String image) {
         Product product = new Product();
         product.setName(name);
         product.setColor(color);
@@ -72,7 +72,7 @@ public class HomeController {
         product.setType(type);
         product.setPrice(price);
         product.setQuantity(quan);
-
+        product.setImage(image);
         productRepo.save(product);
         return "redirect:/products/productInventory";
     }
@@ -80,13 +80,13 @@ public class HomeController {
 //  EDIT
     @GetMapping("/productsInventory/edit/{id}")
     public String editProductForm(@PathVariable long id, Model model) {
-            Product productToEdit = productRepo.getOne(id);
-            model.addAttribute("product", productToEdit);
-            return "redirect:/products/productInventory";
+            model.addAttribute("product", productRepo.getOne(id));
+            return "products/productInventory";
     }
 
     @PostMapping("/productsInventory/edit/{id}")
-    public String editProduct(@PathVariable long id,
+    public String editProduct(
+                              @PathVariable long id,
                               @RequestParam (name = "name") String name,
                               @RequestParam (name = "color") String color,
                               @RequestParam (name = "size") String size,

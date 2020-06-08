@@ -1,5 +1,5 @@
 // Call to API Key
-const client = filestack.init("A2kZypz53QySbQzGXOkTOz");
+
 
 // MODAL OPTIONS
     const options = {
@@ -9,9 +9,13 @@ const client = filestack.init("A2kZypz53QySbQzGXOkTOz");
         "filename": "watermark.png",
         "key": "a1RyBxiglW92bS2SRmqM_watermark.png"
         };
+    const client = filestack.init("A2kZypz53QySbQzGXOkTOz", options);
+    console.log(client);
 
-    // client.transform("g8fLXNCRT4K3TJSUFrRW", options);
-
+    const form = document.getElementById('pick-form');
+    const fileInput = document.getElementById('fileupload');
+    const nameBox = document.getElementById('nameBox');
+    const urlBox = document.getElementById('urlBox');
 
     const picker = client.picker();
 
@@ -19,13 +23,23 @@ const client = filestack.init("A2kZypz53QySbQzGXOkTOz");
     const btn = document.getElementById('fs-upload');
         btn.addEventListener('click', function (e) {
             e.preventDefault();
-            picker.open(options);
+            picker.open();
         });
 
-        // function updateForm(result) {
-    //     document.getElementById("image-url").value = result.filesUploaded[0].url;
-    // }
-    // updateForm();
+
+    function updateForm (result) {
+        const fileData = result.filesUploaded[0];
+        fileInput.value = fileData.url;
+
+    const name = document.createTextNode('Selected: ' + fileData.filename);
+    const url = document.createElement('a');
+    url.href = fileData.url;
+    url.appendChild(document.createTextNode(fileData.url));
+    nameBox.appendChild(name);
+    urlBox.appendChild(document.createTextNode('Uploaded to: '));
+    urlBox.appendChild(url);
+    };
+
 
     function pickMark() {
         //Opening the file picker here
@@ -33,4 +47,3 @@ const client = filestack.init("A2kZypz53QySbQzGXOkTOz");
             document.getElementById("image-url").value = result.filesUploaded[0].url;
         });
     }
-    pickMark();

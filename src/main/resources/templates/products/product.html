@@ -12,6 +12,7 @@
     <h3>Quantity: <span th:text="${product.quantity}" id="amountOnHand"></span></h3>
     <h3>Price: <span th:text="${product.price}"></span></h3>
     <h4>Categories: <span th:text="${categories}"></span></h4>
+    <h3>Image: <img th:src="@{'https://cdn.filestackcontent.com/'+${product.getImage()}}" alt="image"></h3>
 
     <p style="" th:text="${product.description}"> </p>
     <p style="color:red" id="error" th:text="${error}"></p>

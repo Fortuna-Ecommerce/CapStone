@@ -31,7 +31,7 @@
             <td th:text="${product.getPrice()}"></td>
             <td th:text="${product.getQuantity()}"></td>
             <td><button th:id="fs-upload" type="button" class="btn btn-primary">Upload</button></td>
-            <td><img class="img-rounded" th:id="image-url" src="https://cdn.filestackcontent.com/AFrHW1QRsWxmu5ZLU2qg" alt="image"></td>
+            <td><img th:src="@{'https://cdn.filestackcontent.com/'+${product.getImage()}}" alt="image"></td>
             <td><a th:href="@{'/productsInventory/edit/'+${product.id}}" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Edit</a></td>
             <td><a th:href="@{'/productsInventory/delete/'+${product.id}}" class="btn btn-primary">Delete</a></td>
         </tr>
@@ -85,6 +85,11 @@
                             <input type="text" class="form-control" id="productQuan" aria-describedby="productQuan" name="quan">
                         </div>
 
+                        <div class="form-group">
+                            <label for="productImage">Product Image</label>
+                            <input type="text" class="form-control" id="productImage" aria-describedby="productImage" name="image">
+                        </div>
+
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
                 </div>
@@ -93,7 +98,6 @@
         </div>
     </div>
 <br>
-
 <!--Edit Modal -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -105,7 +109,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form th:method="post" th:action="@{/products/productInventory/edit}">
+                <form th:method="post" th:action="@{/productsInventory/edit/${product.id}}">
                     <div class="form-group">
                         <label for="editName">Product Name</label>
                         <input type="text" class="form-control" id="editName" aria-describedby="editName" name="name">
