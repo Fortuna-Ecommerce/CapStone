@@ -27,6 +27,7 @@ public class HomeController {
     private final UserRepository userRepo;
     private final TransactionProductRepository transProdRepo;
 
+
     public HomeController(ProductRepository productRepo, ProductImagesRepository productImagesRepo, UserRepository userRepo, TransactionProductRepository transProdRepo) {
         this.productRepo = productRepo;
         this.productImagesRepo = productImagesRepo;
@@ -47,10 +48,12 @@ public class HomeController {
             String category = "";
             model.addAttribute("category", category);
         }
+//      MADE CHANGE HERE
+        List<Product> allProducts = productRepo.findAll();
+        model.addAttribute("showProducts", allProducts);
 
         return "home";
     }
-
 
     @GetMapping("products/productInventory")
     public String getProducts(Model model) {
@@ -84,46 +87,46 @@ public class HomeController {
         return "home";
     }
 
-    @PostMapping("products/productInventory/add")
-    public String addProductPost(@RequestParam (name = "name") String name,
-                                 @RequestParam (name = "color") String color,
-                                 @RequestParam (name = "size") String size,
-                                 @RequestParam (name = "type") String type,
-                                 @RequestParam (name = "price") float price,
-                                 @RequestParam (name = "quan") long quan,
-                                 Model model) {
-        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
-            return "home";
-        }
-        User person = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = this.userRepo.getOne(person.getId());
-        if(user.getAdmin()){
-            model.addAttribute("user", user);
-            Product product = new Product();
-            product.setName(name);
-            product.setColor(color);
-            product.setSize(size);
-            product.setType(type);
-            product.setPrice(price);
-            product.setQuantity(quan);
-
-            productRepo.save(product);
-            return "redirect:/products/productInventory";
-        }
-        return "home";
-    }
+//    @PostMapping("products/productInventory/add")
+//    public String addProductPost(@RequestParam (name = "name") String name,
+//                                 @RequestParam (name = "color") String color,
+//                                 @RequestParam (name = "size") String size,
+//                                 @RequestParam (name = "type") String type,
+//                                 @RequestParam (name = "price") float price,
+//                                 @RequestParam (name = "quan") long quan,
+//                                 Model model) {
+//        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+//            return "home";
+//        }
+//        User person = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User user = this.userRepo.getOne(person.getId());
+//        if(user.getAdmin()){
+//            model.addAttribute("user", user);
+//            Product product = new Product();
+//            product.setName(name);
+//            product.setColor(color);
+//            product.setSize(size);
+//            product.setType(type);
+//            product.setPrice(price);
+//            product.setQuantity(quan);
+//
+//            productRepo.save(product);
+//            return "redirect:/products/productInventory";
+//        }
+//        return "home";
+//    }
 
 //  DELETE
     @Transactional
     @PostMapping("productInventory/delete")
     public String deleteProductPost(@RequestParam (name = "deleteId") long id, Model model) {
-        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
             return "home";
         }
         User person = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = this.userRepo.getOne(person.getId());
         Product product = productRepo.findById(id);
-        if(user.getAdmin()){
+        if (user.getAdmin()) {
             model.addAttribute("user", user);
 //            transProdRepo.deleteByProductId(id);
             transProdRepo.deleteByProduct(product);
@@ -133,7 +136,63 @@ public class HomeController {
         return "home";
     }
 
-    //  SEARCH
+        @PostMapping("products/productInventory/add")
+        public String addProductPost(@RequestParam (name = "name") String name,
+                @RequestParam (name = "color") String color,
+                @RequestParam (name = "size") String size,
+                @RequestParam (name = "type") String type,
+        @RequestParam (name = "price") float price,
+        @RequestParam (name = "quan") long quan,
+        @RequestParam (name = "image") String image) {
+            Product product = new Product();
+            product.setName(name);
+            product.setColor(color);
+            product.setSize(size);
+            product.setType(type);
+            product.setPrice(price);
+            product.setQuantity(quan);
+            product.setImage(image);
+            productRepo.save(product);
+            return "redirect:/products/productInventory";
+        }
+
+//  EDIT
+    @GetMapping("/productsInventory/edit/{id}")
+    public String editProductForm(@PathVariable long id, Model model) {
+            model.addAttribute("product", productRepo.getOne(id));
+            return "products/productInventory";
+    }
+
+    @PostMapping("/productsInventory/edit/{id}")
+    public String editProduct(
+                              @PathVariable long id,
+                              @RequestParam (name = "name") String name,
+                              @RequestParam (name = "color") String color,
+                              @RequestParam (name = "size") String size,
+                              @RequestParam (name = "type") String type,
+                              @RequestParam (name = "price") float price,
+                              @RequestParam (name = "quan") long quan) {
+        Product product = productRepo.getOne(id);
+        product.setName(name);
+        product.setColor(color);
+        product.setSize(size);
+        product.setType(type);
+        product.setPrice(price);
+        product.setQuantity(quan);
+        productRepo.save(product);
+        return "redirect:/products/productInventory";
+    }
+
+
+    //  DELETE
+    @GetMapping("/productsInventory/delete/{id}")
+    public String deleteProduct(@PathVariable long id) {
+        productRepo.deleteById(id);
+        return "redirect:/products/productInventory";
+    }
+
+
+//  SEARCH
     @PostMapping("productsInventory/search")
     public String searchProduct(@RequestParam (name = "keyword") String keyword, Model model) {
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){

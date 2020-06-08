@@ -18,6 +18,7 @@
     <div th:unless="${product.special} == true"><h3>Price: <span th:text="${product.price}"></span></h3>
         <input type="hidden" name="price" th:value="${product.price}"></div>
     <h4>Categories: <span th:text="${categories}"></span></h4>
+    <h3>Image: <img th:src="@{'https://cdn.filestackcontent.com/'+${product.getImage()}}" alt="image"></h3>
 
     <p style="" th:text="${product.description}"> </p>
     <p style="color:red" id="error" th:text="${error}"></p>
