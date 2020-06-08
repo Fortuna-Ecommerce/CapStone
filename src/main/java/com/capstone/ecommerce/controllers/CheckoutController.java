@@ -204,34 +204,21 @@ public class CheckoutController{
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date saleDate = new Date();
         User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User testShopper = this.userRepo.getOne(shopper.getId());
         String name = ship_address.getFirstname() + " " + ship_address.getLastname();
         String email = shopper.getEmail();
         model.addAttribute("total", total);
-//        if(shopper.getStripeToken() == null){
-//            String customerId = stripeService.createCustomer(token, email);
-//            shopper.setStripeToken(customerId);
-//            this.userRepo.save(shopper);
-//        }
+        if(testShopper.getStripeToken() == null){
+            String customerId = stripeService.createCustomer(token, email);
+            testShopper.setStripeToken(customerId);
+            this.userRepo.save(testShopper);
+        }
         try {
-            String id = stripeService.chargeNewCard(token, total);
-//        System.out.println(charge.getId());
-            //this begins the confirmation email code
-//        Email from = new Email("customer-support@MemeTees.store");
-//        String subject = "Your Order Confirmation";
-//        Email to = new Email(email);
-//        Mail mail = new Mail(from, subject, to, content);
-//        SendGrid sg = new SendGrid(sendGridKey);
-//        Request mailRequest = new Request();
-//        try {
-//            mailRequest.setMethod(Method.POST);
-//            mailRequest.setEndpoint("mail/send");
-//            mailRequest.setBody(mail.build());
-//            Response response = sg.api(mailRequest);
-//            System.out.println(response.getStatusCode());
-//            System.out.println(response.getBody());
-//            System.out.println(response.getHeaders());
-//            HttpSession session = request.getSession();
-            newTransaction.setUser(shopper);
+            System.out.println("test");
+            String id = stripeService.chargeExistingCard(testShopper.getStripeToken(), total);
+        System.out.println(id);
+            newTransaction.setUser(testShopper);
+            newTransaction.setStripeTransID(id);
             newTransaction.setCreated_at(formatter.format(saleDate));
             newTransaction.setTransactionStatus("Paid - Pending shipment");
             newTransaction.setTransactionType("Sale");
