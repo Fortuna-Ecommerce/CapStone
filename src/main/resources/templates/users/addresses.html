@@ -23,9 +23,15 @@
                     </div>
 
                     <div class="form-group">
+<!--                        <input type="" class="form-control" id="address_type" aria-describedby="address_type"-->
+<!--                               name="address_type">-->
                         <label for="address_type">Address Type</label>
-                        <input type="text" class="form-control" id="address_type" aria-describedby="address_type" name="address_type">
+                        <div id="address_type">
+                        <input type="checkbox" name="address_type" value="bill_address" /> Billing Address
+                        <input type="checkbox" name="address_type" value="ship_address" /> Shipping Address
+                        </div>
                     </div>
+
 
                     <div class="form-group">
                         <label for="street_1">Street 1</label>
@@ -44,12 +50,15 @@
 
                     <div class="form-group">
                         <label for="zipcode">Zipcode</label>
-                        <input type="text" class="form-control" id="zipcode" aria-describedby="zipcode" name="zipcode">
+                        <input type="text" size="5" maxlength="5" class="form-control" id="zipcode"
+                        aria-describedby="zipcode"
+                               name="zipcode">
                     </div>
 
                     <div class="form-group">
                         <label for="state">State</label>
-                        <input type="text" class="form-control" id="state" aria-describedby="state" name="state">
+                        <input type="text" size="2" maxlength="2" class="form-control" id="state"
+                               aria-describedby="state" name="state">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Save</button>
