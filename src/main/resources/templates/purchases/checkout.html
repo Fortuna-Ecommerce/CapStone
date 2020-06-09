@@ -8,40 +8,24 @@
 
 <body>
 <nav th:replace="partials :: navbar" />
-
-<!--<form action='/charge' method='POST' id='checkout-form' xmlns:th="http://www.w3.org/1999/xhtml">-->
-<!--    <input type='hidden' th:value='${amount/100}' name='amount' />-->
-<!--    <h1>Price:<span th:text='${amount/100}' /></h1>-->
-<!--    <script-->
-<!--            src='https://checkout.stripe.com/checkout.js'-->
-<!--            class='stripe-button'-->
-<!--            th:attr='data-key=${stripePublicKey},-->
-<!--         data-amount=${amount}'-->
-<!--            data-name='StackAbuse Services'-->
-<!--            data-description='Product Checkout'-->
-<!--            data-image-->
-<!--                    ='http://www.stackabuse.com/assets/images/sa-java-dark.svg?v=b5a08453df'-->
-<!--            data-locale='auto'-->
-<!--            data-zip-code='false'>-->
-<!--    </script>-->
-<!--</form>-->
-
-<h1>Please verify all of your information, then click the button to submit payment information and complete the transaction!</h1>
-
-<div class="container" style="text-align: center">
+    <div class="container mt-4" id="verify">
+        <h4>Please verify all of your information, then click the button to submit payment information and complete the transaction.</h4>
+    </div>
+<div class="container mt-4" style="text-align: center">
     <div th:each="product : ${products}">
         <h1 style="font-weight: bold" th:text="${product.name}">
         </h1>
         <h3>Quantity: <span th:text="${product.quantity}"></span></h3>
         <h3>Price: $<span th:text="${product.price}"></span></h3>
         <br>
+        <h2>Total with shipping: $<span th:text="${total+5.00}"></span></h2>
     </div>
 </div>
 
-    <h2>Total with shipping: $<span th:text="${total+5.00}"></span></h2>
 
+<div class="container mt-4 checkout">
     <h1>Billing information</h1>
-
+<div id="checkout-total">
     <form th:action="@{/baddress}" th:method="post" th:object="${bill_address}">
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -127,18 +111,21 @@
 
 
 <!-- Button trigger modal -->
-<div class="text-center">
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#paymentModal">
-    Enter payment information
-</button>
+        <button type="button" class="btn btn-primary" id="checkout-btn" data-toggle="modal" data-target="#paymentModal">
+            Enter Payment Information
+        </button>
 </div>
+<br>
+
+
+
 <!-- Modal -->
 <div class="modal" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Stripe payment</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Stripe Payment</h5>
                 <button type="button" id="close-payment-modal" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -150,12 +137,7 @@
                             <p class="lead mb-4">
                                 Please fill the form below to complete the order payment
                             </p>
-<!--                            <div class="card mb-4">-->
-<!--                                <div class="card-body">-->
-<!--                                    <h5>Leather Bag</h5>-->
-<!--                                    <p class="lead">USD 9.99</p>-->
-<!--                                </div>-->
-<!--                            </div>-->
+
                             <form action="/charge" id="payment-form" method="post">
                                 <input type="hidden" th:value="${total+5.00}" name="total" id="total">
                                 <input id="api-key" type="hidden" th:value="${stripePublicKey}" name="token">
