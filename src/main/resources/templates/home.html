@@ -9,12 +9,19 @@
 
     <h1 style="text-align: center">Welcome to MemeTees!</h1><br>
     <h1 style="text-align: center">Come buy yourself some fresh memes to wear!</h1><br>
-    <h4 style="text-align: center">(Or dank ones, we won't judge~)</h4><br><br>
     <h1 style="text-align: center"><a href='/products/all'>See the full catalog!</a></h1>
 
-
+    <div class="card row" style="width: 18rem;" th:each="product : ${showProducts}">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p style="font-weight:bold" th:text="${product.type}"></p>
+            <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+    </div>
 
 </div>
+
 
 <footer th:replace="partials :: footer" />
 </body>
@@ -27,24 +34,7 @@
 <!--<body>-->
 <!--<nav th:replace="partials :: navbar" />-->
 
-<!--<div class="container mt-4">-->
-<!--    <div class="wrapper">-->
-<!--    <div id="heading">-->
-<!--        <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="6000">-->
-<!--            &lt;!&ndash; Indicators &ndash;&gt;-->
-<!--            <ol class="carousel-indicators">-->
-<!--                <li data-target="#carousel" data-slide-to="0" class="active"></li>-->
-<!--                <li data-target="#carousel" data-slide-to="1"></li>-->
-<!--                <li data-target="#carousel" data-slide-to="2"></li>-->
-<!--            </ol>-->
 
-<!--    <h1 style="text-align: center">Welcome to MemeTees!</h1><br>-->
-<!--    <h1 style="text-align: center">Come buy yourself some fresh memes to wear!</h1><br>-->
-<!--    <h4 style="text-align: center">(Or dank ones, we won't judge~)</h4><br><br>-->
-<!--    <h1 style="text-align: center"><a href='/products/all'>See the full catalog!</a></h1>-->
-
-
-<!--=======-->
 <!--            &lt;!&ndash; Wrapper for slides &ndash;&gt;-->
 <!--            <div class="carousel-inner" role="listbox">-->
 <!--                <div class="item active">-->
@@ -77,7 +67,6 @@
 <!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->
-<!--&gt;>>>>>> origin-->
 
 <!--            &lt;!&ndash; Controls &ndash;&gt;-->
 <!--            <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">-->
