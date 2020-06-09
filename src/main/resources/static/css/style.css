@@ -39,7 +39,25 @@
 
 }
 
+.dot {
+    height: 25px;
+    width: 25px;
+    border: 1px solid black;
+    border-radius: 50%;
+    display: inline-block;
+}
+
 .transactionTable{
     margin-left: -22%;
+}
+
+.navitem {
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+.btn-link {
+    color: rgba(87, 87, 87, 0.82);
 }
 

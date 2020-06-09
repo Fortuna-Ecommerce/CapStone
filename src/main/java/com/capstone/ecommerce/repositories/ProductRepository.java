@@ -37,6 +37,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
   List<Product> findByCategoriesContainingaAndNameContaining(@Param("keyword") String keyword,
                                                              @Param("pname") String pname);
 
+  Product findByNameAndSizeAndColor(String name, String size, String color);
+
 }
 
 //  Product findByTitle(String title);

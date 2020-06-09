@@ -7,9 +7,29 @@
 
 
     <img th:src="${product.productImage}" alt="The product's image">
-    <h1 style="font-weight: bold" th:text="${product.name}"> </h1>
+    <form th:action="@{/addToCart}" th:method="post">
+        <input type="hidden" name="productName" id="name" th:value="${product.name}">
+        <input type="hidden" name="productId" th:value="${product.id}">
+    <h1 style="font-weight: bold" th:text="${product.name}"></h1>
     <h3>Type: <span th:text="${product.type}"></span></h3>
-   <div style="display:inline-block"><h3 style="float:left">Color: <div class="color-box" th:style="'background-color: #'+${product.color}"></div></h3></div>
+        <div style="display:inline-block"><h3 style="float:left">Color: </h3><div class="form-check">
+       <input class="form-check-input" type="radio" name="color" id="color1" value="FFFFFF" checked>
+       <label class="form-check-label" for="color1">
+           <span class="dot" style="background-color: #FFFFFF;"></span>
+       </label>
+   </div>
+       <div class="form-check">
+           <input class="form-check-input" type="radio" name="color" id="color2" value="000000">
+           <label class="form-check-label" for="color2">
+               <span class="dot" style="background-color: #000000"></span>
+           </label>
+       </div>
+       <div class="form-check">
+           <input class="form-check-input" type="radio" name="color" id="color3" value="808080">
+           <label class="form-check-label" for="color3">
+               <span class="dot" style="background-color: #808080;"></span>
+           </label>
+       </div></div>
     <h3>Size: </h3><label for="sizeSelect"><select class="btn btn-mini" id="sizeSelect" name="sizeSelect">
         <option value="XS">X-Small</option>
         <option value="SM">Small</option>
@@ -17,7 +37,7 @@
         <option value="LG">Large</option>
         <option value="XL">X-Large</option>
     </select></label>
-    <form th:action="@{/addToCart}" th:method="post">
+
     <div th:if="${product.special} == true">
         <input type="hidden" name="price" th:value="${salePrice}">
         <h3>On Sale Price (42% off!): <strike><span th:text="${'$'+product.price}"></span></strike> <span
