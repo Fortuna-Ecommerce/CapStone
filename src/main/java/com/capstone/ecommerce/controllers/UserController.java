@@ -1,7 +1,4 @@
 package com.capstone.ecommerce.controllers;
-
-
-
 import com.capstone.ecommerce.model.ShoppingCart;
 
 import com.capstone.ecommerce.model.Address;
@@ -27,7 +24,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-//Tells controller where to get info from
 
 @Controller
 @SessionAttributes("products")
@@ -35,11 +31,6 @@ public class UserController {
     private UserRepository users;
     private PasswordEncoder passwordEncoder;
     private AddressRepository addressRepository;
-
-    //Stores info in variable so it can be used elsewhere, allows information to be malleable
-
-
-
 
 
     //Stores info in variable so it can be used elsewhere, allows information to be malleable
@@ -60,7 +51,6 @@ public class UserController {
         return "users/register";
     }
 
-
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());
@@ -69,7 +59,7 @@ public class UserController {
         users.save(user);
         return "redirect:/login";
     }
-
+//REMOVED USER PROFILE FOR NOW :VJP
 
 //        @GetMapping("/users/profile/{name}")
 //        public String findByUsername(@PathVariable String name, Model model) {
@@ -263,6 +253,16 @@ public class UserController {
 //        addressRepository.save(address);
 //        return "redirect:/users/profile";
 //    }
+//        @GetMapping("/users/profile")
+//        public String basicProfile(Model model) {
+//            User person = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//            User user = this.users.getOne(person.getId());
+//            model.addAttribute("user", user);
+//            List<Address> addresses = addressRepository.findByUserId(user.getId());
+//            model.addAttribute("addresses", addresses);
+//            return "users/profile";
+//        }
+
 
 
 }
