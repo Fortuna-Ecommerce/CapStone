@@ -243,20 +243,12 @@ public class CheckoutController{
             newTransaction.setFinalAmount(total);
             this.transactionRepo.save(newTransaction);
             Transaction thisTransaction = this.transactionRepo.findByStripeTransID(id);
-            System.out.println(thisTransaction);
             for(Product product: products){
-                System.out.println("Test1");
                 Transactions_Product TransProd = new Transactions_Product();
-                System.out.println("Test2");
                 TransProd.setProduct(product);
                 TransProd.setTransaction(thisTransaction);
                 TransProd.setQuantity(product.getQuantity());
-                System.out.println(TransProd.getTransaction());
-                System.out.println(TransProd.getProduct());
-                System.out.println(TransProd.getQuantity());
-                System.out.println("Test3");
                 this.transProdRepo.save(TransProd);
-                System.out.println("Test4");
             }
             for(int i = 0; i < originals.size(); i++){
                 originals.get(i).setQuantity(originals.get(i).getQuantity() - products.get(i).getQuantity());
