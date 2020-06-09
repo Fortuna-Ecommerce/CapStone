@@ -1,6 +1,4 @@
 package com.capstone.ecommerce;
-
-
 import com.capstone.ecommerce.services.UserDetailsLoader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +7,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+//VJP
+//USER REGISTERS > LOG IN > ALL PRODUCTS
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -35,17 +35,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-/*
-                    MAKE A PLAN FOR ALL ROLES AND PERMISSIONS
-                    ENSURE ALL PATHS ARE ROUTED CORRECTLY
-
-*/
 
   /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
 //                .defaultSuccessUrl("/ads") // user's home page, it can be any URL
-                .defaultSuccessUrl("/users/profile") // user's home page, it can be any URL
+                .defaultSuccessUrl("/products/all") // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
@@ -61,11 +56,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                       "/users/profile",
                         "/cart", //only authenticated users can see a shopping cart
                        "/checkout",
-                        "/users/adminportal",
-                        "/users/profile"//only authenticated users can see the checkout paget
+                        "/users/adminportal"
+                        //only authenticated users can see the checkout paget
 //                        "/ads/create", // only authenticated users can create ads
 //                        "/ads/{id}/edit", // only authenticated users can edit ads
 //                        "/posts/create", // only authenticated users can create posts

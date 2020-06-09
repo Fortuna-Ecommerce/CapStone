@@ -1,7 +1,4 @@
 package com.capstone.ecommerce.controllers;
-
-
-
 import com.capstone.ecommerce.model.ShoppingCart;
 
 import com.capstone.ecommerce.model.Address;
@@ -26,7 +23,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-//Tells controller where to get info from
 
 @Controller
 @SessionAttributes("products")
@@ -34,14 +30,6 @@ public class UserController {
     private UserRepository users;
         private PasswordEncoder passwordEncoder;
     private AddressRepository addressRepository;
-
-        //Stores info in variable so it can be used elsewhere, allows information to be malleable
-
-
-
-
-
-    //Stores info in variable so it can be used elsewhere, allows information to be malleable
 
     public UserController(UserRepository users, PasswordEncoder passwordEncoder, AddressRepository addyRepo) {
         this.users = users;
@@ -59,7 +47,6 @@ public class UserController {
         return "users/register";
     }
 
-
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());
@@ -68,7 +55,7 @@ public class UserController {
         users.save(user);
         return "redirect:/login";
     }
-
+//REMOVED USER PROFILE FOR NOW :VJP
 
 //        @GetMapping("/users/profile/{name}")
 //        public String findByUsername(@PathVariable String name, Model model) {
@@ -78,102 +65,16 @@ public class UserController {
 //            return "/users/profile";
 //        }
 
-        @GetMapping("/users/profile")
-        public String basicProfile(Model model) {
-            User person = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            User user = this.users.getOne(person.getId());
-            model.addAttribute("user", user);
-            List<Address> addresses = addressRepository.findByUserId(user.getId());
-            model.addAttribute("addresses", addresses);
-            return "users/profile";
-        }
+//        @GetMapping("/users/profile")
+//        public String basicProfile(Model model) {
+//            User person = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//            User user = this.users.getOne(person.getId());
+//            model.addAttribute("user", user);
+//            List<Address> addresses = addressRepository.findByUserId(user.getId());
+//            model.addAttribute("addresses", addresses);
+//            return "users/profile";
+//        }
 
-    @GetMapping("/addresses")
-    public String showAddAddress(@ModelAttribute("user") User user, Model model) {
-        model.addAttribute("user", user);
-        return "users/addresses";
-    }
-
-    @PostMapping("/addresses")
-    public String addAddressPost(@RequestParam(name = "first_name") String firstName,
-                                 @RequestParam(name = "last_name") String lastName,
-                                 @RequestParam(name = "address_type") String type,
-                                 @RequestParam(name = "street_1") String street1,
-                                 @RequestParam(name = "street_2") String street2,
-                                 @RequestParam(name = "city") String city,
-                                 @RequestParam(name = "zipcode") int zipcode,
-                                 @RequestParam(name = "state") String state,
-                                 @ModelAttribute("user") User user) {
-        User person = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User tempUser = this.users.getOne(person.getId());
-        Address address = new Address();
-        address.setAddresstype(type);
-        address.setFirstname(firstName);
-        address.setLastname(lastName);
-        address.setStreet1(street1);
-        address.setStreet2(street2);
-        address.setCity(city);
-        address.setState(state);
-        address.setZipcode(zipcode);
-        address.setUser(tempUser);
-        addressRepository.save(address);
-
-        return "redirect:users/profile";
-    }
-
-    @GetMapping("/users/addresses/edit/{id}")
-    public String getDeleteProfileForm(@PathVariable long id, Model model){
-        return "users/edit";
-    }
-
-    @PostMapping("/users/addresses/edit/")
-    public String editProfile(@ModelAttribute Address address,
-                              @RequestParam(name = "first_name") String firstName,
-                              @RequestParam(name = "last_name") String lastName,
-                              @RequestParam(name = "address_type") String type,
-                              @RequestParam(name = "street_1") String street1,
-                              @RequestParam(name = "street_2") String street2,
-                              @RequestParam(name = "city") String city,
-                              @RequestParam(name = "zipcode") int zipcode,
-                              @RequestParam(name = "state") String state)
-
-    {
-        address.setAddresstype(type);
-        address.setFirstname(firstName);
-        address.setLastname(lastName);
-        address.setStreet1(street1);
-        address.setStreet2(street2);
-        address.setCity(city);
-        address.setState(state);
-        address.setZipcode(zipcode);
-        addressRepository.save(address);
-        return "redirect:/users/profile";
-    }
-
-//
-//    @PostMapping("users/addresses/edit")
-//    public String editAddressPost(
-//            @PathVariable long id,
-//            @RequestParam(name = "first_name") String firstName,
-//            @RequestParam(name = "last_name") String lastName,
-//            @RequestParam(name = "address_type") String type,
-//            @RequestParam(name = "street_1") String street1,
-//            @RequestParam(name = "street_2") String street2,
-//            @RequestParam(name = "city") String city,
-//            @RequestParam(name = "zipcode") int zipcode,
-//            @RequestParam(name = "state") String state) {
-//        Address address = addressRepository.getOne(id);
-//        address.setAddresstype(type);
-//        address.setFirstname(firstName);
-//        address.setLastname(lastName);
-//        address.setStreet1(street1);
-//        address.setStreet2(street2);
-//        address.setCity(city);
-//        address.setState(state);
-//        address.setZipcode(zipcode);
-//        addressRepository.save(address);
-//        return "redirect:/users/profile";
-//    }
 
 
 }
