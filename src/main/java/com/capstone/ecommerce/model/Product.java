@@ -70,9 +70,8 @@ public class Product {
 //        this.image = image;
     }
 
-    public Product(long id, String productImage, List<Categories> categories, String name, String color, String size,
+    public Product( String productImage, List<Categories> categories, String name, String color, String size,
                    String type, double price, String description, Boolean onSpecial, Long quantity) {
-        this.id = id;
         this.productImage = productImage;
         this.categories = categories;
         this.name = name;
