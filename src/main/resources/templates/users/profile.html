@@ -1,65 +1,244 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<div th:replace="partials :: head"></div>
-<body>
-<nav th:replace="partials :: navbar"></nav>
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">-->
+<!--<div th:replace="partials :: head"></div>-->
+<!--<body>-->
+<!--<nav th:replace="partials :: navbar"></nav>-->
 
-<div class="container mt-4">
+<!--<div class="container mt-4">-->
 
 
-    <div sec:authorize="isAuthenticated()">
+<!--    <div sec:authorize="isAuthenticated()">-->
 
-        <h1 style="text-align: center">Hello <span th:text="${user.username}"></span>!</h1><br>
+<!--        <h1 style="text-align: center">Hello <span th:text="${user.username}"></span>!</h1><br>-->
+
 
         <div style="text-align: center;" th:if="${user.getAdmin() == true}">
-<!--                <form th:action="@{/admin}" th:method="get">-->
-<!--                    <button class="btn-link btn text-white btn-secondary text-center">Admin Portal</button>-->
-<!--                </form>-->
+            <!--                <form th:action="@{/admin}" th:method="get">-->
+            <!--                    <button class="btn-link btn text-white btn-secondary text-center">Admin Portal</button>-->
+            <!--                </form>-->
             <h1 style="text-align: center"><a href='/products/productInventory'>Check on the Inventory</a></h1>
-            <h1 style="text-align: center"><a href='/transactions'>Check on Transactions</a></h1>
+            <h1 style="text-align: center"><a href='/transactions'>Check on Transactions</a></h1></div>
+<!--        <div style="text-align: center;" th:if="${user.getAdmin() == true}">-->
+<!--&lt;!&ndash;                <form th:action="@{/admin}" th:method="get">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <button class="btn-link btn text-white btn-secondary text-center">Admin Portal</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+<!--            <h1 style="text-align: center"><a href='/products/productInventory'>Check on the Inventory</a></h1>-->
+<!--            <h1 style="text-align: center"><a href='/transactions'>Check on Transactions</a></h1>-->
+<!--        </div>-->
 
-        </div>
-
-    </div>
-</div>
+<!--    </div>-->
+<!--</div>-->
 
 
-    <div sec:authorize="isAuthenticated()">
 
-        <div class="col s12 m6 l4">
-            <div class="profile-info-container center-align">
-                <div class="row space-left">
-                    <div class="col s12">
-                        <h1 class="profile-username" style="text-align: center"
-                            th:text="'Welcome, ' + ${#authentication.name}"></h1>
-                        <div th:each="address : ${addresses}">
-                            <p style="font-weight: bold" th:text="${address.getAddresstype()}">
-                            </p>
-                            <p style="font-weight: bold" th:text="${address.getCity()}">
-                            </p>
-                            <p style="font-weight: bold" th:text="${address.getFirstname()}">
-                            </p>
-                            <p style="font-weight: bold" th:text="${address.getLastname()}">
-                            </p>
-                            <p style="font-weight: bold" th:text="${address.getState()}">
-                            </p>
-                            <p style="font-weight: bold" th:text="${address.getStreet1()}">
-                            </p>
-                            <p style="font-weight: bold" th:text="${address.getStreet2()}">
-                            </p>
-                            <p style="font-weight: bold" th:text="${address.getZipcode()}">
-                            </p>
+<div sec:authorize="isAuthenticated()">
+
+    <div class="col s12 m6 l6">
+        <div class="profile-info-container center-align">
+            <div class="row space-left">
+                <div class="col col-sm-12 col-md-6 col-lg-6">
+                    <!--                        <h1 class="profile-username" style="text-align: center"-->
+                    <!--                            th:text="'Welcome, ' + ${#authentication.name}"></h1>-->
+
+<!--    <div sec:authorize="isAuthenticated()">-->
+
+<!--        <div class="col s12 m6 l4">-->
+<!--            <div class="profile-info-container center-align">-->
+<!--                <div class="row space-left">-->
+<!--                    <div class="col s12">-->
+<!--                        <h1 class="profile-username" style="text-align: center"-->
+<!--                            th:text="'Welcome, ' + ${#authentication.name}"></h1>-->
+<!--                        <div th:each="address : ${addresses}">-->
+<!--                            <p style="font-weight: bold" th:text="${address.getAddresstype()}">-->
+<!--                            </p>-->
+<!--                            <p style="font-weight: bold" th:text="${address.getCity()}">-->
+<!--                            </p>-->
+<!--                            <p style="font-weight: bold" th:text="${address.getFirstname()}">-->
+<!--                            </p>-->
+<!--                            <p style="font-weight: bold" th:text="${address.getLastname()}">-->
+<!--                            </p>-->
+<!--                            <p style="font-weight: bold" th:text="${address.getState()}">-->
+<!--                            </p>-->
+<!--                            <p style="font-weight: bold" th:text="${address.getStreet1()}">-->
+<!--                            </p>-->
+<!--                            <p style="font-weight: bold" th:text="${address.getStreet2()}">-->
+<!--                            </p>-->
+<!--                            <p style="font-weight: bold" th:text="${address.getZipcode()}">-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                        <a href="/addresses">Add Addresses</a>-->
+<!--                        <a href="/addresses/edit">Edit Addresses</a>-->
+
+                    <!--                        <div th:each="address : ${addresses}">-->
+                    <h1>Saved Billing Address</h1>
+                    <form th:action="@{/addressUpdate1}" th:object="${bill_address}">
+                        <input type="hidden" th:field="*{addresstype}" id="Baddresstype"/>
+                        <input type="hidden" th:field="*{id}" id="Baddressid"/>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="Bfirst_name">First name</label>
+                                <input type="text" class="form-control" th:field="*{firstname}" id="Bfirst_name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="Blast_name">Last Name</label>
+                                <input type="text" class="form-control" id="Blast_name" th:field="*{lastname}">
+                            </div>
                         </div>
-                        <a href="/addresses">Add Addresses</a>
-                        <a href="/addresses/edit">Edit Addresses</a>
+                        <div class="form-group">
+                            <label for="Baddress1">Address</label>
+                            <input type="text" class="form-control" id="Baddress1" th:field="*{street1}">
+                        </div>
+                        <div class="form-group">
+                            <label for="Baddress2">Address 2</label>
+                            <input type="text" class="form-control" id="Baddress2" placeholder="Apartment, studio, or floor"
+                                   th:field="*{street2}">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="Bcity">City</label>
+                                <input type="text" class="form-control" id="Bcity" th:field="*{city}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="Bstate">State</label>
+                                <input type="text" id="Bstate" class="form-control" th:id="state" th:field="*{state}" maxlength="2">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="Bzip">Zip</label>
+                                <input type="text" class="form-control" id="Bzip" th:field="*{zipcode}" maxlength="5"
+                                       placeholder="12345">
+                            </div>
+                        </div>
+                        <button class="btn-link btn text-white btn-secondary">Update this address!</button>
+                    </form>
+                    <br>
+                    <div class="col col-sm-12 col-md-6 col-lg-6">
+                        <h1>Saved Shipping Address</h1>
+                        <form th:action="@{/addressUpdate2}" th:object="${ship_address}">
+                            <input type="hidden" th:field="*{addresstype}" id="Saddresstype">
+                            <input type="hidden" th:field="*{id}" id="Saddressid"/>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Sfirst_name">First name</label>
+                                    <input type="text" class="form-control" th:field="*{firstname}" id="Sfirst_name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Slast_name">Last Name</label>
+                                    <input type="text" class="form-control" id="Slast_name" th:field="*{lastname}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Saddress1">Address</label>
+                                <input type="text" class="form-control" id="Saddress1" th:field="*{street1}">
+                            </div>
+                            <div class="form-group">
+                                <label for="Saddress2">Address 2</label>
+                                <input type="text" class="form-control" id="Saddress2" placeholder="Apartment, studio, or floor"
+                                       th:field="*{street2}">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Scity">City</label>
+                                    <input type="text" class="form-control" id="Scity" th:field="*{city}">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="Sstate">State</label>
+                                    <input type="text" id="Sstate" class="form-control" th:field="*{state}" maxlength="2">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="Szip">Zip</label>
+                                    <input type="text" class="form-control" id="Szip" th:field="*{zipcode}" maxlength="5">
+                                </div>
+                            </div>
+                            <button class="btn-link btn text-white btn-secondary">Update this address!</button>
+                        </form>
 
 
                     </div>
+
+
                 </div>
             </div>
-            <footer th:replace="partials :: footer"></footer>
         </div>
+        <footer th:replace="partials :: footer"></footer>
     </div>
+</div>
 </body>
 </html>
+
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <footer th:replace="partials :: footer"></footer>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">-->
+<!--<div th:replace="partials :: head"></div>-->
+<!--<body>-->
+<!--<nav th:replace="partials :: navbar"></nav>-->
+
+<!--<div class="container mt-4">-->
+
+
+<!--    <div sec:authorize="isAuthenticated()">-->
+
+<!--        <h1 style="text-align: center">Hello <span th:text="${user.username}"></span>!</h1><br>-->
+
+<!--        <div style="text-align: center;" th:if="${user.getAdmin() == true}">-->
+<!--            <h1 style="text-align: center">Admin options</h1>-->
+<!--&lt;!&ndash;                <form th:action="@{/admin}" th:method="get">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <button class="btn-link btn text-white btn-secondary text-center">Admin Portal</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+<!--            <h1 style="text-align: center"><a href='/products/productInventory'>Check on the Inventory</a></h1>-->
+<!--            <h1 style="text-align: center"><a href='/transactions'>Check on Transactions</a></h1>-->
+
+<!--        </div>-->
+
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--    <div sec:authorize="isAuthenticated()">-->
+
+<!--        <div class="col s12 m6 l4">-->
+<!--            <div class="profile-info-container center-align">-->
+<!--                <div class="row space-left">-->
+<!--                    <div class="col s12">-->
+<!--                        <h1 class="profile-username" style="text-align: center"-->
+<!--                            th:text="'Welcome, ' + ${#authentication.name}"></h1>-->
+<!--                        <div th:each="address : ${addresses}">-->
+<!--                            <p style="font-weight: bold" th:text="${address.getAddresstype()}">-->
+<!--                            </p>-->
+<!--                            <p style="font-weight: bold" th:text="${address.getCity()}">-->
+<!--                            </p>-->
+<!--                            <p style="font-weight: bold" th:text="${address.getFirstname()}">-->
+<!--                            </p>-->
+<!--                            <p style="font-weight: bold" th:text="${address.getLastname()}">-->
+<!--                            </p>-->
+<!--                            <p style="font-weight: bold" th:text="${address.getState()}">-->
+<!--                            </p>-->
+<!--                            <p style="font-weight: bold" th:text="${address.getStreet1()}">-->
+<!--                            </p>-->
+<!--                            <p style="font-weight: bold" th:text="${address.getStreet2()}">-->
+<!--                            </p>-->
+<!--                            <p style="font-weight: bold" th:text="${address.getZipcode()}">-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                        <a href="/addresses">Add Addresses</a>-->
+<!--                        <a href="/addresses/edit">Edit Addresses</a>-->
+
+
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <footer th:replace="partials :: footer"></footer>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</body>-->
+<!--</html>-->
 

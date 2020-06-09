@@ -172,7 +172,7 @@ public class ProductsController {
         double salePrice = 0;
         Product aProduct = productRepo.getOne(id);
         model.addAttribute("product", aProduct);
-        if (aProduct.getSpecial() == true) {
+        if (aProduct.getSpecial() != null && aProduct.getSpecial()) {
             salePrice = aProduct.getPrice() - (aProduct.getPrice() * 0.42);
             salePrice = Math.round(salePrice * 100.00) / 100.00;
         }

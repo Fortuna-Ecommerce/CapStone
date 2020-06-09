@@ -40,7 +40,7 @@ public class Product {
     private long quantity;
 
     @Column
-    private String image;
+    private String productImage;
 
 
     @ManyToMany
@@ -70,10 +70,10 @@ public class Product {
 //        this.image = image;
     }
 
-    public Product(long id, String image, List<Categories> categories, String name, String color, String size,
+    public Product(long id, String productImage, List<Categories> categories, String name, String color, String size,
                    String type, double price, String description, Boolean onSpecial, Long quantity) {
         this.id = id;
-        this.image = image;
+        this.productImage = productImage;
         this.categories = categories;
         this.name = name;
         this.color = color;
@@ -157,12 +157,12 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getImage() {
-        return image;
+    public String getProductImage() {
+        return productImage;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 
     //
@@ -197,14 +197,12 @@ public class Product {
                 Objects.equals(size, product.size) &&
                 Objects.equals(type, product.type) &&
                 Objects.equals(description, product.description) &&
-                Objects.equals(special, product.special) &&
-                Objects.equals(image, product.image) &&
-                Objects.equals(categories, product.categories);
+                Objects.equals(special, product.special);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, color, size, type, price, description, special, quantity, image, categories);
+        return Objects.hash(id, name, color, size, type, price, description, special, quantity);
     }
 }
 
