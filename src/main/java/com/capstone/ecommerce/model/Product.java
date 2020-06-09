@@ -41,7 +41,8 @@ public class Product {
 
     @Column
     private String productImage;
-
+    @Column
+    private String image;
 
     @ManyToMany
             (fetch = FetchType.LAZY,
