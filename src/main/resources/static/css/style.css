@@ -42,3 +42,13 @@
 .transactionTable{
     margin-left: -22%;
 }
+
+.navitem {
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+.btn-link {
+    color: rgba(87, 87, 87, 0.82);
+}
