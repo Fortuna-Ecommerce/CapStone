@@ -26,7 +26,7 @@ public class Product {
     @Column(nullable = false)
     private String type;
 
-    @Column(columnDefinition="Decimal(5,2)", nullable = false)
+    @Column(columnDefinition="Decimal(6,2)", nullable = false)
     private double price;
 
     @Column(columnDefinition = "TEXT")
@@ -36,7 +36,7 @@ public class Product {
     private Boolean special;
 
 
-    @Column(columnDefinition = "int UNSIGNED default 1", nullable = false)
+    @Column(columnDefinition = "int default 1", nullable = false)
     private long quantity;
 
     @Column
@@ -70,9 +70,8 @@ public class Product {
 //        this.image = image;
     }
 
-    public Product(long id, String productImage, List<Categories> categories, String name, String color, String size,
+    public Product( String productImage, List<Categories> categories, String name, String color, String size,
                    String type, double price, String description, Boolean onSpecial, Long quantity) {
-        this.id = id;
         this.productImage = productImage;
         this.categories = categories;
         this.name = name;
