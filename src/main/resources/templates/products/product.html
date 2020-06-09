@@ -6,7 +6,7 @@
 <div class="container mt-4">
 
 
-    <img th:src="${product.productImage}" alt="The product's image">
+    <img th:src="${'../'+product.productImage}" alt="The product's image">
     <form th:action="@{/addToCart}" th:method="post">
         <input type="hidden" name="productName" id="name" th:value="${product.name}">
         <input type="hidden" name="productId" th:value="${product.id}">
@@ -51,6 +51,7 @@
         <label>Quantity (Defaults to 1):
             <input type="text" name="cartAddQuantity" value="1" id="amountOrdered" required>
         </label>
+        <div class="total"></div>
         <button class="btn-link btn text-white btn-secondary" id="addProduct">Add this item to your cart</button>
     </form>
 
