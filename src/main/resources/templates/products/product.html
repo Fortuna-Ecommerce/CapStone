@@ -5,15 +5,24 @@
 <nav th:replace="partials :: navbar" />
 <div class="container mt-4">
 
+
+    <img th:src="${product.productImage}" alt="The product's image">
     <h1 style="font-weight: bold" th:text="${product.name}"> </h1>
     <h3>Type: <span th:text="${product.type}"></span></h3>
    <div style="display:inline-block"><h3 style="float:left">Color: <div class="color-box" th:style="'background-color: #'+${product.color}"></div></h3></div>
-    <h3>Size: <span th:text="${product.size}"></span></h3>
+    <h3>Size: </h3><label for="sizeSelect"><select class="btn btn-mini" id="sizeSelect" name="sizeSelect">
+        <option value="XS">X-Small</option>
+        <option value="SM">Small</option>
+        <option value="MD" selected>Medium</option>
+        <option value="LG">Large</option>
+        <option value="XL">X-Large</option>
+    </select></label>
     <form th:action="@{/addToCart}" th:method="post">
     <div th:if="${product.special} == true">
         <input type="hidden" name="price" th:value="${salePrice}">
-        <h3>On Sale Price (42% off!): <strike><span th:text="${product.price}"></span></strike> <span th:text="${salePrice}"></span></h3></div>
-    <div th:unless="${product.special} == true"><h3>Price: <span th:text="${product.price}"></span></h3>
+        <h3>On Sale Price (42% off!): <strike><span th:text="${'$'+product.price}"></span></strike> <span
+                th:text="${'$'+salePrice}"></span></h3></div>
+    <div th:unless="${product.special} == true"><h3>Price: $<span th:text="${product.price}"></span></h3>
         <input type="hidden" name="price" th:value="${product.price}"></div>
 
     <p style="" th:text="${product.description}"> </p>
