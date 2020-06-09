@@ -59,41 +59,54 @@ public class ShoppingCartController {
             @RequestParam("productName") String name,
             @RequestParam("cartAddQuantity") Integer quantity,
             @RequestParam("price") String price,
+            @RequestParam("type") String type,
             RedirectAttributes redir) {
+        Product newProduct = new Product();
         double setPrice = Double.parseDouble(price);
         String error = "";
         Product currentProduct = this.productRepo.findByNameAndSizeAndColor(name, size, color);
         if(currentProduct == null){
-            error = "Sorry, out of stock on that!";
-            redir.addFlashAttribute("error", error);
-//            model.addAttribute("product", this.productRepo.findById(id));
-            model.addAttribute("products", products);
-            return "redirect:products/"+id;
+            Product tempProduct = new Product();
+           tempProduct.setColor(color);
+            tempProduct.setName(name);
+            tempProduct.setSize(size);
+            tempProduct.setDescription("Brand new meme shirt!");
+            tempProduct.setQuantity(300);
+            tempProduct.setType(type);
+            tempProduct.setSpecial(false);
+            tempProduct.setPrice(setPrice);
+            this.productRepo.save(tempProduct);
+           newProduct = this.productRepo.findByNameAndSizeAndColor(name, size, color);
+//            error = "Sorry, out of stock on that!";
+//            redir.addFlashAttribute("error", error);
+////            model.addAttribute("product", this.productRepo.findById(id));
+//            model.addAttribute("products", products);
+//            return "redirect:products/"+id;
         }
 
-        if(quantity == null || quantity == 0){
-            error = "Can't order nothing! Please put in a number!";
-            redir.addFlashAttribute("error", error);
-            model.addAttribute("product", currentProduct);
-            model.addAttribute("products", products);
-            return "redirect:products/"+currentProduct.getId();
-        }
-
-
-
-        if(currentProduct.getQuantity() < (long)quantity){
-            error = "You can't order that many, sorry! Try a lower number please!";
-            redir.addFlashAttribute("error", error);
-            model.addAttribute("product", currentProduct);
-            model.addAttribute("products", products);
-            return "redirect:products/"+currentProduct.getId();
-        }
+//        if(quantity == null || quantity == 0){
+//            error = "Can't order nothing! Please put in a number!";
+//            redir.addFlashAttribute("error", error);
+//            model.addAttribute("product", currentProduct);
+//            model.addAttribute("products", products);
+//            return "redirect:products/"+currentProduct.getId();
+//        }
+//
+//
+//
+//        if(currentProduct.getQuantity() < (long)quantity){
+//            error = "You can't order that many, sorry! Try a lower number please!";
+//            redir.addFlashAttribute("error", error);
+//            model.addAttribute("product", currentProduct);
+//            model.addAttribute("products", products);
+//            return "redirect:products/"+currentProduct.getId();
+//        }
 
 
 
         double total = 0.00;
         boolean found = false;
-        Product addProduct = currentProduct;
+        Product addProduct = newProduct;
 
         if (quantity != null) {
             addProduct.setQuantity(quantity);

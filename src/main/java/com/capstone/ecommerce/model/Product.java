@@ -26,7 +26,7 @@ public class Product {
     @Column(nullable = false)
     private String type;
 
-    @Column(columnDefinition="Decimal(5,2)", nullable = false)
+    @Column(columnDefinition="Decimal(6,2)", nullable = false)
     private double price;
 
     @Column(columnDefinition = "TEXT")
@@ -36,7 +36,7 @@ public class Product {
     private Boolean special;
 
 
-    @Column(columnDefinition = "int UNSIGNED default 1", nullable = false)
+    @Column(columnDefinition = "int default 1", nullable = false)
     private long quantity;
 
     @Column
