@@ -127,60 +127,60 @@ public class CheckoutController{
     }
 
 
-    @GetMapping("/addresses")
-    public String goToAddressEntry(Model model) {
-        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
-            return "home";
-        }
-        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Address ship_address = this.addressRepo.findByUserAndAddresstype(shopper, "Shipping");
-        Address bill_address = this.addressRepo.findByUserAndAddresstype(shopper, "Billing");
-        if (ship_address != null) {
-            model.addAttribute("ship_address", ship_address);
-        } else {
-            ship_address = new Address();
-            ship_address.setAddresstype("Shipping");
-            model.addAttribute("ship_address", ship_address);
-        }
-        if (bill_address != null) {
-            model.addAttribute("bill_address", bill_address);
-        } else {
-            bill_address = new Address();
-            bill_address.setAddresstype("Billing");
-            model.addAttribute("bill_address", bill_address);
-        }
+//    @GetMapping("/addressesCheckout")
+//    public String goToAddressEntryCheckout(Model model) {
+//        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+//            return "home";
+//        }
+//        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        Address ship_address = this.addressRepo.findByUserAndAddresstype(shopper, "Shipping");
+//        Address bill_address = this.addressRepo.findByUserAndAddresstype(shopper, "Billing");
+//        if (ship_address != null) {
+//            model.addAttribute("ship_address", ship_address);
+//        } else {
+//            ship_address = new Address();
+//            ship_address.setAddresstype("Shipping");
+//            model.addAttribute("ship_address", ship_address);
+//        }
+//        if (bill_address != null) {
+//            model.addAttribute("bill_address", bill_address);
+//        } else {
+//            bill_address = new Address();
+//            bill_address.setAddresstype("Billing");
+//            model.addAttribute("bill_address", bill_address);
+//        }
+//
+//        return "purchases/addresses";
+//
+//    }
 
-        return "purchases/addresses";
-
-    }
-
-    @PostMapping("/addresses")
-    public String submitAddresses(Model model,
-                                  Address bill_address,
-                                  Address ship_address,
-                                  @ModelAttribute("products") ShoppingCart products) {
-        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
-            return "home";
-        }
-        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (bill_address.getId() > 0) {
-
-            this.addressRepo.save(bill_address);
-        } else {
-            bill_address.setUser(shopper);
-            this.addressRepo.save(bill_address);
-        }
-        if (ship_address.getId() > 0) {
-            this.addressRepo.save(ship_address);
-        } else {
-            ship_address.setUser(shopper);
-            this.addressRepo.save(ship_address);
-        }
-        model.addAttribute("bill_address", bill_address);
-        model.addAttribute("ship_address", ship_address);
-        model.addAttribute("products", products);
-        return "purchases/checkout";
-    }
+//    @PostMapping("/addresses")
+//    public String submitAddresses(Model model,
+//                                  Address bill_address,
+//                                  Address ship_address,
+//                                  @ModelAttribute("products") ShoppingCart products) {
+//        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+//            return "home";
+//        }
+//        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (bill_address.getId() > 0) {
+//
+//            this.addressRepo.save(bill_address);
+//        } else {
+//            bill_address.setUser(shopper);
+//            this.addressRepo.save(bill_address);
+//        }
+//        if (ship_address.getId() > 0) {
+//            this.addressRepo.save(ship_address);
+//        } else {
+//            ship_address.setUser(shopper);
+//            this.addressRepo.save(ship_address);
+//        }
+//        model.addAttribute("bill_address", bill_address);
+//        model.addAttribute("ship_address", ship_address);
+//        model.addAttribute("products", products);
+//        return "purchases/checkout";
+//    }
 
 
     @Autowired
