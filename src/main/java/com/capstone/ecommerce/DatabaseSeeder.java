@@ -1,102 +1,102 @@
-
-package com.capstone.ecommerce;
-
-import com.capstone.ecommerce.model.*;
-import com.capstone.ecommerce.repositories.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
-
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-@Component
-public class DatabaseSeeder implements CommandLineRunner {
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-    private final ProductRepository productRepository;
-    private final CategoriesRepository categoriesRepo;
-    private final UserRepository userRepository;
-    private final TransactionRepository transactionRepository;
-    private final AddressRepository addressRepository;
-
-    @Value("${app.env}")
-    private String environment;
-
-    public DatabaseSeeder(ProductRepository productRepository, CategoriesRepository categoriesRepo, UserRepository userRepository, TransactionRepository transactionRepository, AddressRepository addressRepository) {
-        this.productRepository = productRepository;
-        this.categoriesRepo = categoriesRepo;
-        this.userRepository = userRepository;
-        this.transactionRepository = transactionRepository;
-        this.addressRepository = addressRepository;
-    }
-
-
-    ////
-//    //generate a list of users and return it after saving
-//    private List<User> seedUsers() {
+//
+//package com.capstone.ecommerce;
+//
+//import com.capstone.ecommerce.model.*;
+//import com.capstone.ecommerce.repositories.*;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
+//import org.springframework.beans.factory.annotation.Value;
+//import org.springframework.boot.CommandLineRunner;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.stereotype.Component;
+//import org.springframework.transaction.annotation.Transactional;
 //
 //
-//        User user1 = new User("Jeremy", "j@gmail.com", "$2a$12$wT4XqVfLKl51xFIu2QGbau2qjg9BOAFYNWt9h.7EepGAXcbESEF0O",
-//                true);
-//        User user2 = new User("Ruben", "r@gmail.com", "$2a$12$zNUWK4B1CXfqR4epRENOJ.T/LBsJbJUSUFrq/utWO5qNlB2zagk32",
-//                true);//password = password123
-//        User user3 = new User("Victor", "v@gmail.com", "$2a$12$3jmqcQo/sKpthafly1Eo7O2D36VlGZSfjQO47.qcXt1h09Or0T.va",
-//                true);//password = TestPassword1
-//        User user4 = new User("Michael", "m@gmail.com", "$2a$12$m2t1Nbdb4hJHiv1vQ8CM5uFrUCdL9A3fF2VCwJijdO2pj" +
-//                "/u2X1BKG",
-//                true);//password = PassWord0
-//        User user5 = new User("JoeShmoe", "joe@gmail.com", "$2a$12$vNqhZD22GKRvRWnb0R4FRuoazB" +
-//                "/88CCzvG2oSugPEs71Pa7hinFza",
-//                false);//password = DumbPassword1
-//        userRepository.save(user1);
-//        userRepository.save(user2);
-//        userRepository.save(user3);
-//        userRepository.save(user4);
-//        userRepository.save(user5);
-//        List<User> users = new ArrayList<>();
-//        users.add(user1);
-//        users.add(user2);
-//        users.add(user3);
-//        users.add(user4);
-//        users.add(user5);
-//        return users;
+//import java.text.SimpleDateFormat;
+//import java.util.*;
+//
+//@Component
+//public class DatabaseSeeder implements CommandLineRunner {
+//    private final Logger log = LoggerFactory.getLogger(this.getClass());
+//    private final ProductRepository productRepository;
+//    private final CategoriesRepository categoriesRepo;
+//    private final UserRepository userRepository;
+//    private final TransactionRepository transactionRepository;
+//    private final AddressRepository addressRepository;
+//
+//    @Value("${app.env}")
+//    private String environment;
+//
+//    public DatabaseSeeder(ProductRepository productRepository, CategoriesRepository categoriesRepo, UserRepository userRepository, TransactionRepository transactionRepository, AddressRepository addressRepository) {
+//        this.productRepository = productRepository;
+//        this.categoriesRepo = categoriesRepo;
+//        this.userRepository = userRepository;
+//        this.transactionRepository = transactionRepository;
+//        this.addressRepository = addressRepository;
 //    }
 //
 //
-//    ////    //generate a handful of products and return it after saving
-    private List<Product> seedProducts() {
-
-        Product product1 = new Product("Pretty kitty", "5DADE2", "XL", "Shirt", 22.22, "Cutest kitten!",
-                false,
-                (long) 5);
-        Product product2 = new Product("Clown face", "95A5A6", "L", "Shirt", 28.22, "Not scary, definitely funny",
-                false,
-                (long) 23);
-        Product product3 = new Product("Spitting out cereal", "8E44AD", "XL", "Hoodie", 35.78, "Just what IS that?",
-                true, (long) 1000);
-        Product product4 = new Product("NPC face", "E74C3C", "OSFM", "Hat", 15.99, "Fellow with straight line mouth and " +
-                "angly " +
-                "eyebrows", false, (long) 9);
-        Product product5 = new Product("Pretty kitty", "FDFEFE", "S", "Hoodie", 35.99, "Cutest kitten!",
-                false, (long) 0);
-        productRepository.save(product1);
-        productRepository.save(product2);
-        productRepository.save(product3);
-        productRepository.save(product4);
-        productRepository.save(product5);
-        List<Product> products = new ArrayList<>();
-        products.add(productRepository.getOne((long) 1));
-        products.add(productRepository.getOne((long) 2));
-        products.add(productRepository.getOne((long) 3));
-        products.add(productRepository.getOne((long) 4));
-        products.add(productRepository.getOne((long) 5));
-        return products;
-    }
+//    ////
+////    //generate a list of users and return it after saving
+////    private List<User> seedUsers() {
+////
+////
+////        User user1 = new User("Jeremy", "j@gmail.com", "$2a$12$wT4XqVfLKl51xFIu2QGbau2qjg9BOAFYNWt9h.7EepGAXcbESEF0O",
+////                true);
+////        User user2 = new User("Ruben", "r@gmail.com", "$2a$12$zNUWK4B1CXfqR4epRENOJ.T/LBsJbJUSUFrq/utWO5qNlB2zagk32",
+////                true);//password = password123
+////        User user3 = new User("Victor", "v@gmail.com", "$2a$12$3jmqcQo/sKpthafly1Eo7O2D36VlGZSfjQO47.qcXt1h09Or0T.va",
+////                true);//password = TestPassword1
+////        User user4 = new User("Michael", "m@gmail.com", "$2a$12$m2t1Nbdb4hJHiv1vQ8CM5uFrUCdL9A3fF2VCwJijdO2pj" +
+////                "/u2X1BKG",
+////                true);//password = PassWord0
+////        User user5 = new User("JoeShmoe", "joe@gmail.com", "$2a$12$vNqhZD22GKRvRWnb0R4FRuoazB" +
+////                "/88CCzvG2oSugPEs71Pa7hinFza",
+////                false);//password = DumbPassword1
+////        userRepository.save(user1);
+////        userRepository.save(user2);
+////        userRepository.save(user3);
+////        userRepository.save(user4);
+////        userRepository.save(user5);
+////        List<User> users = new ArrayList<>();
+////        users.add(user1);
+////        users.add(user2);
+////        users.add(user3);
+////        users.add(user4);
+////        users.add(user5);
+////        return users;
+////    }
+////
+////
+////    ////    //generate a handful of products and return it after saving
+//    private List<Product> seedProducts() {
+//
+//        Product product1 = new Product("Pretty kitty", "5DADE2", "XL", "Shirt", 22.22, "Cutest kitten!",
+//                false,
+//                (long) 5);
+//        Product product2 = new Product("Clown face", "95A5A6", "L", "Shirt", 28.22, "Not scary, definitely funny",
+//                false,
+//                (long) 23);
+//        Product product3 = new Product("Spitting out cereal", "8E44AD", "XL", "Hoodie", 35.78, "Just what IS that?",
+//                true, (long) 1000);
+//        Product product4 = new Product("NPC face", "E74C3C", "OSFM", "Hat", 15.99, "Fellow with straight line mouth and " +
+//                "angly " +
+//                "eyebrows", false, (long) 9);
+//        Product product5 = new Product("Pretty kitty", "FDFEFE", "S", "Hoodie", 35.99, "Cutest kitten!",
+//                false, (long) 0);
+//        productRepository.save(product1);
+//        productRepository.save(product2);
+//        productRepository.save(product3);
+//        productRepository.save(product4);
+//        productRepository.save(product5);
+//        List<Product> products = new ArrayList<>();
+//        products.add(productRepository.getOne((long) 1));
+//        products.add(productRepository.getOne((long) 2));
+//        products.add(productRepository.getOne((long) 3));
+//        products.add(productRepository.getOne((long) 4));
+//        products.add(productRepository.getOne((long) 5));
+//        return products;
+//    }
 
 //    private void seedCategories() {
 //        List<Categories> allCats = new ArrayList<>();
@@ -512,13 +512,13 @@ public class DatabaseSeeder implements CommandLineRunner {
 //    }
 //
 //
-
-    @Override
-    public void run(String... strings) throws Exception {
-        if (!environment.equals("development")) {
-            log.info("app.env is not development, doing nothing.");
-            return;
-        }
+//
+//    @Override
+//    public void run(String... strings) throws Exception {
+//        if (!environment.equals("development")) {
+//            log.info("app.env is not development, doing nothing.");
+//            return;
+//        }
 
 
 //    @Override
@@ -546,20 +546,6 @@ public class DatabaseSeeder implements CommandLineRunner {
 //            log.info("Seeding transactions...");
 //            log.info("Seeding products...");
 
-            List<Product> products = seedProducts();
-
-//            List<Product> products = seedProducts();
-
-//            seedCategories();
-//            seedTransactions(products, users, addresses);
-//            seedCatProd();
-//
-//        }
-//        log.info("Finished running seeders!");
-//
-
-    }
-}
 
 //    }
 //}
