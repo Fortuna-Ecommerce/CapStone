@@ -53,3 +53,16 @@
     color: rgba(87, 87, 87, 0.82);
 }
 
+#verify {
+    color: rgba(83, 83, 83, 0.93);
+}
+
+#checkout-total {
+    display: grid;
+    grid-row: 1;
+}
+
+#checkout-btn {
+    justify-content: flex-end;
+}
+
