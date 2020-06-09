@@ -1,3 +1,496 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>MemeTees - The Memeist Tees in Town</title>-->
+<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
+<!--    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900' rel='stylesheet' type='text/css'>-->
+<!--    <link rel="icon" href="../static/images/favicon.png">-->
+<!--    <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css"/>-->
+<!--    <link href="../static/css/app-blue.css" rel="stylesheet" type="text/css"/>-->
+<!--    <link href="../static/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>-->
+<!--    <script type="text/javascript" src="../static/js/jquery.min.js"></script>-->
+<!--    <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>-->
+<!--    <script type="text/javascript" src="../static/js/app.js"></script>-->
+<!--    <script type="text/javascript" src="../static/js/colorSwitcher.js"></script>-->
+<!--    <script type="text/javascript" src="../static/js/jquery.imagezoom.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="wrapper">-->
+<!--    <nav class="navbar navbar-default navbar-fixed-top navbar-transparent" id="navbar">-->
+<!--        <div class="navbar-header">-->
+<!--            <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#menu"-->
+<!--                    aria-expanded="false">-->
+<!--                <span class="sr-only">Site Map</span>-->
+<!--                <span class="icon-bar"></span>-->
+<!--                <span class="icon-bar"></span>-->
+<!--                <span class="icon-bar"></span>-->
+<!--            </button>-->
+<!--            <a href="products/product.html" class="navbar-brand">-->
+<!--                MemeTees-->
+<!--            </a>-->
+<!--        </div>-->
+<!--        <div class="collapse navbar-collapse pull-right" id="menu">-->
+<!--            <ul class="nav navbar-nav">-->
+<!--                <li>-->
+<!--                    <a href="home.html">-->
+<!--                        <i class="fa fa-home"></i>-->
+<!--                        Home-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="dropdown">-->
+<!--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
+<!--                       aria-expanded="false">-->
+<!--                        <i class="fa fa-file-code-o"></i>-->
+<!--                        Pages <span class="caret"></span>-->
+<!--                    </a>-->
+<!--                    <ul class="dropdown-menu">-->
+<!--                        <li>-->
+<!--                            <a th:href="@{/login}">-->
+<!--                                Login-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a th:href="@{/register}">-->
+<!--                                Register-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a th:href="@{/cart}">-->
+<!--                        <i class="fa fa-cart-plus"></i>-->
+<!--                        Cart-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </nav>-->
+<!--    <div id="heading">-->
+<!--        <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="6000">-->
+<!--            &lt;!&ndash; Indicators &ndash;&gt;-->
+<!--            <ol class="carousel-indicators">-->
+<!--                <li data-target="#carousel" data-slide-to="0" class="active"></li>-->
+<!--                <li data-target="#carousel" data-slide-to="1"></li>-->
+<!--                <li data-target="#carousel" data-slide-to="2"></li>-->
+<!--            </ol>-->
+
+<!--            &lt;!&ndash; Wrapper for slides &ndash;&gt;-->
+<!--            <div class="carousel-inner" role="listbox">-->
+<!--                <div class="item active">-->
+<!--                    <img src="../static/heading/fashion3.png" alt="Fashion">-->
+<!--                    <div class="carousel-caption right">-->
+<!--                        <h3>Only the Memeist!</h3>-->
+<!--                        <p>-->
+<!--                            The Ultimate<br/>-->
+<!--                            <strong>Laugh out Loud Shopping</strong>-->
+<!--                            Experience-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="item">-->
+<!--                    <img src="../static/heading/fashion4.png" alt="Fashion">-->
+<!--                    <div class="carousel-caption right">-->
+<!--                        <h3>SUMMER SALES</h3>-->
+<!--                        <p>-->
+<!--                            Stand out styles of your favorite memes.-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="item">-->
+<!--                    <img src="../static/heading/fashion6.png" alt="Fashion">-->
+<!--                    <div class="carousel-caption right">-->
+<!--                        <h3>Crazy sales!</h3>-->
+<!--                        <p>-->
+<!--                            Shop from over 200 of the societies best memes.-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Controls &ndash;&gt;-->
+<!--            <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">-->
+<!--                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
+<!--                <span class="sr-only">Previous</span>-->
+<!--            </a>-->
+<!--            <a class="right carousel-control" href="#carousel" role="button" data-slide="next">-->
+<!--                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
+<!--                <span class="sr-only">Next</span>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="main">-->
+<!--        <ol class="breadcrumb">-->
+<!--            <li><a href="home.html">Home</a></li>-->
+<!--            <li class="active">Shop</li>-->
+<!--        </ol>-->
+<!--        <div class="row">-->
+<!--            <div class="col-sm-3 col-md-2">-->
+<!--                <ul class="nav nav-pills nav-stacked" id="categories" data-spy="affix" data-offset-top="600">-->
+<!--                    <li>-->
+<!--                        <a href="#" data-category="All">-->
+<!--                            All-->
+<!--                            <i class="fa fa-chevron-right pull-right"></i>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="#" data-category="Coat">-->
+<!--                            T-Shirts <i class="fa fa-chevron-right pull-right"></i>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="#" data-category="Jean">-->
+<!--                            Pullovers <i class="fa fa-chevron-right pull-right"></i>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            <div class="col-sm-9 col-md-10">-->
+<!--                <div class="item-list">-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Coat">-->
+<!--                            <div class="item">-->
+<!--                                <a href="products/product.html">-->
+<!--                                    <div class="ribon-container">-->
+<!--                                        <div class="ribon">-->
+<!--                                            SALE!-->
+<!--                                        </div>-->
+<!--                                        <div class="ribon-arrow"></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="picture">-->
+<!--                                        <img src="../static/images/products/product1/item1.jpg" alt="item" />-->
+<!--                                    </div>-->
+<!--                                    <div class="category">P</div>-->
+<!--                                    <div class="title">Pete P</div>-->
+<!--                                    <div class="description">This is what we call Pete P-->
+<!--                                    </div>-->
+<!--                                    <div class="actions">-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-xs-6">-->
+<!--                                                <div class="price">-->
+<!--                                                    52.00 $-->
+<!--                                                    <div class="refund">-->
+<!--                                                        129.99 $-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-xs-6 text-right">-->
+<!--                                                <i class="fa fa-cart-plus" data-toggle="tooltip"-->
+<!--                                                   title="Add to cart"></i>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Coat">-->
+<!--                            <div class="item">-->
+<!--                                <a href="products/product.html">-->
+<!--                                    <div class="ribon-container">-->
+<!--                                        <div class="ribon">-->
+<!--                                            SALE!-->
+<!--                                        </div>-->
+<!--                                        <div class="ribon-arrow"></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="picture">-->
+<!--                                        <img src="../static/images/products/product2/item1.jpg" alt="item" />-->
+<!--                                    </div>-->
+<!--                                    <div class="category">Pete</div>-->
+<!--                                    <div class="title">Pete</div>-->
+<!--                                    <div class="description">This is Pete's-->
+<!--                                    </div>-->
+<!--                                    <div class="actions">-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-xs-6">-->
+<!--                                                <div class="price">-->
+<!--                                                    27.00 $-->
+<!--                                                    <div class="refund">-->
+<!--                                                        89.99 $-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-xs-6 text-right">-->
+<!--                                                <i class="fa fa-cart-plus" data-toggle="tooltip"-->
+<!--                                                   title="Add to cart"></i>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Coat">-->
+<!--                            <div class="item">-->
+<!--                                <a href="products/product.html">-->
+<!--                                    <div class="picture">-->
+<!--                                        <img src="../static/images/erik-mclean-tQ5QE587veU-unsplash.jpg" alt="item" />-->
+<!--                                    </div>-->
+<!--                                    <div class="category">Paper King</div>-->
+<!--                                    <div class="title">Fully Stocked</div>-->
+<!--                                    <div class="description">Life fully stocked and ready to quarantine-->
+<!--                                    </div>-->
+<!--                                    <div class="actions">-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-xs-6">-->
+<!--                                                <div class="price">-->
+<!--                                                    59.99 $-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-xs-6 text-right">-->
+<!--                                                <i class="fa fa-cart-plus" data-toggle="tooltip"-->
+<!--                                                   title="Add to cart"></i>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Jean">-->
+<!--                            <div class="item">-->
+<!--                                <a href="products/product.html">-->
+<!--                                    <div class="ribon-container">-->
+<!--                                        <div class="ribon">-->
+<!--                                            SALE!-->
+<!--                                        </div>-->
+<!--                                        <div class="ribon-arrow"></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="picture">-->
+<!--                                        <img src="../static/images/i-appreciate-your-concern-arent-you-supposed-to-be-pushing-up-code.jpg" alt="item" />-->
+<!--                                    </div>-->
+<!--                                    <div class="category">Coding</div>-->
+<!--                                    <div class="title">Mistified</div>-->
+<!--                                    <div class="description">Feeling stumped well, so is he.-->
+<!--                                    </div>-->
+<!--                                    <div class="actions">-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-xs-6">-->
+<!--                                                <div class="price">-->
+<!--                                                    17.99 $-->
+<!--                                                    <div class="refund">-->
+<!--                                                        29.99 $-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-xs-6 text-right">-->
+<!--                                                <i class="fa fa-cart-plus" data-toggle="tooltip"-->
+<!--                                                   title="Add to cart"></i>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Jean">-->
+<!--                            <div class="item">-->
+<!--                                <a href="products/product.html">-->
+<!--                                    <div class="picture">-->
+<!--                                        <img src="../static/images/when-you-refactor-someone-elses-code-and-get-it-to-work.jpg" alt="item" />-->
+<!--                                    </div>-->
+<!--                                    <div class="category">Coding</div>-->
+<!--                                    <div class="title">The Refactorer</div>-->
+<!--                                    <div class="description">Like using others code? You are not the only one!-->
+<!--                                    </div>-->
+<!--                                    <div class="actions">-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-xs-6">-->
+<!--                                                <div class="price">-->
+<!--                                                    12.00 $-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-xs-6 text-right">-->
+<!--                                                <i class="fa fa-cart-plus" data-toggle="tooltip"-->
+<!--                                                   title="Add to cart"></i>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Jean">-->
+<!--                            <div class="item">-->
+<!--                                <a href="products/product.html">-->
+<!--                                    <div class="ribon-container">-->
+<!--                                        <div class="ribon">-->
+<!--                                            SALE!-->
+<!--                                        </div>-->
+<!--                                        <div class="ribon-arrow"></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="picture">-->
+<!--                                        <img src="../static/images/you-say-css-i-say-bootstrap.jpg" alt="item" />-->
+<!--                                    </div>-->
+<!--                                    <div class="category">Coding</div>-->
+<!--                                    <div class="title">We Smart</div>-->
+<!--                                    <div class="description">If you thought vanilla CSS was cool wait until you see the new kid on the block-->
+<!--                                    </div>-->
+<!--                                    <div class="actions">-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-xs-6">-->
+<!--                                                <div class="price">-->
+<!--                                                    14.00 $-->
+<!--                                                    <div class="refund">-->
+<!--                                                        26.00 $-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-xs-6 text-right">-->
+<!--                                                <i class="fa fa-cart-plus" data-toggle="tooltip"-->
+<!--                                                   title="Add to cart"></i>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="T-shirt">-->
+<!--                            <div class="item">-->
+<!--                                <a href="products/product.html">-->
+<!--                                    <div class="ribon-container">-->
+<!--                                        <div class="ribon">-->
+<!--                                            SALE!-->
+<!--                                        </div>-->
+<!--                                        <div class="ribon-arrow"></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="picture">-->
+<!--                                        <img src="../static/images/i-dont-know-why-i-keep-getting-these-errors.jpg" alt="item" />-->
+<!--                                    </div>-->
+<!--                                    <div class="category">Coding</div>-->
+<!--                                    <div class="title">IDK</div>-->
+<!--                                    <div class="description">Is your code confusing? We get it.-->
+<!--                                    </div>-->
+<!--                                    <div class="actions">-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-xs-6">-->
+<!--                                                <div class="price">-->
+<!--                                                    17.50 $-->
+<!--                                                    <div class="refund">-->
+<!--                                                        37.50 $-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-xs-6 text-right">-->
+<!--                                                <i class="fa fa-cart-plus" data-toggle="tooltip"-->
+<!--                                                   title="Add to cart"></i>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="T-shirt">-->
+<!--                            <div class="item">-->
+<!--                                <a href="products/product.html">-->
+<!--                                    <div class="picture">-->
+<!--                                        <img src="../static/images/when-it-is-time-to-demo-your-project.jpg" alt="item" />-->
+<!--                                    </div>-->
+<!--                                    <div class="category">Coding</div>-->
+<!--                                    <div class="title">The Demo</div>-->
+<!--                                    <div class="description">When it is time to demo your work.-->
+<!--                                    </div>-->
+<!--                                    <div class="actions">-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-xs-6">-->
+<!--                                                <div class="price">-->
+<!--                                                    18.85 $-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-xs-6 text-right">-->
+<!--                                                <i class="fa fa-cart-plus" data-toggle="tooltip"-->
+<!--                                                   title="Add to cart"></i>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<footer id="footer">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-sm-4">-->
+<!--                <h4>Our conditions</h4>-->
+<!--                <div class="justify">-->
+<!--                    This site although fully functional, is for entertainment purposes only. Any and all memes associated with this site are for entertainment and are not the views of the developers. They are in no way used or intended to offend or disrespect anyone.-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-sm-4">-->
+<!--                <h4>Latest news</h4>-->
+<!--                <blockquote>-->
+<!--                    <p>We are working on new memes all the time. Come back to see something new weekly</p>-->
+<!--                </blockquote>-->
+<!--            </div>-->
+<!--            <div class="col-sm-4 social-network">-->
+<!--                <h4>Social Network</h4>-->
+<!--                <div class="row margin-top-20">-->
+<!--                    <div class="col-sm-12">-->
+<!--                        <a href="#">-->
+<!--                            <i class="fa fa-facebook-square fa-2x blue-fb pull-left"></i>-->
+<!--                            <div>-->
+<!--                                Add us on Facebook to see what memes are trending!-->
+<!--                            </div>-->
+<!--                            <div class="clearfix"></div>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row margin-top-10">-->
+<!--                    <div class="col-sm-12">-->
+<!--                        <a href="#">-->
+<!--                            <i class="fa fa-twitter-square fa-2x blue-tt pull-left"></i>-->
+<!--                            <div>-->
+<!--                                Follow us on Twitter for all the best Memes!-->
+<!--                            </div>-->
+<!--                            <div class="clearfix"></div>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <hr/>-->
+<!--        <div class="row line-50">-->
+<!--            <div class="col-sm-8">-->
+<!--                <nav class="navbar navbar-default navbar-transparent">-->
+<!--                    <div class="container-fluid">-->
+<!--                        <div class="collapse navbar-collapse">-->
+<!--                            <ul class="nav navbar-nav">-->
+<!--                                <li>-->
+<!--                                    <a href="home.html">Home</a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a href="#">-->
+<!--                                        Account-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a href="#">-->
+<!--                                        Favorites-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a th:href="@{/cart}">-->
+<!--                                        Cart-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </nav>-->
+<!--            </div>-->
+<!--            <div class="col-sm-4 text-right">-->
+<!--                <strong>-->
+<!--                    Created by Fortuna eCommerce Developers-->
+<!--                </strong>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</footer>-->
+<!--<input type="hidden" id="isSized" value=""/>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="partials :: head" /></div>
@@ -6,182 +499,213 @@
 <nav th:replace="partials :: navbar" />
 
 <div class="container mt-4">
-    <div class="wrapper">
-    <div id="heading">
-        <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel" data-slide-to="1"></li>
-                <li data-target="#carousel" data-slide-to="2"></li>
-            </ol>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="/heading/fashion6.png" alt="Fashion">
-                    <div class="carousel-caption right">
-                        <h3>Material Design</h3>
-                        <p>
-                            The ultimate<br/>
-                            <strong>Shopping</strong>
-                            experience
-                        </p>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="/heading/fashion3.png" alt="Fashion">
-                    <div class="carousel-caption right">
-                        <h3>SUMMER SALES</h3>
-                        <p>
-                            Stand out styles from your favorites memes
-                        </p>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="/heading/fashion4.png" alt="Fashion">
-                    <div class="carousel-caption right">
-                        <h3>Crazy sales !</h3>
-                        <p>
-                            Shop from the best meme brand
-                        </p>
-                    </div>
-                </div>
-            </div>
+    <h1 style="text-align: center">Welcome to MemeTees!</h1><br>
+    <h1 style="text-align: center">Come buy yourself some fresh memes to wear!</h1><br>
+    <h4 style="text-align: center">(Or dank ones, we won't judge~)</h4><br><br>
+    <h1 style="text-align: center"><a href='/products/all'>See the full catalog!</a></h1>
 
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
 
-    <div class="main">
-        <ol class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li class="active">Shop</li>
-        </ol>
-        <div class="row">
-            <div class="col-sm-3 col-md-2">
-                <ul class="nav nav-pills nav-stacked" id="categories" data-spy="affix" data-offset-top="600">
-                    <li>
-                        <a href="/products/all" data-category="All">All<i class="fa fa-chevron-right pull-right"></i></a>
-                    </li>
-                    <li>
-                        <a href="products/t-shirts" data-category="T-shirt">T-shirts<i class="fa fa-chevron-right pull-right"></i></a>
-                    </li>
-                    <li>
-                        <a href="#" data-category="Pullovers">Pullovers<i class="fa fa-chevron-right pull-right"></i></a>
-                    </li>
-                    <li>
-                        <a href="#" data-category="Hats">Hats<i class="fa fa-chevron-right pull-right"></i></a>
-                    </li>
 
-                </ul>
-            </div>
 
-            <div class="col-sm-9 col-md-10">
-            <!--FEATURED CARDS-->
-                <div class="item-list">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="t-shirt">
-                            <div class="item" th:each="product : ${showProducts}">
-                                    <div class="picture">
-                                        <img src="/images/products/product7/item1.jpg" alt="item" />
-                                    </div>
-                                    <div class="category" th:text="${product.type}"></div>
-                                        <div class="title"><a th:href="@{'/products/'+${product.id}}"><h3 th:text="${product.name}"></h3></a></div>
-                                    <div class="description" th:text="${product.description}"></div>
-                                    <div class="actions">
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <div class="price" th:text="${product.price}"></div>
-                                            </div>
-                                            <div class="col-xs-6 text-right">
-                                                <i class="fa fa-cart-plus" data-toggle="tooltip" title="Add to cart"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Jean">
-                            <div class="item" th:each="product : ${showProducts}">
-                                <a href="item.html">
-                                    <div class="ribon-container">
-                                        <div class="ribon">
-                                            SALE !
-                                        </div>
-                                        <div class="ribon-arrow"></div>
-                                    </div>
-                                    <div class="picture">
-                                        <img src="/images/products/product11/item1.jpg" alt="item" />
-                                    </div>
-                                    <div class="category">Jean</div>
-                                    <div class="title">R Edition</div>
-                                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Mauris efficitur leo vel feugiat ullamcorper. Nulla suscipit a nunc nec congue.
-                                        Maecenas dignissim tempus est ut commodo. Suspendisse eget lorem efficitur,
-                                        blandit erat et, efficitur quam.
-                                    </div>
-                                    <div class="actions">
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <div class="price">
-                                                    $20.00
-                                                    <div class="refund">
-                                                        $20.00
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-6 text-right">
-                                                <i class="fa fa-cart-plus" data-toggle="tooltip"
-                                                   title="Add to cart"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-<!--END OF CARDS-->
-                <div class="row margin-top-30 text-center">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <li>
-                                <a href="#" aria-label="Previous" class="prev">
-                                    <span aria-hidden="true">
-                                        <i class="fa fa-chevron-left"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li><a href="/">1</a></li>
-                            <li class="active"><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li class="disabled">
-                                <a href="#" aria-label="Next" class="next">
-                                    <span aria-hidden="true">
-                                        <i class="fa fa-chevron-right"></i>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <footer th:replace="partials :: footer" />
 </body>
 </html>
+
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html xmlns:th="http://www.thymeleaf.org">&ndash;&gt;-->
+<!--&lt;!&ndash;<div th:replace="partials :: head" /></div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;<nav th:replace="partials :: navbar" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;<div class="container mt-4">&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="wrapper">&ndash;&gt;-->
+<!--&lt;!&ndash;    <div id="heading">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="6000">&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; Indicators &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <ol class="carousel-indicators">&ndash;&gt;-->
+<!--&lt;!&ndash;                <li data-target="#carousel" data-slide-to="0" class="active"></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li data-target="#carousel" data-slide-to="1"></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li data-target="#carousel" data-slide-to="2"></li>&ndash;&gt;-->
+<!--&lt;!&ndash;            </ol>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <h1 style="text-align: center">Welcome to MemeTees!</h1><br>&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1 style="text-align: center">Come buy yourself some fresh memes to wear!</h1><br>&ndash;&gt;-->
+<!--&lt;!&ndash;    <h4 style="text-align: center">(Or dank ones, we won't judge~)</h4><br><br>&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1 style="text-align: center"><a href='/products/all'>See the full catalog!</a></h1>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;=======&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; Wrapper for slides &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="carousel-inner" role="listbox">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="item active">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <img src="/heading/fashion6.png" alt="Fashion">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="carousel-caption right">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <h3>Material Design</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p>&ndash;&gt;-->
+<!--&lt;!&ndash;                            The ultimate<br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <strong>Shopping</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                            experience&ndash;&gt;-->
+<!--&lt;!&ndash;                        </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="item">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <img src="/heading/fashion3.png" alt="Fashion">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="carousel-caption right">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <h3>SUMMER SALES</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p>&ndash;&gt;-->
+<!--&lt;!&ndash;                            Stand out styles from your favorites memes&ndash;&gt;-->
+<!--&lt;!&ndash;                        </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="item">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <img src="/heading/fashion4.png" alt="Fashion">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="carousel-caption right">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <h3>Crazy sales !</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p>&ndash;&gt;-->
+<!--&lt;!&ndash;                            Shop from the best meme brand&ndash;&gt;-->
+<!--&lt;!&ndash;                        </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;&gt;>>>>>> origin&ndash;&gt;-->
+
+<!--&lt;!&ndash;            &lt;!&ndash; Controls &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">&ndash;&gt;-->
+<!--&lt;!&ndash;                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                <span class="sr-only">Previous</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="right carousel-control" href="#carousel" role="button" data-slide="next">&ndash;&gt;-->
+<!--&lt;!&ndash;                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                <span class="sr-only">Next</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <div class="main">&ndash;&gt;-->
+<!--&lt;!&ndash;        <ol class="breadcrumb">&ndash;&gt;-->
+<!--&lt;!&ndash;            <li><a href="index.html">Home</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li class="active">Shop</li>&ndash;&gt;-->
+<!--&lt;!&ndash;        </ol>&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="col-sm-3 col-md-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                <ul class="nav nav-pills nav-stacked" id="categories" data-spy="affix" data-offset-top="600">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a href="/products/all" data-category="All">All<i class="fa fa-chevron-right pull-right"></i></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a href="products/t-shirts" data-category="T-shirt">T-shirts<i class="fa fa-chevron-right pull-right"></i></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a href="#" data-category="Pullovers">Pullovers<i class="fa fa-chevron-right pull-right"></i></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a href="#" data-category="Hats">Hats<i class="fa fa-chevron-right pull-right"></i></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <div class="col-sm-9 col-md-10">&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash;FEATURED CARDS&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="item-list">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="t-shirt">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="item" th:each="product : ${showProducts}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="picture">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <img src="/images/products/product7/item1.jpg" alt="item" />&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="category" th:text="${product.type}"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div class="title"><a th:href="@{'/products/'+${product.id}}"><h3 th:text="${product.name}"></h3></a></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="description" th:text="${product.description}"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="actions">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="col-xs-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div class="price" th:text="${product.price}"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="col-xs-6 text-right">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <i class="fa fa-cart-plus" data-toggle="tooltip" title="Add to cart"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Jean">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="item" th:each="product : ${showProducts}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a href="item.html">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="ribon-container">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div class="ribon">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            SALE !&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div class="ribon-arrow"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="picture">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <img src="/images/products/product11/item1.jpg" alt="item" />&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="category">Jean</div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="title">R Edition</div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&ndash;&gt;-->
+<!--&lt;!&ndash;                                        Mauris efficitur leo vel feugiat ullamcorper. Nulla suscipit a nunc nec congue.&ndash;&gt;-->
+<!--&lt;!&ndash;                                        Maecenas dignissim tempus est ut commodo. Suspendisse eget lorem efficitur,&ndash;&gt;-->
+<!--&lt;!&ndash;                                        blandit erat et, efficitur quam.&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="actions">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="col-xs-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div class="price">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    $20.00&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <div class="refund">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        $20.00&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="col-xs-6 text-right">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <i class="fa fa-cart-plus" data-toggle="tooltip"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                   title="Add to cart"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash;END OF CARDS&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="row margin-top-30 text-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <nav aria-label="Page navigation">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <ul class="pagination">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a href="#" aria-label="Previous" class="prev">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span aria-hidden="true">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <i class="fa fa-chevron-left"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <li><a href="/">1</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <li class="active"><a href="#">2</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <li><a href="#">3</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <li><a href="#">4</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <li><a href="#">5</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <li class="disabled">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a href="#" aria-label="Next" class="next">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span aria-hidden="true">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <i class="fa fa-chevron-right"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </nav>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<footer th:replace="partials :: footer" />&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->

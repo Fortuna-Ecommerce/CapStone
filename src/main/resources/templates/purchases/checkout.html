@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="partials :: head" /></div>
+<head>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <title></title></head>
 
 <body>
 <nav th:replace="partials :: navbar" />
@@ -129,7 +133,7 @@
 </button>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel"
+<div class="modal" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -230,5 +234,6 @@
 <!--</form>-->
 
 <footer th:replace="partials :: footer" />
+<footer><script th:src="@{/js/custom.js}"></script></footer>
 </body>
 </html>
