@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:pth="http://www.w3.org/1999/html">
 <div th:replace="partials :: head" /></div>
+<head><title></title></head>
 <body>
 <nav th:replace="partials :: navbar" />
 <div class="container mt-4">
 
 
-    <img th:src="${'../'+product.productImage}" alt="The product's image">
+    <div id="image"><img th:src="${product.productImage}" alt="The product's image"></div>
     <form th:action="@{/addToCart}" th:method="post">
         <input type="hidden" name="productName" id="name" th:value="${product.name}">
         <input type="hidden" name="type" th:value="${product.type}">
@@ -40,17 +41,18 @@
     </select></label>
 
     <div th:if="${product.special} == true">
-        <input type="hidden" name="price" th:value="${salePrice}">
+        <input type="hidden" name="price" th:value="${salePrice}" id="priceGet1">
         <h3>On Sale Price (42% off!): <strike><span th:text="${'$'+product.price}"></span></strike> <span
-                th:text="${'$'+salePrice}"></span></h3></div>
-    <div th:unless="${product.special} == true"><h3>Price: $<span th:text="${product.price}"></span></h3>
-        <input type="hidden" name="price" th:value="${product.price}"></div>
+                th:text="${'$'+salePrice}" id="priceInput1"></span></h3></div>
+    <div th:unless="${product.special} == true"><h3>Price:
+        $<span th:text="${product.price}" id="priceInput2"></span></h3>
+        <input type="hidden" name="price" th:value="${product.price}" id="priceGet2"></div>
 
     <p style="" th:text="${product.description}"> </p>
     <p style="color:red" id="error" th:text="${error}"></p>
         <input type="hidden" th:name="cartAddId" th:value="${product.id}">
         <label>Quantity (Defaults to 1):
-            <input type="text" name="cartAddQuantity" value="1" id="amountOrdered" required>
+            <input type="text" name="cartAddQuantity" value="1" id="amountOrdered" required maxlength="4">
         </label>
         <div class="total"></div>
         <button class="btn-link btn text-white btn-secondary" id="addProduct">Add this item to your cart</button>
@@ -60,5 +62,6 @@
 
 
 <footer th:replace="partials :: footer" />
+<script type="text/javascript" src="/js/product.js"></script>
 </body>
 </html>

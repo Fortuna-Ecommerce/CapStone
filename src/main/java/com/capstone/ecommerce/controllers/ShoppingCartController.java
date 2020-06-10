@@ -84,13 +84,13 @@ public class ShoppingCartController {
 //            return "redirect:products/"+id;
         }
 
-//        if(quantity == null || quantity == 0){
-//            error = "Can't order nothing! Please put in a number!";
-//            redir.addFlashAttribute("error", error);
-//            model.addAttribute("product", currentProduct);
-//            model.addAttribute("products", products);
-//            return "redirect:products/"+currentProduct.getId();
-//        }
+        if(quantity == null || quantity == 0){
+            error = "Can't order nothing! Please put in a number!";
+            redir.addFlashAttribute("error", error);
+            model.addAttribute("product", currentProduct);
+            model.addAttribute("products", products);
+            return "redirect:products/"+id;
+        }
 //
 //
 //
