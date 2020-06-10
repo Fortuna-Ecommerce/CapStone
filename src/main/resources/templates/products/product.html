@@ -4,10 +4,13 @@
 <head><title></title></head>
 <body>
 <nav th:replace="partials :: navbar" />
-<div class="container mt-4">
+<div class="container" id="productContainer">
 
 
-    <div id="image"><img th:src="${product.productImage}" alt="The product's image"></div>
+    <div id="image" class="productImg mr-5"><img th:src="${product.productImage}" alt="The product's image"
+    height="500px"
+                                            width="500px"></div>
+    <div class="ml-5">
     <form th:action="@{/addToCart}" th:method="post">
         <input type="hidden" name="productName" id="name" th:value="${product.name}">
         <input type="hidden" name="type" th:value="${product.type}">
@@ -57,7 +60,7 @@
         <div class="total"></div>
         <button class="btn-link btn text-white btn-secondary" id="addProduct">Add this item to your cart</button>
     </form>
-
+    </div>
 </div>
 
 

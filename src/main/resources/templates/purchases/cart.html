@@ -31,13 +31,14 @@
         </thead>
         <tbody>
         <tr th:if="${products.size()==0}">
-            <td colspan="4">There's nothing in your cart right now!</td>
+            <td colspan="4" style="color: orangered">There's nothing in your cart right now!</td>
         </tr>
         <div class="container" style="text-align: center" th:unless="${products.size()==0}">
             <tr th:each="product : ${products}">
-                <td><a th:href="@{'/products/'+${product.productImage}}"></a></td>
+                <td class="cartImage"><img th:src="${product.productImage}" alt="The product's image" height="150px"
+                                           width="150px"></td>
                 <td th:text="${product.name}" ></td>
-                <td> <input type="text" th:value="${product.quantity}"></td>
+                <td th:text="${product.quantity}"></td>
                 <td th:text="${product.price}"></td>
                 <td> <form th:action="@{/deleteFromCart}" th:method="post">
                     <input type="hidden" name="cartDeleteId" th:value="${product.id}">

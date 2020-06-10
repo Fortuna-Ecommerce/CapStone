@@ -3,8 +3,11 @@ package com.capstone.ecommerce.controllers;
 import com.capstone.ecommerce.model.Categories;
 import com.capstone.ecommerce.model.Product;
 import com.capstone.ecommerce.model.ShoppingCart;
+import com.capstone.ecommerce.model.User;
 import com.capstone.ecommerce.repositories.ProductRepository;
+import com.capstone.ecommerce.repositories.UserRepository;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,39 +20,15 @@ import java.util.List;
 @Controller
 @SessionAttributes({"products", "category", "user"})
 public class ProductsController {
-
+    private UserRepository userRepo;
     private ProductRepository productRepo;
-    private ProductRepository imagesRepo;
 
     //  CONSTRUCTOR
-    public ProductsController(ProductRepository productRepo, ProductRepository imagesRepo) {
+    public ProductsController(ProductRepository productRepo, UserRepository userRepo) {
         this.productRepo = productRepo;
-        this.imagesRepo = imagesRepo;
+        this.userRepo = userRepo;
     }
 
-    public void seedProducts() {
-        Product product1 = new Product("Rage meme", "5DADE2", "XL", "Shirt", 22.22, "Angry guy melting down",
-                false,
-                (long) 5);
-        Product product2 = new Product("Pepe punch", "95A5A6", "L", "Shirt", 28.22, "Frog person threatening pose", false,
-                (long) 23);
-        Product product3 = new Product("Pepe sad", "8E44AD", "XL", "Hoodie", 35.78, "Frog person very down", true, (long) 1000);
-        Product product4 = new Product("NPC face", "E74C3C", "OSFM", "Hat", 15.99, "Fellow with straight line mouth and " +
-                "angly " +
-                "eyebrows", false, (long) 9);
-        Product product5 = new Product("Rage meme", "FDFEFE", "S", "Hoodie", 35.99, "Angry guy melting down", false, (long) 0);
-        productRepo.save(product1);
-        productRepo.save(product2);
-        productRepo.save(product3);
-        productRepo.save(product4);
-        productRepo.save(product5);
-        List<Product> products = new ArrayList<>();
-        products.add(product1);
-        products.add(product2);
-        products.add(product3);
-        products.add(product4);
-        products.add(product5);
-    }
 
     @GetMapping("/products/all")
     public String productsIndex(Model model) {
@@ -63,6 +42,15 @@ public class ProductsController {
         }
         List<Product> allProducts = productRepo.findAll();
         model.addAttribute("showProducts", allProducts);
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            User user = new User();
+            model.addAttribute("user", user);
+            return "products/products";
+        }
+        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User testShopper = this.userRepo.getOne(shopper.getId());
+        model.addAttribute("user", testShopper);
+
         return "products/products";
     }
 
@@ -191,15 +179,21 @@ public class ProductsController {
     @PostMapping("/products/search")
     public String searchProduct(@RequestParam(name = "keyword") String keyword,
                                 Model model,
-                                @ModelAttribute("category") String category,
                                 RedirectAttributes redirectAttributes) {
         List<Product> chosenProducts = new ArrayList<>();
-        if (category.equals("")) {
             chosenProducts = productRepo.findByNameContaining(keyword);
-        } else {
-            chosenProducts = productRepo.findByCategoriesContainingaAndNameContaining(category, keyword);
-        }
+//        LinkedHashSet<Product> theChosen = new LinkedHashSet<>(chosenProducts);
+//        chosenProducts.clear();
+//        chosenProducts.addAll(theChosen);
         redirectAttributes.addFlashAttribute("showProducts", chosenProducts);
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            User user = new User();
+            redirectAttributes.addFlashAttribute("user", user);
+            return "redirect:search";
+        }
+        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User testShopper = this.userRepo.getOne(shopper.getId());
+        redirectAttributes.addFlashAttribute("user", testShopper);
         return "redirect:search";
     }
 
@@ -207,6 +201,14 @@ public class ProductsController {
     public String searchProductLander(Model model,
                                       @ModelAttribute("showProducts") ArrayList<Product> showProducts) {
         model.addAttribute("showProducts", showProducts);
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            User user = new User();
+            model.addAttribute("user", user);
+            return "products/products";
+        }
+        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User testShopper = this.userRepo.getOne(shopper.getId());
+        model.addAttribute("user", testShopper);
         return "products/products";
     }
 

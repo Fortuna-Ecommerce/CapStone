@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="partials :: head" /></div>
+<head><title></title><link th:href="@{/css/uploadstyle.css}" rel="stylesheet"></head>
 <body>
 <nav th:replace="partials :: navbar" />
 <div class="container mt-4">
-    <div id="globalAlertArea">
-        <div id="globalAlert" style="color:black" class="alert alert-dismissible fade show" role="alert">
-            <div id="globalAlertContent"></div>
-<!--            <button id="globalAlertDismissButton" type="button" class="close" data-dismiss="alert" aria-label="Close">-->
-<!--                <span aria-hidden="true">&times;</span>-->
-<!--            </button>-->
-        </div>
-    </div>
+
+    <img th:src="${image.getPath()}" alt="Test Picture">
+
     <h1>Product Inventory</h1>
     <table class="table table-hover">
         <thead>
@@ -23,24 +19,39 @@
             <th scope="col">Type</th>
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
+            <th scope="col">Upload</th>
             <th scope="col">Image</th>
-            <th scope="col">Operations</th>
 
         </tr>
         </thead>
         <tbody>
         <tr th:each="product : ${allProducts}">
-            <td th:id="'productListID'+${product.getId()}" th:text="${product.getId()}"></td>
-            <td th:id="'productListName'+${product.getId()}" th:text="${product.name}"></td>
-            <td th:id="'productListColor'+${product.getId()}" th:text="${product.getColor()}"></td>
-            <td th:id="'productListSize'+${product.getId()}" th:text="${product.getSize()}"></td>
-            <td th:id="'productListType'+${product.getId()}" th:text="${product.getType()}"></td>
-            <td th:id="'productListPrice'+${product.getId()}" th:text="${product.getPrice()}"></td>
-            <td th:id="'productListQuantity'+${product.getId()}" th:text="${product.getQuantity()}"></td>
-            <td th:id="'productListImage'+${product.getId()}"><img th:id="'productListImageImage'+${product.getId()}" th:src="@{/img/${product.getImage()}}"/></td>
-            <td><button th:id="'editButton'+${product.id}" th:data-id="${product.id}" type="button" class="btn btn-primary editButton">Edit</button>
-                <a th:href="@{'/productsInventory/delete/'+${product.id}}" class="btn btn-primary">Delete</a>
-            </td>
+            <td th:text="${product.getId()}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.getColor()}"></td>
+            <td th:text="${product.getSize()}"></td>
+            <td th:text="${product.getType()}"></td>
+            <td th:text="${product.getPrice()}"></td>
+            <td th:text="${product.getQuantity()}"></td>
+            <td><img th:src="@{/img/${product.getImage().getPath()}}"/></td>
+<!--            <td><form th:action="@{/productInventory/delete}" th:method="POST" class="text-right">-->
+<!--                <input type="hidden" th:name="deleteId" th:value="${product.id}">-->
+<!--                <button class="btn btn-primary">Delete</button>-->
+<!--            </form></td>-->
+            <div class="upload-content">
+                <div class="single-upload">
+                    <h3>Upload Single File</h3>
+                    <form id="singleUploadForm" name="singleUploadForm" th:action="@{/uploadFile}" th:method="post" enctype="multipart/form-data">-->
+                        <input id="file" type="file" name="file" class="file-input" required />
+                        <button type="submit"
+                                class="primary submit-btn" id="buttonSubmit">Submit
+                        </button>
+                    </form>
+                </div>
+<!--            <td><button th:id="fs-upload" type="button" class="btn btn-primary">Upload</button></td>-->
+<!--            <td><img th:src="@{${product.getImage()}}" alt="image"></td>-->
+            <td><a th:href="@{'/productsInventory/edit/'+${product.id}}" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Edit</a></td>
+            <td><a th:href="@{'/productsInventory/delete/'+${product.id}}" class="btn btn-primary">Delete</a></td>
         </tr>
         </tbody>
     </table>
@@ -114,74 +125,48 @@
     </div>
     <br>
     <!--Edit Modal -->
-    <div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div id="editModalAlertArea">
-            <div id="editModalAlert" class="alert alert-dismissible fade show" role="alert">
-                <div id="editModalAlertContent"></div>
-<!--                <button id="editAlertDismissButton" type="button" class="close" data-dismiss="alert" aria-label="Close">-->
-<!--                    <span aria-hidden="true">&times;</span>-->
-<!--                </button>-->
-            </div>
-        </div>
+    <div class="modal" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Edit product</h5>
-                    <button id="editModalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form th:method="post" th:action="'javascript:void(0);'">
+                    <form th:method="post" th:action="@{/productsInventory/edit/${product.id}}">
                         <div class="form-group">
                             <label for="editName">Product Name</label>
-                            <input type="text" class="form-control" id="editName" aria-describedby="editName" name="name" >
+                            <input type="text" class="form-control" id="editName" aria-describedby="editName" name="name">
                         </div>
 
                         <div class="form-group">
                             <label for="editColor">Product Color</label>
-                            <input type="text" class="form-control" id="editColor" aria-describedby="editColor" name="color" >
+                            <input type="text" class="form-control" id="editColor" aria-describedby="editColor" name="color">
                         </div>
 
                         <div class="form-group">
                             <label for="editSize">Product Size</label>
-                            <input type="text" class="form-control" id="editSize" aria-describedby="editSize" name="size" >
+                            <input type="text" class="form-control" id="editSize" aria-describedby="editQuantity" name="size">
                         </div>
 
                         <div class="form-group">
                             <label for="editType">Product Type</label>
-                            <input type="text" class="form-control" id="editType" aria-describedby="editType" name="type" >
+                            <input type="text" class="form-control" id="editType" aria-describedby="editType" name="type">
                         </div>
 
                         <div class="form-group">
                             <label for="editPrice">Product Price</label>
-                            <input type="text" class="form-control" id="editPrice" aria-describedby="editPrice" name="price" >
+                            <input type="text" class="form-control" id="editPrice" aria-describedby="editPrice" name="price">
                         </div>
 
                         <div class="form-group">
-                            <label for="editQuantity">Product Quantity</label>
-                            <input type="text" class="form-control" id="editQuantity" aria-describedby="editQuantity" name="quantity" >
+                            <label for="editQuan">Product Quantity</label>
+                            <input type="text" class="form-control" id="editQuan" aria-describedby="editQuan" name="quan">
                         </div>
 
-                        <div class="form-group">
-                            <label for="editDescription">Product Description</label>
-                            <input type="text" class="form-control" id="editDescription" aria-describedby="editDescription" name="description" >
-                        </div>
-
-                        <div class="form-group">
-                            <label for="editOnSpecial">Product On Special</label>
-                            <input type="checkbox" class="form-control" id="editOnSpecial" aria-describedby="editOnSpecial" name="quantity" >
-                        </div>
-
-                        <div id="editID" hidden="true" disabled="true"></div>
-                        <div id="editCategories" hidden="true" disabled="true"></div>
-                        <div id="editImage" hidden="true" disabled="true"></div>
-                        <div id="editSaveButtonSection">
-                            <button id="editSaveButton" hidden="false" type="button" class="btn btn-primary">Save</button>
-                            <div id="editSaveButtonSpinner" hidden="true" class="spinner-border text-primary" role="status">
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </form>
                 </div>
             </div>
@@ -189,7 +174,7 @@
 
     </div>
 </div>
-<footer th:replace="partials :: footer" />
-<script th:src="@{/js/productInventory.js}"></script>
+
+<footer th:replace="partials :: footer"></footer>
 </body>
 </html>

@@ -11,13 +11,11 @@
 
 <!--        <h1 style="text-align: center">Hello <span th:text="${user.username}"></span>!</h1><br>-->
 
-
+        <div style="text-align: center" th:if="${user.getAdmin() != null}">
         <div style="text-align: center;" th:if="${user.getAdmin() == true}">
-            <!--                <form th:action="@{/admin}" th:method="get">-->
-            <!--                    <button class="btn-link btn text-white btn-secondary text-center">Admin Portal</button>-->
-            <!--                </form>-->
             <h1 style="text-align: center"><a href='/products/productInventory'>Check on the Inventory</a></h1>
             <h1 style="text-align: center"><a href='/transactions'>Check on Transactions</a></h1></div>
+        </div>
 <!--        <div style="text-align: center;" th:if="${user.getAdmin() == true}">-->
 <!--&lt;!&ndash;                <form th:action="@{/admin}" th:method="get">&ndash;&gt;-->
 <!--&lt;!&ndash;                    <button class="btn-link btn text-white btn-secondary text-center">Admin Portal</button>&ndash;&gt;-->
