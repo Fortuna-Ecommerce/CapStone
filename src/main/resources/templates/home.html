@@ -17,7 +17,7 @@
                     <div class="caption">
                         <h1 class="c-title">Spring Collection 2020</h1>
                         <p class="c-title">Lorem ipsum dummy text goes here.</p>
-                        <a class="c-title" href="/products/all">Shop Now</a>
+                        <a class="c-button" href="/products/all">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                     <div class="caption">
                         <h1 class="c-title">Summer Collection 2020</h1>
                         <p class="c-title">Lorem ipsum dummy text goes here.</p>
-                        <a class="c-title" href="/products/all">Shop Now</a>
+                        <a class="c-button" href="/products/all">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                     <div class="caption">
                         <h1 class="c-title">Fall Collection 2020</h1>
                         <p class="c-title">Lorem ipsum dummy text goes here.</p>
-                        <a class="c-title" href="/products/all">Shop Now</a>
+                        <a class="c-title c-button" href="/products/all">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -58,99 +58,105 @@
 
 <!--Start of card-->
 <div class="col-12 col-md-4 card-grid">
-    <div class="card p-3 mb-5 bg-white rounded" id="card3" th:each="product : ${product3}">
+    <div class="card p-3 mb-5 bg-white rounded h-100" id="card3" th:each="product : ${product3}">
         <div class="embed-responsive embed-responsive-4by3">
             <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
         </div>
         <div class="card-body">
             <h5 class="card-title" th:text="${product3.name}">Rover</h5>
+            <p th:text="${product3.price}"></p>
             <a href="#" class="btn btn-primary">Add to Cart</a>
         </div>
     </div>
 
-    <div class="card p-3 mb-5 bg-white rounded" id="card4" th:each="product : ${product4}">
+    <div class="card p-3 mb-5 bg-white rounded h-100" id="card4" th:each="product : ${product4}">
         <div class="embed-responsive embed-responsive-4by3">
             <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
         </div>
         <div class="card-body">
             <h5 class="card-title" th:text="${product4.name}">Rover</h5>
+            <p th:text="${product4.price}"></p>
             <a href="#" class="btn btn-primary">Add to Cart</a>
         </div>
     </div>
 
-    <div class="card p-3 mb-5 bg-white rounded" id="card5" th:each="product : ${product5}">
+    <div class="card p-3 mb-5 bg-white rounded h-100" id="card5" th:each="product : ${product5}">
         <div class="embed-responsive embed-responsive-4by3">
             <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
         </div>
         <div class="card-body">
             <h5 class="card-title" th:text="${product5.name}">Rover</h5>
+            <p th:text="${product5.price}"></p>
             <a href="#" class="btn btn-primary">Add to Cart</a>
         </div>
     </div>
 
-    <div class="card p-3 mb-5 bg-white rounded" id="card6" th:each="product : ${product6}">
+    <div class="card p-3 mb-5 bg-white rounded h-100" id="card6" th:each="product : ${product6}">
         <div class="embed-responsive embed-responsive-4by3">
             <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
         </div>
         <div class="card-body">
             <h5 class="card-title" th:text="${product6.name}">Rover</h5>
+            <p th:text="${product7.price}"></p>
             <a href="#" class="btn btn-primary">Add to Cart</a>
         </div>
     </div>
 
-    <div class="card p-3 mb-5 bg-white rounded" id="card7" th:each="product : ${product7}">
+    <div class="card p-3 mb-5 bg-white rounded h-100" id="card7" th:each="product : ${product7}">
         <div class="embed-responsive embed-responsive-4by3">
             <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
         </div>
         <div class="card-body">
             <h5 class="card-title" th:text="${product7.name}">Rover</h5>
+            <p th:text="${product7.price}"></p>
             <a href="#" class="btn btn-primary">Add to Cart</a>
         </div>
     </div>
-    <div class="card p-3 mb-5 bg-white rounded" id="card8" th:each="product : ${product8}">
+    <div class="card p-3 mb-5 bg-white rounded h-100" id="card8" th:each="product : ${product8}">
         <div class="embed-responsive embed-responsive-4by3">
             <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
         </div>
         <div class="card-body">
             <h5 class="card-title" th:text="${product8.name}">Rover</h5>
+            <p th:text="${product8.price}"></p>
             <a href="#" class="btn btn-primary">Add to Cart</a>
         </div>
     </div>
 
-    <div class="card p-3 mb-5 bg-white rounded" id="card9" th:each="product : ${product9}">
+    <div class="card p-3 mb-5 bg-white rounded h-100" id="card9" th:each="product : ${product9}">
         <div class="embed-responsive embed-responsive-4by3">
             <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
         </div>
         <div class="card-body">
             <h5 class="card-title" th:text="${product9.name}">Rover</h5>
+            <p th:text="${product9.price}"></p>
             <a href="#" class="btn btn-primary">Add to Cart</a>
         </div>
     </div>
 
-    <div class="card p-3 mb-5 bg-white rounded" id="card10" th:each="product : ${product10}">
+    <div class="card p-3 mb-5 bg-white rounded h-100" id="card10" th:each="product : ${product10}">
         <div class="embed-responsive embed-responsive-4by3">
             <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
         </div>
         <div class="card-body">
             <h5 class="card-title" th:text="${product10.name}">Rover</h5>
+            <p th:text="${product10.price}"></p>
             <a href="#" class="btn btn-primary">Add to Cart</a>
         </div>
     </div>
 
-    <div class="card p-3 mb-5 bg-white rounded" id="card11" th:each="product : ${product11}">
+    <div class="card p-3 mb-5 bg-white rounded h-100" id="card11" th:each="product : ${product11}">
         <div class="embed-responsive embed-responsive-4by3">
             <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
         </div>
         <div class="card-body">
             <h5 class="card-title" th:text="${product11.name}">Rover</h5>
+            <p th:text="${product11.price}"></p>
             <a href="#" class="btn btn-primary">Add to Cart</a>
-        </div>
-        </div>
         </div>
     </div>
 
 </div>
-
 <!--End of card-->
 
 
