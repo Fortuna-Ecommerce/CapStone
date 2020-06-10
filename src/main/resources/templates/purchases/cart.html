@@ -20,41 +20,41 @@
 <div class="container mt-4" layout:fragment="content">
     <table class="table table-bordered table-striped">
         <thead>
-        <tr>
-            <td>Preview</td>
-            <td>Name</td>
-            <td>Price</td>
-            <td>Quantity</td>
-
-
-        </tr>
+            <tr>
+<!--                <th>Preview</th>-->
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Operation</th>
+            </tr>
         </thead>
         <tbody>
         <tr th:if="${products.size()==0}">
             <td colspan="4" style="color: orangered">There's nothing in your cart right now!</td>
         </tr>
-        <div class="container" style="text-align: center" th:unless="${products.size()==0}">
+        <th:block th:unless="${products.size()==0}">
             <tr th:each="product : ${products}">
-                <td class="cartImage"><img th:src="${product.productImage}" alt="The product's image" height="150px"
-                                           width="150px"></td>
-                <td th:text="${product.name}" ></td>
+<!--                <td>Preview coming soon!</td>-->
+                <td th:text="${product.name}"></td>
+                <td th:text="${#numbers.formatDecimal(product.price,0,'COMMA',2,'POINT')}"></td>
                 <td th:text="${product.quantity}"></td>
-                <td th:text="${product.price}"></td>
                 <td> <form th:action="@{/deleteFromCart}" th:method="post">
                     <input type="hidden" name="cartDeleteId" th:value="${product.id}">
                     <button class="btn-link btn text-white btn-secondary">Delete item</button>
                 </form></td>
             </tr>
-        </div>
+        </th:block>
+
         </tbody>
     </table>
+    <div style="text-align: center"><h3>Total: $<span th:text="${total}" style="color: green"></span></h3></div>
     <div style="text-align: center">
         <form th:action="@{/products/all}" th:method="get">
             <button class="btn-link btn text-white btn-secondary">Continue shopping</button>
         </form>
         <br>
         <form th:action="@{/baddress}" th:method="get">
-            <button class="btn-link btn text-white btn-secondary">Checkout</button>
+            <button class="btn-link btn text-white btn-secondary">Start checkout</button>
         </form>
     </div>
     <footer th:replace="partials :: footer"/>

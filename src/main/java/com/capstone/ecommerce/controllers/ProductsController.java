@@ -157,6 +157,10 @@ public class ProductsController {
 
     @GetMapping("/products/{id}")
     public String singleProduct(Model model, @PathVariable long id) {
+        if (model.getAttribute("products") == null) {
+            ShoppingCart blankProducts = new ShoppingCart();
+            model.addAttribute("products", blankProducts);
+        }
         double salePrice = 0;
         Product aProduct = productRepo.getOne(id);
         model.addAttribute("product", aProduct);

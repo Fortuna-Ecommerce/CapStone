@@ -61,11 +61,12 @@ public class ShoppingCartController {
             @RequestParam("price") String price,
             @RequestParam("type") String type,
             RedirectAttributes redir) {
-        Product newProduct = new Product();
+        System.out.println("Incoming name:"+name);
         double setPrice = Double.parseDouble(price);
         String error = "";
-        Product currentProduct = this.productRepo.findByNameAndSizeAndColor(name, size, color);
-        if(currentProduct == null){
+        Product currentProduct = new Product();
+        Product newProduct = new Product();
+        if(this.productRepo.findByNameAndSizeAndColor(name, size, color) == null){
             Product tempProduct = new Product();
            tempProduct.setColor(color);
             tempProduct.setName(name);
@@ -77,11 +78,15 @@ public class ShoppingCartController {
             tempProduct.setPrice(setPrice);
             this.productRepo.save(tempProduct);
            newProduct = this.productRepo.findByNameAndSizeAndColor(name, size, color);
+           newProduct.setName(name);
+            System.out.println(newProduct.getName());
 //            error = "Sorry, out of stock on that!";
 //            redir.addFlashAttribute("error", error);
 ////            model.addAttribute("product", this.productRepo.findById(id));
 //            model.addAttribute("products", products);
 //            return "redirect:products/"+id;
+        } else {
+            currentProduct = this.productRepo.findByNameAndSizeAndColor(name, size, color);
         }
 
 //        if(quantity == null || quantity == 0){
@@ -113,11 +118,12 @@ public class ShoppingCartController {
             addProduct.setPrice(quantity * setPrice);
         }
         if (products.size() > 0) {
-            System.out.println(found);
             for (Product product : products) {
                 if (product.getId() == addProduct.getId()) {
                     product.setQuantity(quantity + product.getQuantity());
-                    product.setPrice(((setPrice * product.getQuantity()) * 100) / 100);
+                    double settingPrice = Math.round((setPrice * product.getQuantity()) * 100) / 100;
+                    product.setPrice(settingPrice);
+                    product.setName(product.getName());
                     found = true;
                     break;
                 }
@@ -132,6 +138,7 @@ public class ShoppingCartController {
 
         for (Product product : products) {
             total = total + product.getPrice();
+            System.out.println(product.getName());
         }
 
         List<Product> originals = comparison(products);

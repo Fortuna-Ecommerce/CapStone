@@ -4,48 +4,48 @@
     var URL_SAVE_PRODUCT="/productsaveedit";
     $(document).ready(function(){
         initPage();
-    })
+    });
     var initPage=function(){
-        $("#editSaveButton").prop("hidden",false)
+        $("#editSaveButton").prop("hidden",false);
         $("#editSaveButtonSpinner").prop("hidden",true);
         $('.editButton').on('click', function(){
             let id=$(this).data('id');
             editProductProperties(id);
-        })
+        });
         $(".alert").prop("hidden",true);
 
-    }
+    };
 
     var showAlert=function(scope, criticality, alertText){
-        let selector="#editModalAlertContent"
-        if(scope==="edit"){
-            selector="#editModalAlert";
-        }
-        else if(scope==="global"){
-            selector="#globalAlert";
-        }
-        else{}
-        $(selector).prop("hidden",true);
-        if(criticality==="error"){
-            $(selector).addClass("alert-danger");
-        }
-        else if(criticality==="warning"){
-            $(selector).addClass("alert-warning");
-        }
-        else if(criticality==="success"){
-            $(selector).addClass("alert-success");
-        }
-        else{
-            $(selector).addClass("alert-primary");
-        }
-        $(selector+"Content").text(alertText);
-        $(selector).prop("hidden",false);
-        $(selector).fadeTo(2000, 500).slideUp(500, function(){
-            $(selector).slideUp(500);
-        });
+        // let selector="#editModalAlertContent"
+        // if(scope==="edit"){
+        //     selector="#editModalAlert";
+        // }
+        // else if(scope==="global"){
+        //     selector="#globalAlert";
+        // }
+        // else{}
+        // $(selector).prop("hidden",true);
+        // if(criticality==="error"){
+        //     $(selector).addClass("alert-danger");
+        // }
+        // else if(criticality==="warning"){
+        //     $(selector).addClass("alert-warning");
+        // }
+        // else if(criticality==="success"){
+        //     $(selector).addClass("alert-success");
+        // }
+        // else{
+        //     $(selector).addClass("alert-primary");
+        // }
+        // $(selector+"Content").text(alertText);
+        // $(selector).prop("hidden",false);
+        // $(selector).fadeTo(2000, 500).slideUp(500, function(){
+        //     $(selector).slideUp(500);
+        // });
         console.log(alertText);
 
-    }
+    };
 
     var setProductProperties=function(product){
         try{
@@ -62,10 +62,10 @@
         catch(e){
             showAlert("edit","error", "Failed to update product properties.");
         }
-    }
+    };
 
     var editProductProperties=function(id){
-        $("#editSaveButton").prop("hidden",false)
+        $("#editSaveButton").prop("hidden",false);
         $("#editSaveButtonSpinner").prop("hidden",true);
         if(id!='' && (Number.isSafeInteger(Number(id)))){
             $.get(URL_PRODUCTAPI_BASE+URL_GET_PRODUCT+"/"+id)
@@ -124,7 +124,7 @@
 
     var saveProductPropertyEdits=function(productID){
         let product={};
-        $("#editSaveButton").prop("hidden",true)
+        $("#editSaveButton").prop("hidden",true);
         $("#editSaveButtonSpinner").prop("hidden",false);
         try{
             product['id']=$("#editID").val();
@@ -151,12 +151,12 @@
             setProductProperties(data);
             showAlert("global","success","Successfully Edited Product "+data.name);
             $("#editModalClose").click();
-            $("#editSaveButton").prop("hidden",true)
+            $("#editSaveButton").prop("hidden",true);
             $("#editSaveButtonSpinner").prop("hidden",false);
         })
         .fail(function(data){
             showAlert("edit","error", "Failed to Edit Product.");
-            $("#editSaveButton").prop("hidden",true)
+            $("#editSaveButton").prop("hidden",true);
             $("#editSaveButtonSpinner").prop("hidden",false);
         });
     }

@@ -45,10 +45,12 @@
 
     <div th:if="${product.special} == true">
         <input type="hidden" name="price" th:value="${salePrice}" id="priceGet1">
-        <h3>On Sale Price (42% off!): <strike><span th:text="${'$'+product.price}"></span></strike> <span
+        <input type="hidden" name="priceOriginal" th:value="${product.price}" id="priceGet3">
+        <h3>On Sale Price (42% off!): <strike><span th:text="${'$'+product.price}" id="priceInput3"></span></strike>
+            <span
                 th:text="${'$'+salePrice}" id="priceInput1"></span></h3></div>
     <div th:unless="${product.special} == true"><h3>Price:
-        $<span th:text="${product.price}" id="priceInput2"></span></h3>
+        <span th:text="${product.price}" id="priceInput2"></span></h3>
         <input type="hidden" name="price" th:value="${product.price}" id="priceGet2"></div>
 
     <p style="" th:text="${product.description}"> </p>
