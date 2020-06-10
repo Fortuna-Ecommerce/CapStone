@@ -1,12 +1,81 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="partials :: head"></div>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link th:href='@{http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900}' rel='stylesheet' type='text/css'>
+    <link rel="icon" th:href="@{/images/favicon.png}">
+    <!--    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css"/>-->
+    <link th:href="@{/css/app-blue.css}" rel="stylesheet" type="text/css"/>
+    <!--    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>-->
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+<!--    <link th:href="@{/css/transactiontable.css}" rel="stylesheet" type="text/css">-->
+    <title>Transactions History</title>
+</head>
+
 <body>
 <nav th:replace="partials :: navbar" />
-<div class="container mt-4">
+<div class="table-responsive" layout:fragment="content">
 
-    <h1>Transaction history</h1>
-    <table class="table table-hover transactionTable">
+
+<!--    <div class="container mt-4">-->
+
+<!--        <h1 style="text-align: center;">Current Cart</h1>-->
+<!--        <br>-->
+
+<!--        <br>-->
+<!--    </div>-->
+
+<!--    <div class="container mt-4" layout:fragment="content">-->
+<!--        <table class="table table-bordered table-striped">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <td>Preview</td>-->
+<!--                <td>Name</td>-->
+<!--                <td>Price</td>-->
+<!--                <td>Quantity</td>-->
+
+
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:if="${products.size()==0}">-->
+<!--                <td colspan="4" style="color: orangered">There's nothing in your cart right now!</td>-->
+<!--            </tr>-->
+<!--            <div class="container" style="text-align: center" th:unless="${products.size()==0}">-->
+<!--                <tr th:each="product : ${products}">-->
+<!--                    <td><img th:src="${product.productImage}" alt="The product's image" height="150px" width="150px" class="cartImage"></td>-->
+<!--                    <td th:text="${product.name}"></td>-->
+<!--                    <td th:text="${product.quantity}"></td>-->
+<!--                    <td th:text="${product.price}"></td>-->
+<!--                    <td> <form th:action="@{/deleteFromCart}" th:method="post">-->
+<!--                        <input type="hidden" name="cartDeleteId" th:value="${product.id}">-->
+<!--                        <button class="btn-link btn text-white btn-secondary">Delete item</button>-->
+<!--                    </form></td>-->
+<!--                </tr>-->
+<!--            </div>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--        <div style="text-align: center">-->
+<!--            <form th:action="@{/products/all}" th:method="get">-->
+<!--                <button class="btn-link btn text-white btn-secondary">Return to the product listings</button>-->
+<!--            </form>-->
+<!--    -->
+
+
+
+    <h1 style="text-align: center">Transaction History</h1>
+    <table class="table table-hover table-bordered table-striped">
         <thead>
         <tr>
             <th scope="col">Transaciton ID</th>
