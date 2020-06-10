@@ -269,9 +269,14 @@ body{
 }
 
 #card9 {
-    grid-area: 16/3/21/8;
+    grid-area: 16/3/22/8;
 }
 
 #card10 {
     grid-area: 16/10/22/15;
 }
+
+#card11 {
+    grid-area: 16/17/22/22;
+}
+
