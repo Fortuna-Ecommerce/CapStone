@@ -9,6 +9,7 @@
     <img th:src="${product.productImage}" alt="The product's image">
     <form th:action="@{/addToCart}" th:method="post">
         <input type="hidden" name="productName" id="name" th:value="${product.name}">
+        <input type="hidden" name="type" th:value="${product.type}">
         <input type="hidden" name="productId" th:value="${product.id}">
     <h1 style="font-weight: bold" th:text="${product.name}"></h1>
     <h3>Type: <span th:text="${product.type}"></span></h3>

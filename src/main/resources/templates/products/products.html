@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<div th:replace="partials :: head"></div>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 <body>
 <nav th:replace="partials :: navbar"></nav>
@@ -8,19 +12,46 @@
 
 
 
-<h1 style="text-align: center">All of the greatest internet pictures and text on fancy clothes!</h1><br>
-    <div style="text-align: center">
-        <div th:each="product : ${showProducts}">
-            <a th:href="@{'/products/'+${product.id}}"><h1 style="font-weight: bold" th:text="${product.name}">
-            <img th:src="@{${product.image}}" alt="image" src="">
-            </h1></a>
-            <p style="font-weight:bold" th:text="${product.type}"></p>
-            <p th:text="${product.description}"> </p>
-            <br>
-        </div>
-    </div>
+<!--<h1 style="text-align: center">All of the greatest internet pictures and text on fancy clothes!</h1><br>-->
+<!--    <div style="text-align: center">-->
+<!--        <div th:each="product : ${showProducts}">-->
+<!--            <a th:href="@{'/products/'+${product.id}}"><h1 style="font-weight: bold" th:text="${product.name}">-->
+<!--            <img th:src="@{${product.image}}" alt="image" src="">-->
+<!--            </h1></a>-->
+<!--            <p style="font-weight:bold" th:text="${product.type}"></p>-->
+<!--            <p th:text="${product.description}"> </p>-->
+<!--            <br>-->
+<!--        </div>-->
+<!--    </div>-->
 
-<footer th:replace="partials :: footer"></footer>
-</body>
-</html>
+<!--Start of card-->
+<!--<div class="col-12 col-md-4">-->
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded">-->
+
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="../static/images/jeremyHeadshot.jpeg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title">Jeremy Telhiard</h5>-->
+<!--            <p class="card-text">Jeremy's bio here</p>-->
+<!--            <a href="#" class="btn btn-primary">Learn More</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--End of card-->
+
+<!--<footer th:replace="partials :: footer"></footer>-->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"-->
+<!--        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"-->
+<!--        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"-->
+<!--        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--</body>-->
+<!--</html>-->
 
