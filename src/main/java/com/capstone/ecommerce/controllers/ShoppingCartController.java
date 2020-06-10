@@ -66,28 +66,28 @@ public class ShoppingCartController {
         String error = "";
         Product currentProduct = new Product();
         Product newProduct = new Product();
-        if(this.productRepo.findByNameAndSizeAndColor(name, size, color) == null){
-            Product tempProduct = new Product();
-           tempProduct.setColor(color);
-            tempProduct.setName(name);
-            tempProduct.setSize(size);
-            tempProduct.setDescription("Brand new meme shirt!");
-            tempProduct.setQuantity(300);
-            tempProduct.setType(type);
-            tempProduct.setSpecial(false);
-            tempProduct.setPrice(setPrice);
-            this.productRepo.save(tempProduct);
-           newProduct = this.productRepo.findByNameAndSizeAndColor(name, size, color);
-           newProduct.setName(name);
-            System.out.println(newProduct.getName());
+//        if(this.productRepo.findByNameAndSizeAndColor(name, size, color) == null){
+//            Product tempProduct = new Product();
+//           tempProduct.setColor(color);
+//            tempProduct.setName(name);
+//            tempProduct.setSize(size);
+//            tempProduct.setDescription("Brand new meme shirt!");
+//            tempProduct.setQuantity(300);
+//            tempProduct.setType(type);
+//            tempProduct.setSpecial(false);
+//            tempProduct.setPrice(setPrice);
+//            this.productRepo.save(tempProduct);
+//           newProduct = this.productRepo.findByNameAndSizeAndColor(name, size, color);
+//           newProduct.setName(name);
+//            System.out.println(newProduct.getName());
 //            error = "Sorry, out of stock on that!";
 //            redir.addFlashAttribute("error", error);
 ////            model.addAttribute("product", this.productRepo.findById(id));
 //            model.addAttribute("products", products);
 //            return "redirect:products/"+id;
-        } else {
+//        } else {
             currentProduct = this.productRepo.findByNameAndSizeAndColor(name, size, color);
-        }
+//        }
 
 //        if(quantity == null || quantity == 0){
 //            error = "Can't order nothing! Please put in a number!";
@@ -111,7 +111,7 @@ public class ShoppingCartController {
 
         double total = 0.00;
         boolean found = false;
-        Product addProduct = newProduct;
+        Product addProduct = currentProduct;
 
         if (quantity != null) {
             addProduct.setQuantity(quantity);

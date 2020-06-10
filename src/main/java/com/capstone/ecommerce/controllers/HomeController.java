@@ -56,14 +56,14 @@ public class HomeController {
 //        List<Product> allProducts = productRepo.findAll();
 ;
         Product product3 = productRepo.getOne(3L);
-        Product product4 = productRepo.getOne(4L);
-        Product product5 = productRepo.getOne(5L);
-        Product product6 = productRepo.getOne(6L);
-        Product product7 = productRepo.getOne(7L);
-        Product product8 = productRepo.getOne(8L);
-        Product product9 = productRepo.getOne(9L);
+        Product product4 = productRepo.getOne(16L);
+        Product product5 = productRepo.getOne(32L);
+        Product product6 = productRepo.getOne(48L);
+        Product product7 = productRepo.getOne(61L);
+        Product product8 = productRepo.getOne(76L);
+        Product product9 = productRepo.getOne(95L);
         Product product10 = productRepo.getOne(10L);
-        Product product11 = productRepo.getOne(11L);
+        Product product11 = productRepo.getOne(39L);
 
         model.addAttribute("product3", product3);
         model.addAttribute("product4", product4);
@@ -75,6 +75,14 @@ public class HomeController {
         model.addAttribute("product10", product10);
         model.addAttribute("product11", product11);
 
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            User user = new User();
+            model.addAttribute("user", user);
+            return "home";
+        }
+        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User testShopper = this.userRepo.getOne(shopper.getId());
+        model.addAttribute("user", testShopper);
 //        model.addAttribute("showProducts", allProducts);
 
         return "home";
