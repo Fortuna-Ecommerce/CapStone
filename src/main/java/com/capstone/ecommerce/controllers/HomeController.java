@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -100,6 +102,7 @@ public class HomeController {
 //            model.addAttribute("image", prodImg);
             model.addAttribute("user", user);
             List<Product> products = productRepo.findAll();
+            Collections.reverse(products);
             model.addAttribute("allProducts", products);
             return "products/productInventory";
         }

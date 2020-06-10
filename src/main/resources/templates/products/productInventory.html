@@ -25,7 +25,7 @@
             <th scope="col">Type</th>
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
-            <th scope="col">Image</th>
+<!--            <th scope="col">Image</th>-->
             <th scope="col">Operations</th>
 
         </tr>
@@ -39,7 +39,7 @@
             <td th:id="'productListType'+${product.getId()}" th:text="${product.getType()}"></td>
             <td th:id="'productListPrice'+${product.getId()}" th:text="${product.getPrice()}"></td>
             <td th:id="'productListQuantity'+${product.getId()}" th:text="${product.getQuantity()}"></td>
-            <td th:id="'productListImage'+${product.getId()}"><img th:id="'productListImageImage'+${product.getId()}" th:src="@{/img/${product.getImage()}}"/></td>
+<!--            <td th:id="'productListImage'+${product.getId()}"><img th:id="'productListImageImage'+${product.getId()}" th:src="@{/img/${product.getImage()}}"/></td>-->
             <td><button th:id="'editButton'+${product.id}" th:data-id="${product.id}" type="button" class="btn btn-primary editButton">Edit</button>
                 <a th:href="@{'/productsInventory/delete/'+${product.id}}" class="btn btn-primary">Delete</a>
             </td>
