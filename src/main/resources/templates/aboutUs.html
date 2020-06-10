@@ -1,0 +1,120 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:replace="partials :: head"></div>
+<head>
+
+    <title>About Us</title>
+
+    <style>
+        #main-jumbotron{
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url("");
+            background-size: cover;
+            background-position: center;
+            height: 25vh;
+        }
+
+        #jumbotron-container{
+            color: white;
+        }
+
+        .embed-responsive .card-img-top  {
+            object-fit: cover;
+        }
+
+
+    </style>
+</head>
+<body>
+<nav th:replace="partials :: navbar"></nav>
+<!--JUMBOTRON START-->
+<div class="jumbotron jumbotron-fluid" id="main-jumbotron">
+    <div class="container" id="jumbotron-container">
+        <h1 class="display-4">Meet the Developers!</h1>
+        <p class="lead">Meet the people who made this happen</p>
+    </div>
+</div>
+<!--	JUMBOTRON END -->
+
+<div class="container">
+
+    <div class="row">
+
+        <!--Start of card-->
+        <div class="col-12 col-md-3">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="embed-responsive embed-responsive-4by3">
+                    <img src="images/jeremyHeadshot.jpeg" class="card-img-top embed-responsive-item" alt="professional picture of jeremy telhiard">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Jeremy Telhiard</h5>
+                    <p class="card-text">Jeremy's Bio goes here</p>
+                    <a href="https://alumni.codeup.com/students/802" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <!--End of card-->
+
+
+
+        <!--Start of card-->
+        <div class="col-12 col-md-3">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="embed-responsive embed-responsive-4by3">
+                    <img src="images/Headshot8.jpeg" class="card-img-top embed-responsive-item" alt="professional picture of michael greenburg">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Michael Greenburg</h5>
+                    <p class="card-text">Michael's Bio goes here</p>
+                    <a href="https://alumni.codeup.com/students/820" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <!--End of card-->
+
+
+
+        <!--Start of card-->
+        <div class="col-12 col-md-3">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="embed-responsive embed-responsive-4by3">
+                    <img src="images/rubenheadshot.png" class="card-img-top embed-responsive-item" alt="professional picture of ruben trevino">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Ruben Trevino</h5>
+                    <p class="card-text">Ruben's Bio goes here</p>
+                    <a href="https://alumni.codeup.com/students/803" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <!--End of card-->
+
+        <!--Start of card-->
+        <div class="col-12 col-md-3">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="embed-responsive embed-responsive-4by3">
+                    <img src="images/headshotV.jpeg" class="card-img-top embed-responsive-item" alt="professional picture of victor jaimes puente">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Victor Jaimes Puente</h5>
+                    <p class="card-text">Victor's Bio goes here</p>
+                    <a href="https://alumni.codeup.com/students/801" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <!--End of card-->
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+</html>
