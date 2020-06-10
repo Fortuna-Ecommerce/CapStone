@@ -227,19 +227,46 @@ public class ProductsController {
         double salePrice = 0;
         Product aProduct = productRepo.getOne(id);
         model.addAttribute("product", aProduct);
+        String black = "";
+        String white = "";
+        String gray = "";
+        Product tempA = new Product();
+        Product tempB = new Product();
+        if(aProduct.getColor().equals("FFFFFF")){
+            white = aProduct.getProductImage();
+            tempA = productRepo.findByNameAndSizeAndColor(aProduct.getName(),"XL", "000000");
+            black = tempA.getProductImage();
+            tempB = productRepo.findByNameAndSizeAndColor(aProduct.getName(), "XL","808080");
+            gray = tempB.getProductImage();
+        } else if (aProduct.getColor().equals("000000")){
+            black = aProduct.getProductImage();
+            tempA = productRepo.findByNameAndSizeAndColor(aProduct.getName(),"XL", "FFFFFF");
+            white = tempA.getProductImage();
+            tempB = productRepo.findByNameAndSizeAndColor(aProduct.getName(),"XL", "808080");
+            gray = tempB.getProductImage();
+        } else if (aProduct.getColor().equals("808080")){
+            gray = aProduct.getProductImage();
+            tempA = productRepo.findByNameAndSizeAndColor(aProduct.getName(), "XL","000000");
+            black = tempA.getProductImage();
+            tempB = productRepo.findByNameAndSizeAndColor(aProduct.getName(), "XL","FFFFFF");
+            white = tempB.getProductImage();
+        }
+        model.addAttribute("white", white);
+        model.addAttribute("black", black);
+        model.addAttribute("gray", gray);
         if (aProduct.getSpecial() != null && aProduct.getSpecial()) {
             salePrice = aProduct.getPrice() - (aProduct.getPrice() * 0.42);
             salePrice = Math.round(salePrice * 100.00) / 100.00;
         }
         model.addAttribute("salePrice", salePrice);
-        List<Categories> categories = aProduct.getCategories();
-        String cNames = "";
-        for (Categories category : categories) {
-            cNames = cNames + category.getCategory() + ", ";
-        }
-        cNames = StringUtils.chop(cNames);
-        cNames = StringUtils.chop(cNames);
-        model.addAttribute("categories", cNames);
+//        List<Categories> categories = aProduct.getCategories();
+//        String cNames = "";
+//        for (Categories category : categories) {
+//            cNames = cNames + category.getCategory() + ", ";
+//        }
+//        cNames = StringUtils.chop(cNames);
+//        cNames = StringUtils.chop(cNames);
+//        model.addAttribute("categories", cNames);
         return "products/product";
     }
 
