@@ -35,6 +35,12 @@ public class HomeController {
 
 
 
+    @GetMapping("/aboutUs")
+    public String aboutUs() {
+
+        return "aboutUs";
+    }
+
     @GetMapping("/")
     public String welcome(Model model) {
 

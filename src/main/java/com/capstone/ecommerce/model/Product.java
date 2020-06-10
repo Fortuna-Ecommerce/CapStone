@@ -42,7 +42,6 @@ public class Product {
     @Column
     private String productImage;
 
-
     @ManyToMany
             (fetch = FetchType.LAZY,
             cascade = {
