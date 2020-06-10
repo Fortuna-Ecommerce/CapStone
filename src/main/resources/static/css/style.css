@@ -234,7 +234,44 @@ body{
     }
 }
 
-.card-container {
-    display: flex;
-    justify-content: flex-end;
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(21, 50px);
+    grid-template-rows: repeat(30, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+
 }
+
+#card3 {
+    grid-area: 2/3/9/8;
+}
+
+#card4 {
+    grid-area: 2/10/9/15;
+}
+
+#card5 {
+    grid-area: 2/17/9/22;
+}
+
+
+#card6 {
+    grid-area: 9/3/16/8;
+}
+
+#card7 {
+    grid-area: 9/10/16/15;
+}
+
+#card8 {
+    grid-area: 9/17/16/22;
+}
+
+/*#card9 {*/
+/*    !*grid-area: 8/3/14/7;*!*/
+/*}*/
+
+/*#card10 {*/
+/*    !*grid-area: 8/3/14/7;*!*/
+/*}*/

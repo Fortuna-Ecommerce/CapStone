@@ -47,8 +47,29 @@ public class HomeController {
             model.addAttribute("category", category);
         }
 //      MADE CHANGE HERE
-        List<Product> allProducts = productRepo.findAll();
-        model.addAttribute("showProducts", allProducts);
+//        List<Product> allProducts = productRepo.findAll();
+;
+        Product product3 = productRepo.getOne(3L);
+        Product product4 = productRepo.getOne(4L);
+        Product product5 = productRepo.getOne(5L);
+        Product product6 = productRepo.getOne(6L);
+        Product product7 = productRepo.getOne(7L);
+        Product product8 = productRepo.getOne(8L);
+        Product product9 = productRepo.getOne(9L);
+        Product product10 = productRepo.getOne(10L);
+        Product product11 = productRepo.getOne(11L);
+
+        model.addAttribute("product3", product3);
+        model.addAttribute("product4", product4);
+        model.addAttribute("product5", product5);
+        model.addAttribute("product6", product6);
+        model.addAttribute("product7", product7);
+        model.addAttribute("product8", product8);
+        model.addAttribute("product9", product9);
+        model.addAttribute("product10", product10);
+        model.addAttribute("product11", product11);
+
+//        model.addAttribute("showProducts", allProducts);
 
         return "home";
     }
