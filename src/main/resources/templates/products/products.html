@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="partials :: head" /></div>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:replace="partials :: head"></div>
 
 <body>
-<nav th:replace="partials :: navbar" />
+<nav th:replace="partials :: navbar"></nav>
 
 
 
@@ -12,7 +12,7 @@
     <div style="text-align: center">
         <div th:each="product : ${showProducts}">
             <a th:href="@{'/products/'+${product.id}}"><h1 style="font-weight: bold" th:text="${product.name}">
-            <img th:src="@{${product.image}}" alt="image">
+            <img th:src="@{${product.image}}" alt="image" src="">
             </h1></a>
             <p style="font-weight:bold" th:text="${product.type}"></p>
             <p th:text="${product.description}"> </p>
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-<footer th:replace="partials :: footer" />
+<footer th:replace="partials :: footer"></footer>
 </body>
 </html>
 

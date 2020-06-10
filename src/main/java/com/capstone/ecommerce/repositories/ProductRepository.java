@@ -41,6 +41,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 }
 
+
 //  Product findByTitle(String title);
 
 //SEARCH METHOD
