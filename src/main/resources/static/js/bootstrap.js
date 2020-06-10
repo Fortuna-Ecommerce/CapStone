@@ -11,7 +11,7 @@ if (typeof jQuery === 'undefined') {
 +function ($) {
   'use strict';
   var version = $.fn.jquery.split(' ')[0].split('.')
-  if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1) || (version[0] > 3)) {
+  if ((version[0] < 2 && version[1] < 9) || (version[0] === 1 && version[1] === 9 && version[2] < 1) || (version[0] > 3)) {
     throw new Error('Bootstrap\'s JavaScript requires jQuery version 1.9.1 or higher, but lower than version 4')
   }
 }(jQuery);
@@ -212,7 +212,7 @@ if (typeof jQuery === 'undefined') {
     setTimeout($.proxy(function () {
       $el[val](data[state] == null ? this.options[state] : data[state])
 
-      if (state == 'loadingText') {
+      if (state === 'loadingText') {
         this.isLoading = true
         $el.addClass(d).attr(d, d).prop(d, true)
       } else if (this.isLoading) {
@@ -228,11 +228,11 @@ if (typeof jQuery === 'undefined') {
 
     if ($parent.length) {
       var $input = this.$element.find('input')
-      if ($input.prop('type') == 'radio') {
+      if ($input.prop('type') === 'radio') {
         if ($input.prop('checked')) changed = false
         $parent.find('.active').removeClass('active')
         this.$element.addClass('active')
-      } else if ($input.prop('type') == 'checkbox') {
+      } else if ($input.prop('type') === 'checkbox') {
         if (($input.prop('checked')) !== this.$element.hasClass('active')) changed = false
         this.$element.toggleClass('active')
       }
@@ -256,7 +256,7 @@ if (typeof jQuery === 'undefined') {
 
       if (!data) $this.data('bs.button', (data = new Button(this, options)))
 
-      if (option == 'toggle') data.toggle()
+      if (option === 'toggle') data.toggle()
       else if (option) data.setState(option)
     })
   }
@@ -324,7 +324,7 @@ if (typeof jQuery === 'undefined') {
 
     this.options.keyboard && this.$element.on('keydown.bs.carousel', $.proxy(this.keydown, this))
 
-    this.options.pause == 'hover' && !('ontouchstart' in document.documentElement) && this.$element
+    this.options.pause === 'hover' && !('ontouchstart' in document.documentElement) && this.$element
       .on('mouseenter.bs.carousel', $.proxy(this.pause, this))
       .on('mouseleave.bs.carousel', $.proxy(this.cycle, this))
   }
@@ -370,10 +370,10 @@ if (typeof jQuery === 'undefined') {
 
   Carousel.prototype.getItemForDirection = function (direction, active) {
     var activeIndex = this.getItemIndex(active)
-    var willWrap = (direction == 'prev' && activeIndex === 0)
-                || (direction == 'next' && activeIndex == (this.$items.length - 1))
+    var willWrap = (direction === 'prev' && activeIndex === 0)
+                || (direction === 'next' && activeIndex === (this.$items.length - 1))
     if (willWrap && !this.options.wrap) return active
-    var delta = direction == 'prev' ? -1 : 1
+    var delta = direction === 'prev' ? -1 : 1
     var itemIndex = (activeIndex + delta) % this.$items.length
     return this.$items.eq(itemIndex)
   }
@@ -385,7 +385,7 @@ if (typeof jQuery === 'undefined') {
     if (pos > (this.$items.length - 1) || pos < 0) return
 
     if (this.sliding)       return this.$element.one('slid.bs.carousel', function () { that.to(pos) }) // yes, "slid"
-    if (activeIndex == pos) return this.pause().cycle()
+    if (activeIndex === pos) return this.pause().cycle()
 
     return this.slide(pos > activeIndex ? 'next' : 'prev', this.$items.eq(pos))
   }
@@ -417,7 +417,7 @@ if (typeof jQuery === 'undefined') {
     var $active   = this.$element.find('.item.active')
     var $next     = next || this.getItemForDirection(type, $active)
     var isCycling = this.interval
-    var direction = type == 'next' ? 'left' : 'right'
+    var direction = type === 'next' ? 'left' : 'right'
     var that      = this
 
     if ($next.hasClass('active')) return (this.sliding = false)
@@ -794,7 +794,7 @@ if (typeof jQuery === 'undefined') {
 
       if (!$parent.hasClass('open')) return
 
-      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
+      if (e && e.type === 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
 
       $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
 
@@ -854,8 +854,8 @@ if (typeof jQuery === 'undefined') {
     var $parent  = getParent($this)
     var isActive = $parent.hasClass('open')
 
-    if (!isActive && e.which != 27 || isActive && e.which == 27) {
-      if (e.which == 27) $parent.find(toggle).trigger('focus')
+    if (!isActive && e.which !== 27 || isActive && e.which === 27) {
+      if (e.which === 27) $parent.find(toggle).trigger('focus')
       return $this.trigger('click')
     }
 
@@ -866,8 +866,8 @@ if (typeof jQuery === 'undefined') {
 
     var index = $items.index(e.target)
 
-    if (e.which == 38 && index > 0)                 index--         // up
-    if (e.which == 40 && index < $items.length - 1) index++         // down
+    if (e.which === 38 && index > 0)                 index--         // up
+    if (e.which === 40 && index < $items.length - 1) index++         // down
     if (!~index)                                    index = 0
 
     $items.eq(index).trigger('focus')
@@ -1115,7 +1115,7 @@ if (typeof jQuery === 'undefined') {
           return
         }
         if (e.target !== e.currentTarget) return
-        this.options.backdrop == 'static'
+        this.options.backdrop === 'static'
           ? this.$element[0].focus()
           : this.hide()
       }, this))
@@ -1319,11 +1319,11 @@ if (typeof jQuery === 'undefined') {
     for (var i = triggers.length; i--;) {
       var trigger = triggers[i]
 
-      if (trigger == 'click') {
+      if (trigger === 'click') {
         this.$element.on('click.' + this.type, this.options.selector, $.proxy(this.toggle, this))
-      } else if (trigger != 'manual') {
-        var eventIn  = trigger == 'hover' ? 'mouseenter' : 'focusin'
-        var eventOut = trigger == 'hover' ? 'mouseleave' : 'focusout'
+      } else if (trigger !== 'manual') {
+        var eventIn  = trigger === 'hover' ? 'mouseenter' : 'focusin'
+        var eventOut = trigger === 'hover' ? 'mouseleave' : 'focusout'
 
         this.$element.on(eventIn  + '.' + this.type, this.options.selector, $.proxy(this.enter, this))
         this.$element.on(eventOut + '.' + this.type, this.options.selector, $.proxy(this.leave, this))
@@ -1357,7 +1357,7 @@ if (typeof jQuery === 'undefined') {
     var defaults = this.getDefaults()
 
     this._options && $.each(this._options, function (key, value) {
-      if (defaults[key] != value) options[key] = value
+      if (defaults[key] !== value) options[key] = value
     })
 
     return options
@@ -1373,10 +1373,10 @@ if (typeof jQuery === 'undefined') {
     }
 
     if (obj instanceof $.Event) {
-      self.inState[obj.type == 'focusin' ? 'focus' : 'hover'] = true
+      self.inState[obj.type === 'focusin' ? 'focus' : 'hover'] = true
     }
 
-    if (self.tip().hasClass('in') || self.hoverState == 'in') {
+    if (self.tip().hasClass('in') || self.hoverState === 'in') {
       self.hoverState = 'in'
       return
     }
@@ -1388,7 +1388,7 @@ if (typeof jQuery === 'undefined') {
     if (!self.options.delay || !self.options.delay.show) return self.show()
 
     self.timeout = setTimeout(function () {
-      if (self.hoverState == 'in') self.show()
+      if (self.hoverState === 'in') self.show()
     }, self.options.delay.show)
   }
 
@@ -1410,7 +1410,7 @@ if (typeof jQuery === 'undefined') {
     }
 
     if (obj instanceof $.Event) {
-      self.inState[obj.type == 'focusout' ? 'focus' : 'hover'] = false
+      self.inState[obj.type === 'focusout' ? 'focus' : 'hover'] = false
     }
 
     if (self.isInStateTrue()) return
@@ -1422,7 +1422,7 @@ if (typeof jQuery === 'undefined') {
     if (!self.options.delay || !self.options.delay.hide) return self.hide()
 
     self.timeout = setTimeout(function () {
-      if (self.hoverState == 'out') self.hide()
+      if (self.hoverState === 'out') self.hide()
     }, self.options.delay.hide)
   }
 
@@ -1471,10 +1471,10 @@ if (typeof jQuery === 'undefined') {
         var orgPlacement = placement
         var viewportDim = this.getPosition(this.$viewport)
 
-        placement = placement == 'bottom' && pos.bottom + actualHeight > viewportDim.bottom ? 'top'    :
-                    placement == 'top'    && pos.top    - actualHeight < viewportDim.top    ? 'bottom' :
-                    placement == 'right'  && pos.right  + actualWidth  > viewportDim.width  ? 'left'   :
-                    placement == 'left'   && pos.left   - actualWidth  < viewportDim.left   ? 'right'  :
+        placement = placement === 'bottom' && pos.bottom + actualHeight > viewportDim.bottom ? 'top'    :
+                    placement === 'top'    && pos.top    - actualHeight < viewportDim.top    ? 'bottom' :
+                    placement === 'right'  && pos.right  + actualWidth  > viewportDim.width  ? 'left'   :
+                    placement === 'left'   && pos.left   - actualWidth  < viewportDim.left   ? 'right'  :
                     placement
 
         $tip
@@ -1535,7 +1535,7 @@ if (typeof jQuery === 'undefined') {
     var actualWidth  = $tip[0].offsetWidth
     var actualHeight = $tip[0].offsetHeight
 
-    if (placement == 'top' && actualHeight != height) {
+    if (placement === 'top' && actualHeight !== height) {
       offset.top = offset.top + height - actualHeight
     }
 
@@ -1613,7 +1613,7 @@ if (typeof jQuery === 'undefined') {
     $element   = $element || this.$element
 
     var el     = $element[0]
-    var isBody = el.tagName == 'BODY'
+    var isBody = el.tagName === 'BODY'
 
     var elRect    = el.getBoundingClientRect()
     if (elRect.width == null) {
@@ -1686,7 +1686,7 @@ if (typeof jQuery === 'undefined') {
   Tooltip.prototype.tip = function () {
     if (!this.$tip) {
       this.$tip = $(this.options.template)
-      if (this.$tip.length != 1) {
+      if (this.$tip.length !== 1) {
         throw new Error(this.type + ' `template` option must consist of exactly 1 top-level element!')
       }
     }

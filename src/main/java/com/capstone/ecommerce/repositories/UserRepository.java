@@ -10,13 +10,15 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findById(long id);
 
+    User findByUsername(String username);
+
     //Represents the "DAO" and how to access the information on the object
-    interface UserRepository extends JpaRepository<User, Long> {
-        User findByUsername(String username);
-
-        void save(List<User> users);
-
-    }
+//    interface UserRepository extends JpaRepository<User, Long> {
+//        User findByUsername(String username);
+//
+//        void save(List<User> users);
+//
+//    }
 }
 
 //    @Query("SELECT p FROM User p WHERE p.id LIKE %?1%")

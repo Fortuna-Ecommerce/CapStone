@@ -16,11 +16,10 @@ import java.util.List;
 @SessionAttributes("products")
 public class ProductsController {
     private ProductRepository productRepo;
-    private ProductRepository imagesRepo;
+
     //  CONSTRUCTOR
     public ProductsController(ProductRepository productRepo, ProductRepository imagesRepo) {
         this.productRepo = productRepo;
-        this.imagesRepo = imagesRepo;
     }
     public void seedProducts() {
         Product product1 = new Product("Rage meme", "5DADE2", "XL", "Shirt", 22.22, "Angry guy melting down",
@@ -93,7 +92,7 @@ public class ProductsController {
         double salePrice = 0;
         Product aProduct = productRepo.getOne(id);
         model.addAttribute("product", aProduct);
-        if(aProduct.getSpecial() == true){
+        if(aProduct.getSpecial()){
             salePrice = aProduct.getPrice() - (aProduct.getPrice()*0.42);
             salePrice = Math.round(salePrice * 100.00) / 100.00;
         }
