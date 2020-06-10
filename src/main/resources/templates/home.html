@@ -6,105 +6,8 @@
 <nav th:replace="partials :: navbar"></nav>
 
 <div class="container mt-4">
-    <div class="wrapper">
-<!--    <nav class="navbar navbar-default navbar-fixed-top navbar-transparent" id="navbar">-->
-<!--        <div class="navbar-header">-->
-<!--            <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#menu"-->
-<!--                    aria-expanded="false">-->
-<!--                <span class="sr-only">Toggle navigation</span>-->
-<!--                <span class="icon-bar"></span>-->
-<!--                <span class="icon-bar"></span>-->
-<!--                <span class="icon-bar"></span>-->
-<!--            </button>-->
-<!--            <a href="home.html" class="navbar-brand">-->
-<!--                EasyShop-->
-<!--            </a>-->
-<!--        </div>-->
-<!--        <div class="collapse navbar-collapse pull-right" id="menu">-->
-<!--            <ul class="nav navbar-nav">-->
-<!--                <li>-->
-<!--                    <a href="index.html">-->
-<!--                        <i class="fa fa-home"></i>-->
-<!--                        Home-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                <li class="dropdown">-->
-<!--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
-<!--                       aria-expanded="false">-->
-<!--                        <i class="fa fa-file-code-o"></i>-->
-<!--                        Pages <span class="caret"></span>-->
-<!--                    </a>-->
-<!--                    <ul class="dropdown-menu">-->
-<!--                        <li>-->
-<!--                            <a href="error404.html">-->
-<!--                                Page 404-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="login.html">-->
-<!--                                Login-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="register.html">-->
-<!--                                Register-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="buttons.html">-->
-<!--                                Buttons-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="forms.html">-->
-<!--                                Form Elements-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="widgets.html">-->
-<!--                                Widgets-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="icons.html">-->
-<!--                                Icons-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="checkoutSuccess.html">-->
-<!--                                Checkout success-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="checkoutCancel.html">-->
-<!--                                Checkout cancel-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="checkoutError.html">-->
-<!--                                Checkout error-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <a href="cart.html">-->
-<!--                        <i class="fa fa-cart-plus"></i>-->
-<!--                        Cart-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </nav>-->
-    <div id="heading">
-        <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel" data-slide-to="1"></li>
-                <li data-target="#carousel" data-slide-to="2"></li>
-            </ol>
 
+<<<<<<< HEAD
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
@@ -137,19 +40,22 @@
                     </div>
                 </div>
             </div>
+=======
+    <h1 style="text-align: center">Welcome to MemeTees!</h1><br>
+    <h1 style="text-align: center">Come buy yourself some fresh memes to wear!</h1><br>
+    <h1 style="text-align: center"><a href='/products/all'>See the full catalog!</a></h1>
+>>>>>>> 08dc9f47bcb96a220e74e7742e44084155934d65
 
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+    <div class="card row" style="width: 18rem;" th:each="product : ${showProducts}">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p style="font-weight:bold" th:text="${product.type}"></p>
+            <a href="#" class="btn btn-primary">Add to cart</a>
         </div>
     </div>
 
+<<<<<<< HEAD
     <div class="main">
         <ol class="breadcrumb">
             <li><a href="home.html">Home</a></li>
@@ -394,6 +300,10 @@
                 </div>
             </div>
         </div>
+=======
+</div>
+
+>>>>>>> 08dc9f47bcb96a220e74e7742e44084155934d65
 
 <footer th:replace="partials :: footer"></footer>
 </body>

@@ -53,33 +53,47 @@ public class ShoppingCartController {
     public String addToCart(
             Model model,
             @ModelAttribute("products") ShoppingCart products,
-            @RequestParam("cartAddId") Integer id,
+            @RequestParam("productId") long id,
+            @RequestParam("sizeSelect") String size,
+            @RequestParam("color") String color,
+            @RequestParam("productName") String name,
             @RequestParam("cartAddQuantity") Integer quantity,
             @RequestParam("price") String price,
             RedirectAttributes redir) {
         double setPrice = Double.parseDouble(price);
         String error = "";
+        Product currentProduct = this.productRepo.findByNameAndSizeAndColor(name, size, color);
+        if(currentProduct == null){
+            error = "Sorry, out of stock on that!";
+            redir.addFlashAttribute("error", error);
+//            model.addAttribute("product", this.productRepo.findById(id));
+            model.addAttribute("products", products);
+            return "redirect:products/"+id;
+        }
+
         if(quantity == null || quantity == 0){
             error = "Can't order nothing! Please put in a number!";
             redir.addFlashAttribute("error", error);
-            model.addAttribute("product", this.productRepo.getOne((long)id));
+            model.addAttribute("product", currentProduct);
             model.addAttribute("products", products);
-            return "redirect:products/"+(long)id;
+            return "redirect:products/"+currentProduct.getId();
         }
 
-        if(this.productRepo.getOne((long)id).getQuantity() < (long)quantity){
-            error = "You can't order that many, sorry! Check inventory above and try again!";
+
+
+        if(currentProduct.getQuantity() < (long)quantity){
+            error = "You can't order that many, sorry! Try a lower number please!";
             redir.addFlashAttribute("error", error);
-            model.addAttribute("product", this.productRepo.getOne((long)id));
+            model.addAttribute("product", currentProduct);
             model.addAttribute("products", products);
-            return "redirect:products/"+(long)id;
+            return "redirect:products/"+currentProduct.getId();
         }
 
 
 
         double total = 0.00;
         boolean found = false;
-        Product addProduct = this.productRepo.getOne((long)id);
+        Product addProduct = currentProduct;
 
         if (quantity != null) {
             addProduct.setQuantity(quantity);

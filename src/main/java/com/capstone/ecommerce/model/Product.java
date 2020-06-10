@@ -4,6 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "products")
@@ -25,7 +26,7 @@ public class Product {
     @Column(nullable = false)
     private String type;
 
-    @Column(precision = 5, scale = 2, nullable = false)
+    @Column(columnDefinition="Decimal(5,2)", nullable = false)
     private double price;
 
     @Column(columnDefinition = "TEXT")
@@ -39,7 +40,7 @@ public class Product {
     private long quantity;
 
     @Column
-    private String image;
+    private String productImage;
 
 
     @ManyToMany
@@ -56,22 +57,23 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String color, String size, String type, double price, String description, Boolean onSpecial, Long quantity) {
+    public Product(String name, String color, String size, String type, double price, String description,
+                   Boolean special, Long quantity) {
         this.name = name;
         this.color = color;
         this.size = size;
         this.type = type;
         this.price = price;
         this.description = description;
-        this.special = onSpecial;
+        this.special = special;
         this.quantity = quantity;
 //        this.image = image;
     }
 
-    public Product(long id, String image, List<Categories> categories, String name, String color, String size,
+    public Product(long id, String productImage, List<Categories> categories, String name, String color, String size,
                    String type, double price, String description, Boolean onSpecial, Long quantity) {
         this.id = id;
-        this.image = image;
+        this.productImage = productImage;
         this.categories = categories;
         this.name = name;
         this.color = color;
@@ -155,12 +157,12 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getImage() {
-        return image;
+    public String getProductImage() {
+        return productImage;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 
     //
@@ -177,11 +179,30 @@ public class Product {
         return categories;
     }
 
-    @Transactional
+
     public void setCategories(List<Categories> categories) {
         this.categories = categories;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id &&
+                Double.compare(product.price, price) == 0 &&
+                quantity == product.quantity &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(color, product.color) &&
+                Objects.equals(size, product.size) &&
+                Objects.equals(type, product.type) &&
+                Objects.equals(description, product.description) &&
+                Objects.equals(special, product.special);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, color, size, type, price, description, special, quantity);
+    }
 }
 

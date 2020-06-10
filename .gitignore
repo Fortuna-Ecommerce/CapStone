@@ -6,6 +6,8 @@ target/
 src/main/resources/application.properties
 application.properties
 .DS_Store
+DatabaseSeeder.java
+
 
 ### STS ###
 .apt_generated

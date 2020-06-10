@@ -1234,11 +1234,19 @@ body {
 }
 .star-rating .rate-value:after {
   content: '\f005\f005\f005\f005\f005';
+<<<<<<< HEAD
   font-family: "FontAwesome", serif;
 }
 .star-rating:after {
   content: '\f006\f006\f006\f006\f006';
   font-family: "FontAwesome", serif;
+=======
+  font-family: "FontAwesome", sans-serif;
+}
+.star-rating:after {
+  content: '\f006\f006\f006\f006\f006';
+  font-family: "FontAwesome", sans-serif;
+>>>>>>> 08dc9f47bcb96a220e74e7742e44084155934d65
 }
 .avatar {
   border: solid 1px #ccc;
