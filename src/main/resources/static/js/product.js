@@ -32,4 +32,28 @@
             }
         })
     });
+    $(document).ready(function () {
+        $("#white").on('click', function(){
+            $("#originalImage").css("display", "none");
+            $("#000000").css("display", "none");
+            $("#808080").css("display", "none");
+            $("#FFFFFF").css("display", "inline");
+        })
+    });
+    $(document).ready(function () {
+        $("#black").on('click', function(){
+            $("#originalImage").css("display", "none");
+            $("#808080").css("display", "none");
+            $("#FFFFFF").css("display", "none");
+            $("#000000").css("display", "inline");
+        })
+    });
+    $(document).ready(function () {
+        $("#gray").on('click', function(){
+            $("#originalImage").css("display", "none");
+            $("#000000").css("display", "none");
+            $("#FFFFFF").css("display", "none");
+            $("#808080").css("display", "inline");
+        })
+    });
 })();
