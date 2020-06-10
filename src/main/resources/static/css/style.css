@@ -138,6 +138,9 @@ body{
 .c-title {
     padding-left: 100px;
 }
+.c-button {
+    margin-left: 100px;
+}
 .home .slide.active .caption h1{
     opacity:0;
     animation: captionText .5s ease forwards;
