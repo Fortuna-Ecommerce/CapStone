@@ -117,6 +117,7 @@ public class HomeController {
     @PostMapping("products/productInventory/add")
     public String addProductPost(@RequestParam (name = "name") String name,
                                  @RequestParam (name = "color") String color,
+                                 @RequestParam(name = "special") boolean special,
                                  @RequestParam(name = "desc") String description,
                                  @RequestParam (name = "size") String size,
                                  @RequestParam (name = "type") String type,
@@ -133,13 +134,14 @@ public class HomeController {
             model.addAttribute("user", user);
             Product product = new Product();
             product.setName(name);
+            product.setSpecial(special);
             product.setColor(color);
             product.setDescription(description);
             product.setSize(size);
             product.setType(type);
             product.setPrice(price);
             product.setQuantity(quan);
-//            product.setImage(image);
+            product.setProductImage(image);
             productRepo.save(product);
             return "redirect:/products/productInventory";
         }

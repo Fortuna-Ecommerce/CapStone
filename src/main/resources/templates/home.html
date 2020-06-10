@@ -7,161 +7,161 @@
 
 <!--<div class="container">-->
 
-<!--    <h1 style="text-align: center">Welcome to MemeTees!</h1><br>-->
-<!--    <h1 style="text-align: center">Come buy yourself some fresh memes to wear!</h1><br>-->
-<!--    <h1 style="text-align: center"><a href='/products/all'>See the full catalog!</a></h1>-->
-    <section class="home">
-        <div class="slider">
-            <div class="slide active" style="background-image: url('img/slide-1.jpg')">
-                <div class="container">
-                    <div class="caption">
-                        <h1 class="c-title">Spring Collection 2020</h1>
-                        <p class="c-title">Lorem ipsum dummy text goes here.</p>
-                        <a class="c-button" href="/products/all">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('img/slide-2.jpg')">
-                <div class="container">
-                    <div class="caption">
-                        <h1 class="c-title">Summer Collection 2020</h1>
-                        <p class="c-title">Lorem ipsum dummy text goes here.</p>
-                        <a class="c-button" href="/products/all">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('img/slide-3.jpg')">
-                <div class="container">
-                    <div class="caption">
-                        <h1 class="c-title">Fall Collection 2020</h1>
-                        <p class="c-title">Lorem ipsum dummy text goes here.</p>
-                        <a class="c-title c-button" href="/products/all">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--&lt;!&ndash;    <h1 style="text-align: center">Welcome to MemeTees!</h1><br>&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1 style="text-align: center">Come buy yourself some fresh memes to wear!</h1><br>&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1 style="text-align: center"><a href='/products/all'>See the full catalog!</a></h1>&ndash;&gt;-->
+<!--    <section class="home">-->
+<!--        <div class="slider">-->
+<!--            <div class="slide active" style="background-image: url('img/slide-1.jpg')">-->
+<!--                <div class="container">-->
+<!--                    <div class="caption">-->
+<!--                        <h1 class="c-title">Spring Collection 2020</h1>-->
+<!--                        <p class="c-title">Lorem ipsum dummy text goes here.</p>-->
+<!--                        <a class="c-button" href="/products/all">Shop Now</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="slide" style="background-image: url('img/slide-2.jpg')">-->
+<!--                <div class="container">-->
+<!--                    <div class="caption">-->
+<!--                        <h1 class="c-title">Summer Collection 2020</h1>-->
+<!--                        <p class="c-title">Lorem ipsum dummy text goes here.</p>-->
+<!--                        <a class="c-button" href="/products/all">Shop Now</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="slide" style="background-image: url('img/slide-3.jpg')">-->
+<!--                <div class="container">-->
+<!--                    <div class="caption">-->
+<!--                        <h1 class="c-title">Fall Collection 2020</h1>-->
+<!--                        <p class="c-title">Lorem ipsum dummy text goes here.</p>-->
+<!--                        <a class="c-title c-button" href="/products/all">Shop Now</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <!-- controls  -->
-        <div class="controls">
-            <div class="prev"><</div>
-            <div class="next">></div>
-        </div>
+<!--        &lt;!&ndash; controls  &ndash;&gt;-->
+<!--        <div class="controls">-->
+<!--            <div class="prev"><</div>-->
+<!--            <div class="next">></div>-->
+<!--        </div>-->
 
-        <!-- indicators -->
-        <div class="indicator">
-        </div>
-    </section>
-
-
-
-<!--CARDS-->
-
-<!--Start of card-->
-<div class="col-12 col-md-4 card-grid">
-    <div class="card p-3 mb-5 bg-white rounded h-100" id="card3" th:each="product : ${product3}">
-        <div class="embed-responsive embed-responsive-4by3">
-            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
-        </div>
-        <div class="card-body">
-            <h5 class="card-title" th:text="${product3.name}">Rover</h5>
-            <p th:text="${product3.price}"></p>
-            <a href="#" class="btn btn-primary">Add to Cart</a>
-        </div>
-    </div>
-
-    <div class="card p-3 mb-5 bg-white rounded h-100" id="card4" th:each="product : ${product4}">
-        <div class="embed-responsive embed-responsive-4by3">
-            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
-        </div>
-        <div class="card-body">
-            <h5 class="card-title" th:text="${product4.name}">Rover</h5>
-            <p th:text="${product4.price}"></p>
-            <a href="#" class="btn btn-primary">Add to Cart</a>
-        </div>
-    </div>
-
-    <div class="card p-3 mb-5 bg-white rounded h-100" id="card5" th:each="product : ${product5}">
-        <div class="embed-responsive embed-responsive-4by3">
-            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
-        </div>
-        <div class="card-body">
-            <h5 class="card-title" th:text="${product5.name}">Rover</h5>
-            <p th:text="${product5.price}"></p>
-            <a href="#" class="btn btn-primary">Add to Cart</a>
-        </div>
-    </div>
-
-    <div class="card p-3 mb-5 bg-white rounded h-100" id="card6" th:each="product : ${product6}">
-        <div class="embed-responsive embed-responsive-4by3">
-            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
-        </div>
-        <div class="card-body">
-            <h5 class="card-title" th:text="${product6.name}">Rover</h5>
-            <p th:text="${product7.price}"></p>
-            <a href="#" class="btn btn-primary">Add to Cart</a>
-        </div>
-    </div>
-
-    <div class="card p-3 mb-5 bg-white rounded h-100" id="card7" th:each="product : ${product7}">
-        <div class="embed-responsive embed-responsive-4by3">
-            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
-        </div>
-        <div class="card-body">
-            <h5 class="card-title" th:text="${product7.name}">Rover</h5>
-            <p th:text="${product7.price}"></p>
-            <a href="#" class="btn btn-primary">Add to Cart</a>
-        </div>
-    </div>
-    <div class="card p-3 mb-5 bg-white rounded h-100" id="card8" th:each="product : ${product8}">
-        <div class="embed-responsive embed-responsive-4by3">
-            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
-        </div>
-        <div class="card-body">
-            <h5 class="card-title" th:text="${product8.name}">Rover</h5>
-            <p th:text="${product8.price}"></p>
-            <a href="#" class="btn btn-primary">Add to Cart</a>
-        </div>
-    </div>
-
-    <div class="card p-3 mb-5 bg-white rounded h-100" id="card9" th:each="product : ${product9}">
-        <div class="embed-responsive embed-responsive-4by3">
-            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
-        </div>
-        <div class="card-body">
-            <h5 class="card-title" th:text="${product9.name}">Rover</h5>
-            <p th:text="${product9.price}"></p>
-            <a href="#" class="btn btn-primary">Add to Cart</a>
-        </div>
-    </div>
-
-    <div class="card p-3 mb-5 bg-white rounded h-100" id="card10" th:each="product : ${product10}">
-        <div class="embed-responsive embed-responsive-4by3">
-            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
-        </div>
-        <div class="card-body">
-            <h5 class="card-title" th:text="${product10.name}">Rover</h5>
-            <p th:text="${product10.price}"></p>
-            <a href="#" class="btn btn-primary">Add to Cart</a>
-        </div>
-    </div>
-
-    <div class="card p-3 mb-5 bg-white rounded h-100" id="card11" th:each="product : ${product11}">
-        <div class="embed-responsive embed-responsive-4by3">
-            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">
-        </div>
-        <div class="card-body">
-            <h5 class="card-title" th:text="${product11.name}">Rover</h5>
-            <p th:text="${product11.price}"></p>
-            <a href="#" class="btn btn-primary">Add to Cart</a>
-        </div>
-    </div>
-
-</div>
-<!--End of card-->
+<!--        &lt;!&ndash; indicators &ndash;&gt;-->
+<!--        <div class="indicator">-->
+<!--        </div>-->
+<!--    </section>-->
 
 
 
+<!--&lt;!&ndash;CARDS&ndash;&gt;-->
 
-<footer th:replace="partials :: footer" />
-</body>
-</html>
+<!--&lt;!&ndash;Start of card&ndash;&gt;-->
+<!--<div class="col-12 col-md-4 card-grid">-->
+<!--    <div class="card p-3 mb-5 bg-white rounded h-100" id="card3" th:each="product : ${product3}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product3.name}">Rover</h5>-->
+<!--            <p th:text="${product3.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card p-3 mb-5 bg-white rounded h-100" id="card4" th:each="product : ${product4}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product4.name}">Rover</h5>-->
+<!--            <p th:text="${product4.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card p-3 mb-5 bg-white rounded h-100" id="card5" th:each="product : ${product5}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product5.name}">Rover</h5>-->
+<!--            <p th:text="${product5.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card p-3 mb-5 bg-white rounded h-100" id="card6" th:each="product : ${product6}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product6.name}">Rover</h5>-->
+<!--            <p th:text="${product7.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card p-3 mb-5 bg-white rounded h-100" id="card7" th:each="product : ${product7}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product7.name}">Rover</h5>-->
+<!--            <p th:text="${product7.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="card p-3 mb-5 bg-white rounded h-100" id="card8" th:each="product : ${product8}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product8.name}">Rover</h5>-->
+<!--            <p th:text="${product8.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card p-3 mb-5 bg-white rounded h-100" id="card9" th:each="product : ${product9}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product9.name}">Rover</h5>-->
+<!--            <p th:text="${product9.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card p-3 mb-5 bg-white rounded h-100" id="card10" th:each="product : ${product10}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product10.name}">Rover</h5>-->
+<!--            <p th:text="${product10.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card p-3 mb-5 bg-white rounded h-100" id="card11" th:each="product : ${product11}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product11.name}">Rover</h5>-->
+<!--            <p th:text="${product11.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+<!--&lt;!&ndash;End of card&ndash;&gt;-->
+
+
+
+
+<!--<footer th:replace="partials :: footer" />-->
+<!--</body>-->
+<!--</html>-->
