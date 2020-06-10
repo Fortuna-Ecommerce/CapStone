@@ -16,27 +16,27 @@
             <div class="slide active" style="background-image: url('img/slide-1.jpg')">
                 <div class="container">
                     <div class="caption">
-                        <h1>Winter Collection 2020</h1>
-                        <p>Lorem ipsum dummy text goes here.</p>
-                        <a href="/products/all">Shop Now</a>
+                        <h1 class="c-title">Winter Collection 2020</h1>
+                        <p class="c-title">Lorem ipsum dummy text goes here.</p>
+                        <a class="c-title" href="/products/all">Shop Now</a>
                     </div>
                 </div>
             </div>
             <div class="slide" style="background-image: url('img/slide-2.jpg')">
                 <div class="container">
                     <div class="caption">
-                        <h1>Winter Collection 2020</h1>
-                        <p>Lorem ipsum dummy text goes here.</p>
-                        <a href="">Shop Now</a>
+                        <h1 class="c-title">Winter Collection 2020</h1>
+                        <p class="c-title">Lorem ipsum dummy text goes here.</p>
+                        <a class="c-title" href="">Shop Now</a>
                     </div>
                 </div>
             </div>
             <div class="slide" style="background-image: url('img/slide-3.jpg')">
                 <div class="container">
                     <div class="caption">
-                        <h1>Winter Collection 2020</h1>
-                        <p>Lorem ipsum dummy text goes here.</p>
-                        <a href="">Shop Now</a>
+                        <h1 class="c-title">Winter Collection 2020</h1>
+                        <p class="c-title">Lorem ipsum dummy text goes here.</p>
+                        <a class="c-title" href="">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -51,21 +51,23 @@
         <!-- indicators -->
         <div class="indicator">
         </div>
-
     </section>
 
 
 
 <!--CARDS-->
-    <div class="card row" style="width: 18rem;" th:each="product : ${showProducts}">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p style="font-weight:bold" th:text="${product.type}"></p>
-            <a href="#" class="btn btn-primary">Add to cart</a>
+<ul>
+        <div class="card-container">
+                <li class="card row" style="width: 18rem;" th:each="product : ${showProducts}">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p style="font-weight:bold" th:text="${product.type}"></p>
+                        <a href="#" class="btn btn-primary">Add to cart</a>
+                    </div>
+                </li>
         </div>
-    </div>
-
+</ul>
 <!--</div>-->
 
 
