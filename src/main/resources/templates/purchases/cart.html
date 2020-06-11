@@ -45,13 +45,22 @@
             </tr>
             <tr>
                 <td colspan="2">Your subtotal: </td>
-
+                <td colspan="2" th:text="${'$'+total}"></td>
             </tr>
+            <tr>
+                <td th:colspan="2">Shipping costs:</td>
+                <td th:colspan="2">Only $5.00 for a limited time!</td>
+            </tr>
+            <tr>
+                <td th:colspan="2">Total with sales tax (8.25%) comes to:</td>
+                <td th:colspan="2" th:text="${'$'+grandTotal}"></td>
+            </tr>
+
 
         </tbody>
     </table>
 </div>
-    <div style="text-align: center"><h3>Total: $<span th:text="${total}" style="color: green"></span></h3></div>
+<!--    <div style="text-align: center"><h3>Total: $<span style="color: green"></span></h3></div>-->
     <div style="text-align: center">
         <br>
         <form th:action="@{/addresses}" th:method="get">
