@@ -64,8 +64,6 @@ public class UserController {
         user.setAdmin(false);
         users.save(user);
         User authenticator = this.users.findByUsername(user.getUsername());
-        System.out.println(authenticator.getId());
-        System.out.println(authenticator.getUsername());
         redirectAttributes.addFlashAttribute("user", authenticator);
         authenticate(authenticator);
         return "redirect:/";
