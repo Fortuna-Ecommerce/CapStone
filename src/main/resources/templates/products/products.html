@@ -155,7 +155,7 @@
                     <div class="embed-responsive embed-responsive-4by3">
                         <a th:href="@{'/products/'+${product.id}}"><h1 style="font-weight: bold"
                                                                        th:text="${product.name}"></h1></a>
-                        <img th:src="@{${product.image}}" alt="image" src="">
+                        <img th:src="@{${product.productImage}}" alt="image" src="">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p style="font-weight:bold" th:text="${product.type}"></p>

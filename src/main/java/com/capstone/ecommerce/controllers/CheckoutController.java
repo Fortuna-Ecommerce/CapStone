@@ -127,42 +127,88 @@ public class CheckoutController{
     }
 
 
-//    @GetMapping("/addressesCheckout")
-//    public String goToAddressEntryCheckout(Model model) {
-//        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
-//            return "home";
-//        }
-//        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        Address ship_address = this.addressRepo.findByUserAndAddresstype(shopper, "Shipping");
-//        Address bill_address = this.addressRepo.findByUserAndAddresstype(shopper, "Billing");
-//        if (ship_address != null) {
-//            model.addAttribute("ship_address", ship_address);
-//        } else {
-//            ship_address = new Address();
-//            ship_address.setAddresstype("Shipping");
-//            model.addAttribute("ship_address", ship_address);
-//        }
-//        if (bill_address != null) {
-//            model.addAttribute("bill_address", bill_address);
-//        } else {
-//            bill_address = new Address();
-//            bill_address.setAddresstype("Billing");
-//            model.addAttribute("bill_address", bill_address);
-//        }
-//
-//        return "purchases/addresses";
-//
-//    }
+    @GetMapping("/addresses")
+    public String goToAddressEntryCheckout(Model model) {
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "home";
+        }
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User shopper = this.userRepo.getOne(user.getId());
+        Address ship_address = this.addressRepo.findByUserAndAddresstype(shopper, "Shipping");
+        Address bill_address = this.addressRepo.findByUserAndAddresstype(shopper, "Billing");
+        model.addAttribute("user", shopper);
+        if (ship_address != null) {
+            model.addAttribute("ship_address", ship_address);
+        } else {
+            ship_address = new Address();
+            ship_address.setAddresstype("Shipping");
+            ship_address.setUser(shopper);
+            model.addAttribute("ship_address", ship_address);
+        }
+        if (bill_address != null) {
+            model.addAttribute("bill_address", bill_address);
+        } else {
+            bill_address = new Address();
+            bill_address.setAddresstype("Billing");
+            bill_address.setUser(shopper);
+            model.addAttribute("bill_address", bill_address);
+        }
 
-//    @PostMapping("/addresses")
-//    public String submitAddresses(Model model,
-//                                  Address bill_address,
-//                                  Address ship_address,
-//                                  @ModelAttribute("products") ShoppingCart products) {
-//        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
-//            return "home";
-//        }
-//        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return "purchases/addresses";
+
+    }
+
+    @PostMapping("/addresses")
+    public String submitAddresses(Model model,
+                                  @RequestParam(name = "shipBillAddressCheck") boolean check,
+                                  @RequestParam(name="Bfirst_name") String bFN,
+                                  @RequestParam(name="Blast_name") String bLN,
+                                  @RequestParam(name = "Bcity") String bCity,
+                                  @RequestParam(name = "Baddress1") String bAdd1,
+                                  @RequestParam(name = "Baddress2", required = false) String bAdd2,
+                                  @RequestParam(name = "Bstate") String bState,
+                                  @RequestParam(name = "Bzip") Integer bZip,
+                                  @RequestParam(name="Sfirst_name", required = false) String sFN,
+                                  @RequestParam(name="Slast_name", required = false) String sLN,
+                                  @RequestParam(name = "Scity", required = false) String sCity,
+                                  @RequestParam(name = "Saddress1", required = false) String sAdd1,
+                                  @RequestParam(name = "Saddress2", required = false) String sAdd2,
+                                  @RequestParam(name = "Sstate", required = false) String sState,
+                                  @RequestParam(name = "Szip", required = false) Integer sZip,
+                                  @ModelAttribute("bill_address") Address bill_address,
+                                  @ModelAttribute("ship_address") Address ship_address,
+                                  @ModelAttribute("user") User user,
+                                  @ModelAttribute("products") ShoppingCart products) {
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "home";
+        }
+//
+        bill_address.setCity(bCity);
+        bill_address.setFirstname(bFN);
+        bill_address.setLastname(bLN);
+        bill_address.setStreet1(bAdd1);
+        bill_address.setStreet2(bAdd2);
+        bill_address.setState(bState);
+        bill_address.setZipcode(bZip);
+
+       Address saved_bill_address = addressRepo.save(bill_address);
+       Address saved_ship_address = new Address();
+
+        if(check){
+            saved_bill_address.setAddresstype("Shipping");
+            saved_ship_address = addressRepo.save(saved_bill_address);
+        } else {
+            ship_address.setCity(sCity);
+            ship_address.setFirstname(sFN);
+            ship_address.setLastname(sLN);
+            ship_address.setStreet1(sAdd1);
+            ship_address.setStreet2(sAdd2);
+            ship_address.setState(sState);
+            ship_address.setZipcode(sZip);
+            saved_ship_address = addressRepo.save(ship_address);
+        }
+
+
 //        if (bill_address.getId() > 0) {
 //
 //            this.addressRepo.save(bill_address);
@@ -176,11 +222,11 @@ public class CheckoutController{
 //            ship_address.setUser(shopper);
 //            this.addressRepo.save(ship_address);
 //        }
-//        model.addAttribute("bill_address", bill_address);
-//        model.addAttribute("ship_address", ship_address);
-//        model.addAttribute("products", products);
-//        return "purchases/checkout";
-//    }
+        model.addAttribute("bill_address", saved_bill_address);
+        model.addAttribute("ship_address", saved_ship_address);
+        model.addAttribute("products", products);
+        return "purchases/checkout";
+    }
 
 
     @Autowired

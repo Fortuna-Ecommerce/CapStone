@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,6 +35,7 @@ public class HomeController {
         this.userRepo = userRepo;
         this.transProdRepo = transProdRepo;
     }
+
 
 
 
