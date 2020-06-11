@@ -6,98 +6,123 @@
 <nav th:replace="partials :: navbar" />
 <div class="container mt-4">
 
+
 <h1 style="text-align: center">Please enter your billing information</h1>
-
-
-        <form th:action="@{/addresses}" th:object="${bill_address}" name="billAddress">
-        <input type="hidden" th:field="*{addresstype}" id="Baddresstype"/>
-            <input type="hidden" th:field="*{id}" id="Baddressid"/>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="Bfirst_name">First name</label>
-                <input type="text" class="form-control" th:field="*{firstname}" id="Bfirst_name">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="Blast_name">Last Name</label>
-                <input type="text" class="form-control" id="Blast_name" th:field="*{lastname}">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="Baddress1">Address</label>
-            <input type="text" class="form-control" id="Baddress1" th:field="*{street1}">
-        </div>
-        <div class="form-group">
-            <label for="Baddress2">Address 2</label>
-            <input type="text" class="form-control" id="Baddress2" placeholder="Apartment, studio, or floor"
-                   th:field="*{street2}">
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="Bcity">City</label>
-                <input type="text" class="form-control" id="Bcity" th:field="*{city}">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="Bstate">State</label>
-                <input type="text" id="Bstate" class="form-control" th:id="state" th:field="*{state}" maxlength="2">
-            </div>
-            <div class="form-group col-md-2">
-                <label for="Bzip">Zip</label>
-                <input type="text" class="form-control" id="Bzip" th:field="*{zipcode}" maxlength="5"
-                       placeholder="12345">
-            </div>
-        </div>
-        </form>
-        <br>
-
-    <h1 style="text-align: center">Please enter your shipping information</h1>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="yes" id="shipBillAddressCheck" name="shipBillAddressCheck">
+<br>
+    <form th:action="@{/addresses}" method="post" name="Addresses">
+    <div class="form-check" style="text-align: center">
+        <input class="form-check-input align-center" type="checkbox" id="shipBillAddressCheck"
+               name="shipBillAddressCheck">
         <label class="form-check-label" for="shipBillAddressCheck" style="size: 20px">
             My shipping info is the same as my billing info
         </label>
     </div>
+    <br>
+    <br>
+
+
+            <div class="container w-75">
+        <input type="hidden" th:value="${bill_address.addresstype}" name="Baddresstype"/>
+            <input type="hidden" th:value="${bill_address.id}" name="Baddressid"/>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="Bfirst_name">First name</label>
+                <input type="text" class="form-control" id="Bfirst_name" th:value="${bill_address.firstname}"
+                       name="Bfirst_name"
+                       required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Blast_name">Last Name</label>
+                <input type="text" class="form-control" name="Blast_name" th:value="${bill_address.lastname}" id="Blast_name"
+                       required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Baddress1">Address</label>
+            <input type="text" class="form-control" id="Baddress1" name="Baddress1" th:value="${bill_address.street1}"
+                   required>
+        </div>
+        <div class="form-group">
+            <label for="Baddress2">Address 2</label>
+            <input type="text" class="form-control" id="Baddress2" name="Baddress2" placeholder="Apartment, studio, or floor"
+                   th:value="${bill_address.street2}">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="Bcity">City</label>
+                <input type="text" class="form-control" id="Bcity" name="Bcity" th:value="${bill_address.city}" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Bstate">State</label>
+                <input type="text" id="Bstate" class="form-control" name="Bstate" th:value="${bill_address.state}"
+                       maxlength="2" required>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="Bzip">Zip</label>
+                <input type="text" class="form-control" id="Bzip" name="Bzip" th:value="${bill_address.zipcode}"
+                       maxlength="5"
+                       placeholder="12345" required>
+            </div>
+        </div>
+
+        <br>
+</div>
+
+    <h1 style="text-align: center" id="shipInfoHeader">Please enter your shipping information</h1>
+
         <br>
 
-        <form th:action="@{/addresses}" method="post" th:object="${ship_address}">
-            <input type="hidden" th:field="*{addresstype}" id="Saddresstype">
-            <input type="hidden" th:field="*{id}" id="Saddressid"/>
+    <div class="container w-75" id="shippingInfo">
+            <input type="hidden" th:value="${ship_address.addresstype}" id="Saddresstype">
+            <input type="hidden" th:value="${ship_address.id}" name="Saddressid"/>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="Sfirst_name">First name</label>
-                    <input type="text" class="form-control" th:field="*{firstname}" id="Sfirst_name">
+                    <input type="text" id="Sfirst_name" class="form-control shipping-info" th:value="${ship_address.firstname}"
+                           name="Sfirst_name" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="Slast_name">Last Name</label>
-                    <input type="text" class="form-control" id="Slast_name" th:field="*{lastname}">
+                    <input type="text" class="form-control shipping-info" id="Slast_name" name="Slast_name"
+                           th:value="${ship_address.lastname}" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="Saddress1">Address</label>
-                <input type="text" class="form-control" id="Saddress1" th:field="*{street1}">
+                <input type="text" class="form-control shipping-info" id="Saddress1" name="Saddress1"
+                       th:value="${ship_address.street1}" required>
             </div>
             <div class="form-group">
                 <label for="Saddress2">Address 2</label>
-                <input type="text" class="form-control" id="Saddress2" placeholder="Apartment, studio, or floor"
-                       th:field="*{street2}">
+                <input type="text" class="form-control" id="Saddress2" name="Saddress2"
+                       placeholder="Apartment, studio, or floor"
+                       th:value="${ship_address.street2}">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="Scity">City</label>
-                    <input type="text" class="form-control" id="Scity" th:field="*{city}">
+                    <input type="text" class="form-control shipping-info" id="Scity" name="Scity"
+                           th:value="${ship_address.city}" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="Sstate">State</label>
-                    <input type="text" id="Sstate" class="form-control" th:field="*{state}" maxlength="2">
+                    <input type="text" name="Sstate" id="Sstate" class="form-control shipping-info"
+                           th:value="${ship_address.state}" maxlength="2" required>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="Szip">Zip</label>
-                    <input type="text" class="form-control" id="Szip" th:field="*{zipcode}" maxlength="5">
+                    <input type="text" class="form-control shipping-info" name="Szip" id="Szip" th:value="${ship_address.zipcode}" maxlength="5" required>
                 </div>
             </div>
+    </div><div style="text-align: center" class="mt-2 mb3">
+            <button value="submit" class="btn-link btn text-white btn-secondary align-center" id="AddressSubmit">Continue to
+                Checkout</button>
+        </div>
         </form>
-        <button value="submit" class="btn-link btn text-white btn-secondary" id="AddressSubmit">Continue to Checkout</button>
+
 
 </div>
 <footer th:replace="partials :: footer" />
+<script type="text/javascript" src="/js/addressjs.js"></script>
 </body>
 </html>

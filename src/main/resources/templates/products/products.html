@@ -19,13 +19,161 @@
 <nav th:replace="partials :: navbar"></nav>
 
 
+
+<h1 style="text-align: center">Here's some neat stuff to buy - just sayin'!</h1>
+
+<!--<div style="text-align: center" th:if="${user.getAdmin() != null}">-->
+<!--    <div style="text-align: center;" th:if="${user.getAdmin() == true}">-->
+<!--        <h1 style="text-align: center"><a href='/products/productInventory'>Check on the Inventory</a></ h1>-->
+<!--        <h1 style="text-align: center"><a href='/transactions'>Check on Transactions</a></h1></div>-->
+<!--</div>-->
+
 <div style="text-align: center" th:if="${user.getAdmin() != null}">
     <div style="text-align: center;" th:if="${user.getAdmin() == true}">
         <h1 style="text-align: center"><a href='/products/productInventory'>Check on the Inventory</a></h1>
         <h1 style="text-align: center"><a href='/transactions'>Check on Transactions</a></h1></div>
 </div>
 
-<!--<h1 style="text-align: center">All of the greatest internet pictures and text on fancy clothes!</h1><br>-->
+
+<!--CARDS-->
+
+<!--Start of card-->
+<!--<div class="card-grid">-->
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card12" th:each="product : ${product12}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product12.name}">Rover</h5>-->
+<!--            <p th:text="${product12.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card13" th:each="product : ${product13}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product13.name}">Rover</h5>-->
+<!--            <p th:text="${product13.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card14" th:each="product : ${product14}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product14.name}">Rover</h5>-->
+<!--            <p th:text="${product14.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card15" th:each="product : ${product15}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product15.name}">Rover</h5>-->
+<!--            <p th:text="${product15.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card16" th:each="product : ${product16}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product16.name}">Rover</h5>-->
+<!--            <p th:text="${product16.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card17" th:each="product : ${product17}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product17.name}">Rover</h5>-->
+<!--            <p th:text="${product17.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card18" th:each="product : ${product18}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product18.name}">Rover</h5>-->
+<!--            <p th:text="${product18.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card19" th:each="product : ${product19}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product19.name}">Rover</h5>-->
+<!--            <p th:text="${product19.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card20" th:each="product : ${product20}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product20.name}">Rover</h5>-->
+<!--            <p th:text="${product20.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--End of card-->
+
+<!--End of card-->
+<!-- start of product cards cards are generated from this card-->
+<!--<div class="card-deck">-->
+
+
+
+
+
+<!--This works for a dynamic generation of cards that looks okay - take a look at some point - JT-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<!--<div class="card-columns" style="margin-left: 13%">-->
+<!--    <div class="card border-0 shadow-none" th:each="product : ${showProducts}">-->
+<!--        <img th:src="${product.productImage}" class="card-img-top" alt="..." style="height: 300px;width: 300px">-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product.name}"></h5>-->
+<!--            <h6 class="card-subtitle mb-2 text-muted" th:text="${product.type}"></h6>-->
+<!--            <h4 th:text="${'$'+product.price}"></h4>-->
+<!--            <div class="d-inline-flex">-->
+
+<!--                <div class="card-text">-->
+
+<!--                    <p>Available in - <span class="minidot" style="background-color: #808080;"></span> <span-->
+<!--                            class="minidot"-->
+<!--                                                                                                         style="background-color: #000000"></span> <span class="minidot" style="background-color: #FFFFFF;"></span></p>-->
+<!--                <a th:href="@{'/products/'+${product.id}}" class="btn btn-primary">View</a>-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+
+
+
+
 <div class="main">
     <div class="row">
         <div class="col-sm-3 col-md-1">
@@ -338,11 +486,62 @@
             </div>
         </div>
     </div>
+
 </div>
+    </div>
+</div>
+<!--</div>-->
+<!--<div class="container">-->
+<!--    <div class="row">-->
+
+<!--        <div class="container" th:each="product : ${showProducts}">-->
+<!--            <div class="col-12 col-md-3">-->
+<!--                <div class="card shadow p-3 mb-5 bg-white rounded">-->
+<!--                    <div class="embed-responsive embed-responsive-4by3">-->
+<!--                        <a th:href="@{'/products/'+${product.id}}"><h1 style="font-weight: bold"-->
+<!--                                                                       th:text="${product.name}"></h1></a>-->
+<!--                        <img th:src="@{${product.productImage}}" alt="image" src="">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Card title</h5>-->
+<!--                            <p style="font-weight:bold" th:text="${product.type}"></p>-->
+<!--                            <a href="#" class="btn btn-primary">Add to cart</a>-->
+<!--                            <p th:text="${product.description}"> </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<nav aria-label="Page navigation example">-->
+<!--    <ul class="pagination justify-content-center">-->
+<!--        <li class="page-item">-->
+<!--            <a class="page-link" href="javascript:prevPage()" tabindex="-1">Previous</a>-->
+<!--        </li>-->
+<!--        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+<!--        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--        <li class="page-item">-->
+<!--            <a class="page-link" href="javascript:nextPage()">Next</a>-->
+<!--        </li>-->
+<!--    </ul>-->
+
 
 
 <!-- JavaScript links -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<!--<script src="/js/pagination.js"></script>-->
+<!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"-->
+<!--        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"-->
+<!--        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"-->
+<!--        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<footer th:replace="partials :: footer" />-->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
