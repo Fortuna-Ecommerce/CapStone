@@ -63,7 +63,7 @@
                 <h5 class="card-title" th:text="${product3.name}"></h5>
                 <div class="d-inline-flex">
                 <h4 class="card-text" th:text="${product3.price}"></h4>
-                <a href="#" class="btn btn-primary" style="margin-left: 80px">View</a>
+                <a th:href="@{'/products/'+${product3.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
                 <h5 class="card-title" th:text="${product4.name}"></h5>
                 <div class="d-inline-flex">
                     <h4 class="card-text" th:text="${product4.price}"></h4>
-                    <a href="#" class="btn btn-primary" style="margin-left: 80px">View</a>
+                    <a th:href="@{'/products/'+${product4.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@
                 <h5 class="card-title" th:text="${product5.name}"></h5>
                 <div class="d-inline-flex">
                     <h4 class="card-text" th:text="${product5.price}"></h4>
-                    <a href="#" class="btn btn-primary" style="margin-left: 80px">View</a>
+                    <a th:href="@{'/products/'+${product5.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>
                 </div>
             </div>
         </div>
@@ -96,7 +96,7 @@
                 <h5 class="card-title" th:text="${product6.name}"></h5>
                 <div class="d-inline-flex">
                     <h4 class="card-text" th:text="${product6.price}"></h4>
-                    <a href="#" class="btn btn-primary" style="margin-left: 80px">View</a>
+                    <a th:href="@{'/products/'+${product6.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>
                 </div>
             </div>
         </div>
@@ -108,7 +108,7 @@
                 <h5 class="card-title" th:text="${product7.name}"></h5>
                 <div class="d-inline-flex">
                     <h4 class="card-text" th:text="${product7.price}"></h4>
-                    <a href="#" class="btn btn-primary" style="margin-left: 80px">View</a>
+                    <a th:href="@{'/products/'+${product7.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>
                 </div>
             </div>
         </div>
@@ -119,7 +119,7 @@
                 <h5 class="card-title" th:text="${product8.name}"></h5>
                 <div class="d-inline-flex">
                     <h4 class="card-text" th:text="${product8.price}"></h4>
-                    <a href="#" class="btn btn-primary" style="margin-left: 80px">View</a>
+                    <a th:href="@{'/products/'+${product8.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>
                 </div>
             </div>
         </div>
@@ -129,7 +129,7 @@
                 <h5 class="card-title" th:text="${product9.name}"></h5>
                 <div class="d-inline-flex">
                     <h4 class="card-text" th:text="${product9.price}"></h4>
-                    <a href="#" class="btn btn-primary" style="margin-left: 80px">View</a>
+                    <a th:href="@{'/products/'+${product9.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>
                 </div>
             </div>
         </div>
@@ -140,12 +140,12 @@
                 <h5 class="card-title" th:text="${product10.name}"></h5>
                 <div class="d-inline-flex">
                     <h4 class="card-text" th:text="${product10.price}"></h4>
-                    <a href="#" class="btn btn-primary" style="margin-left: 80px">View</a>
+                    <a th:href="@{'/products/'+${product10.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
 
 <section class="categories">
     <div class="category-item" style="background-image: url('images/img-col1.png');">
