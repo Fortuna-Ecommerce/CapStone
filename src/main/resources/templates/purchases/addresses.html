@@ -9,7 +9,7 @@
 
 <h1 style="text-align: center">Please enter your billing information</h1>
 <br>
-    <form th:action="@{/addresses}" method="post" name="billAddress">
+    <form th:action="@{/addresses}" method="post" name="Addresses">
     <div class="form-check" style="text-align: center">
         <input class="form-check-input align-center" type="checkbox" id="shipBillAddressCheck"
                name="shipBillAddressCheck">
@@ -74,7 +74,7 @@
 
     <div class="container w-75" id="shippingInfo">
             <input type="hidden" th:value="${ship_address.addresstype}" id="Saddresstype">
-            <input type="hidden" th:value="${ship_address.id}" id="Saddressid"/>
+            <input type="hidden" th:value="${ship_address.id}" name="Saddressid"/>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="Sfirst_name">First name</label>
