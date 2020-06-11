@@ -52,18 +52,89 @@
         </div>
     </section>
 
+<h2>Featured Products</h2>
+    <div class="row">
+        <div class="card" th:each="product : ${product3}" style="width: 18rem; height: 25rem">
+            <img th:src="${product3.productImage}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${product3.name}">Card title</h5>
+                <p class="card-text" th:text="${product3.price}"></p>
+                <a href="#" class="btn btn-primary">View Product</a>
+            </div>
+        </div>
 
+        <div class="card" th:each="product : ${product4}" style="width: 18rem;">
+            <img th:src="${product4.productImage}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${product4.name}">Card title</h5>
+                <p class="card-text" th:text="${product4.price}"></p>
+                <a href="#" class="btn btn-primary">View Product</a>
+            </div>
+        </div>
 
+        <div class="card" th:each="product : ${product5}" style="width: 18rem;">
+            <img th:src="${product5.productImage}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${product5.name}">Card title</h5>
+                <p class="card-text" th:text="${product5.price}"></p>
+                <a href="#" class="btn btn-primary">View Product</a>
+            </div>
+        </div>
+
+        <div class="card" th:each="product : ${product6}" style="width: 18rem;">
+            <img th:src="${product6.productImage}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${product6.name}">Card title</h5>
+                <p class="card-text" th:text="${product6.price}"></p>
+                <a href="#" class="btn btn-primary">View Product</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card" th:each="product : ${product7}" style="width: 18rem;">
+            <img th:src="${product7.productImage}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${product7.name}">Card title</h5>
+                <p class="card-text" th:text="${product7.price}"></p>
+                <a href="#" class="btn btn-primary">View Product</a>
+            </div>
+        </div>
+
+        <div class="card" th:each="product : ${product8}" style="width: 18rem;">
+            <img th:src="${product8.productImage}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${product8.name}">Card title</h5>
+                <p class="card-text" th:text="${product8.price}"></p>
+                <a href="#" class="btn btn-primary">View Product</a>
+            </div>
+        </div>
+        <div class="card" th:each="product : ${product9}" style="width: 18rem;">
+            <img th:src="${product9.productImage}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${product9.name}">Card title</h5>
+                <p class="card-text" th:text="${product9.price}"></p>
+                <a href="#" class="btn btn-primary">View Product</a>
+            </div>
+        </div>
+
+        <div class="card" th:each="product : ${product10}" style="width: 18rem;">
+            <img th:src="${product10.productImage}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${product10.name}">Card title</h5>
+                <p class="card-text" th:text="${product10.price}"></p>
+                <a href="#" class="btn btn-primary">View Product</a>
+            </div>
+        </div>
+    </div>
 <!--CARDS-->
 
 <!--Start of card-->
 <!--<div class="card-grid">-->
 <!--    <div class="card shadow card p-3 mb-5 bg-white rounded" id="card3" th:each="product : ${product3}">-->
 <!--        <div class="embed-responsive embed-responsive-4by3">-->
-<!--            <div id="image" class="productImg card-img-top embed-responsive-item ml-1"><img-->
-<!--                    th:src="${product3.productImage}"-->
-<!--                                                              alt="The product's image" height="225px" width="225px"></div>-->
-<!--&lt;!&ndash;            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">&ndash;&gt;-->
+<!--            <div id="image" class="productImg card-img-top embed-responsive-item ml-1">-->
+<!--                <img th:src="${product3.productImage}" alt="The product's image" height="225px" width="225px">-->
+<!--            </div>-->
 <!--        </div>-->
 <!--        <div class="card-body">-->
 <!--            <h5 class="card-title" th:text="${product3.name}">Rover</h5>-->
@@ -74,10 +145,9 @@
 
 <!--    <div class="card shadow card p-3 mb-5 bg-white rounded" id="card4" th:each="product : ${product4}">-->
 <!--        <div class="embed-responsive embed-responsive-4by3">-->
-<!--            <div class="productImg card-img-top embed-responsive-item ml-1"><img-->
-<!--                    th:src="${product4.productImage}"-->
-<!--                    alt="The product's image" height="225px" width="225px"></div>-->
-<!--&lt;!&ndash;            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">&ndash;&gt;-->
+<!--            <div class="productImg card-img-top embed-responsive-item ml-1">-->
+<!--                <img th:src="${product4.productImage}" alt="The product's image" height="225px" width="225px">-->
+<!--            </div>-->
 <!--        </div>-->
 <!--        <div class="card-body">-->
 <!--            <h5 class="card-title" th:text="${product4.name}">Rover</h5>-->
@@ -88,10 +158,9 @@
 
 <!--    <div class="card shadow card p-3 mb-5 bg-white rounded" id="card5" th:each="product : ${product5}">-->
 <!--        <div class="embed-responsive embed-responsive-4by3">-->
-<!--            <div class="productImg card-img-top embed-responsive-item ml-1"><img-->
-<!--                    th:src="${product5.productImage}"-->
-<!--                    alt="The product's image" height="225px" width="225px"></div>-->
-<!--&lt;!&ndash;            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">&ndash;&gt;-->
+<!--            <div class="productImg card-img-top embed-responsive-item ml-1">-->
+<!--                <img th:src="${product5.productImage}" alt="The product's image" height="225px" width="225px">-->
+<!--            </div>-->
 <!--        </div>-->
 <!--        <div class="card-body">-->
 <!--            <h5 class="card-title" th:text="${product5.name}">Rover</h5>-->
@@ -217,7 +286,7 @@
             <div class="col-sm-4">
                 <h4>Our conditions</h4>
                 <div class="justify">
-                    The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: “Client”, “You” and “Your” refers to you, the person log on this website and compliant to the Company's terms and conditions. “The Company”, “Ourselves”, “We”, “Our” and “Us”, refers to our Company. “Party”, “Parties”, or “Us”, refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client's needs in respect of provision of the Company's stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.
+                    The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: “Client”, “You” and “Your” refers to you, the person log on this website and compliant to the Company's terms and conditions.
                 </div>
             </div>
             <div class="col-sm-4">
