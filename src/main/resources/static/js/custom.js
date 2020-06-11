@@ -50,8 +50,8 @@
                         $.post(
                             "/charge",
                             {email: email, token: token, total: total},
-                            function (data) {
-                            }, 'json')
+                            function (data) {},
+                            'json')
                             .done(function (data) {
                                 let displayError = document.getElementById('card-errors');
                                 let message = "";
