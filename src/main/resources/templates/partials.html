@@ -35,12 +35,9 @@
             </li>
 
         </ul>
-
-
-        <ul class="navbar-nav">
-<!--            <li class="nav-item navitem">-->
-<!--                <a class="nav-link" href="/products/all">Collection</a>-->
-<!--            </li>-->
+            <li class="nav-item navitem">
+                <a class="nav-link" href="/products/all">Collection</a>
+            </li>
 
             <li class="nav-item navitem" sec:authorize="isAuthenticated()">
                 <form th:action="@{/cart}" th:method="get">
@@ -75,7 +72,6 @@
             </li>
 
         </ul>
-    </ul>
 </nav>
 
 <div th:fragment="footer">
