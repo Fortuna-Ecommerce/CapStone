@@ -23,7 +23,7 @@
 }
 
 .StripeElement--invalid {
-    border-color: #fa755a;
+    border-color: #1E74FF;
 }
 
 .StripeElement--webkit-autofill {
@@ -95,6 +95,7 @@ body{
     font-family: sans-serif;
     overflow-x: hidden;
     display: grid;
+
 }
 
 *{
@@ -203,7 +204,7 @@ body{
     width: 40px;
     margin-top: -20px;
     color:#ffffff;
-    background-color: #FF5722;
+    background-color: #1E74FF;
     text-align: center;
     line-height: 40px;
     font-size:20px;
@@ -234,7 +235,7 @@ body{
     width:25px;
     height: 25px;
     color:#ffffff;
-    background-color: #FF5722;
+    background-color: #1E74FF;
     border-radius:50%;
     text-align: center;
     line-height: 25px;
@@ -252,48 +253,69 @@ body{
     }
 }
 
-.card-grid {
+.overlay {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+}
+
+#card-grid {
     display: grid;
     grid-template-columns: repeat(21, 50px);
     grid-template-rows: repeat(30, 1fr);
     grid-column-gap: 10px;
     grid-row-gap: 20px;
-
 }
 
-#card3 {
-    grid-area: 2/3/9/8;
+.card {
+    border: none;
+    margin: 0 auto; /* Added */
+    /*float: none; !* Added *!*/
+    margin-bottom: 10px; /* Added */
 }
 
-#card4 {
-    grid-area: 2/10/9/15;
+.btn-padding {
+    margin-bottom: 300px;
+    margin-left: 80px;
 }
 
-#card5 {
-    grid-area: 2/17/9/22;
-}
+/*}*/
+
+/*#card3 {*/
+/*    grid-area: 2/3/9/8;*/
+/*}*/
+
+/*#card4 {*/
+/*    grid-area: 2/10/9/15;*/
+/*}*/
+
+/*#card5 {*/
+/*    grid-area: 2/17/9/22;*/
+/*}*/
 
 
-#card6 {
-    grid-area: 9/3/16/8;
-}
+/*#card6 {*/
+/*    grid-area: 9/3/16/8;*/
+/*}*/
 
-#card7 {
-    grid-area: 9/10/16/15;
-}
+/*#card7 {*/
+/*    grid-area: 9/10/16/15;*/
+/*}*/
 
-#card8 {
-    grid-area: 9/17/16/22;
-}
+/*#card8 {*/
+/*    grid-area: 9/17/16/22;*/
+/*}*/
 
-#card9 {
-    grid-area: 16/3/22/8;
-}
+/*#card9 {*/
+/*    grid-area: 16/3/22/8;*/
+/*}*/
 
-#card10 {
-    grid-area: 16/10/22/15;
-}
+/*#card10 {*/
+/*    grid-area: 16/10/22/15;*/
+/*}*/
 
-#card11 {
-    grid-area: 16/17/22/22;
-}
+/*#card11 {*/
+/*    grid-area: 16/17/22/22;*/
+/*}*/
+
