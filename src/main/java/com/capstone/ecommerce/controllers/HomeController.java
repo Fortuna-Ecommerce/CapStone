@@ -37,8 +37,6 @@ public class HomeController {
     }
 
 
-
-
     @GetMapping("/aboutUs")
     public String aboutUs() {
 
