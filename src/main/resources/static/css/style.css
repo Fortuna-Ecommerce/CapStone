@@ -136,6 +136,7 @@ body{
     display: none;
     /*padding:0 15px;*/
     animation: slide 2s ease;
+    background-color: cornflowerblue;
 }
 @media (min-width: 992px) {
     .home .slide.active {
