@@ -54,15 +54,15 @@
 
 
 <!--CARDS-->
-
-<h2>Featured Products</h2>
+<div class="mx-auto">
+<h2 style="text-align: center">Featured Products</h2>
     <div class="row">
-        <div class="card" th:each="product : ${product3}" style="width: 18rem; height: 25rem">
+        <div class="card" th:each="product : ${product3}" style="width: 18rem">
             <img th:src="${product3.productImage}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title" th:text="${product3.name}">Card title</h5>
                 <p class="card-text" th:text="${product3.price}"></p>
-                <a href="#" class="btn btn-primary">View Product</a>
+                <a th:href="@{'/products/'+${product3.id}}" class="btn btn-primary">View Product</a>
             </div>
         </div>
 
@@ -71,7 +71,7 @@
             <div class="card-body">
                 <h5 class="card-title" th:text="${product4.name}">Card title</h5>
                 <p class="card-text" th:text="${product4.price}"></p>
-                <a href="#" class="btn btn-primary">View Product</a>
+                <a th:href="@{'/products/'+${product4.id}}" class="btn btn-primary">View Product</a>
             </div>
         </div>
 
@@ -80,7 +80,7 @@
             <div class="card-body">
                 <h5 class="card-title" th:text="${product5.name}">Card title</h5>
                 <p class="card-text" th:text="${product5.price}"></p>
-                <a href="#" class="btn btn-primary">View Product</a>
+                <a th:href="@{'/products/'+${product5.id}}" class="btn btn-primary">View Product</a>
             </div>
         </div>
 
@@ -89,7 +89,7 @@
             <div class="card-body">
                 <h5 class="card-title" th:text="${product6.name}">Card title</h5>
                 <p class="card-text" th:text="${product6.price}"></p>
-                <a href="#" class="btn btn-primary">View Product</a>
+                <a th:href="@{'/products/'+${product6.id}}" class="btn btn-primary">View Product</a>
             </div>
         </div>
     </div>
@@ -99,7 +99,7 @@
             <div class="card-body">
                 <h5 class="card-title" th:text="${product7.name}">Card title</h5>
                 <p class="card-text" th:text="${product7.price}"></p>
-                <a href="#" class="btn btn-primary">View Product</a>
+                <a th:href="@{'/products/'+${product7.id}}" class="btn btn-primary">View Product</a>
             </div>
         </div>
 
@@ -108,7 +108,7 @@
             <div class="card-body">
                 <h5 class="card-title" th:text="${product8.name}">Card title</h5>
                 <p class="card-text" th:text="${product8.price}"></p>
-                <a href="#" class="btn btn-primary">View Product</a>
+                <a th:href="@{'/products/'+${product8.id}}" class="btn btn-primary">View Product</a>
             </div>
         </div>
         <div class="card" th:each="product : ${product9}" style="width: 18rem;">
@@ -116,7 +116,7 @@
             <div class="card-body">
                 <h5 class="card-title" th:text="${product9.name}">Card title</h5>
                 <p class="card-text" th:text="${product9.price}"></p>
-                <a href="#" class="btn btn-primary">View Product</a>
+                <a th:href="@{'/products/'+${product9.id}}" class="btn btn-primary">View Product</a>
             </div>
         </div>
 
@@ -125,11 +125,11 @@
             <div class="card-body">
                 <h5 class="card-title" th:text="${product10.name}">Card title</h5>
                 <p class="card-text" th:text="${product10.price}"></p>
-                <a href="#" class="btn btn-primary">View Product</a>
+                <a th:href="@{'/products/'+${product10.id}}" class="btn btn-primary">View Product</a>
             </div>
         </div>
     </div>
-
+</div>
 
 <section class="categories">
     <div class="category-item" style="background-image: url('images/img-col1.png');">
