@@ -26,25 +26,27 @@
             <tr>
 <!--                <th>Preview</th>-->
                 <th>Name</th>
-                <th>Price</th>
                 <th>Quantity</th>
-                <th>Operation</th>
+                <th>Price</th>
+<!--                <th>Operation</th>-->
             </tr>
         </thead>
         <tbody>
 
 
             <tr th:each="product : ${products}">
-<!--                <td>Preview coming soon!</td>-->
-                <td th:text="${product.name}"></td>
-                <td th:text="${#numbers.formatDecimal(product.price,0,'COMMA',2,'POINT')}"></td>
-                <td th:text="${product.quantity}"></td>
-                <td> <form th:action="@{/deleteFromCart}" th:method="post">
+                <td th:text="${product.name}"> <form th:action="@{/deleteFromCart}" th:method="post">
                     <input type="hidden" name="cartDeleteId" th:value="${product.id}">
-                    <button class="btn-link btn text-white btn-secondary">Delete item</button>
+                    <a href="/deleteFromCart"><img src="/images/trashcan.png" alt="Deletey trash can"></a>
                 </form></td>
-            </tr>
+                <td th:text="${product.quantity}"></td>
+                <td th:text="${'$'+#numbers.formatDecimal(product.price,0,'COMMA',2,'POINT')}"></td>
 
+            </tr>
+            <tr>
+                <td colspan="2">Your subtotal: </td>
+
+            </tr>
 
         </tbody>
     </table>
