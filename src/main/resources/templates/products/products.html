@@ -188,9 +188,10 @@
         <div class="col-sm-9 col-md-10">
             <div class="item-list">
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product27}">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"
+                         th:each="product : ${product1}">
                         <div class="item">
-                            <a th:href="@{'/products/'+${product28.id}}">
+                            <a th:href="@{'/products/'+${product1.id}}">
                                 <div class="ribon-container">
                                     <div class="ribon">
                                         Hot Item!
@@ -198,17 +199,17 @@
                                     <div class="ribon-arrow"></div>
                                 </div>
                                 <div class="picture">
-                                    <img th:src="${product28.productImage}" alt="The product's image">
+                                    <img th:src="${product1.productImage}" alt="The product's image">
                                 </div>
                                 <div class="category">T-Shirt</div>
-                                <div class="title" th:text="${product28.name}"></div>
+                                <div class="title" th:text="${product1.name}"></div>
                                 <div class="description">
                                 </div>
                                 <div class="actions">
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <div class="price">
-                                                <p th:text="${product28.price}"></p>
+                                                <p th:text="${product1.price}"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -216,9 +217,9 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product27}">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product2}">
                         <div class="item">
-                            <a th:href="@{'/products/'+${product27.id}}">
+                            <a th:href="@{'/products/'+${product2.id}}">
                                 <div class="ribon-container">
                                     <div class="ribon">
                                         SALE!
@@ -226,15 +227,15 @@
                                     <div class="ribon-arrow"></div>
                                 </div>
                                 <div class="picture">
-                                    <img th:src="${product27.productImage}" alt="The product's image">
+                                    <img th:src="${product2.productImage}" alt="The product's image">
                                 </div>
                                 <div class="category">T-Shirt</div>
-                                <div class="title" th:text="${product27.name}"></div>
+                                <div class="title" th:text="${product2.name}"></div>
                                 <div class="actions">
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <div class="price">
-                                                <p th:text="${product27.price}"></p>
+                                                <p th:text="${product2.price}"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -242,20 +243,22 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product27}">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"
+                         th:each="product : ${product3}">
                         <div class="item">
-                            <a th:href="@{'/products/'+${product28.id}}">
+                            <a th:href="@{'/products/'+${product3.id}}">
                                 <div class="picture">
-                                    <img th:src="${product28.productImage}" alt="The product's image">                                </div>
+                                    <img th:src="${product3.productImage}" alt="The product's image">
+                                </div>
                                 <div class="category">T-Shirt</div>
-                                <div class="title" th:text="${product28.name}"></div>
+                                <div class="title" th:text="${product3.name}"></div>
                                 <div class="description">
                                 </div>
                                 <div class="actions">
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <div class="price">
-                                                <p th:text="${product28.price}"></p>
+                                                <p th:text="${product3.price}"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -263,9 +266,10 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product27}">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"
+                         th:each="product : ${product4}">
                         <div class="item">
-                            <a th:href="@{'/products/'+${product28.id}}">
+                            <a th:href="@{'/products/'+${product4.id}}">
                                 <div class="ribon-container">
                                     <div class="ribon">
                                         SALE!
@@ -273,16 +277,17 @@
                                     <div class="ribon-arrow"></div>
                                 </div>
                                 <div class="picture">
-                                    <img th:src="${product27.productImage}" alt="The product's image">                                </div>
+                                    <img th:src="${product4.productImage}" alt="The product's image">
+                                </div>
                                 <div class="category">T-Shirt</div>
-                                <div class="title" th:text="${product28.name}"></div>
+                                <div class="title" th:text="${product4.name}"></div>
                                 <div class="description">
                                 </div>
                                 <div class="actions">
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <div class="price">
-                                                <p th:text="${product28.price}"></p>
+                                                <p th:text="${product4.price}"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -290,20 +295,22 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product27}">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"
+                         th:each="product : ${product5}">
                         <div class="item">
-                            <a th:href="@{'/products/'+${product28.id}}">
+                            <a th:href="@{'/products/'+${product5.id}}">
                                 <div class="picture">
-                                    <img th:src="${product27.productImage}" alt="The product's image">                                </div>
+                                    <img th:src="${product5.productImage}" alt="The product's image">
+                                </div>
                                 <div class="category">T-Shirt</div>
-                                <div class="title" th:text="${product28.name}"></div>
+                                <div class="title" th:text="${product5.name}"></div>
                                 <div class="description">
                                 </div>
                                 <div class="actions">
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <div class="price">
-                                                <p th:text="${product28.price}"></p>
+                                                <p th:text="${product5.price}"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -311,9 +318,10 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product27}">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"
+                         th:each="product : ${product6}">
                         <div class="item">
-                            <a th:href="@{'/products/'+${product28.id}}">
+                            <a th:href="@{'/products/'+${product6.id}}">
                                 <div class="ribon-container">
                                     <div class="ribon">
                                         SALE!
@@ -321,16 +329,17 @@
                                     <div class="ribon-arrow"></div>
                                 </div>
                                 <div class="picture">
-                                    <img th:src="${product27.productImage}" alt="The product's image">                                </div>
+                                    <img th:src="${product6.productImage}" alt="The product's image">
+                                </div>
                                 <div class="category">T-Shirt</div>
-                                <div class="title" th:text="${product28.name}"></div>
+                                <div class="title" th:text="${product6.name}"></div>
                                 <div class="description">
                                 </div>
                                 <div class="actions">
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <div class="price">
-                                                <p th:text="${product28.price}"></p>
+                                                <p th:text="${product6.price}"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -338,9 +347,9 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product27}">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product7}">
                         <div class="item">
-                            <a th:href="@{'/products/'+${product28.id}}">
+                            <a th:href="@{'/products/'+${product7.id}}">
                                 <div class="ribon-container">
                                     <div class="ribon">
                                         SALE!
@@ -348,16 +357,17 @@
                                     <div class="ribon-arrow"></div>
                                 </div>
                                 <div class="picture">
-                                    <img th:src="${product27.productImage}" alt="The product's image">                                </div>
+                                    <img th:src="${product7.productImage}" alt="The product's image">
+                                </div>
                                 <div class="category">T-shirt</div>
-                                <div class="title" th:text="${product28.name}"></div>
+                                <div class="title" th:text="${product7.name}"></div>
                                 <div class="description">
                                 </div>
                                 <div class="actions">
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <div class="price">
-                                                <p th:text="${product28.price}"></p>
+                                                <p th:text="${product7.price}"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -365,20 +375,22 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product27}">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"
+                         th:each="product : ${product8}">
                         <div class="item">
-                            <a th:href="@{'/products/'+${product28.id}}">
+                            <a th:href="@{'/products/'+${product8.id}}">
                                 <div class="picture">
-                                    <img th:src="${product27.productImage}" alt="The product's image">                                </div>
+                                    <img th:src="${product8.productImage}" alt="The product's image">
+                                </div>
                                 <div class="category">T-shirt</div>
-                                <div class="title" th:text="${product28.name}"></div>
+                                <div class="title" th:text="${product8.name}"></div>
                                 <div class="description">
                                 </div>
                                 <div class="actions">
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <div class="price">
-                                                <p th:text="${product28.price}"></p>
+                                                <p th:text="${product8.price}"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -386,20 +398,22 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product27}">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"
+                         th:each="product : ${product9}">
                         <div class="item">
-                            <a th:href="@{'/products/'+${product28.id}}">
+                            <a th:href="@{'/products/'+${product9.id}}">
                                 <div class="picture">
-                                    <img th:src="${product27.productImage}" alt="The product's image">                                </div>
+                                    <img th:src="${product9.productImage}" alt="The product's image">
+                                </div>
                                 <div class="category">T-Shirt</div>
-                                <div class="title" th:text="${product28.name}"></div>
+                                <div class="title" th:text="${product9.name}"></div>
                                 <div class="description">
                                 </div>
                                 <div class="actions">
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <div class="price">
-                                                <p th:text="${product28.price}"></p>
+                                                <p th:text="${product9.price}"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -407,20 +421,22 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product27}">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"
+                         th:each="product : ${product10}">
                         <div class="item">
-                            <a th:href="@{'/products/'+${product28.id}}">
+                            <a th:href="@{'/products/'+${product10.id}}">
                                 <div class="picture">
-                                    <img th:src="${product27.productImage}" alt="The product's image">                                </div>
+                                    <img th:src="${product10.productImage}" alt="The product's image">
+                                </div>
                                 <div class="category">T-Shirt</div>
-                                <div class="title" th:text="${product28.name}"></div>
+                                <div class="title" th:text="${product10.name}"></div>
                                 <div class="description">
                                 </div>
                                 <div class="actions">
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <div class="price">
-                                                <p th:text="${product28.price}"></p>
+                                                <p th:text="${product10.price}"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -428,9 +444,10 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product27}">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"
+                         th:each="product : ${product11}">
                         <div class="item">
-                            <a th:href="@{'/products/'+${product28.id}}">
+                            <a th:href="@{'/products/'+${product11.id}}">
                                 <div class="ribon-container">
                                     <div class="ribon">
                                         SALE!
@@ -438,16 +455,17 @@
                                     <div class="ribon-arrow"></div>
                                 </div>
                                 <div class="picture">
-                                    <img th:src="${product27.productImage}" alt="The product's image">                                </div>
+                                    <img th:src="${product11.productImage}" alt="The product's image">
+                                </div>
                                 <div class="category">T-shirt</div>
-                                <div class="title" th:text="${product28.name}"></div>
+                                <div class="title" th:text="${product11.name}"></div>
                                 <div class="description">
                                 </div>
                                 <div class="actions">
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <div class="price">
-                                                <p th:text="${product28.price}"></p>
+                                                <p th:text="${product11.price}"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -455,9 +473,10 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product27}">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"
+                         th:each="product : ${product12}">
                         <div class="item">
-                            <a th:href="@{'/products/'+${product28.id}}">
+                            <a th:href="@{'/products/'+${product12.id}}">
                                 <div class="ribon-container">
                                     <div class="ribon">
                                         SALE!
@@ -465,16 +484,17 @@
                                     <div class="ribon-arrow"></div>
                                 </div>
                                 <div class="picture">
-                                    <img th:src="${product27.productImage}" alt="The product's image">                                </div>
+                                    <img th:src="${product12.productImage}" alt="The product's image">
+                                </div>
                                 <div class="category">T-Shirt</div>
-                                <div class="title" th:text="${product28.name}"></div>
+                                <div class="title" th:text="${product12.name}"></div>
                                 <div class="description">
                                 </div>
                                 <div class="actions">
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <div class="price">
-                                                <p th:text="${product28.price}"></p>
+                                                <p th:text="${product12.price}"></p>
                                             </div>
                                         </div>
                                     </div>
