@@ -324,7 +324,7 @@ public class ProductsController {
 
 
 
-//        model.addAttribute("showProducts", showProducts);
+        model.addAttribute("showProducts", showProducts);
 
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             User user = new User();
@@ -547,6 +547,7 @@ public class ProductsController {
         redirectAttributes.addFlashAttribute("user", testShopper);
         return "redirect:search";
     }
+
 
     @GetMapping("/products/search")
     public String searchProductLander(Model model,
