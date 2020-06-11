@@ -52,79 +52,79 @@ public class CheckoutController{
     private String stripePublicKey = "pk_test_B1PgkqwpndJUHJCdlY0I9leL00c395TbE5";
 
 
-    @GetMapping("/baddress")
-    public String goToBillAddress(Model model) {
-        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
-            return "home";
-        }
-        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Address bill_address = this.addressRepo.findByUserAndAddresstype(shopper, "Billing");
-        if (bill_address != null) {
-            model.addAttribute("bill_address", bill_address);
-        } else {
-            bill_address = new Address();
-            bill_address.setAddresstype("Billing");
-            bill_address.setUser(shopper);
-            model.addAttribute("bill_address", bill_address);
-        }
-        return "purchases/baddress";
-    }
-
-    @PostMapping("/baddress")
-    public String submitBillAddress(Model model,
-                                    Address bill_address) {
-        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
-            return "home";
-        }
-        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        if (bill_address.getId() > 0) {
-//            this.addressRepo.save(bill_address);
+//    @GetMapping("/baddress")
+//    public String goToBillAddress(Model model) {
+//        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+//            return "home";
+//        }
+//        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        Address bill_address = this.addressRepo.findByUserAndAddresstype(shopper, "Billing");
+//        if (bill_address != null) {
+//            model.addAttribute("bill_address", bill_address);
 //        } else {
+//            bill_address = new Address();
+//            bill_address.setAddresstype("Billing");
 //            bill_address.setUser(shopper);
-            this.addressRepo.save(bill_address);
+//            model.addAttribute("bill_address", bill_address);
 //        }
-        model.addAttribute("bill_address", bill_address);
-        Address ship_address = this.addressRepo.findByUserAndAddresstype(shopper, "Shipping");
-        if (ship_address != null) {
-            model.addAttribute("ship_address", ship_address);
-        } else {
-            ship_address = new Address();
-            ship_address.setAddresstype("Shipping");
-            ship_address.setUser(shopper);
-            model.addAttribute("ship_address", ship_address);
-        }
-        return "purchases/saddress";
-    }
+//        return "purchases/baddress";
+//    }
 
-    @PostMapping("/saddress")
-    public String submitShipAddress(Model model,
-                                    Address ship_address,
-                                    @ModelAttribute("products") ShoppingCart products) {
-        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
-            return "home";
-        }
-        double total = 0.00;
-        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        if (ship_address.getId() > 0) {
-//            this.addressRepo.save(ship_address);
+//    @PostMapping("/baddress")
+//    public String submitBillAddress(Model model,
+//                                    Address bill_address) {
+//        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+//            return "home";
+//        }
+//        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+////        if (bill_address.getId() > 0) {
+////            this.addressRepo.save(bill_address);
+////        } else {
+////            bill_address.setUser(shopper);
+//            this.addressRepo.save(bill_address);
+////        }
+//        model.addAttribute("bill_address", bill_address);
+//        Address ship_address = this.addressRepo.findByUserAndAddresstype(shopper, "Shipping");
+//        if (ship_address != null) {
+//            model.addAttribute("ship_address", ship_address);
 //        } else {
-            this.addressRepo.save(ship_address);
+//            ship_address = new Address();
+//            ship_address.setAddresstype("Shipping");
+//            ship_address.setUser(shopper);
+//            model.addAttribute("ship_address", ship_address);
 //        }
+//        return "purchases/saddress";
+//    }
 
-        Address bill_address = this.addressRepo.findByUserAndAddresstype(shopper, "Billing");
-        for (Product product : products) {
-            total = total + product.getPrice();
-        }
-        total = Math.round(total * 100.00) / 100.00;
-        model.addAttribute("total", total);
-        model.addAttribute("bill_address", bill_address);
-        model.addAttribute("ship_address", ship_address);
-        model.addAttribute("products", products);
-        model.addAttribute("stripePublicKey", stripePublicKey);
-        model.addAttribute("currency", "USD");
-        model.addAttribute("email", shopper.getEmail());
-        return "purchases/checkout";
-    }
+//    @PostMapping("/saddress")
+//    public String submitShipAddress(Model model,
+//                                    Address ship_address,
+//                                    @ModelAttribute("products") ShoppingCart products) {
+//        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+//            return "home";
+//        }
+//        double total = 0.00;
+//        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+////        if (ship_address.getId() > 0) {
+////            this.addressRepo.save(ship_address);
+////        } else {
+//            this.addressRepo.save(ship_address);
+////        }
+//
+//        Address bill_address = this.addressRepo.findByUserAndAddresstype(shopper, "Billing");
+//        for (Product product : products) {
+//            total = total + product.getPrice();
+//        }
+//        total = Math.round(total * 100.00) / 100.00;
+//        model.addAttribute("total", total);
+//        model.addAttribute("bill_address", bill_address);
+//        model.addAttribute("ship_address", ship_address);
+//        model.addAttribute("products", products);
+//        model.addAttribute("stripePublicKey", stripePublicKey);
+//        model.addAttribute("currency", "USD");
+//        model.addAttribute("email", shopper.getEmail());
+//        return "purchases/checkout";
+//    }
 
 
     @GetMapping("/addresses")
@@ -239,22 +239,10 @@ public class CheckoutController{
         }
 
 
-//        if (bill_address.getId() > 0) {
-//
-//            this.addressRepo.save(bill_address);
-//        } else {
-//            bill_address.setUser(shopper);
-//            this.addressRepo.save(bill_address);
-//        }
-//        if (ship_address.getId() > 0) {
-//            this.addressRepo.save(ship_address);
-//        } else {
-//            ship_address.setUser(shopper);
-//            this.addressRepo.save(ship_address);
-//        }
         for (Product product : products) {
             total = total + product.getPrice();
         }
+
         total = Math.round(total * 100.00) / 100.00;
         model.addAttribute("total", total);
         model.addAttribute("bill_address", bill_address);
