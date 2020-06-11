@@ -17,46 +17,53 @@
     <br>
 </div>
 
-<div class="container mt-4" layout:fragment="content">
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-<!--                <th>Preview</th>-->
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Operation</th>
-            </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${products.size()==0}">
-            <td colspan="4" style="color: orangered">There's nothing in your cart right now!</td>
-        </tr>
-        <th:block th:unless="${products.size()==0}">
-            <tr th:each="product : ${products}">
-<!--                <td>Preview coming soon!</td>-->
-                <td th:text="${product.name}"></td>
-                <td th:text="${#numbers.formatDecimal(product.price,0,'COMMA',2,'POINT')}"></td>
-                <td th:text="${product.quantity}"></td>
-                <td> <form th:action="@{/deleteFromCart}" th:method="post">
-                    <input type="hidden" name="cartDeleteId" th:value="${product.id}">
-                    <button class="btn-link btn text-white btn-secondary">Delete item</button>
-                </form></td>
-            </tr>
-        </th:block>
+<div class="card" >
+    <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
 
-        </tbody>
-    </table>
-    <div style="text-align: center"><h3>Total: $<span th:text="${total}" style="color: green"></span></h3></div>
-    <div style="text-align: center">
-        <form th:action="@{/}" th:method="get">
-            <button class="btn-link btn text-white btn-secondary">Continue shopping</button>
-        </form>
-        <br>
-        <form th:action="@{/baddress}" th:method="get">
-            <button class="btn-link btn text-white btn-secondary">Start checkout</button>
-        </form>
+                    <div class="container mt-4" layout:fragment="content">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                    <!--                <th>Preview</th>-->
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Operation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:if="${products.size()==0}">
+                                <td colspan="4" style="color: orangered">There's nothing in your cart right now!</td>
+                            </tr>
+                            <th:block th:unless="${products.size()==0}">
+                                <tr th:each="product : ${products}">
+                    <!--                <td>Preview coming soon!</td>-->
+                                    <td th:text="${product.name}"></td>
+                                    <td th:text="${#numbers.formatDecimal(product.price,0,'COMMA',2,'POINT')}"></td>
+                                    <td th:text="${product.quantity}"></td>
+                                    <td> <form th:action="@{/deleteFromCart}" th:method="post">
+                                        <input type="hidden" name="cartDeleteId" th:value="${product.id}">
+                                        <button class="btn-link btn text-white btn-secondary">Delete item</button>
+                                    </form></td>
+                                </tr>
+                            </th:block>
+
+                            </tbody>
+                        </table>
+                        <div style="text-align: center"><h3>Total: $<span th:text="${total}" style="color: green"></span></h3></div>
+                        <div style="text-align: center">
+                            <form th:action="@{/}" th:method="get">
+                                <button class="btn-link btn text-white btn-secondary">Continue shopping</button>
+                            </form>
+                            <br>
+                            <form th:action="@{/baddress}" th:method="get">
+                                <button class="btn-link btn text-white btn-secondary">Start checkout</button>
+                            </form>
+                        </div>
+        </div>
     </div>
+</div>
     <footer th:replace="partials :: footer"/>
 </body>
 </html>
@@ -80,3 +87,4 @@
 <!--        <form th:action="@{/updateCart}" th:method="post">-->
 <!--            <button class="btn-link btn text-white btn-secondary">Update cart</button>-->
 <!--        </form>-->
+
