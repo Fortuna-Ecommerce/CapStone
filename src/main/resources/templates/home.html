@@ -52,6 +52,9 @@
         </div>
     </section>
 
+
+<!--CARDS-->
+
 <h2>Featured Products</h2>
     <div class="row">
         <div class="card" th:each="product : ${product3}" style="width: 18rem; height: 25rem">
@@ -126,134 +129,7 @@
             </div>
         </div>
     </div>
-<!--CARDS-->
 
-<!--Start of card-->
-<!--<div class="card-grid">-->
-<!--    <div class="card shadow card p-3 mb-5 bg-white rounded" id="card3" th:each="product : ${product3}">-->
-<!--        <div class="embed-responsive embed-responsive-4by3">-->
-<!--            <div id="image" class="productImg card-img-top embed-responsive-item ml-1">-->
-<!--                <img th:src="${product3.productImage}" alt="The product's image" height="225px" width="225px">-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="card-body">-->
-<!--            <h5 class="card-title" th:text="${product3.name}">Rover</h5>-->
-<!--            <p th:text="${product3.price}"></p>-->
-<!--            <a th:href="@{'/products/'+${product3.id}}" class="btn btn-primary">View this Product</a>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <div class="card shadow card p-3 mb-5 bg-white rounded" id="card4" th:each="product : ${product4}">-->
-<!--        <div class="embed-responsive embed-responsive-4by3">-->
-<!--            <div class="productImg card-img-top embed-responsive-item ml-1">-->
-<!--                <img th:src="${product4.productImage}" alt="The product's image" height="225px" width="225px">-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="card-body">-->
-<!--            <h5 class="card-title" th:text="${product4.name}">Rover</h5>-->
-<!--            <p th:text="${product4.price}"></p>-->
-<!--            <a th:href="@{'/products/'+${product4.id}}" class="btn btn-primary">View this product</a>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <div class="card shadow card p-3 mb-5 bg-white rounded" id="card5" th:each="product : ${product5}">-->
-<!--        <div class="embed-responsive embed-responsive-4by3">-->
-<!--            <div class="productImg card-img-top embed-responsive-item ml-1">-->
-<!--                <img th:src="${product5.productImage}" alt="The product's image" height="225px" width="225px">-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="card-body">-->
-<!--            <h5 class="card-title" th:text="${product5.name}">Rover</h5>-->
-<!--            <p th:text="${product5.price}"></p>-->
-<!--            <a th:href="@{'/products/'+${product5.id}}" class="btn btn-primary">View this product</a>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <div class="card shadow card p-3 mb-5 bg-white rounded" id="card6" th:each="product : ${product6}">-->
-<!--        <div class="embed-responsive embed-responsive-4by3">-->
-<!--            <div class="productImg card-img-top embed-responsive-item ml-1"><img-->
-<!--                    th:src="${product6.productImage}"-->
-<!--                    alt="The product's image" height="225px" width="225px"></div>-->
-<!--&lt;!&ndash;            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">&ndash;&gt;-->
-<!--        </div>-->
-<!--        <div class="card-body">-->
-<!--            <h5 class="card-title" th:text="${product6.name}">Rover</h5>-->
-<!--            <p th:text="${product6.price}"></p>-->
-<!--            <a th:href="@{'/products/'+${product6.id}}" class="btn btn-primary">View this product</a>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <div class="card shadow card p-3 mb-5 bg-white rounded" id="card7" th:each="product : ${product7}">-->
-<!--        <div class="embed-responsive embed-responsive-4by3">-->
-<!--            <div class="productImg card-img-top embed-responsive-item ml-1"><img-->
-<!--                    th:src="${product7.productImage}"-->
-<!--                    alt="The product's image" height="225px" width="225px"></div>-->
-<!--&lt;!&ndash;            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">&ndash;&gt;-->
-<!--        </div>-->
-<!--        <div class="card-body">-->
-<!--            <h5 class="card-title" th:text="${product7.name}">Rover</h5>-->
-<!--            <p th:text="${product7.price}"></p>-->
-<!--            <a th:href="@{'/products/'+${product7.id}}" class="btn btn-primary">View this product</a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="card shadow card p-3 mb-5 bg-white rounded" id="card8" th:each="product : ${product8}">-->
-<!--        <div class="embed-responsive embed-responsive-4by3">-->
-<!--            <div class="productImg card-img-top embed-responsive-item ml-1"><img-->
-<!--                    th:src="${product8.productImage}"-->
-<!--                    alt="The product's image" height="225px" width="225px"></div>-->
-<!--&lt;!&ndash;            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">&ndash;&gt;-->
-<!--        </div>-->
-<!--        <div class="card-body">-->
-<!--            <h5 class="card-title" th:text="${product8.name}">Rover</h5>-->
-<!--            <p th:text="${product8.price}"></p>-->
-<!--            <a th:href="@{'/products/'+${product8.id}}" class="btn btn-primary">View this product</a>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <div class="card shadow card p-3 mb-5 bg-white rounded" id="card9" th:each="product : ${product9}">-->
-<!--        <div class="embed-responsive embed-responsive-4by3">-->
-<!--            <div class="productImg card-img-top embed-responsive-item ml-1"><img-->
-<!--                    th:src="${product9.productImage}"-->
-<!--                    alt="The product's image" height="225px" width="225px"></div>-->
-<!--&lt;!&ndash;            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">&ndash;&gt;-->
-<!--        </div>-->
-<!--        <div class="card-body">-->
-<!--            <h5 class="card-title" th:text="${product9.name}">Rover</h5>-->
-<!--            <p th:text="${product9.price}"></p>-->
-<!--            <a href="#" class="btn btn-primary">View this product</a>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <div class="card shadow card p-3 mb-5 bg-white rounded" id="card10" th:each="product : ${product10}">-->
-<!--        <div class="embed-responsive embed-responsive-4by3">-->
-<!--            <div class="productImg card-img-top embed-responsive-item ml-1"><img-->
-<!--                    th:src="${product10.productImage}"-->
-<!--                    alt="The product's image" height="225px" width="225px"></div>-->
-<!--&lt;!&ndash;            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">&ndash;&gt;-->
-<!--        </div>-->
-<!--        <div class="card-body">-->
-<!--            <h5 class="card-title" th:text="${product10.name}">Rover</h5>-->
-<!--            <p th:text="${product10.price}"></p>-->
-<!--            <a th:href="@{'/products/'+${product10.id}}" class="btn btn-primary">View this product</a>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <div class="card shadow card p-3 mb-5 bg-white rounded" id="card11" th:each="product : ${product11}">-->
-<!--        <div class="embed-responsive embed-responsive-4by3">-->
-<!--            <div class="productImg card-img-top embed-responsive-item ml-1"><img-->
-<!--                    th:src="${product11.productImage}"-->
-<!--                    alt="The product's image" height="225px" width="225px"></div>-->
-<!--&lt;!&ndash;            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">&ndash;&gt;-->
-<!--        </div>-->
-<!--        <div class="card-body">-->
-<!--            <h5 class="card-title" th:text="${product11.name}">Rover</h5>-->
-<!--            <p th:text="${product11.price}"></p>-->
-<!--            <a th:href="@{'/products/'+${product11.id}}" class="btn btn-primary">View this product</a>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--</div>-->
-<!--End of card-->
 
 <section class="categories">
     <div class="category-item" style="background-image: url('images/img-col1.png');">
@@ -359,8 +235,6 @@
         </div>
     </div>
 </footer>
-
-
 
 
 <footer th:replace="partials :: footer" />
