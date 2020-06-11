@@ -47,9 +47,6 @@
     display: inline-block;
 }
 
-.transactionTable{
-    margin-left: -22%;
-}
 
 .navitem {
     padding-left: 10px;
@@ -72,6 +69,24 @@
 
 #checkout-btn {
     justify-content: flex-end;
+}
+
+
+.productImg{
+    margin-left: 10%;
+    max-width: 100%;
+    height: auto;
+    float: left;
+}
+
+.cartImage{
+    max-width: 100%;
+    height: auto;
+}
+
+
+#productContainer{
+    margin-top: 5%;
 }
 
 /*COURASEL*/
@@ -282,4 +297,3 @@ body{
 #card11 {
     grid-area: 16/17/22/22;
 }
-

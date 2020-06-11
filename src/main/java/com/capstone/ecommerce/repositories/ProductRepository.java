@@ -39,6 +39,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
   Product findByNameAndSizeAndColor(String name, String size, String color);
 
+  Product findByNameAndColor(String name, String color);
+
 }
 
 

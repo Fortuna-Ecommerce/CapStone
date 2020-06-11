@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -56,14 +57,14 @@ public class HomeController {
 //        List<Product> allProducts = productRepo.findAll();
 ;
         Product product3 = productRepo.getOne(3L);
-        Product product4 = productRepo.getOne(4L);
-        Product product5 = productRepo.getOne(5L);
-        Product product6 = productRepo.getOne(6L);
-        Product product7 = productRepo.getOne(7L);
-        Product product8 = productRepo.getOne(8L);
-        Product product9 = productRepo.getOne(9L);
+        Product product4 = productRepo.getOne(16L);
+        Product product5 = productRepo.getOne(32L);
+        Product product6 = productRepo.getOne(48L);
+        Product product7 = productRepo.getOne(61L);
+        Product product8 = productRepo.getOne(76L);
+        Product product9 = productRepo.getOne(95L);
         Product product10 = productRepo.getOne(10L);
-        Product product11 = productRepo.getOne(11L);
+        Product product11 = productRepo.getOne(39L);
 
         model.addAttribute("product3", product3);
         model.addAttribute("product4", product4);
@@ -75,6 +76,14 @@ public class HomeController {
         model.addAttribute("product10", product10);
         model.addAttribute("product11", product11);
 
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            User user = new User();
+            model.addAttribute("user", user);
+            return "home";
+        }
+        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User testShopper = this.userRepo.getOne(shopper.getId());
+        model.addAttribute("user", testShopper);
 //        model.addAttribute("showProducts", allProducts);
 
         return "home";
@@ -92,6 +101,7 @@ public class HomeController {
 //            model.addAttribute("image", prodImg);
             model.addAttribute("user", user);
             List<Product> products = productRepo.findAll();
+            Collections.reverse(products);
             model.addAttribute("allProducts", products);
             return "products/productInventory";
         }
@@ -117,6 +127,7 @@ public class HomeController {
     @PostMapping("products/productInventory/add")
     public String addProductPost(@RequestParam (name = "name") String name,
                                  @RequestParam (name = "color") String color,
+                                 @RequestParam(name = "special") boolean special,
                                  @RequestParam(name = "desc") String description,
                                  @RequestParam (name = "size") String size,
                                  @RequestParam (name = "type") String type,
@@ -133,13 +144,14 @@ public class HomeController {
             model.addAttribute("user", user);
             Product product = new Product();
             product.setName(name);
+            product.setSpecial(special);
             product.setColor(color);
             product.setDescription(description);
             product.setSize(size);
             product.setType(type);
             product.setPrice(price);
             product.setQuantity(quan);
-//            product.setImage(image);
+            product.setProductImage(image);
             productRepo.save(product);
             return "redirect:/products/productInventory";
         }

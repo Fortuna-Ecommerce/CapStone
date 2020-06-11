@@ -250,10 +250,10 @@ public class CheckoutController{
                 TransProd.setQuantity(product.getQuantity());
                 this.transProdRepo.save(TransProd);
             }
-            for(int i = 0; i < originals.size(); i++){
-                originals.get(i).setQuantity(originals.get(i).getQuantity() - products.get(i).getQuantity());
-                this.productRepo.save(originals.get(i));
-            }
+//            for(int i = 0; i < originals.size(); i++){
+//                originals.get(i).setQuantity(originals.get(i).getQuantity() - products.get(i).getQuantity());
+//                this.productRepo.save(originals.get(i));
+//            }
             products = new ShoppingCart();
             model.addAttribute("products", products);
         } catch(Exception e) {
