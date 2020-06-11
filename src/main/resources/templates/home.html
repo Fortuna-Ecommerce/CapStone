@@ -57,7 +57,7 @@
 
 <h2>Featured Products</h2>
     <div class="row">
-        <div class="card" th:each="product : ${product3}" style="width: 18rem; height: 25rem">
+        <div class="card border-0 shadow-none" th:each="product : ${product3}" style="width: 18rem; height: 25rem">
             <img th:src="${product3.productImage}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title" th:text="${product3.name}">Card title</h5>
@@ -66,7 +66,7 @@
             </div>
         </div>
 
-        <div class="card" th:each="product : ${product4}" style="width: 18rem;">
+        <div class="card border-0 shadow-none" th:each="product : ${product4}" style="width: 18rem;">
             <img th:src="${product4.productImage}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title" th:text="${product4.name}">Card title</h5>
@@ -75,7 +75,7 @@
             </div>
         </div>
 
-        <div class="card" th:each="product : ${product5}" style="width: 18rem;">
+        <div class="card border-0 shadow-none" th:each="product : ${product5}" style="width: 18rem;">
             <img th:src="${product5.productImage}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title" th:text="${product5.name}">Card title</h5>
@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <div class="card" th:each="product : ${product6}" style="width: 18rem;">
+        <div class="card border-0 shadow-none" th:each="product : ${product6}" style="width: 18rem;">
             <img th:src="${product6.productImage}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title" th:text="${product6.name}">Card title</h5>
@@ -94,7 +94,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="card" th:each="product : ${product7}" style="width: 18rem;">
+        <div class="card border-0 shadow-none" th:each="product : ${product7}" style="width: 18rem;">
             <img th:src="${product7.productImage}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title" th:text="${product7.name}">Card title</h5>
@@ -103,15 +103,15 @@
             </div>
         </div>
 
-        <div class="card" th:each="product : ${product8}" style="width: 18rem;">
+        <div class="card border-0 shadow-none" th:each="product : ${product8}" style="width: 18rem;">
             <img th:src="${product8.productImage}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title" th:text="${product8.name}">Card title</h5>
                 <p class="card-text" th:text="${product8.price}"></p>
-                <a href="#" class="btn btn-primary">View Product</a>
+                <a href="#" class="btn btn-primary" style="float: right">View Product</a>
             </div>
         </div>
-        <div class="card" th:each="product : ${product9}" style="width: 18rem;">
+        <div class="card border-0 shadow-none" th:each="product : ${product9}" style="width: 18rem;">
             <img th:src="${product9.productImage}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title" th:text="${product9.name}">Card title</h5>
@@ -120,7 +120,7 @@
             </div>
         </div>
 
-        <div class="card" th:each="product : ${product10}" style="width: 18rem;">
+        <div class="card border-0 shadow-none" th:each="product : ${product10}" style="width: 18rem;">
             <img th:src="${product10.productImage}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title" th:text="${product10.name}">Card title</h5>
