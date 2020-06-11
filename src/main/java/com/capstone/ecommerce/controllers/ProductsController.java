@@ -40,6 +40,11 @@ public class ProductsController {
             String category = "";
             model.addAttribute("category", category);
         }
+
+        List<Product> showProducts = productRepo.findbySizeandColor("MD", "FFFFFF");
+        List<Product> hatProducts = productRepo.findbySizeandColor("OSFM", "FFFFFF");
+        showProducts.addAll(hatProducts);
+//
         List<Product> allProducts = productRepo.findAll();
         Product product3 = productRepo.getOne(3L);
         Product product4 = productRepo.getOne(16L);
@@ -104,7 +109,8 @@ public class ProductsController {
         model.addAttribute("product32", product32);
 
 
-        model.addAttribute("showProducts", allProducts);
+//        model.addAttribute("showProducts", showProducts);
+
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             User user = new User();
             model.addAttribute("user", user);
@@ -118,38 +124,52 @@ public class ProductsController {
     }
 
     @GetMapping("/products/t-shirts")
-
     public String viewTshirts(Model model) {
         if (model.getAttribute("category") != null || model.getAttribute("category") != "") {
             String category = "";
             model.addAttribute("category", category);
         }
-        List<Product> allProducts = productRepo.findAll();
-        List<Product> chosenProducts = new ArrayList<>();
-        for (Product product : allProducts) {
-            if (product.getType().equals("Shirt")) {
-                chosenProducts.add(product);
-            }
-        }
+//        List<Product> allProducts = productRepo.findAll();
+        List<Product> chosenProducts = productRepo.findbySizeandColor("XS", "FFFFFF");
+//        for (Product product : allProducts) {
+//            if (product.getType().equals("Shirt")) {
+//                chosenProducts.add(product);
+//            }
+//        }
+
+//
+        Product product27 = productRepo.getOne(27L);
+        Product product28 = productRepo.getOne(28L);
+        model.addAttribute("product27", product27);
+        model.addAttribute("product28", product28);
+//
+
         model.addAttribute("showProducts", chosenProducts);
         return "products/products";
     }
 
 
-    @GetMapping("/products/hoodies")
-
+    @GetMapping("/products/pullovers")
     public String viewPullover(Model model) {
         if (model.getAttribute("category") != null || model.getAttribute("category") != "") {
             String category = "";
             model.addAttribute("category", category);
         }
-        List<Product> allProducts = productRepo.findAll();
+        List<Product> allProducts = productRepo.findbySizeandColor("MD", "FFFFFF");
         List<Product> chosenProducts = new ArrayList<>();
         for (Product product : allProducts) {
-            if (product.getType().equals("Hoodie")) {
+            if (product.getType().equals("Pullover")) {
                 chosenProducts.add(product);
             }
         }
+
+//
+        Product product27 = productRepo.getOne(27L);
+        Product product28 = productRepo.getOne(28L);
+        model.addAttribute("product27", product27);
+        model.addAttribute("product28", product28);
+//
+
         model.addAttribute("showProducts", chosenProducts);
         return "products/products";
     }
@@ -161,13 +181,21 @@ public class ProductsController {
             String category = "";
             model.addAttribute("category", category);
         }
-        List<Product> allProducts = productRepo.findAll();
-        List<Product> chosenProducts = new ArrayList<>();
-        for (Product product : allProducts) {
-            if (product.getType().equals("Hat")) {
-                chosenProducts.add(product);
-            }
-        }
+        List<Product> chosenProducts = productRepo.findbySizeandColor("OSFM", "000000");
+//        List<Product> chosenProducts = new ArrayList<>();
+//        for (Product product : allProducts) {
+//            if (product.getType().equals("Hat")) {
+//                chosenProducts.add(product);
+//            }
+//        }
+
+//
+        Product product27 = productRepo.getOne(27L);
+        Product product28 = productRepo.getOne(28L);
+        model.addAttribute("product27", product27);
+        model.addAttribute("product28", product28);
+//
+
         model.addAttribute("showProducts", chosenProducts);
         return "products/products";
     }
@@ -224,9 +252,11 @@ public class ProductsController {
             ShoppingCart blankProducts = new ShoppingCart();
             model.addAttribute("products", blankProducts);
         }
+
         double salePrice = 0;
         Product aProduct = productRepo.getOne(id);
         model.addAttribute("product", aProduct);
+        System.out.println(aProduct.getName());
         String black = "";
         String white = "";
         String gray = "";
@@ -234,21 +264,23 @@ public class ProductsController {
         Product tempB = new Product();
         if(aProduct.getColor().equals("FFFFFF")){
             white = aProduct.getProductImage();
-            tempA = productRepo.findByNameAndSizeAndColor(aProduct.getName(),"XL", "000000");
+            tempA = productRepo.findByNameAndSizeAndColorAndType(aProduct.getName(),aProduct.getSize(), "000000",
+                    aProduct.getType());
             black = tempA.getProductImage();
-            tempB = productRepo.findByNameAndSizeAndColor(aProduct.getName(), "XL","808080");
+            tempB = productRepo.findByNameAndSizeAndColorAndType(aProduct.getName(), aProduct.getSize(),"808080", aProduct.getType());
             gray = tempB.getProductImage();
         } else if (aProduct.getColor().equals("000000")){
             black = aProduct.getProductImage();
-            tempA = productRepo.findByNameAndSizeAndColor(aProduct.getName(),"XL", "FFFFFF");
+            tempA = productRepo.findByNameAndSizeAndColorAndType(aProduct.getName(),aProduct.getSize(), "FFFFFF", aProduct.getType());
             white = tempA.getProductImage();
-            tempB = productRepo.findByNameAndSizeAndColor(aProduct.getName(),"XL", "808080");
+            tempB = productRepo.findByNameAndSizeAndColorAndType(aProduct.getName(),aProduct.getSize(), "808080",
+                    aProduct.getType());
             gray = tempB.getProductImage();
         } else if (aProduct.getColor().equals("808080")){
             gray = aProduct.getProductImage();
-            tempA = productRepo.findByNameAndSizeAndColor(aProduct.getName(), "XL","000000");
+            tempA = productRepo.findByNameAndSizeAndColorAndType(aProduct.getName(), aProduct.getSize(),"000000", aProduct.getType());
             black = tempA.getProductImage();
-            tempB = productRepo.findByNameAndSizeAndColor(aProduct.getName(), "XL","FFFFFF");
+            tempB = productRepo.findByNameAndSizeAndColorAndType(aProduct.getName(), aProduct.getSize(),"FFFFFF", aProduct.getType());
             white = tempB.getProductImage();
         }
         model.addAttribute("white", white);
@@ -274,8 +306,11 @@ public class ProductsController {
     public String searchProduct(@RequestParam(name = "keyword") String keyword,
                                 Model model,
                                 RedirectAttributes redirectAttributes) {
-        List<Product> chosenProducts = new ArrayList<>();
-            chosenProducts = productRepo.findByNameContaining(keyword);
+//        List<Product> chosenProducts = new ArrayList<>();
+//            chosenProducts = productRepo.findByNameContaining(keyword);
+            List<Product> chosenProducts = productRepo.findBySizeAndColorAndNameContaining("MD", "FFFFFF", keyword);
+            List<Product> foundHats = productRepo.findBySizeAndColorAndNameContaining("OSFM", "FFFFFF", keyword);
+            chosenProducts.addAll(foundHats);
 //        LinkedHashSet<Product> theChosen = new LinkedHashSet<>(chosenProducts);
 //        chosenProducts.clear();
 //        chosenProducts.addAll(theChosen);

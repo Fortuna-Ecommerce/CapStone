@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,7 +35,6 @@ public class HomeController {
         this.userRepo = userRepo;
         this.transProdRepo = transProdRepo;
     }
-
 
 
     @GetMapping("/aboutUs")
@@ -57,14 +58,14 @@ public class HomeController {
 //        List<Product> allProducts = productRepo.findAll();
 ;
         Product product3 = productRepo.getOne(3L);
-        Product product4 = productRepo.getOne(16L);
-        Product product5 = productRepo.getOne(32L);
-        Product product6 = productRepo.getOne(48L);
-        Product product7 = productRepo.getOne(61L);
-        Product product8 = productRepo.getOne(76L);
-        Product product9 = productRepo.getOne(95L);
-        Product product10 = productRepo.getOne(10L);
-        Product product11 = productRepo.getOne(39L);
+        Product product4 = productRepo.getOne(23L);
+        Product product5 = productRepo.getOne(596L);
+        Product product6 = productRepo.getOne(424L);
+        Product product7 = productRepo.getOne(232L);
+        Product product9 = productRepo.getOne(270L);
+        Product product8 = productRepo.getOne(87L);
+        Product product10 = productRepo.getOne(590L);
+//        Product product11 = productRepo.getOne(39L);
 
         model.addAttribute("product3", product3);
         model.addAttribute("product4", product4);
@@ -74,7 +75,7 @@ public class HomeController {
         model.addAttribute("product8", product8);
         model.addAttribute("product9", product9);
         model.addAttribute("product10", product10);
-        model.addAttribute("product11", product11);
+//        model.addAttribute("product11", product11);
 
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             User user = new User();

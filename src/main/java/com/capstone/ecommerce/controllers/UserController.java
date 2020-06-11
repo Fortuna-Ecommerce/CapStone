@@ -4,10 +4,15 @@ import com.capstone.ecommerce.model.ShoppingCart;
 import com.capstone.ecommerce.model.Address;
 
 import com.capstone.ecommerce.model.User;
+import com.capstone.ecommerce.model.UserWithRoles;
 import com.capstone.ecommerce.repositories.AddressRepository;
 import com.capstone.ecommerce.repositories.UserRepository;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +27,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
+import java.util.Collections;
 import java.util.List;
 
 
@@ -52,11 +58,38 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String saveUser(@ModelAttribute User user) {
+    public String saveUser(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
+        String error = "";
+        if(this.users.findByUsername(user.getUsername()) != null){
+            error = "That username is already in use!";
+            redirectAttributes.addFlashAttribute("error", error);
+
+            return "redirect:register";
+        }
+        if(this.users.findByEmail(user.getEmail()) != null){
+            error = "That email is already in use!";
+            redirectAttributes.addFlashAttribute("error", error);
+            return "redirect:register";
+        }
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         user.setAdmin(false);
         users.save(user);
-        return "redirect:/login";
+        User authenticator = this.users.findByUsername(user.getUsername());
+        redirectAttributes.addFlashAttribute("user", authenticator);
+        authenticate(authenticator);
+        return "redirect:/";
+    }
+
+    private void authenticate(User user) {
+        // Notice how we're using an empty list for the roles
+        UserDetails userDetails = new UserWithRoles(user);
+        Authentication auth = new UsernamePasswordAuthenticationToken(
+                userDetails,
+                userDetails.getPassword(),
+                userDetails.getAuthorities()
+        );
+        SecurityContext context = SecurityContextHolder.getContext();
+        context.setAuthentication(auth);
     }
 }

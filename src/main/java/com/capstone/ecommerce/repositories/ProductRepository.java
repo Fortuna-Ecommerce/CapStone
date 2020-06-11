@@ -37,10 +37,18 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
   List<Product> findByCategoriesContainingaAndNameContaining(@Param("keyword") String keyword,
                                                              @Param("pname") String pname);
 
+    @Query(value = "SELECT * FROM products WHERE size = :size AND color = :color",
+          nativeQuery = true)
+    List<Product> findbySizeandColor(@Param("size") String size,
+                                                       @Param("color") String color);
+
   Product findByNameAndSizeAndColor(String name, String size, String color);
+  Product findByNameAndSizeAndColorAndType(String name, String size, String color, String type);
 
   Product findByNameAndColor(String name, String color);
-
+@Query(value = "SELECT * FROM products WHERE size = :size AND color = :color AND name LIKE %:keyword%", nativeQuery =
+        true)
+  List<Product> findBySizeAndColorAndNameContaining(String size, String color, String keyword);
 }
 
 
