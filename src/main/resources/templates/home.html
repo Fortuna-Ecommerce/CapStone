@@ -327,22 +327,22 @@
 
 <!--CARDS-->
 
-<h2 style="padding-left: 75px">Featured Products</h2>
+<!--<h2 style="padding-left: 75px">Featured Products</h2>-->
 <div class="container">
     <div class="row">
-        <div class="col-xs-6">
-            <div class="card border-0 shadow-none" th:each="product : ${product3}" style="width: 18rem; height: 25rem">
-                <img th:src="${product3.productImage}" class="card-img-top homeImage" alt="..."
-                     style="width: 300px;height: 300px">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${product3.name}"></h5>
-                    <div class="d-inline-flex">
-                        <h4 class="card-text" th:text="${product3.price}"></h4>
-                        <a th:href="@{'/products/'+ ${product3.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>
-                    </div>
+        <!--        <div class="col-xs-6">-->
+        <div class="card border-0 shadow-none" th:each="product : ${product3}" style="width: 18rem; height: 25rem">
+            <img th:src="${product3.productImage}" class="card-img-top homeImage" alt="..."
+                 style="width: 300px;height: 300px">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${product3.name}"></h5>
+                <div class="d-inline-flex">
+                    <h4 class="card-text" th:text="${product3.price}"></h4>
+                    <a th:href="@{'/products/'+ ${product3.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>
                 </div>
             </div>
         </div>
+        <!--        </div>-->
         <div class="card border-0 shadow-none" th:each="product : ${product4}" style="width: 18rem;">
             <img th:src="${product4.productImage}" class="card-img-top" alt="...">
             <div class="card-body">
@@ -425,25 +425,25 @@
 </div>
 
 
-<section class="categories">
+<section class="categories container">
     <div class="category-item" style="background-image: url('images/img-col1.png');">
         <div class="category-item-inner">
-            <button class="btn">T Shirts</button>
+            <button class="btn" href="/products/all">T Shirts</button>
         </div>
     </div>
     <div class="category-item" style="background-image: url('images/img-col5.png');">
         <div class="category-item-inner">
-            <button href="" class="btn">Pullovers</button>
+            <button class="btn" href="/products/all">Pullovers</button>
         </div>
     </div>
     <div class="category-item" style="background-image: url('images/hat-col.png');">
         <div class="category-item-inner">
-            <button class="btn">Hats</button>
+            <button class="btn" href="/products/all">Hats</button>
         </div>
     </div>
     <div class="category-item" style="background-image: url('images/img-col4.png');">
         <div class="category-item-inner">
-            <button class="btn">Collection</button>
+            <button class="btn" href="/products/all">Collection</button>
         </div>
     </div>
 </section>
