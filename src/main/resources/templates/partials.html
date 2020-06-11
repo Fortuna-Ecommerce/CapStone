@@ -3,7 +3,7 @@
 <head th:fragment="head">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
@@ -25,7 +25,11 @@
     <!-- include stylesheets, etc here -->
 </head>
 <body>
-<nav th:fragment="navbar" class="navbar navbar-expand-sm navbar-light bg-light mb-3">
+<nav th:fragment="navbar" class="navbar navbar-expand-md navbar-light bg-light mb-3">
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="#collapse_target">
     <ul class="collapse navbar-collapse justify-content-between" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
