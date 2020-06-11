@@ -467,7 +467,7 @@ public class ProductsController {
             ShoppingCart blankProducts = new ShoppingCart();
             model.addAttribute("products", blankProducts);
         }
-
+        String imageColor = "";
         double salePrice = 0;
         Product aProduct = productRepo.getOne(id);
         model.addAttribute("product", aProduct);
@@ -501,6 +501,12 @@ public class ProductsController {
         model.addAttribute("white", white);
         model.addAttribute("black", black);
         model.addAttribute("gray", gray);
+        if(aProduct.getType().equals("Hat")){
+            imageColor = "808080";
+        } else {
+            imageColor = "E6E6E6";
+        }
+
         if (aProduct.getSpecial() != null && aProduct.getSpecial()) {
             salePrice = aProduct.getPrice() - (aProduct.getPrice() * 0.42);
             salePrice = Math.round(salePrice * 100.00) / 100.00;
@@ -514,6 +520,7 @@ public class ProductsController {
 //        cNames = StringUtils.chop(cNames);
 //        cNames = StringUtils.chop(cNames);
 //        model.addAttribute("categories", cNames);
+        model.addAttribute("imageColor", imageColor);
         return "products/product";
     }
 

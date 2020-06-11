@@ -154,7 +154,7 @@ public class ShoppingCartController {
     }
 
 
-    @PostMapping("/deleteFromCart")
+    @GetMapping("/deleteFromCart")
     public String deleteFromCart(Model model,
                                  @ModelAttribute("products") ShoppingCart products,
                                  @RequestParam("cartDeleteId") Integer id) {
