@@ -324,7 +324,7 @@ public class ProductsController {
 
 
 
-//        model.addAttribute("showProducts", showProducts);
+        model.addAttribute("showProducts", showProducts);
 
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             User user = new User();

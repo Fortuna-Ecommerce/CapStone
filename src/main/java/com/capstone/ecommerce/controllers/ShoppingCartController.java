@@ -44,6 +44,10 @@ public class ShoppingCartController {
             }
             total = Math.round(total * 100.00) / 100.00;
         }
+        double tempGrandTotal = (total * 0.0825);
+        double grandTotal = tempGrandTotal + total + 5.00;
+        grandTotal = Math.round(grandTotal * 100.00) / 100.00;
+        model.addAttribute("grandTotal", grandTotal);
         model.addAttribute("total", total);
         model.addAttribute("error", error);
         return "purchases/cart";
@@ -141,11 +145,11 @@ public class ShoppingCartController {
 
         double tempGrandTotal = (total * 0.0825);
         double grandTotal = tempGrandTotal + total + 5.00;
-        List<Product> originals = comparison(products);
-//        for(Product produzt : products){
-//
-//        }
         grandTotal = Math.round(grandTotal * 100.00) / 100.00;
+
+        List<Product> originals = comparison(products);
+
+
         total = Math.round(total * 100.00) / 100.00;
         redir.addFlashAttribute("total", total);
         model.addAttribute("products", products);
