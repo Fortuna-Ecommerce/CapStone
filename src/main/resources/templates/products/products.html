@@ -13,108 +13,136 @@
 <!--</div>-->
 
 
+<div class="card-columns" style="margin-left: 13%">
+    <div class="card border-0 shadow-none" th:each="product : ${showProducts}">
+        <img th:src="${product.productImage}" class="card-img-top" alt="..." style="height: 300px;width: 300px">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${product.name}"></h5>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="${product.type}"></h6>
+            <h4 th:text="${'$'+product.price}"></h4>
+            <div class="d-inline-flex">
 
-<!--CARDS-->
+                <div class="card-text">
 
+                    <p>Available in - <span class="minidot" style="background-color: #808080;"></span> <span
+                            class="minidot"
+                            style="background-color: #000000"></span> <span class="minidot" style="background-color: #FFFFFF;"></span></p>
+                    <a th:href="@{'/products/'+${product.id}}" class="btn btn-primary">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--SHIRTS!!!!-->
 <!--<h2 style="padding-left: 75px">Featured Products</h2>-->
-<div class="container">
-    <div class="row">
-        <!--        <div class="col-xs-6">-->
-        <div class="card border-0 shadow-none" th:each="product : ${product3}" style="width: 18rem; height: 25rem">
-            <img th:src="${product3.productImage}" class="card-img-top homeImage" alt="..."
-                 style="width: 300px;height: 300px">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${product3.name}"></h5>
-                <div class="d-inline-flex">
-                    <h4 class="card-text" th:text="${'$'+product3.price}"></h4>
-                    <a th:href="@{'/products/'+ ${product3.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>
-                </div>
-            </div>
-        </div>
-        <!--        </div>-->
-        <div class="card border-0 shadow-none" th:each="product : ${product4}" style="width: 18rem;">
-            <img th:src="${product4.productImage}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${product4.name}"></h5>
-                <div class="d-inline-flex">
-                    <h4 class="card-text" th:text="${'$'+product4.price}"></h4>
-                    <a th:href="@{'/products/'+ ${product4.id}}" class="btn btn-primary" style="margin-left: 80px">
-                        View</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card border-0 shadow-none" th:each="product : ${product5}" style="width: 18rem;">
-            <img th:src="${product5.productImage}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${product5.name}"></h5>
-                <div class="d-inline-flex">
-                    <h4 class="card-text" th:text="${'$'+product5.price}"></h4>
-                    <a th:href="@{'/products/'+ ${product5.id}}" class="btn btn-primary" style="margin-left: 80px">
-                        View</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card border-0 shadow-none" th:each="product : ${product6}" style="width: 18rem;">
-            <img th:src="${product6.productImage}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${product6.name}"></h5>
-                <div class="d-inline-flex">
-                    <h4 class="card-text" th:text="${'$'+product6.price}"></h4>
-                    <a th:href="@{'/products/'+ ${product6.id}}" class="btn btn-primary" style="margin-left: 80px">
-                        View</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="card border-0 shadow-none" th:each="product : ${product7}" style="width: 18rem;">
-        <img th:src="${product7.productImage}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title" th:text="${product7.name}"></h5>
-            <div class="d-inline-flex">
-                <h4 class="card-text" th:text="${'$'+product7.price}"></h4>
-                <a th:href="@{'/products/'+ ${product7.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="card border-0 shadow-none" th:each="product : ${product8}" style="width: 18rem;">
-        <img th:src="${product8.productImage}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title" th:text="${product8.name}"></h5>
-            <div class="d-inline-flex">
-                <h4 class="card-text" th:text="${'$'+product8.price}"></h4>
-                <a th:href="@{'/products/'+ ${product8.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>
-            </div>
-        </div>
-    </div>
-    <div class="card border-0 shadow-none" th:each="product : ${product9}" style="width: 18rem;">
-        <img th:src="${product9.productImage}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title" th:text="${product9.name}"></h5>
-            <div class="d-inline-flex">
-                <h4 class="card-text" th:text="${'$'+product9.price}"></h4>
-                <a th:href="@{'/products/'+ ${product9.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="card border-0 shadow-none" th:each="product : ${product10}" style="width: 18rem;">
-        <img th:src="${product10.productImage}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title" th:text="${product10.name}"></h5>
-            <div class="d-inline-flex">
-                <h4 class="card-text" th:text="${'$'+product10.price}"></h4>
-                <a th:href="@{'/products/'+ ${product10.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        &lt;!&ndash;        <div class="col-xs-6">&ndash;&gt;-->
+<!--        <div class="card border-0 shadow-none scale-up-center" th:each="product : ${product3}" style="width: 18rem; height: 25rem">-->
+<!--            <a th:href="@{'/products/'+ ${product3.id}}">-->
+<!--                <img th:src="${product3.productImage}" class="card-img-top homeImage" alt="..."-->
+<!--                     style="width: 300px;height: 300px">-->
+<!--            </a>-->
+<!--            <div class="card-body montserrat">-->
+<!--                <h5 class="card-title" th:text="${product3.name}"></h5>-->
+<!--                <div class="d-inline-flex">-->
+<!--                    <span>$</span><p class="card-text" th:text="${product3.price}">$</p>-->
+<!--                    &lt;!&ndash;                        <a th:href="@{'/products/'+ ${product3.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--        <div class="card border-0 shadow-none scale-up-center" th:each="product : ${product4}" style="width: 18rem;">-->
+<!--            <a th:href="@{'/products/'+ ${product4.id}}">-->
+<!--                <img th:src="${product4.productImage}" class="card-img-top" alt="...">-->
+<!--            </a>-->
+<!--            <div class="card-body montserrat">-->
+<!--                <h5 class="card-title" th:text="${product4.name}"></h5>-->
+<!--                <div class="d-inline-flex">-->
+<!--                    <span>$</span><p class="card-text" th:text="${product4.price}"></p>-->
+<!--                    &lt;!&ndash;                    <a th:href="@{'/products/'+ ${product4.id}}" class="btn btn-primary" style="margin-left: 80px">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        View</a>&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="card border-0 shadow-none scale-up-center" th:each="product : ${product5}" style="width: 18rem;">-->
+<!--            <a th:href="@{'/products/'+ ${product5.id}}">-->
+<!--                <img th:src="${product5.productImage}" class="card-img-top" alt="...">-->
+<!--            </a>-->
+<!--            <div class="card-body montserrat">-->
+<!--                <h5 class="card-title" th:text="${product5.name}"></h5>-->
+<!--                <div class="d-inline-flex">-->
+<!--                    <span>$</span><p class="card-text" th:text="${product5.price}"></p>-->
+<!--                    &lt;!&ndash;                    <a th:href="@{'/products/'+ ${product5.id}}" class="btn btn-primary" style="margin-left: 80px">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        View</a>&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="card border-0 shadow-none scale-up-center" th:each="product : ${product6}" style="width: 18rem;">-->
+<!--            <a th:href="@{'/products/'+ ${product6.id}}">-->
+<!--                <img th:src="${product6.productImage}" class="card-img-top" alt="...">-->
+<!--            </a>-->
+<!--            <div class="card-body montserrat">-->
+<!--                <h5 class="card-title" th:text="${product6.name}"></h5>-->
+<!--                <div class="d-inline-flex">-->
+<!--                    <span>$</span><p class="card-text" th:text="${product6.price}"></p>-->
+<!--                    &lt;!&ndash;                    <a th:href="@{'/products/'+ ${product6.id}}" class="btn btn-primary" style="margin-left: 80px">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        View</a>&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--    <div class="card border-0 shadow-none scale-up-center" th:each="product : ${product7}" style="width: 18rem;">-->
+<!--        <a th:href="@{'/products/'+ ${product7.id}}">-->
+<!--            <img th:src="${product7.productImage}" class="card-img-top" alt="...">-->
+<!--        </a>-->
+<!--        <div class="card-body montserrat">-->
+<!--            <h5 class="card-title" th:text="${product7.name}"></h5>-->
+<!--            <div class="d-inline-flex">-->
+<!--                <span>$</span><p class="card-text" th:text="${product7.price}"></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="card border-0 shadow-none scale-up-center" th:each="product : ${product8}" style="width: 18rem;">-->
+<!--        <a th:href="@{'/products/'+ ${product8.id}}">-->
+<!--            <img th:src="${product8.productImage}" class="card-img-top" alt="...">-->
+<!--        </a>-->
+<!--        <div class="card-body montserrat">-->
+<!--            <h5 class="card-title" th:text="${product8.name}"></h5>-->
+<!--            <div class="d-inline-flex">-->
+<!--                <span>$</span><p class="card-text" th:text="${product8.price}"></p>-->
+<!--                &lt;!&ndash;                <a th:href="@{'/products/'+ ${product8.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="card border-0 shadow-none scale-up-center" th:each="product : ${product9}" style="width: 18rem;">-->
+<!--        <a th:href="@{'/products/'+ ${product9.id}}">-->
+<!--            <img th:src="${product9.productImage}" class="card-img-top" alt="...">-->
+<!--        </a>-->
+<!--        <div class="card-body montserrat">-->
+<!--            <h5 class="card-title" th:text="${product9.name}"></h5>-->
+<!--            <div class="d-inline-flex">-->
+<!--                <span>$</span><p class="card-text" th:text="${product9.price}"></p>-->
+<!--                &lt;!&ndash;                <a th:href="@{'/products/'+ ${product9.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="card border-0 shadow-none scale-up-center" th:each="product : ${product10}" style="width: 18rem;">-->
+<!--        <a th:href="@{'/products/'+ ${product10.id}}">-->
+<!--            <img th:src="${product10.productImage}" class="card-img-top" alt="...">-->
+<!--        </a>-->
+<!--        <div class="card-body montserrat">-->
+<!--            <h5 class="card-title" th:text="${product10.name}"></h5>-->
+<!--            <div class="d-inline-flex">-->
+<!--                <span>$</span><p class="card-text" th:text="${product10.price}"></p>-->
+<!--                &lt;!&ndash;                <a th:href="@{'/products/'+ ${product10.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 <!--FOOTER-->
@@ -359,22 +387,22 @@
 
 <!--&lt;!&ndash;This works for a dynamic generation of cards that looks okay - take a look at some point - JT&ndash;&gt;-->
 <!--&lt;!&ndash;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&ndash;&gt;-->
-<!--&lt;!&ndash;<div class="card-columns" style="margin-left: 13%">&ndash;&gt;-->
-<!--&lt;!&ndash;    <div class="card border-0 shadow-none" th:each="product : ${showProducts}">&ndash;&gt;-->
-<!--&lt;!&ndash;        <img th:src="${product.productImage}" class="card-img-top" alt="..." style="height: 300px;width: 300px">&ndash;&gt;-->
-<!--&lt;!&ndash;        <div class="card-body">&ndash;&gt;-->
-<!--&lt;!&ndash;            <h5 class="card-title" th:text="${product.name}"></h5>&ndash;&gt;-->
-<!--&lt;!&ndash;            <h6 class="card-subtitle mb-2 text-muted" th:text="${product.type}"></h6>&ndash;&gt;-->
-<!--&lt;!&ndash;            <h4 th:text="${'$'+product.price}"></h4>&ndash;&gt;-->
-<!--&lt;!&ndash;            <div class="d-inline-flex">&ndash;&gt;-->
+<!--<div class="card-columns" style="margin-left: 13%">-->
+<!--    <div class="card border-0 shadow-none" th:each="product : ${showProducts}">-->
+<!--        <img th:src="${product.productImage}" class="card-img-top" alt="..." style="height: 300px;width: 300px">-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product.name}"></h5>-->
+<!--            <h6 class="card-subtitle mb-2 text-muted" th:text="${product.type}"></h6>-->
+<!--            <h4 th:text="${'$'+product.price}"></h4>-->
+<!--            <div class="d-inline-flex">-->
 
-<!--&lt;!&ndash;                <div class="card-text">&ndash;&gt;-->
+<!--                <div class="card-text">-->
 
-<!--&lt;!&ndash;                    <p>Available in - <span class="minidot" style="background-color: #808080;"></span> <span&ndash;&gt;-->
-<!--&lt;!&ndash;                            class="minidot"&ndash;&gt;-->
-<!--&lt;!&ndash;                                                                                                         style="background-color: #000000"></span> <span class="minidot" style="background-color: #FFFFFF;"></span></p>&ndash;&gt;-->
-<!--&lt;!&ndash;                <a th:href="@{'/products/'+${product.id}}" class="btn btn-primary">View</a>&ndash;&gt;-->
-<!--&lt;!&ndash;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&ndash;&gt;-->
+<!--                    <p>Available in - <span class="minidot" style="background-color: #808080;"></span> <span-->
+<!--                            class="minidot"-->
+<!--                                                                                                         style="background-color: #000000"></span> <span class="minidot" style="background-color: #FFFFFF;"></span></p>-->
+<!--                <a th:href="@{'/products/'+${product.id}}" class="btn btn-primary">View</a>-->
+<!--&lt;!&ndash;&lt;!&ndash;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&ndash;&gt;&ndash;&gt;-->
 
 
 
