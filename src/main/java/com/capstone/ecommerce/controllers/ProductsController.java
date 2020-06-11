@@ -548,6 +548,7 @@ public class ProductsController {
         return "redirect:search";
     }
 
+
     @GetMapping("/products/search")
     public String searchProductLander(Model model,
                                       @ModelAttribute("showProducts") ArrayList<Product> showProducts) {
