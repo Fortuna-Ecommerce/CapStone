@@ -2131,5 +2131,14 @@ h6 {
     height: auto;
     min-height: 50px;
   }
+}.social {
+   display: inline-flex;
+   font-size: 1.8em;
+   justify-content: center;
+   padding-top: 1em;
+ }
+
+.social:hover {
+  text-decoration: none;
 }
 /** End media queries **/
