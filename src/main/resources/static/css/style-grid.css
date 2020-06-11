@@ -9,8 +9,8 @@
 
 .categories {
     /*max-width: 1500px;*/
-    margin: 40px auto;
-    width: 1000px;
+    margin: 20px auto;
+    width: 1200px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -52,10 +52,11 @@
 
 }
 
-.category-item-inner > div {
+.category-item-inner > button {
     padding: 5px 10px;
-    background: rgba(0,0,0,.4);
+    background: rgba(0,0,0,0);
     color: white;
+    border: none;
     border-radius: 5px;
     font-size: 30px;
     font-weight: bold;

@@ -3,7 +3,7 @@
 <head th:fragment="head">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
@@ -13,9 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link th:href='@{http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900}' rel='stylesheet' type='text/css'>
     <link rel="icon" th:href="@{/images/favicon.png}">
-<!--    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css"/>-->
+    <!--    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css"/>-->
     <link th:href="@{/css/app-blue.css}" rel="stylesheet" type="text/css"/>
-<!--    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>-->
+    <!--    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>-->
 
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/css/style.css}" rel="stylesheet">
@@ -25,57 +25,61 @@
     <!-- include stylesheets, etc here -->
 </head>
 <body>
-<nav th:fragment="navbar" class="navbar navbar-expand-sm navbar-light bg-light mb-3">
-    <ul class="collapse navbar-collapse justify-content-between" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/">
-                    <img src="/img/official-logo1.png" class="d-inline-block align-top" alt="" loading="lazy">
-                </a>
-            </li>
+<nav th:fragment="navbar" class="navbar navbar-expand-md navbar-light bg-light mb-3">
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="#collapse_target">
+        <ul class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">
+                        <img src="/img/official-logo1.png" class="d-inline-block align-top" alt="" loading="lazy">
+                    </a>
+                </li>
 
+            </ul>
+
+
+            <ul class="navbar-nav">
+                <!--            <li class="nav-item navitem">-->
+                <!--                <a class="nav-link" href="/products/all">Collection</a>-->
+                <!--            </li>-->
+
+                <li class="nav-item navitem" sec:authorize="isAuthenticated()">
+                    <form th:action="@{/cart}" th:method="get">
+                        <button class="btn-link btn">Go to cart</button>
+                    </form>
+                </li>
+                <li class="nav-item navitem"sec:authorize="isAnonymous()">
+                    <form th:action="@{/register}" th:method="get">
+                        <button class="btn-link btn">Register</button>
+                    </form>
+                </li>
+                <li class="nav-item navitem"sec:authorize="isAnonymous()">
+                    <form th:action="@{/login}" th:method="get">
+                        <button class="btn-link btn">Login</button>
+                    </form>
+                </li>
+
+                <li class="nav-item navitem" sec:authorize="isAuthenticated()">
+                    <form th:action="@{/logout}" th:method="post">
+                        <button class="btn-link btn">Logout</button>
+                    </form>
+                </li>
+                <li class="nav-item navitem">
+                    <form method="post" action="/products/search" class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                               name="keyword">
+                        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </li>
+                <li class="nav-item navitem">
+                    <a class="nav-link" href="/aboutUs">About Us</a>
+                </li>
+
+            </ul>
         </ul>
-
-
-        <ul class="navbar-nav">
-<!--            <li class="nav-item navitem">-->
-<!--                <a class="nav-link" href="/products/all">Collection</a>-->
-<!--            </li>-->
-
-            <li class="nav-item navitem" sec:authorize="isAuthenticated()">
-                <form th:action="@{/cart}" th:method="get">
-                    <button class="btn-link btn">Go to cart</button>
-                </form>
-            </li>
-            <li class="nav-item navitem"sec:authorize="isAnonymous()">
-                <form th:action="@{/register}" th:method="get">
-                    <button class="btn-link btn">Register</button>
-                </form>
-            </li>
-            <li class="nav-item navitem"sec:authorize="isAnonymous()">
-                <form th:action="@{/login}" th:method="get">
-                    <button class="btn-link btn">Login</button>
-                </form>
-            </li>
-
-            <li class="nav-item navitem" sec:authorize="isAuthenticated()">
-                <form th:action="@{/logout}" th:method="post">
-                    <button class="btn-link btn">Logout</button>
-                </form>
-            </li>
-            <li class="nav-item navitem">
-                <form method="post" action="/products/search" class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-                           name="keyword">
-                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </li>
-            <li class="nav-item navitem">
-                <a class="nav-link" href="/aboutUs">About Us</a>
-            </li>
-
-        </ul>
-    </ul>
 </nav>
 
 <div th:fragment="footer">
