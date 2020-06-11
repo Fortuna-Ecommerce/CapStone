@@ -313,6 +313,7 @@ public class CheckoutController{
         String name = ship_address.getFirstname() + " " + ship_address.getLastname();
         String email = shopper.getEmail();
         model.addAttribute("total", total);
+        System.out.println("Checkout test");
         if(testShopper.getStripeToken() == null){
             String customerId = stripeService.createCustomer(token, email);
             testShopper.setStripeToken(customerId);

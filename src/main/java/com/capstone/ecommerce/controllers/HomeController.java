@@ -59,11 +59,11 @@ public class HomeController {
 ;
         Product product3 = productRepo.getOne(3L);
         Product product4 = productRepo.getOne(23L);
-        Product product5 = productRepo.getOne(599L);
-        Product product6 = productRepo.getOne(478L);
-        Product product7 = productRepo.getOne(433L);
+        Product product5 = productRepo.getOne(596L);
+        Product product6 = productRepo.getOne(424L);
+        Product product7 = productRepo.getOne(232L);
         Product product9 = productRepo.getOne(270L);
-        Product product8 = productRepo.getOne(485L);
+        Product product8 = productRepo.getOne(87L);
         Product product10 = productRepo.getOne(590L);
 //        Product product11 = productRepo.getOne(39L);
 

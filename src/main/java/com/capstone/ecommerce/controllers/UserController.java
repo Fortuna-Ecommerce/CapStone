@@ -59,6 +59,18 @@ public class UserController {
 
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
+        String error = "";
+        if(this.users.findByUsername(user.getUsername()) != null){
+            error = "That username is already in use!";
+            redirectAttributes.addFlashAttribute("error", error);
+
+            return "redirect:register";
+        }
+        if(this.users.findByEmail(user.getEmail()) != null){
+            error = "That email is already in use!";
+            redirectAttributes.addFlashAttribute("error", error);
+            return "redirect:register";
+        }
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         user.setAdmin(false);

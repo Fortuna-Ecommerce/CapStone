@@ -86,7 +86,7 @@ public class ShoppingCartController {
 //            model.addAttribute("products", products);
 //            return "redirect:products/"+id;
 //        } else {
-            currentProduct = this.productRepo.findByNameAndSizeAndColor(name, size, color);
+            currentProduct = this.productRepo.findByNameAndSizeAndColorAndType(name, size, color, type);
 //        }
 
 //        if(quantity == null || quantity == 0){

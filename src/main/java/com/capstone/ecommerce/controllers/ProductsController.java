@@ -45,71 +45,72 @@ public class ProductsController {
         List<Product> hatProducts = productRepo.findbySizeandColor("OSFM", "FFFFFF");
         showProducts.addAll(hatProducts);
 //
-//        List<Product> allProducts = productRepo.findAll();
-//        Product product3 = productRepo.getOne(3L);
-//        Product product4 = productRepo.getOne(16L);
-//        Product product5 = productRepo.getOne(32L);
-//        Product product6 = productRepo.getOne(48L);
-//        Product product7 = productRepo.getOne(61L);
-//        Product product8 = productRepo.getOne(76L);
-//        Product product9 = productRepo.getOne(95L);
-//        Product product10 = productRepo.getOne(10L);
-//        Product product11 = productRepo.getOne(11L);
-//        Product product12 = productRepo.getOne(12L);
-//        Product product13 = productRepo.getOne(13L);
-//        Product product14 = productRepo.getOne(14L);
-//        Product product15 = productRepo.getOne(15L);
-//        Product product16 = productRepo.getOne(16L);
-//        Product product17 = productRepo.getOne(17L);
-//        Product product18 = productRepo.getOne(18L);
-//        Product product19 = productRepo.getOne(19L);
-//        Product product20 = productRepo.getOne(20L);
-//        Product product21 = productRepo.getOne(21L);
-//        Product product22 = productRepo.getOne(22L);
-//        Product product23 = productRepo.getOne(23L);
-//        Product product24 = productRepo.getOne(24L);
-//        Product product25 = productRepo.getOne(25L);
-//        Product product26 = productRepo.getOne(26L);
-//        Product product27 = productRepo.getOne(27L);
-//        Product product28 = productRepo.getOne(28L);
-//        Product product29 = productRepo.getOne(29L);
-//        Product product30 = productRepo.getOne(30L);
-//        Product product31 = productRepo.getOne(31L);
-//        Product product32 = productRepo.getOne(32L);
-//
-//        model.addAttribute("product3", product3);
-//        model.addAttribute("product4", product4);
-//        model.addAttribute("product5", product5);
-//        model.addAttribute("product6", product6);
-//        model.addAttribute("product7", product7);
-//        model.addAttribute("product8", product8);
-//        model.addAttribute("product9", product9);
-//        model.addAttribute("product10", product10);
-//        model.addAttribute("product11", product11);
-//        model.addAttribute("product12", product12);
-//        model.addAttribute("product13", product13);
-//        model.addAttribute("product14", product14);
-//        model.addAttribute("product15", product15);
-//        model.addAttribute("product16", product16);
-//        model.addAttribute("product17", product17);
-//        model.addAttribute("product18", product18);
-//        model.addAttribute("product19", product19);
-//        model.addAttribute("product20", product20);
-//        model.addAttribute("product21", product21);
-//        model.addAttribute("product22", product22);
-//        model.addAttribute("product23", product23);
-//        model.addAttribute("product24", product24);
-//        model.addAttribute("product25", product25);
-//        model.addAttribute("product26", product26);
-//        model.addAttribute("product27", product27);
-//        model.addAttribute("product28", product28);
-//        model.addAttribute("product29", product29);
-//        model.addAttribute("product30", product30);
-//        model.addAttribute("product31", product31);
-//        model.addAttribute("product32", product32);
+        List<Product> allProducts = productRepo.findAll();
+        Product product3 = productRepo.getOne(3L);
+        Product product4 = productRepo.getOne(16L);
+        Product product5 = productRepo.getOne(32L);
+        Product product6 = productRepo.getOne(48L);
+        Product product7 = productRepo.getOne(61L);
+        Product product8 = productRepo.getOne(76L);
+        Product product9 = productRepo.getOne(95L);
+        Product product10 = productRepo.getOne(10L);
+        Product product11 = productRepo.getOne(11L);
+        Product product12 = productRepo.getOne(12L);
+        Product product13 = productRepo.getOne(13L);
+        Product product14 = productRepo.getOne(14L);
+        Product product15 = productRepo.getOne(15L);
+        Product product16 = productRepo.getOne(16L);
+        Product product17 = productRepo.getOne(17L);
+        Product product18 = productRepo.getOne(18L);
+        Product product19 = productRepo.getOne(19L);
+        Product product20 = productRepo.getOne(20L);
+        Product product21 = productRepo.getOne(21L);
+        Product product22 = productRepo.getOne(22L);
+        Product product23 = productRepo.getOne(23L);
+        Product product24 = productRepo.getOne(24L);
+        Product product25 = productRepo.getOne(25L);
+        Product product26 = productRepo.getOne(26L);
+        Product product27 = productRepo.getOne(27L);
+        Product product28 = productRepo.getOne(28L);
+        Product product29 = productRepo.getOne(29L);
+        Product product30 = productRepo.getOne(30L);
+        Product product31 = productRepo.getOne(31L);
+        Product product32 = productRepo.getOne(32L);
+
+        model.addAttribute("product3", product3);
+        model.addAttribute("product4", product4);
+        model.addAttribute("product5", product5);
+        model.addAttribute("product6", product6);
+        model.addAttribute("product7", product7);
+        model.addAttribute("product8", product8);
+        model.addAttribute("product9", product9);
+        model.addAttribute("product10", product10);
+        model.addAttribute("product11", product11);
+        model.addAttribute("product12", product12);
+        model.addAttribute("product13", product13);
+        model.addAttribute("product14", product14);
+        model.addAttribute("product15", product15);
+        model.addAttribute("product16", product16);
+        model.addAttribute("product17", product17);
+        model.addAttribute("product18", product18);
+        model.addAttribute("product19", product19);
+        model.addAttribute("product20", product20);
+        model.addAttribute("product21", product21);
+        model.addAttribute("product22", product22);
+        model.addAttribute("product23", product23);
+        model.addAttribute("product24", product24);
+        model.addAttribute("product25", product25);
+        model.addAttribute("product26", product26);
+        model.addAttribute("product27", product27);
+        model.addAttribute("product28", product28);
+        model.addAttribute("product29", product29);
+        model.addAttribute("product30", product30);
+        model.addAttribute("product31", product31);
+        model.addAttribute("product32", product32);
 
 
-        model.addAttribute("showProducts", showProducts);
+//        model.addAttribute("showProducts", showProducts);
+
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             User user = new User();
             model.addAttribute("user", user);
@@ -135,6 +136,14 @@ public class ProductsController {
 //                chosenProducts.add(product);
 //            }
 //        }
+
+//
+        Product product27 = productRepo.getOne(27L);
+        Product product28 = productRepo.getOne(28L);
+        model.addAttribute("product27", product27);
+        model.addAttribute("product28", product28);
+//
+
         model.addAttribute("showProducts", chosenProducts);
         return "products/products";
     }
@@ -153,6 +162,14 @@ public class ProductsController {
                 chosenProducts.add(product);
             }
         }
+
+//
+        Product product27 = productRepo.getOne(27L);
+        Product product28 = productRepo.getOne(28L);
+        model.addAttribute("product27", product27);
+        model.addAttribute("product28", product28);
+//
+
         model.addAttribute("showProducts", chosenProducts);
         return "products/products";
     }
@@ -171,6 +188,14 @@ public class ProductsController {
 //                chosenProducts.add(product);
 //            }
 //        }
+
+//
+        Product product27 = productRepo.getOne(27L);
+        Product product28 = productRepo.getOne(28L);
+        model.addAttribute("product27", product27);
+        model.addAttribute("product28", product28);
+//
+
         model.addAttribute("showProducts", chosenProducts);
         return "products/products";
     }
@@ -227,9 +252,11 @@ public class ProductsController {
             ShoppingCart blankProducts = new ShoppingCart();
             model.addAttribute("products", blankProducts);
         }
+
         double salePrice = 0;
         Product aProduct = productRepo.getOne(id);
         model.addAttribute("product", aProduct);
+        System.out.println(aProduct.getName());
         String black = "";
         String white = "";
         String gray = "";
@@ -237,21 +264,23 @@ public class ProductsController {
         Product tempB = new Product();
         if(aProduct.getColor().equals("FFFFFF")){
             white = aProduct.getProductImage();
-            tempA = productRepo.findByNameAndSizeAndColor(aProduct.getName(),"XL", "000000");
+            tempA = productRepo.findByNameAndSizeAndColorAndType(aProduct.getName(),aProduct.getSize(), "000000",
+                    aProduct.getType());
             black = tempA.getProductImage();
-            tempB = productRepo.findByNameAndSizeAndColor(aProduct.getName(), "XL","808080");
+            tempB = productRepo.findByNameAndSizeAndColorAndType(aProduct.getName(), aProduct.getSize(),"808080", aProduct.getType());
             gray = tempB.getProductImage();
         } else if (aProduct.getColor().equals("000000")){
             black = aProduct.getProductImage();
-            tempA = productRepo.findByNameAndSizeAndColor(aProduct.getName(),"XL", "FFFFFF");
+            tempA = productRepo.findByNameAndSizeAndColorAndType(aProduct.getName(),aProduct.getSize(), "FFFFFF", aProduct.getType());
             white = tempA.getProductImage();
-            tempB = productRepo.findByNameAndSizeAndColor(aProduct.getName(),"XL", "808080");
+            tempB = productRepo.findByNameAndSizeAndColorAndType(aProduct.getName(),aProduct.getSize(), "808080",
+                    aProduct.getType());
             gray = tempB.getProductImage();
         } else if (aProduct.getColor().equals("808080")){
             gray = aProduct.getProductImage();
-            tempA = productRepo.findByNameAndSizeAndColor(aProduct.getName(), "XL","000000");
+            tempA = productRepo.findByNameAndSizeAndColorAndType(aProduct.getName(), aProduct.getSize(),"000000", aProduct.getType());
             black = tempA.getProductImage();
-            tempB = productRepo.findByNameAndSizeAndColor(aProduct.getName(), "XL","FFFFFF");
+            tempB = productRepo.findByNameAndSizeAndColorAndType(aProduct.getName(), aProduct.getSize(),"FFFFFF", aProduct.getType());
             white = tempB.getProductImage();
         }
         model.addAttribute("white", white);
