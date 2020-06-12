@@ -90,6 +90,11 @@
                     <button class="btn-link btn">Logout</button>
                 </form>
             </li>
+                <li class="nav-item navitem" sec:authorize="isAuthenticated()">
+                    <form th:action="@{/orders.html}" th:method="post">
+                        <button class="btn-link btn">Orders</button>
+                    </form>
+                </li>
             <li class="navitem nav-item">
 <!--                <div class="dropdown">-->
 <!--                    <a class="btn btn-outline-secondary" href="#" role="button" id="dropdownMenuLink"-->
