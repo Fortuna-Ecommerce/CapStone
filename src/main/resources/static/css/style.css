@@ -94,7 +94,10 @@
 
 
 #productContainer{
-    margin-top: 5%;
+    margin-top: 10%;
+}
+.montserrat {
+    font-family: 'Montserrat', sans-serif;
 }
 
 /*COURASEL*/
@@ -120,6 +123,12 @@ body{
         overflow: hidden;
         position: relative;
         width: 100%;
+        background: -moz-linear-gradient(left, rgba(0,0,0,0.65) 0%, rgba(255,255,255,0) 48%, rgba(2,2,2,1) 100%); /* FF3.6-15 */
+
+        background: -webkit-linear-gradient(left, rgba(0,0,0,0.65) 0%,rgba(255,255,255,0) 48%,rgba(2,2,2,1) 100%); /* Chrome10-25,Safari5.1-6 */
+
+        background: linear-gradient(to right, rgba(0,0,0,0.65) 0%,rgba(255,255,255,0) 48%,rgba(2,2,2,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#020202',GradientType=1 ); /* IE6-9 */
     }
 }
 
@@ -136,6 +145,8 @@ body{
     display: none;
     /*padding:0 15px;*/
     animation: slide 2s ease;
+    background-color: rgba(100, 149, 237, 0.86);
+
 }
 @media (min-width: 992px) {
     .home .slide.active {
@@ -303,6 +314,31 @@ body{
     /*float: none; !* Added *!*/
     margin-bottom: 10px; /* Added */
 }
+.scale-up-center {
+    -webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+@-webkit-keyframes scale-up-center {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+@keyframes scale-up-center {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
 
 .btn-padding {
     margin-bottom: 300px;

@@ -44,6 +44,10 @@ public class ShoppingCartController {
             }
             total = Math.round(total * 100.00) / 100.00;
         }
+        double tempGrandTotal = (total * 0.0825);
+        double grandTotal = tempGrandTotal + total + 5.00;
+        grandTotal = Math.round(grandTotal * 100.00) / 100.00;
+        model.addAttribute("grandTotal", grandTotal);
         model.addAttribute("total", total);
         model.addAttribute("error", error);
         return "purchases/cart";
@@ -61,7 +65,6 @@ public class ShoppingCartController {
             @RequestParam("price") String price,
             @RequestParam("type") String type,
             RedirectAttributes redir) {
-        System.out.println("Incoming name:"+name);
         double setPrice = Double.parseDouble(price);
         String error = "";
         Product currentProduct = new Product();
@@ -138,17 +141,20 @@ public class ShoppingCartController {
 
         for (Product product : products) {
             total = total + product.getPrice();
-            System.out.println(product.getName());
         }
 
+        double tempGrandTotal = (total * 0.0825);
+        double grandTotal = tempGrandTotal + total + 5.00;
+        grandTotal = Math.round(grandTotal * 100.00) / 100.00;
+
         List<Product> originals = comparison(products);
-//        for(Product produzt : products){
-//
-//        }
+
+
         total = Math.round(total * 100.00) / 100.00;
-        model.addAttribute("total", total);
+        redir.addFlashAttribute("total", total);
         model.addAttribute("products", products);
         model.addAttribute("originals", originals);
+        redir.addFlashAttribute("grandTotal", grandTotal);
 
         return "redirect:cart";
     }
