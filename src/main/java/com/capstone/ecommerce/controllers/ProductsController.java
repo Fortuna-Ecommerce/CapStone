@@ -41,8 +41,8 @@ public class ProductsController {
             model.addAttribute("category", category);
         }
 
-        List<Product> showProducts = productRepo.findbySizeandColor("MD", "FFFFFF");
-        List<Product> hatProducts = productRepo.findbySizeandColor("OSFM", "FFFFFF");
+        List<Product> showProducts = productRepo.findbySizeandColor("MD", "000000");
+        List<Product> hatProducts = productRepo.findbySizeandColor("OSFM", "000000");
         showProducts.addAll(hatProducts);
 //
         List<Product> allProducts = productRepo.findAll();
@@ -345,7 +345,7 @@ public class ProductsController {
             model.addAttribute("category", category);
         }
 //        List<Product> allProducts = productRepo.findAll();
-        List<Product> chosenProducts = productRepo.findbySizeandColor("XS", "FFFFFF");
+        List<Product> chosenProducts = productRepo.findbySizeandColor("XS", "000000");
 //        for (Product product : allProducts) {
 //            if (product.getType().equals("Shirt")) {
 //                chosenProducts.add(product);
@@ -370,7 +370,7 @@ public class ProductsController {
             String category = "";
             model.addAttribute("category", category);
         }
-        List<Product> allProducts = productRepo.findbySizeandColor("MD", "FFFFFF");
+        List<Product> allProducts = productRepo.findbySizeandColor("MD", "000000");
         List<Product> chosenProducts = new ArrayList<>();
         for (Product product : allProducts) {
             if (product.getType().equals("Pullover")) {
