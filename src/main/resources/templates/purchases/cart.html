@@ -25,35 +25,40 @@
         <thead>
             <tr>
 <!--                <th>Preview</th>-->
-                <th>Name</th>
+                <th>Operation</th>
+                <th>Item</th>
                 <th>Quantity</th>
                 <th>Price</th>
-                <th>Operation</th>
+                <th>Subtotal</th>
             </tr>
         </thead>
         <tbody>
 
 
-            <tr th:each="product : ${products}">
-                <td th:text="${product.name}"></td>
-                <td th:text="${product.quantity}"></td>
-                <td th:text="${'$'+#numbers.formatDecimal(product.price,0,'COMMA',2,'POINT')}"></td>
+            <tr th:each="product, iStat : ${products}">
                 <td><form th:action="@{/deleteFromCart}" th:method="get">
                     <input type="hidden" name="cartDeleteId" th:value="${product.id}">
                     <button type="submit" id="deleteImage" th:name="delete">Delete item</button>
                 </form></td>
+                <td> <span th:text="${product.name}"></span> -- <span th:text="${colors.get(iStat.index)}"></span> --
+                    <span
+                        th:text="${product.size}"></span>
+                </td>
+                <td th:text="${product.quantity}"></td>
+                <td th:text="${'$'+prices.get(iStat.index)}"></td>
+                <td th:text="${'$'+#numbers.formatDecimal(product.price,0,'COMMA',2,'POINT')}"></td>
             </tr>
             <tr>
-                <td colspan="2">Your subtotal: </td>
-                <td colspan="2" th:text="${'$'+total}"></td>
+                <td colspan="4">Your subtotal: </td>
+                <td colspan="1" th:text="${'$'+total}"></td>
             </tr>
             <tr>
-                <td th:colspan="2">Shipping costs:</td>
-                <td th:colspan="2">Only $5.00 for a limited time!</td>
+                <td th:colspan="4">Shipping costs:</td>
+                <td th:colspan="1">Only $5.00 for a limited time!</td>
             </tr>
             <tr>
-                <td th:colspan="2">Total with sales tax (8.25%) comes to:</td>
-                <td th:colspan="2" th:text="${'$'+grandTotal}"></td>
+                <td th:colspan="4">Total with sales tax (8.25%) comes to:</td>
+                <td th:colspan="1" th:text="${'$'+grandTotal}"></td>
             </tr>
 
 
@@ -64,7 +69,7 @@
     <div style="text-align: center">
         <br>
         <form th:action="@{/addresses}" th:method="get">
-            <button class="btn-link btn text-white btn-secondary">Start checkout</button>
+            <button class="btn-link btn text-white btn-secondary btn-lg">Start checkout</button>
         </form>
         <br>
     </div>

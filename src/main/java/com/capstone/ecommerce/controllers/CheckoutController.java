@@ -289,6 +289,7 @@ public class CheckoutController{
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             return "home";
         }
+        double saveTotal = Math.round(total * 100.00) / 100.00;
         List<Product> originals = new ArrayList<>();
         originals = comparison(products);
         boolean isError = false;
@@ -301,7 +302,6 @@ public class CheckoutController{
         String name = ship_address.getFirstname() + " " + ship_address.getLastname();
         String email = shopper.getEmail();
         model.addAttribute("total", total);
-        System.out.println("Checkout test");
         if(testShopper.getStripeToken() == null){
             String customerId = stripeService.createCustomer(token, email);
             testShopper.setStripeToken(customerId);
@@ -314,7 +314,7 @@ public class CheckoutController{
             newTransaction.setCreated_at(formatter.format(saleDate));
             newTransaction.setTransactionStatus("Paid - Pending shipment");
             newTransaction.setTransactionType("Sale");
-            newTransaction.setFinalAmount(total);
+            newTransaction.setFinalAmount(saveTotal);
             this.transactionRepo.save(newTransaction);
             Transaction thisTransaction = this.transactionRepo.findByStripeTransID(id);
             for(Product product: products){
