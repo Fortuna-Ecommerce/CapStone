@@ -306,19 +306,19 @@ body{
     z-index: 2;
     transform: translateX(-50%);
 }
-
-.home .indicator div {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    color: #ffffff;
-    background-color: rgba(100, 149, 237, 0.86);
-    border-radius: 50%;
-    text-align: center;
-    line-height: 25px;
-    margin: 0 3px;
+@media (min-width: 992px) {
+    .home .indicator div {
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        color: #ffffff;
+        background-color: rgba(100, 149, 237, 0.86);
+        border-radius: 50%;
+        text-align: center;
+        line-height: 25px;
+        margin: 0 3px;
+    }
 }
-
 .home .indicator div.active {
     background-color: #000;
 }
