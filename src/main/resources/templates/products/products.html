@@ -13,7 +13,11 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-
+<style>
+    body {
+        background: #648EDA;
+    }
+</style>
 <body>
 
 <nav th:replace="partials :: navbar"></nav>
@@ -31,42 +35,43 @@
         <h1 style="text-align: center"><a href='/transactions'>Check on Transactions</a></h1></div>
 </div>
 <!--CATEGORY BUTTONS :VJP-->
-<div class="d-flex align-center" id="productsButtonLabel" >
-    <p id="productButtonLabel" >Categories</p>
+<div class="d-flex align-center" id="productsButtonLabel">
+    <p id="productButtonLabel">Categories</p>
     <br>
 </div>
-<div class="d-flex justify-content-around" id="productsButtonDiv" >
+<div class="d-flex justify-content-around" id="productsButtonDiv">
     <a class="productsButtons" href="/products/t-shirts"><span>|</span> T-Shirts <span>|</span></a>
     <a class="productsButtons" href="/products/hats"><span>|</span> Hats <span>|</span></a>
     <a class="productsButtons" href="/products/pullovers"><span>|</span> Pullovers <span>|</span></a>
 </div>
 <!--This works for a dynamic generation of cards that looks okay - take a look at some point - JT-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<div class="card-columns" style="margin-left: 13%">
-    <div class="card border-0 shadow-none" th:each="product : ${showProducts}">
-        <img th:src="${product.productImage}" class="card-img-top" alt="..." style="height: 300px;width: 300px">
-        <div class="card-body">
-            <h5 class="card-title" th:text="${product.name}"></h5>
-            <h6 class="card-subtitle mb-2 text-muted" th:text="${product.type}"></h6>
-            <h4 th:text="${'$'+product.price}"></h4>
-            <div class="d-inline-flex">
 
-                <div class="card-text">
+    <div id="productsCardDiv" class=" row">
+        <div class="card " th:each="product : ${showProducts}">
+            <a th:href="@{'/products/'+${product.id}}"><img th:src="${product.productImage}"
+                                                            class="card-img-top" alt="..."
+                                                            style="height: 300px;width: 300px"></a>
+            <div class="card-body">
+                <h5 class="card-title" th:text="${product.name}"></h5>
+                <h6 class="card-subtitle mb-2 text-muted" th:text="${product.type}"></h6>
+                <h4 th:text="${'$'+product.price}"></h4>
+                <div class="d-inline-flex">
 
-                    <p>Available in - <span class="minidot" style="background-color: #808080;"></span> <span
-                            class="minidot"
-                                                                                                         style="background-color: #000000"></span> <span class="minidot" style="background-color: #FFFFFF;"></span></p>
-                <a th:href="@{'/products/'+${product.id}}" class="btn btn-primary">View</a>
+                    <div class="card-text">
+
+                        <p>Available in - <span class="minidot" style="background-color: #808080;"></span> <span
+                                class="minidot"
+                                style="background-color: #000000"></span> <span class="minidot"
+                                                                                style="background-color: #FFFFFF;"></span>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
-
-
-
 
 
 <!--<div class="main">-->
@@ -525,7 +530,6 @@
 <!--    </ul>-->
 
 
-
 <!-- JavaScript links -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
@@ -548,7 +552,7 @@
 <script type="text/javascript" src="../static/js/app.js"></script>
 <script type="text/javascript" src="../static/js/colorSwitcher.js"></script>
 <script type="text/javascript" src="../static/js/jquery.imagezoom.js"></script>
-<footer th:replace="partials :: footer" />
-    </body>
+<footer th:replace="partials :: footer"/>
+</body>
 </html>
 
