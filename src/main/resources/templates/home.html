@@ -331,7 +331,7 @@
 <div class="container" style="margin-top: 50px">
     <div class="row">
 <!--        <div class="col-xs-6">-->
-            <div class="card border-0 shadow-none scale-up-center" th:each="product : ${product3}" style="width: 18rem; height: 25rem">
+            <div class="card border-0 shadow-none scale-up-center" th:each="product : ${product3}" style="width: 18rem;">
                 <a th:href="@{'/products/'+ ${product3.id}}">
                 <img th:src="${product3.productImage}" class="card-img-top homeImage" alt="..."
                      style="width: 300px;height: 300px">
@@ -339,7 +339,7 @@
                 <div class="card-body montserrat">
                     <h5 class="card-title" th:text="${product3.name}"></h5>
                     <div class="d-inline-flex">
-                        <span>$</span><p class="card-text" th:text="${product3.price}">$</p>
+                        <span style="color: black">$</span><p class="card-text" th:text="${product3.price}"></p>
 <!--                        <a th:href="@{'/products/'+ ${product3.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>-->
                     </div>
                 </div>
@@ -352,7 +352,7 @@
             <div class="card-body montserrat">
                 <h5 class="card-title" th:text="${product4.name}"></h5>
                 <div class="d-inline-flex">
-                    <span>$</span><p class="card-text" th:text="${product4.price}"></p>
+                    <span style="color: black">$</span><p class="card-text" th:text="${product4.price}"></p>
 <!--                    <a th:href="@{'/products/'+ ${product4.id}}" class="btn btn-primary" style="margin-left: 80px">-->
 <!--                        View</a>-->
                 </div>
@@ -366,7 +366,7 @@
             <div class="card-body montserrat">
                 <h5 class="card-title" th:text="${product5.name}"></h5>
                 <div class="d-inline-flex">
-                    <span>$</span><p class="card-text" th:text="${product5.price}"></p>
+                    <span style="color: black">$</span><p class="card-text" th:text="${product5.price}"></p>
 <!--                    <a th:href="@{'/products/'+ ${product5.id}}" class="btn btn-primary" style="margin-left: 80px">-->
 <!--                        View</a>-->
                 </div>
@@ -380,7 +380,7 @@
             <div class="card-body montserrat">
                 <h5 class="card-title" th:text="${product6.name}"></h5>
                 <div class="d-inline-flex">
-                    <span>$</span><p class="card-text" th:text="${product6.price}"></p>
+                    <span style="color: black">$</span><p class="card-text" th:text="${product6.price}">$</p>
 <!--                    <a th:href="@{'/products/'+ ${product6.id}}" class="btn btn-primary" style="margin-left: 80px">-->
 <!--                        View</a>-->
                 </div>
@@ -396,7 +396,7 @@
         <div class="card-body montserrat">
             <h5 class="card-title" th:text="${product7.name}"></h5>
             <div class="d-inline-flex">
-                <span>$</span><p class="card-text" th:text="${product7.price}"></p>
+                <span style="color: black">$</span><p class="card-text" th:text="${product7.price}"></p>
             </div>
         </div>
     </div>
@@ -408,7 +408,7 @@
         <div class="card-body montserrat">
             <h5 class="card-title" th:text="${product8.name}"></h5>
             <div class="d-inline-flex">
-                <span>$</span><p class="card-text" th:text="${product8.price}"></p>
+                <span style="color: black">$</span><p class="card-text" th:text="${product8.price}"></p>
 <!--                <a th:href="@{'/products/'+ ${product8.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>-->
             </div>
         </div>
@@ -420,7 +420,7 @@
         <div class="card-body montserrat">
             <h5 class="card-title" th:text="${product9.name}"></h5>
             <div class="d-inline-flex">
-                <span>$</span><p class="card-text" th:text="${product9.price}"></p>
+                <span style="color: black">$</span><p class="card-text" th:text="${product9.price}"></p>
 <!--                <a th:href="@{'/products/'+ ${product9.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>-->
             </div>
         </div>
@@ -433,7 +433,7 @@
         <div class="card-body montserrat">
             <h5 class="card-title" th:text="${product10.name}"></h5>
             <div class="d-inline-flex">
-                <span>$</span><p class="card-text" th:text="${product10.price}"></p>
+                <span style="color: black">$</span><p class="card-text" th:text="${product10.price}"></p>
 <!--                <a th:href="@{'/products/'+ ${product10.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>-->
             </div>
         </div>

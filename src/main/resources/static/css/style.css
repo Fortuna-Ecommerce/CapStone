@@ -3,7 +3,7 @@
  * how you can use CSS to style your Element's container.
  */
 body{
-    background-color:#ebebeb;
+    background-color:white;
 }
 .StripeElement {
     box-sizing: border-box;
