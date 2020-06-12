@@ -3,7 +3,7 @@
  * how you can use CSS to style your Element's container.
  */
 body{
-    background-color:white;
+    background-color: whitesmoke;
 }
 .StripeElement {
     box-sizing: border-box;
@@ -316,6 +316,7 @@ body{
     margin: 0 auto; /* Added */
     /*float: none; !* Added *!*/
     margin-bottom: 10px; /* Added */
+    background: whitesmoke;
 }
 .scale-up-center {
     -webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
