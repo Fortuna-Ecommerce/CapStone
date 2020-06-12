@@ -134,7 +134,10 @@ body{
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#020202',GradientType=1 ); /* IE6-9 */
     }
 }
-
+.slide-overlay {
+    z-index: 10;
+    background-color: rgba(0,0,0,0.4);
+}
 
 .home .slide {
     position: absolute;
@@ -144,7 +147,7 @@ body{
     height: 100%;
     background-size: cover;
     background-position: center;
-    z-index: 1;
+    z-index: -1;
     display: none;
     /*padding:0 15px;*/
     animation: slide 2s ease;
@@ -245,7 +248,7 @@ body{
     width: 40px;
     margin-top: -20px;
     color: #ffffff;
-    background-color: #1E74FF;
+    background-color: rgba(100, 149, 237, 0.86);
     text-align: center;
     line-height: 40px;
     font-size: 20px;
@@ -279,7 +282,7 @@ body{
     width: 25px;
     height: 25px;
     color: #ffffff;
-    background-color: #1E74FF;
+    background-color: rgba(100, 149, 237, 0.86);
     border-radius: 50%;
     text-align: center;
     line-height: 25px;
