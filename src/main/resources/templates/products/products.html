@@ -15,7 +15,7 @@
 
 <style>
 body{
-    background: #7b7b7d;
+    background: white;
 }
 </style>
 <body>
@@ -36,7 +36,7 @@ body{
 </div>
 <!--CATEGORY BUTTONS :VJP-->
 <div class="jumbotron jumbotron-fluid" style="background: #5d74be;">
-    <div class="container" style="background: #7b7b7d;">
+    <div class="container" style="background: white;">
         <p id="productsButtonLabel" class="display-4">The Goods</p>
     </div>
 </div>
@@ -51,16 +51,16 @@ rgba(0,0,0,.125);
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
     <div class="row">
-        <div id="cardBackground" class="card " th:each="product : ${showProducts}" style="background: #5d74be">
+        <div id="cardBackground" class=" montserrat" th:each="product : ${showProducts}" style="background: white">
             <div id="productsCardDiv" class="card-body d-inline-block justify-content-around" style="margin: auto;
-            background: #5d74be">
+            background: white">
                 <p id="name" class="card-title text" th:text="${product.name}" style="font-family: sans-serif;
                 margin-left:auto;
                 color:
-                white; "></p>
+                black; "></p>
 
             <a th:href="@{'/products/'+${product.id}}"><img th:src="${product.productImage}" class="card-img-top" alt="..." style="height: 300px;width: 300px"></a>
-                <h4 id="price" th:text="${'$'+product.price}" style="color: white; font-weight: bold"></h4>
+                <h4 id="price" th:text="${'$'+product.price}" style="color: black; font-weight: bold"></h4>
 <!--                <h6 class="card-subtitle mb-2 text-muted" th:text="${product.type}"></h6>-->
                 <div class="d-inline-flex">
 

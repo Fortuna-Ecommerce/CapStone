@@ -6,7 +6,7 @@
     /*font-size: x-large;*/
     border-bottom: black solid 1px;
     border-top: black solid 1px;
-    background: #7b7b7d;
+    background: white;
     font-size: 80px;
 
 
@@ -28,12 +28,10 @@ span{
     color: #007bff;
 }
 #name, #price{
-    font-weight: bold;
     display: table;
     margin: 0 auto;
     font-size: x-large;
-    border-bottom: black solid 1px;
-    border-top: black solid 1px;
+
 
 
 }
