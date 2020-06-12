@@ -415,6 +415,7 @@ public class ProductsController {
         return "products/products";
     }
 
+
 //    @GetMapping("products/t-shirts/{id}")
 //    public String individualTshirt(Model model, @PathVariable("id") long id) {
 //        Product tshirt = productRepo.getOne(id);
