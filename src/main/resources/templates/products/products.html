@@ -14,9 +14,9 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 <style>
-    body {
-        background: #648EDA;
-    }
+body{
+    background: #648EDA;
+}
 </style>
 <body>
 
@@ -39,7 +39,8 @@
     <p id="productButtonLabel">Categories</p>
     <br>
 </div>
-<div class="d-flex justify-content-around" id="productsButtonDiv">
+<div class="d-flex justify-content-around" id="productsButtonDiv" style="background: lightslategray; border:1px solid rgba(0,0,0,.125);
+ ">
     <a class="productsButtons" href="/products/t-shirts"><span>|</span> T-Shirts <span>|</span></a>
     <a class="productsButtons" href="/products/hats"><span>|</span> Hats <span>|</span></a>
     <a class="productsButtons" href="/products/pullovers"><span>|</span> Pullovers <span>|</span></a>
@@ -47,14 +48,13 @@
 <!--This works for a dynamic generation of cards that looks okay - take a look at some point - JT-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
-    <div id="productsCardDiv" class=" row">
-        <div class="card " th:each="product : ${showProducts}">
-            <a th:href="@{'/products/'+${product.id}}"><img th:src="${product.productImage}"
-                                                            class="card-img-top" alt="..."
-                                                            style="height: 300px;width: 300px"></a>
-            <div class="card-body">
+    <div style="" class=" row">
+        <div class="card " th:each="product : ${showProducts}" style="background: lightslategray">
+            <div id="productsCardDiv" class="card-body d-inline-block justify-content-around" style="margin: auto; background: lightslategray">
+
+            <a th:href="@{'/products/'+${product.id}}"><img th:src="${product.productImage}" class="card-img-top" alt="..." style="height: 300px;width: 300px"></a>
                 <h5 class="card-title" th:text="${product.name}"></h5>
-                <h6 class="card-subtitle mb-2 text-muted" th:text="${product.type}"></h6>
+<!--                <h6 class="card-subtitle mb-2 text-muted" th:text="${product.type}"></h6>-->
                 <h4 th:text="${'$'+product.price}"></h4>
                 <div class="d-inline-flex">
 
