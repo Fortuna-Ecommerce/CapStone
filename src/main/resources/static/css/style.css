@@ -125,6 +125,10 @@ body{
 input:checked + label {
 }
 
+#priceInput2 {
+    color: black;
+}
+
 
 
 
