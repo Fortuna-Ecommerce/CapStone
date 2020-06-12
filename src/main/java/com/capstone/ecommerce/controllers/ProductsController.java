@@ -140,51 +140,6 @@ public class ProductsController {
     }
 
 
-//    @GetMapping("products/t-shirts/{id}")
-//    public String individualTshirt(Model model, @PathVariable("id") long id) {
-//        Product tshirt = productRepo.getOne(id);
-//        model.addAttribute("tshirt", tshirt);
-//        return "products/t-shirts/show";
-//    }
-//
-//    @GetMapping("products/pullover/{id}")
-//    public String individualPullover(Model model, @PathVariable long id) {
-//        Product aProduct = productRepo.getOne(id);
-//        model.addAttribute("pullover", aProduct);
-//        return "products/pullover/show";
-//    }
-//
-//    @GetMapping("products/hats/{id}")
-//    public String individualHat(Model model, @PathVariable long id) {
-//        Product aProduct = productRepo.getOne(id);
-//        model.addAttribute("hat", aProduct);
-//        return "products/hats/show";
-//    }
-
-
-//    @GetMapping("products/hats")
-//    public String viewHats(Model model) {
-//        model.addAttribute("products", productRepo.findAll());
-//        return "products/hats";
-//    }
-//    @GetMapping("products/t-shirts/{id}")
-//    public String individualTshirt(Model model, @PathVariable("id") long id) {
-//        Product tshirt = productRepo.getOne(id);
-//        model.addAttribute("tshirt", tshirt);
-//        return "products/t-shirts/show";
-//    }
-//    @GetMapping("products/pullover/{id}")
-//    public String individualPullover(Model model, @PathVariable long id) {
-//        Product aProduct = productRepo.getOne(id);
-//        model.addAttribute("pullover", aProduct);
-//        return "products/pullover/show";
-//    }
-//    @GetMapping("products/hats/{id}")
-//    public String individualHat(Model model, @PathVariable long id) {
-//        Product aProduct = productRepo.getOne(id);
-//        model.addAttribute("hat", aProduct);
-//        return "products/hats/show";
-//    }
 
     @GetMapping("/products/{id}")
     public String singleProduct(Model model, @PathVariable long id) {
@@ -237,14 +192,6 @@ public class ProductsController {
             salePrice = Math.round(salePrice * 100.00) / 100.00;
         }
         model.addAttribute("salePrice", salePrice);
-//        List<Categories> categories = aProduct.getCategories();
-//        String cNames = "";
-//        for (Categories category : categories) {
-//            cNames = cNames + category.getCategory() + ", ";
-//        }
-//        cNames = StringUtils.chop(cNames);
-//        cNames = StringUtils.chop(cNames);
-//        model.addAttribute("categories", cNames);
         model.addAttribute("imageColor", imageColor);
         return "products/product";
     }

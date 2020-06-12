@@ -20,13 +20,15 @@
     <br>
 </div>
 <th:block th:unless="${products.size()==0}">
-<div class="container mt-4" layout:fragment="content">
+<div class="container mt-4 w-75">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
 <!--                <th>Preview</th>-->
                 <th>Operation</th>
-                <th>Item</th>
+                <th>Item name</th>
+                <th>Item color</th>
+                <th>Item size</th>
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Subtotal</th>
@@ -40,24 +42,23 @@
                     <input type="hidden" name="cartDeleteId" th:value="${product.id}">
                     <button type="submit" id="deleteImage" th:name="delete">Delete item</button>
                 </form></td>
-                <td> <span th:text="${product.name}"></span> -- <span th:text="${colors.get(iStat.index)}"></span> --
-                    <span
-                        th:text="${product.size}"></span>
-                </td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${colors.get(iStat.index)}"></td>
+                <td th:text="${product.size}"> </td>
                 <td th:text="${product.quantity}"></td>
                 <td th:text="${'$'+prices.get(iStat.index)}"></td>
                 <td th:text="${'$'+#numbers.formatDecimal(product.price,0,'COMMA',2,'POINT')}"></td>
             </tr>
             <tr>
-                <td colspan="4">Your subtotal: </td>
+                <td colspan="6">Your order subtotal: </td>
                 <td colspan="1" th:text="${'$'+total}"></td>
             </tr>
             <tr>
-                <td th:colspan="4">Shipping costs:</td>
+                <td th:colspan="6">Shipping costs:</td>
                 <td th:colspan="1">Only $5.00 for a limited time!</td>
             </tr>
             <tr>
-                <td th:colspan="4">Total with sales tax (8.25%) comes to:</td>
+                <td th:colspan="6">Total with sales tax (8.25%) comes to:</td>
                 <td th:colspan="1" th:text="${'$'+grandTotal}"></td>
             </tr>
 

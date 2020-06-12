@@ -39,7 +39,7 @@ public class ShoppingCartController {
     public String getCart(Model model,
                           @ModelAttribute("products") ShoppingCart products,
                           @ModelAttribute("error") String error) {
-        NumberFormatter formatter = new NumberFormatter(0.00);
+//        NumberFormatter formatter = new NumberFormatter(0.00);
         List<Double> originalPrices = new ArrayList<>();
         List<String> colors = new ArrayList<>();
         double total = 0.00;
@@ -77,24 +77,34 @@ public class ShoppingCartController {
             Model model,
             @ModelAttribute("products") ShoppingCart products,
             @RequestParam("productId") long id,
-            @RequestParam("sizeSelect") String size,
-            @RequestParam("color") String color,
+            @RequestParam(value = "sizeSelect", required = false) String size,
+            @RequestParam(value = "color", required = false) String color,
             @RequestParam("productName") String name,
             @RequestParam("cartAddQuantity") Integer quantity,
             @RequestParam("price") String price,
             @RequestParam("type") String type,
             RedirectAttributes redir) {
+        String error1 = "";
+        String error2 = "";
+        String error3 = "";
+        if(quantity == 0){
+            error1 = "Sorry, you can't buy 0 of anything!";
+            redir.addFlashAttribute("error1", error1);
+            return "redirect:/products/"+id;
+        }
+
         double setPrice = Double.parseDouble(price);
-        String error = "";
         Product currentProduct = new Product();
         Product newProduct = new Product();
 
             currentProduct = this.productRepo.findByNameAndSizeAndColorAndType(name, size, color, type);
 
 
+
         double total = 0.00;
         boolean found = false;
         Product addProduct = currentProduct;
+
 
         if (quantity != null) {
             addProduct.setQuantity(quantity);

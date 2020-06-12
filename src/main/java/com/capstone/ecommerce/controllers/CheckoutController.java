@@ -52,24 +52,6 @@ public class CheckoutController{
     private String stripePublicKey = "pk_test_B1PgkqwpndJUHJCdlY0I9leL00c395TbE5";
 
 
-//    @GetMapping("/baddress")
-//    public String goToBillAddress(Model model) {
-//        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
-//            return "home";
-//        }
-//        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        Address bill_address = this.addressRepo.findByUserAndAddresstype(shopper, "Billing");
-//        if (bill_address != null) {
-//            model.addAttribute("bill_address", bill_address);
-//        } else {
-//            bill_address = new Address();
-//            bill_address.setAddresstype("Billing");
-//            bill_address.setUser(shopper);
-//            model.addAttribute("bill_address", bill_address);
-//        }
-//        return "purchases/baddress";
-//    }
-
 //    @PostMapping("/baddress")
 //    public String submitBillAddress(Model model,
 //                                    Address bill_address) {
@@ -154,8 +136,6 @@ public class CheckoutController{
             model.addAttribute("bill_address", bill_address);
         }
 
-        System.out.println(ship_address.getId());
-        System.out.println(bill_address.getId());
 
         return "purchases/addresses";
 
@@ -243,8 +223,10 @@ public class CheckoutController{
             total = total + product.getPrice();
         }
 
-        total = Math.round(total * 100.00) / 100.00;
-        model.addAttribute("total", total);
+        double tempGrandTotal = (total * 0.0825);
+        double grandTotal = tempGrandTotal + total + 5.00;
+        grandTotal = Math.round(grandTotal * 100.00) / 100.00;
+        model.addAttribute("total", grandTotal);
         model.addAttribute("bill_address", bill_address);
         model.addAttribute("ship_address", ship_address);
         model.addAttribute("products", products);
@@ -258,25 +240,7 @@ public class CheckoutController{
 
     @Autowired
     private StripeService stripeService;
-//
-//    @PostMapping("/create-charge")
-//    public @ResponseBody
-//    Response createCharge(String email, String token) {
-//        //validate data
-//        if (token == null) {
-//            return new Response(false, "Stripe payment token is missing. Please, try again later.");
-//        }
-//
-//        //create charge
-//        String chargeId = stripeService.createCharge(email, token, 999); //$9.99 USD
-//        if (chargeId == null) {
-//            return new Response(false, "An error occurred while trying to create a charge.");
-//        }
-//
-//        // You may want to store charge id along with order information
-//
-//        return new Response(true, "Success! Your charge id is " + chargeId);
-//    }
+
 
     @PostMapping(value = "/charge", produces = "application/json")
     @ResponseBody
@@ -336,9 +300,6 @@ public class CheckoutController{
             isError = true;
             errMessage = "There was a problem with your card - please try again or contact your issuing agency!";
         }
-//        model.addAttribute("tId", newTransaction.getId());
-//        model.addAttribute("status", newTransaction.getTransactionStatus());
-//        model.addAttribute("balance_transaction", id);
 
         return "{" +
                     "\"url\":\"/result\"," +
@@ -359,20 +320,6 @@ public class CheckoutController{
         return "purchases/result";
     }
 
-//        @ExceptionHandler(StripeException.class)
-//    public String handleError(Model model, StripeException ex) {
-//        model.addAttribute("error", ex.getMessage());
-//        return "result";
-
-
-//    @GetMapping("/checkout")
-//    public String checkout(Model model) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("amount", 50 * 100); // in cents
-//        model.addAttribute("stripePublicKey", stripePublicKey);
-//        model.addAttribute("currency", ChargeRequest.Currency.EUR);
-//        return "checkout";
-//    }
 
 
     }

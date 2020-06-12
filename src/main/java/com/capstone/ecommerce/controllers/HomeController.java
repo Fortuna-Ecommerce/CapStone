@@ -59,6 +59,26 @@ public class HomeController {
         List<Product> hatProducts = productRepo.findbySizeandColor("OSFM", "FFFFFF");
         showProducts.addAll(hatProducts);
 
+//        Product calls for featured eight products on home page
+
+        Product product3 = productRepo.getOne(3L);
+        Product product4 = productRepo.getOne(16L);
+        Product product5 = productRepo.getOne(32L);
+        Product product6 = productRepo.getOne(48L);
+        Product product7 = productRepo.getOne(61L);
+        Product product8 = productRepo.getOne(76L);
+        Product product9 = productRepo.getOne(95L);
+        Product product10 = productRepo.getOne(10L);
+
+        model.addAttribute("product3", product3);
+        model.addAttribute("product4", product4);
+        model.addAttribute("product5", product5);
+        model.addAttribute("product6", product6);
+        model.addAttribute("product7", product7);
+        model.addAttribute("product8", product8);
+        model.addAttribute("product9", product9);
+        model.addAttribute("product10", product10);
+
 
 
 
@@ -76,7 +96,51 @@ public class HomeController {
 
         return "home";
     }
+//    public String welcome(Model model) {
+//
+//        if(model.getAttribute("products") == null) {
+//            ShoppingCart products = new ShoppingCart();
+//            model.addAttribute("products", products);
+//        }
+//        if (model.getAttribute("category") == null) {
+//            String category = "";
+//            model.addAttribute("category", category);
+//        }
+////      MADE CHANGE HERE
+////        List<Product> allProducts = productRepo.findAll();
+//;
+//        Product product3 = productRepo.getOne(3L);
+//        Product product4 = productRepo.getOne(23L);
+//        Product product5 = productRepo.getOne(596L);
+//        Product product6 = productRepo.getOne(424L);
+//        Product product7 = productRepo.getOne(232L);
+//        Product product9 = productRepo.getOne(270L);
+//        Product product8 = productRepo.getOne(87L);
+//        Product product10 = productRepo.getOne(590L);
+////        Product product11 = productRepo.getOne(39L);
+//
+//        model.addAttribute("product3", product3);
+//        model.addAttribute("product4", product4);
+//        model.addAttribute("product5", product5);
+//        model.addAttribute("product6", product6);
+//        model.addAttribute("product7", product7);
+//        model.addAttribute("product8", product8);
+//        model.addAttribute("product9", product9);
+//        model.addAttribute("product10", product10);
+////        model.addAttribute("product11", product11);
+//
+//        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+//            User user = new User();
+//            model.addAttribute("user", user);
+//            return "home";
+//        }
+//        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User testShopper = this.userRepo.getOne(shopper.getId());
+//        model.addAttribute("user", testShopper);
+////        model.addAttribute("showProducts", allProducts);
 
+//        return "home";
+//    }
 
     @GetMapping("products/productInventory")
     public String getProducts(Model model) {

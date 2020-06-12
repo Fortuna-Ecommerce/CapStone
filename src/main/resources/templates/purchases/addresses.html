@@ -21,7 +21,7 @@
     <br>
 
 
-            <div class="container w-75">
+            <div class="container w-50">
         <input type="hidden" th:value="${bill_address.addresstype}" name="Baddresstype"/>
             <input type="hidden" th:value="${bill_address.id}" name="Baddressid"/>
         <div class="form-row">
@@ -72,7 +72,7 @@
 
         <br>
 
-    <div class="container w-75" id="shippingInfo">
+    <div class="container w-50" id="shippingInfo">
             <input type="hidden" th:value="${ship_address.addresstype}" id="Saddresstype">
             <input type="hidden" th:value="${ship_address.id}" name="Saddressid"/>
             <div class="form-row">
@@ -114,7 +114,7 @@
                     <input type="text" class="form-control shipping-info" name="Szip" id="Szip" th:value="${ship_address.zipcode}" maxlength="5" required>
                 </div>
             </div>
-    </div><div style="text-align: center" class="mt-2 mb3">
+    </div><div style="text-align: center" class="mt-2 mb-5">
             <button value="submit" class="btn-link btn text-white btn-secondary align-center" id="AddressSubmit">Continue to
                 Checkout</button>
         </div>
