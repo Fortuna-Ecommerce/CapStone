@@ -1,18 +1,157 @@
-
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="partials :: head" /></div>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:replace="partials :: head"></div>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900' rel='stylesheet' type='text/css'>
+<link rel="icon" href="../static/images/favicon.png">
+<link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="../static/css/app-blue.css" rel="stylesheet" type="text/css"/>
+<link href="../static/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 
 <body>
-<nav th:replace="partials :: navbar" />
 
-        <div class="d-flex justify-content-around" id="productsButtonDiv">
-        <a href="/products/t-shirts" class="productsButtons">T-Shirts</a>
-        <a href="/products/pullovers" class="productsButtons">Hats</a>
-        <a href="/products/hats" class="productsButtons">Pullovers</a>
-        </div>
+<nav th:replace="partials :: navbar"></nav>
 
 
+
+<h1 style="text-align: center">Here's some neat stuff to buy - just sayin'!</h1>
+
+<!--<div style="text-align: center" th:if="${user.getAdmin() != null}">-->
+<!--    <div style="text-align: center;" th:if="${user.getAdmin() == true}">-->
+<!--        <h1 style="text-align: center"><a href='/products/productInventory'>Check on the Inventory</a></ h1>-->
+<!--        <h1 style="text-align: center"><a href='/transactions'>Check on Transactions</a></h1></div>-->
+<!--</div>-->
+
+<div style="text-align: center" th:if="${user.getAdmin() != null}">
+    <div style="text-align: center;" th:if="${user.getAdmin() == true}">
+        <h1 style="text-align: center"><a href='/products/productInventory'>Check on the Inventory</a></h1>
+        <h1 style="text-align: center"><a href='/transactions'>Check on Transactions</a></h1></div>
+</div>
+
+
+<!--CARDS-->
+
+<!--Start of card-->
+<!--<div class="card-grid">-->
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card12" th:each="product : ${product12}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product12.name}">Rover</h5>-->
+<!--            <p th:text="${product12.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card13" th:each="product : ${product13}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product13.name}">Rover</h5>-->
+<!--            <p th:text="${product13.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card14" th:each="product : ${product14}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product14.name}">Rover</h5>-->
+<!--            <p th:text="${product14.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card15" th:each="product : ${product15}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product15.name}">Rover</h5>-->
+<!--            <p th:text="${product15.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card16" th:each="product : ${product16}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product16.name}">Rover</h5>-->
+<!--            <p th:text="${product16.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card17" th:each="product : ${product17}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product17.name}">Rover</h5>-->
+<!--            <p th:text="${product17.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card18" th:each="product : ${product18}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product18.name}">Rover</h5>-->
+<!--            <p th:text="${product18.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card19" th:each="product : ${product19}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product19.name}">Rover</h5>-->
+<!--            <p th:text="${product19.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card shadow p-3 mb-5 bg-white rounded h-100" id="card20" th:each="product : ${product20}">-->
+<!--        <div class="embed-responsive embed-responsive-4by3">-->
+<!--            <img src="img/animal1.jpg" class="card-img-top embed-responsive-item" alt="...">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${product20.name}">Rover</h5>-->
+<!--            <p th:text="${product20.price}"></p>-->
+<!--            <a href="#" class="btn btn-primary">Add to Cart</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--End of card-->
+
+<!--End of card-->
+<!-- start of product cards cards are generated from this card-->
+<!--<div class="card-deck">-->
+
+
+
+
+
+<!--This works for a dynamic generation of cards that looks okay - take a look at some point - JT-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <div class="card-columns" style="margin-left: 13%">
     <div class="card border-0 shadow-none" th:each="product : ${showProducts}">
         <img th:src="${product.productImage}" class="card-img-top" alt="..." style="height: 300px;width: 300px">
@@ -26,100 +165,500 @@
 
                     <p>Available in - <span class="minidot" style="background-color: #808080;"></span> <span
                             class="minidot"
-                            style="background-color: #000000"></span> <span class="minidot" style="background-color: #FFFFFF;"></span></p>
-                    <a th:href="@{'/products/'+${product.id}}" class="btn btn-primary">View</a>
+                                                                                                         style="background-color: #000000"></span> <span class="minidot" style="background-color: #FFFFFF;"></span></p>
+                <a th:href="@{'/products/'+${product.id}}" class="btn btn-primary">View</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 
 
-<!--FOOTER-->
-<footer id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <h4>Our conditions</h4>
-                <div class="justify">
-                    The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: “Client”, “You” and “Your” refers to you, the person log on this website and compliant to the Company's terms and conditions.
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <h4>Latest news</h4>
-                <blockquote>
-                    <p>Check out our latest collection and browse from multiple styles!</p>
-                </blockquote>
-            </div>
-            <div class="col-sm-4 social-network">
-                <h4>Social Network</h4>
-                <div class="row margin-top-20">
-                    <div class="col-sm-12">
-                        <a href="#">
-                            <i class="fa fa-facebook-square fa-2x blue-fb pull-left"></i>
-                            <div>
-                                Add us on Facebook to see what memes are trending!
-                            </div>
-                            <div class="clearfix"></div>
-                        </a>
-                    </div>
-                </div>
-                <div class="row margin-top-10">
-                    <div class="col-sm-12">
-                        <a href="#">
-                            <i class="fa fa-twitter-square fa-2x blue-tt pull-left"></i>
-                            <div>
-                                Follow us on Twitter for all the best Memes!
-                            </div>
-                            <div class="clearfix"></div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr/>
-        <div class="row line-50">
-            <div class="col-sm-8">
-                <nav class="navbar navbar-default navbar-transparent">
-                    <div class="container-fluid">
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li>
-                                    <a href="home.html">Home</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Account
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Favorites
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Cart
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-            <div class="col-sm-4 text-right">
-                <strong>
-                    Created by Fortuna eCommerce Developers
-                </strong>
-            </div>
-        </div>
-    </div>
-</footer>
 
 
 
+<!--<div class="main">-->
+<!--    <div class="row">-->
+<!--        <div class="col-sm-3 col-md-1">-->
+<!--&lt;!&ndash;            <ul class="nav nav-pills navbar-brand" id="categories" data-spy="affix" data-offset-top="100">&ndash;&gt;-->
+<!--&lt;!&ndash;                <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a href="products.html" data-category="T-shirt">&ndash;&gt;-->
+<!--&lt;!&ndash;                        T-shirt <i class="fa fa-chevron-right pull-right"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                </li>&ndash;&gt;-->
+<!--&lt;!&ndash;            </ul>&ndash;&gt;-->
+<!--        </div>-->
+<!--        <div class="col-sm-9 col-md-10">-->
+<!--            <div class="item-list">-->
+<!--                <div class="row">-->
+
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product80}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product80.id}}">-->
+
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"-->
+<!--                         th:each="product : ${product1}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product1.id}}">-->
+
+<!--                                <div class="ribon-container">-->
+<!--                                    <div class="ribon">-->
+<!--                                        ON SALE!-->
+<!--                                    </div>-->
+<!--                                    <div class="ribon-arrow"></div>-->
+<!--                                </div>-->
+<!--                                <div class="picture">-->
+
+<!--                                    <img th:src="${product80.productImage}" alt="The product's image">-->
+<!--                                </div>-->
+<!--                                <div class="category">T-Shirt</div>-->
+<!--                                <div class="title" th:text="${product80.name}"></div>-->
+
+<!--                                    <img th:src="${product1.productImage}" alt="The product's image">-->
+<!--                                </div>-->
+<!--                                <div class="category">T-Shirt</div>-->
+<!--                                <div class="title" th:text="${product1.name}"></div>-->
+
+<!--                                <div class="description">-->
+<!--                                </div>-->
+<!--                                <div class="actions">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-xs-6">-->
+<!--                                            <div class="price">-->
+
+<!--                                                <p th:text="${product80.price}"></p>-->
+
+<!--                                                <p th:text="${product1.price}"></p>-->
+
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product120}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product120.id}}">-->
+
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product2}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product2.id}}">-->
+
+<!--                                <div class="ribon-container">-->
+<!--                                    <div class="ribon">-->
+<!--                                        ON SALE!-->
+<!--                                    </div>-->
+<!--                                    <div class="ribon-arrow"></div>-->
+<!--                                </div>-->
+<!--                                <div class="picture">-->
+
+<!--                                    <img th:src="${product120.productImage}" alt="The product's image">-->
+<!--                                </div>-->
+<!--                                <div class="category">T-Shirt</div>-->
+<!--                                <div class="title" th:text="${product120.name}"></div>-->
+
+<!--                                    <img th:src="${product2.productImage}" alt="The product's image">-->
+<!--                                </div>-->
+<!--                                <div class="category">T-Shirt</div>-->
+<!--                                <div class="title" th:text="${product2.name}"></div>-->
+
+<!--                                <div class="actions">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-xs-6">-->
+<!--                                            <div class="price">-->
+
+<!--                                                <p th:text="${product120.price}"></p>-->
+
+<!--                                                <p th:text="${product2.price}"></p>-->
+
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"-->
+<!--                         th:each="product : ${product3}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product3.id}}">-->
+<!--                                <div class="picture">-->
+<!--                                    <img th:src="${product3.productImage}" alt="The product's image">-->
+<!--                                </div>-->
+<!--                                <div class="category">T-Shirt</div>-->
+<!--                                <div class="title" th:text="${product3.name}"></div>-->
+<!--                                <div class="description">-->
+<!--                                </div>-->
+<!--                                <div class="actions">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-xs-6">-->
+<!--                                            <div class="price">-->
+<!--                                                <p th:text="${product3.price}"></p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product60}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product60.id}}">-->
+
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"-->
+<!--                         th:each="product : ${product4}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product4.id}}">-->
+
+<!--                                <div class="ribon-container">-->
+<!--                                    <div class="ribon">-->
+<!--                                        ON SALE!-->
+<!--                                    </div>-->
+<!--                                    <div class="ribon-arrow"></div>-->
+<!--                                </div>-->
+<!--                                <div class="picture">-->
+
+<!--                                    <img th:src="${product60.productImage}" alt="The product's image">                                </div>-->
+<!--                                <div class="category">T-Shirt</div>-->
+<!--                                <div class="title" th:text="${product60.name}"></div>-->
+
+<!--                                    <img th:src="${product4.productImage}" alt="The product's image">-->
+<!--                                </div>-->
+<!--                                <div class="category">T-Shirt</div>-->
+<!--                                <div class="title" th:text="${product4.name}"></div>-->
+
+<!--                                <div class="description">-->
+<!--                                </div>-->
+<!--                                <div class="actions">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-xs-6">-->
+<!--                                            <div class="price">-->
+
+<!--                                                <p th:text="${product60.price}"></p>-->
+
+<!--                                                <p th:text="${product4.price}"></p>-->
+
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product44}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product44.id}}">-->
+<!--                                <div class="picture">-->
+<!--                                    <img th:src="${product44.productImage}" alt="The product's image">                                </div>-->
+<!--                                <div class="category">T-Shirt</div>-->
+<!--                                <div class="title" th:text="${product44.name}"></div>-->
+
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"-->
+<!--                         th:each="product : ${product5}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product5.id}}">-->
+<!--                                <div class="picture">-->
+<!--                                    <img th:src="${product5.productImage}" alt="The product's image">-->
+<!--                                </div>-->
+<!--                                <div class="category">T-Shirt</div>-->
+<!--                                <div class="title" th:text="${product5.name}"></div>-->
+
+<!--                                <div class="description">-->
+<!--                                </div>-->
+<!--                                <div class="actions">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-xs-6">-->
+<!--                                            <div class="price">-->
+
+<!--                                                <p th:text="${product44.price}"></p>-->
+
+<!--                                                <p th:text="${product5.price}"></p>-->
+
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product37}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product37.id}}">-->
+
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"-->
+<!--                         th:each="product : ${product6}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product6.id}}">-->
+
+<!--                                <div class="ribon-container">-->
+<!--                                    <div class="ribon">-->
+<!--                                        ON SALE!-->
+<!--                                    </div>-->
+<!--                                    <div class="ribon-arrow"></div>-->
+<!--                                </div>-->
+<!--                                <div class="picture">-->
+
+<!--                                    <img th:src="${product37.productImage}" alt="The product's image">                                </div>-->
+<!--                                <div class="category">T-Shirt</div>-->
+<!--                                <div class="title" th:text="${product37.name}"></div>-->
+
+<!--                                    <img th:src="${product6.productImage}" alt="The product's image">-->
+<!--                                </div>-->
+<!--                                <div class="category">T-Shirt</div>-->
+<!--                                <div class="title" th:text="${product6.name}"></div>-->
+
+<!--                                <div class="description">-->
+<!--                                </div>-->
+<!--                                <div class="actions">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-xs-6">-->
+<!--                                            <div class="price">-->
+
+<!--                                                <p th:text="${product37.price}"></p>-->
+
+<!--                                                <p th:text="${product6.price}"></p>-->
+
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product7}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product7.id}}">-->
+<!--                                <div class="ribon-container">-->
+<!--                                    <div class="ribon">-->
+<!--                                        ON SALE!-->
+<!--                                    </div>-->
+<!--                                    <div class="ribon-arrow"></div>-->
+<!--                                </div>-->
+<!--                                <div class="picture">-->
+<!--                                    <img th:src="${product7.productImage}" alt="The product's image">-->
+<!--                                </div>-->
+<!--                                <div class="category">T-shirt</div>-->
+<!--                                <div class="title" th:text="${product7.name}"></div>-->
+<!--                                <div class="description">-->
+<!--                                </div>-->
+<!--                                <div class="actions">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-xs-6">-->
+<!--                                            <div class="price">-->
+<!--                                                <p th:text="${product7.price}"></p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"-->
+<!--                         th:each="product : ${product8}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product8.id}}">-->
+<!--                                <div class="picture">-->
+<!--                                    <img th:src="${product8.productImage}" alt="The product's image">-->
+<!--                                </div>-->
+<!--                                <div class="category">T-shirt</div>-->
+<!--                                <div class="title" th:text="${product8.name}"></div>-->
+<!--                                <div class="description">-->
+<!--                                </div>-->
+<!--                                <div class="actions">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-xs-6">-->
+<!--                                            <div class="price">-->
+<!--                                                <p th:text="${product8.price}"></p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"-->
+<!--                         th:each="product : ${product9}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product9.id}}">-->
+<!--                                <div class="picture">-->
+<!--                                    <img th:src="${product9.productImage}" alt="The product's image">-->
+<!--                                </div>-->
+<!--                                <div class="category">T-Shirt</div>-->
+<!--                                <div class="title" th:text="${product9.name}"></div>-->
+<!--                                <div class="description">-->
+<!--                                </div>-->
+<!--                                <div class="actions">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-xs-6">-->
+<!--                                            <div class="price">-->
+<!--                                                <p th:text="${product9.price}"></p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"-->
+<!--                         th:each="product : ${product10}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product10.id}}">-->
+<!--                                <div class="picture">-->
+<!--                                    <img th:src="${product10.productImage}" alt="The product's image">-->
+<!--                                </div>-->
+<!--                                <div class="category">T-Shirt</div>-->
+<!--                                <div class="title" th:text="${product10.name}"></div>-->
+<!--                                <div class="description">-->
+<!--                                </div>-->
+<!--                                <div class="actions">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-xs-6">-->
+<!--                                            <div class="price">-->
+<!--                                                <p th:text="${product10.price}"></p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${product28}">-->
+
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"-->
+<!--                         th:each="product : ${product11}">-->
+
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product11.id}}">-->
+<!--                                <div class="ribon-container">-->
+<!--                                    <div class="ribon">-->
+<!--                                        ON SALE!-->
+<!--                                    </div>-->
+<!--                                    <div class="ribon-arrow"></div>-->
+<!--                                </div>-->
+<!--                                <div class="picture">-->
+<!--                                    <img th:src="${product11.productImage}" alt="The product's image">-->
+<!--                                </div>-->
+<!--                                <div class="category">T-shirt</div>-->
+<!--                                <div class="title" th:text="${product11.name}"></div>-->
+<!--                                <div class="description">-->
+<!--                                </div>-->
+<!--                                <div class="actions">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-xs-6">-->
+<!--                                            <div class="price">-->
+<!--                                                <p th:text="${product11.price}"></p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"-->
+<!--                         th:each="product : ${product12}">-->
+<!--                        <div class="item">-->
+<!--                            <a th:href="@{'/products/'+${product12.id}}">-->
+<!--                                <div class="ribon-container">-->
+<!--                                    <div class="ribon">-->
+<!--                                        ON SALE!-->
+<!--                                    </div>-->
+<!--                                    <div class="ribon-arrow"></div>-->
+<!--                                </div>-->
+<!--                                <div class="picture">-->
+<!--                                    <img th:src="${product12.productImage}" alt="The product's image">-->
+<!--                                </div>-->
+<!--                                <div class="category">T-Shirt</div>-->
+<!--                                <div class="title" th:text="${product12.name}"></div>-->
+<!--                                <div class="description">-->
+<!--                                </div>-->
+<!--                                <div class="actions">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-xs-6">-->
+<!--                                            <div class="price">-->
+<!--                                                <p th:text="${product12.price}"></p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+<!--</div>-->
+<!--<div class="container">-->
+<!--    <div class="row">-->
+
+<!--        <div class="container" th:each="product : ${showProducts}">-->
+<!--            <div class="col-12 col-md-3">-->
+<!--                <div class="card shadow p-3 mb-5 bg-white rounded">-->
+<!--                    <div class="embed-responsive embed-responsive-4by3">-->
+<!--                        <a th:href="@{'/products/'+${product.id}}"><h1 style="font-weight: bold"-->
+<!--                                                                       th:text="${product.name}"></h1></a>-->
+<!--                        <img th:src="@{${product.productImage}}" alt="image" src="">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Card title</h5>-->
+<!--                            <p style="font-weight:bold" th:text="${product.type}"></p>-->
+<!--                            <a href="#" class="btn btn-primary">Add to cart</a>-->
+<!--                            <p th:text="${product.description}"> </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<nav aria-label="Page navigation example">-->
+<!--    <ul class="pagination justify-content-center">-->
+<!--        <li class="page-item">-->
+<!--            <a class="page-link" href="javascript:prevPage()" tabindex="-1">Previous</a>-->
+<!--        </li>-->
+<!--        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+<!--        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--        <li class="page-item">-->
+<!--            <a class="page-link" href="javascript:nextPage()">Next</a>-->
+<!--        </li>-->
+<!--    </ul>-->
+
+
+
+<!-- JavaScript links -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<!--<script src="/js/pagination.js"></script>-->
+<!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"-->
+<!--        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"-->
+<!--        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"-->
+<!--        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<footer th:replace="partials :: footer" />-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="../static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../static/js/app.js"></script>
+<script type="text/javascript" src="../static/js/colorSwitcher.js"></script>
+<script type="text/javascript" src="../static/js/jquery.imagezoom.js"></script>
 <footer th:replace="partials :: footer" />
-<script th:src="@{/js/custom2.js}"></script>
-</body>
+    </body>
 </html>
+

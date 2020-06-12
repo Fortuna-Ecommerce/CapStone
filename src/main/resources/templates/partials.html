@@ -25,11 +25,13 @@
     <!--    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css"/>-->
     <link th:href="@{/css/app-blue.css}" rel="stylesheet" type="text/css"/>
     <!--    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/css/style.css}" rel="stylesheet">
 
     <title th:text="${pageTitle}"></title>
+    <script src="../static/js/custom2.js"></script>
 
 <!--    HOME2 BOOTSRAP-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -46,7 +48,7 @@
     <!-- include stylesheets, etc here -->
 </head>
 <body>
-<nav th:fragment="navbar" class="navbar navbar-expand-md navbar-light bg-light mb-3">
+<nav th:fragment="navbar" class="navbar navbar-expand-md navbar-light bg-light">
     <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -89,25 +91,25 @@
                 </form>
             </li>
             <li class="navitem nav-item">
-                <div class="dropdown">
-                    <a class="btn btn-outline-secondary" href="#" role="button" id="dropdownMenuLink"
-                       data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                        Categories
-                    </a>
+<!--                <div class="dropdown">-->
+<!--                    <a class="btn btn-outline-secondary" href="#" role="button" id="dropdownMenuLink"-->
+<!--                       data-toggle="dropdown"-->
+<!--                    aria-haspopup="true" aria-expanded="false">-->
+<!--                        Categories-->
+<!--                    </a>-->
 
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+<!--                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">-->
                         <a class="dropdown-item" href="/products/t-shirts">T-Shirts</a>
                         <a class="dropdown-item" href="/products/pullovers">Pullovers</a>
                         <a class="dropdown-item" href="/products/hats">Hats</a>
-                    </div>
-                </div>
-            </li>
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </li>-->
             <li class="nav-item navitem">
                 <form method="post" action="/products/search" class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                            name="keyword">
-                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" disabled>Search</button>
+                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </li>
             <li class="nav-item navitem">
@@ -125,7 +127,8 @@
     <script th:src="@{/js/popper.min.js}"></script>
     <script th:src="@{/js/bootstrap.js}"></script>
     <script th:src="@{/js/custom.js}"></script>
-<!--    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"-->
+    <script th:src="@{/js/custom2.js}"></script>
+    <!--    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"-->
 <!--            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"-->
 <!--            crossorigin="anonymous"></script>-->
 <!--    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"-->
