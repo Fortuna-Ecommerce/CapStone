@@ -24,11 +24,12 @@
         <br>
     </div>
     <h2>Total with tax and shipping: $<span th:text="${#numbers.formatDecimal(total,0,'COMMA',2,'POINT')}"></span></h2>
+</div>
 
 
 
-<div class="container mt-4 checkout mx-auto w-50">
-    <h1>Billing information</h1>
+<div class="container mt-4 checkout mx-auto w-75" style="text-align: center">
+    <h1 style="text-align: center">Billing information</h1>
 <div id="checkout-total">
     <form th:action="@{/baddress}" th:method="post" th:object="${bill_address}">
         <div class="form-row">
@@ -68,7 +69,7 @@
         <br>
     </form>
 
-    <h1>Shipping information</h1>
+    <h1 style="text-align: center">Shipping information</h1>
 
     <form th:action="@{/address}" th:method="post" th:object="${ship_address}">
         <div class="form-row">
@@ -114,10 +115,13 @@
 
 
 <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary mb-4" id="checkout-btn" data-toggle="modal"
+    <div class="btn-group mb-5" style="box-shadow: none">
+        <a href="/addresses" type="button" class="btn btn-secondary mr-2" id="goback">Go back</a>
+        <button type="button" class="btn btn-primary ml-2" id="checkout-btn" data-toggle="modal"
                 data-target="#paymentModal">
             Enter Payment Information
         </button>
+    </div>
 </div>
 </div>
 
@@ -177,47 +181,6 @@
 </div>
 
 
-
-
-
-
-
-
-<!--<form action="/charge" method="post" id="payment-form">-->
-<!--&lt;!&ndash;    <input type="hidden" th:value="${total+5.00}" name="total">&ndash;&gt;-->
-<!--&lt;!&ndash;    <label>Price:<span th:text='${total+5.00}'/></label>&ndash;&gt;-->
-<!--    <div class="form-row ">-->
-<!--        <label for="card-element">-->
-<!--            Credit or debit card-->
-<!--        </label>-->
-<!--        <div id="card-element" class="form-control" >-->
-<!--            &lt;!&ndash; A Stripe Element will be inserted here. &ndash;&gt;-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash; Used to display form errors. &ndash;&gt;-->
-<!--        <div id="card-errors" role="alert"></div>-->
-<!--    </div>-->
-
-<!--    <button>Submit Payment</button>-->
-<!--</form>-->
-
-<!--    <form action='/charge' method='POST' id='checkout-form'>-->
-<!--        <input type="hidden" th:value="${total+5.00}" name="total">-->
-<!--    <label>Price:<span th:text='${total+5.00}'/></label>-->
-<!--    &lt;!&ndash; NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf &ndash;&gt;-->
-<!--    <script-->
-<!--            src='https://checkout.stripe.com/checkout.js'-->
-<!--            class='stripe-button'-->
-<!--            th:attr='data-key=${stripePublicKey},-->
-<!--         data-amount=${(total+5.00)*100},-->
-<!--         data-currency=${currency}'-->
-<!--            data-name='MemeTees'-->
-<!--            data-description='Memey purchase'-->
-<!--            data-locale='auto'-->
-<!--            data-zip-code='false'>-->
-<!--        // data-image='null'-->
-<!--    </script>-->
-<!--</form>-->
 
 <footer th:replace="partials :: footer" />
 <footer><script th:src="@{/js/custom.js}"></script></footer>

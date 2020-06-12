@@ -197,7 +197,6 @@ public class CheckoutController{
         }
 
          if (check == null){
-            System.out.println("Test2");
             temp_ship_address.setCity(sCity);
             temp_ship_address.setFirstname(sFN);
             temp_ship_address.setLastname(sLN);
@@ -207,7 +206,6 @@ public class CheckoutController{
             temp_ship_address.setZipcode(sZip);
             ship_address = addressRepo.save(temp_ship_address);
          } else if (check.equals("on")) {
-            System.out.println("Test1");
              temp_ship_address.setCity(bCity);
              temp_ship_address.setFirstname(bFN);
              temp_ship_address.setLastname(bLN);

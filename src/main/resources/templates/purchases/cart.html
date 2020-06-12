@@ -40,7 +40,8 @@
             <tr th:each="product, iStat : ${products}">
                 <td><form th:action="@{/deleteFromCart}" th:method="get">
                     <input type="hidden" name="cartDeleteId" th:value="${product.id}">
-                    <button type="submit" id="deleteImage" th:name="delete">Delete item</button>
+                    <button type="submit" class="btn btn-sm btn-danger" id="deleteImage" th:name="delete">Delete
+                        item</button>
                 </form></td>
                 <td th:text="${product.name}"></td>
                 <td th:text="${colors.get(iStat.index)}"></td>
@@ -50,15 +51,17 @@
                 <td th:text="${'$'+#numbers.formatDecimal(product.price,0,'COMMA',2,'POINT')}"></td>
             </tr>
             <tr>
-                <td colspan="6">Your order subtotal: </td>
+                <td colspan="6" style="text-align: right; background-color: #e6e6e6">Your order subtotal: </td>
                 <td colspan="1" th:text="${'$'+total}"></td>
             </tr>
             <tr>
-                <td th:colspan="6">Shipping costs:</td>
+                <td th:colspan="6" style="text-align: right; background-color: #e6e6e6">Shipping costs:</td>
                 <td th:colspan="1">Only $5.00 for a limited time!</td>
             </tr>
             <tr>
-                <td th:colspan="6">Total with sales tax (8.25%) comes to:</td>
+                <td th:colspan="6"style="text-align: right; background-color: #e6e6e6">Total with sales tax (8.25%)
+                comes
+                to:</td>
                 <td th:colspan="1" th:text="${'$'+grandTotal}"></td>
             </tr>
 
@@ -70,7 +73,7 @@
     <div style="text-align: center">
         <br>
         <form th:action="@{/addresses}" th:method="get">
-            <button class="btn-link btn text-white btn-secondary btn-lg">Start checkout</button>
+            <button class="btn-link btn text-white btn-primary btn-lg">Start checkout</button>
         </form>
         <br>
     </div>
