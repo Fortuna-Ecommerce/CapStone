@@ -51,15 +51,19 @@
                 <td th:text="${'$'+#numbers.formatDecimal(product.price,0,'COMMA',2,'POINT')}"></td>
             </tr>
             <tr>
-                <td colspan="6" style="text-align: right; background-color: #e6e6e6">Your order subtotal: </td>
+                <td colspan="6" style="text-align: right; background-color: #ebebeb; box-shadow: none; border-color: inherit">Your order
+                    subtotal: </td>
                 <td colspan="1" th:text="${'$'+total}"></td>
             </tr>
             <tr>
-                <td th:colspan="6" style="text-align: right; background-color: #e6e6e6">Shipping costs:</td>
+                <td th:colspan="6" style="text-align: right; background-color: #ebebeb; box-shadow: none; border-color: inherit">Shipping
+                    costs:</td>
                 <td th:colspan="1">Only $5.00 for a limited time!</td>
             </tr>
             <tr>
-                <td th:colspan="6"style="text-align: right; background-color: #e6e6e6">Total with sales tax (8.25%)
+                <td th:colspan="6"style="text-align: right; background-color: #ebebeb; box-shadow: none; border-color: inherit">Total with
+                    sales tax
+                    (8.25%)
                 comes
                 to:</td>
                 <td th:colspan="1" th:text="${'$'+grandTotal}"></td>
