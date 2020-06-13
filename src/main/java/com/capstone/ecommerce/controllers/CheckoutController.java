@@ -164,6 +164,7 @@ public class CheckoutController{
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             return "home";
         }
+        List<String> colors = new ArrayList<>();
 
         double total = 0.00;
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -215,19 +216,37 @@ public class CheckoutController{
              temp_ship_address.setZipcode(bZip);
             ship_address = addressRepo.save(temp_ship_address);
         }
+         products.add(this.productRepo.getOne(25L));
+        products.add(this.productRepo.getOne(45L));
+        products.add(this.productRepo.getOne(85L));
+        products.add(this.productRepo.getOne(96L));
+        products.add(this.productRepo.getOne(74L));
+        products.add(this.productRepo.getOne(156L));
+        products.add(this.productRepo.getOne(42L));
+        products.add(this.productRepo.getOne(233L));
+        products.add(this.productRepo.getOne(178L));
 
 
         for (Product product : products) {
             total = total + product.getPrice();
+            String color = "";
+            if(product.getColor().equals("FFFFFF")){
+                color = "White";
+            } else if (product.getColor().equals("000000")){
+                color = "Black";
+            } else if (product.getColor().equals("808080")){
+                color = "Grey";
+            }
+            colors.add(color);
         }
 
         double tempGrandTotal = (total * 0.0825);
         double grandTotal = tempGrandTotal + total + 5.00;
         grandTotal = Math.round(grandTotal * 100.00) / 100.00;
+        model.addAttribute("colors", colors);
         model.addAttribute("total", grandTotal);
         model.addAttribute("bill_address", bill_address);
         model.addAttribute("ship_address", ship_address);
-        model.addAttribute("products", products);
         model.addAttribute("products", products);
         model.addAttribute("stripePublicKey", stripePublicKey);
         model.addAttribute("currency", "USD");

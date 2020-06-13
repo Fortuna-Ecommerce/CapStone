@@ -11,111 +11,64 @@
 
 <body>
 <nav th:replace="partials :: navbar" />
-    <div class="container mt-4" id="verify" style="text-align: center">
+<div class="container mx-auto align-center" style="text-align: center">
+    <div class="container my-4" id="verify" style="text-align: center">
         <h4>Please verify all of your information, then click the button to submit payment information and complete the transaction.</h4>
     </div>
 
-<div class="container mt-4" style="text-align: center">
-    <div th:each="product : ${products}">
-        <h1 style="font-weight: bold" th:text="${product.name}">
-        </h1>
-        <h3>Quantity: <span th:text="${product.quantity}"></span></h3>
-        <h3>Price: $<span th:text="${product.price}"></span></h3>
-        <br>
+<div class="container">
+    <div class="row">
+        <div th:each="product, iter : ${products}" class="col-md-6 col-lg-3">
+            <h1 style="font-weight: bold" th:text="${product.name}"></h1>
+            <h5> <span th:text="${colors.get(iter.index)}" style="color: black"></span> - <span
+                    th:text="${product.size}" style="color: black" ></span> - <span
+                    th:text="${product.type}" style="color: black"></span></h5>
+            <h3>Quantity: <span th:text="${product.quantity}"></span></h3>
+            <h3>Price: $<span th:text="${product.price}"></span></h3>
+            <br>
+        </div>
     </div>
+</div>
+
+    <div class="container">
+<div class="container mt-4" style="text-align: center">
+
     <h2>Total with tax and shipping: $<span th:text="${#numbers.formatDecimal(total,0,'COMMA',2,'POINT')}"></span></h2>
 </div>
+    </div>
 
+<div id="addressInfo" class="container w-75 col-12">
+    <div class="row">
+<div class="container mt-4 checkout mx-auto text-center col-md-6 col-sm-12">
+    <h1 style="text-align: center; border: 1px black">Billing information</h1>
+<div class="shippingColoring">
+    <h2><span th:text="${bill_address.firstname}"></span> <span th:text="${bill_address.lastname}"></span></h2>
+    <h2><span th:text="${bill_address.street1}"> </span></h2>
+    <div th:if="${!bill_address.street2.isEmpty()}">
+        <h2><span th:text="${bill_address.street2}"> </span></h2>
+    </div>
+    <h2><span th:text="${bill_address.city}"> </span>, <span th:text="${bill_address.state}"></span> <span
+            th:text="${bill_address.zipcode}"></span></h2>
+</div></div>
 
-
-<div class="container mt-4 checkout mx-auto w-75" style="text-align: center">
-    <h1 style="text-align: center">Billing information</h1>
-<div id="checkout-total">
-    <form th:action="@{/baddress}" th:method="post" th:object="${bill_address}">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="Bfirst_name">First name</label>
-                <input type="text" class="form-control" th:field="*{firstname}" id="Bfirst_name" disabled>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="Blast_name">Last Name</label>
-                <input type="text" class="form-control" id="Blast_name" th:field="*{lastname}" disabled>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="Baddress1">Address</label>
-            <input type="text" class="form-control" id="Baddress1" th:field="*{street1}" disabled>
-        </div>
-        <div class="form-group">
-            <label for="Baddress2">Address 2</label>
-            <input type="text" class="form-control" id="Baddress2" placeholder="Apartment, studio, or floor"
-                   th:field="*{street2}" disabled>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="Bcity">City</label>
-                <input type="text" class="form-control" id="Bcity" th:field="*{city}" disabled>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="Bstate">State</label>
-                <input type="text" id="Bstate" class="form-control" th:id="state" th:field="*{state}" maxlength="2" disabled>
-            </div>
-            <div class="form-group col-md-2">
-                <label for="Bzip">Zip</label>
-                <input type="text" class="form-control" id="Bzip" th:field="*{zipcode}" maxlength="5"
-                       placeholder="12345" disabled>
-            </div>
-        </div>
-        <br>
-    </form>
-
+<div class="container mt-4 mx-auto text-center col-md-6 col-sm-12">
     <h1 style="text-align: center">Shipping information</h1>
 
-    <form th:action="@{/address}" th:method="post" th:object="${ship_address}">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="Sfirst_name">First name</label>
-                <input type="text" class="form-control" th:field="*{firstname}" id="Sfirst_name" disabled>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="Slast_name">Last Name</label>
-                <input type="text" class="form-control" id="Slast_name" th:field="*{lastname}" disabled>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="Saddress1">Address</label>
-            <input type="text" class="form-control" id="Saddress1" th:field="*{street1}" disabled>
-        </div>
-        <div class="form-group">
-            <label for="Saddress2">Address 2</label>
-            <input type="text" class="form-control" id="Saddress2" placeholder="Apartment, studio, or floor"
-                   th:field="*{street2}" disabled>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="Scity">City</label>
-                <input type="text" class="form-control" id="Scity" th:field="*{city}" disabled>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="Sstate">State</label>
-                <input type="text" id="Sstate" class="form-control" th:id="state" th:field="*{state}" maxlength="2"
-                       disabled>
-            </div>
-            <div class="form-group col-md-2">
-                <label for="Szip">Zip</label>
-                <input type="text" class="form-control" id="Szip" th:field="*{zipcode}" maxlength="5"
-                       placeholder="12345" disabled>
-            </div>
-        </div>
-        <br>
-    </form>
-
+    <div class="shippingColoring">
+    <h2><span th:text="${ship_address.firstname}"></span> <span th:text="${ship_address.lastname}"></span></h2>
+    <h2><span th:text="${ship_address.street1}"> </span></h2>
+    <div th:if="${!ship_address.street2.isEmpty()}">
+        <h2><span th:text="${bill_address.street2}"> </span></h2>
+    </div>
+    <h2><span th:text="${ship_address.city}"></span>, <span th:text="${ship_address.state}"></span> <span
+            th:text="${ship_address.zipcode}"></span></h2>
+    </div></div>
 
 </div>
-
+</div>
 
 <!-- Button trigger modal -->
-    <div class="btn-group mb-5" style="box-shadow: none">
+    <div class="btn-group my-5 align-center" style="box-shadow: none">
         <a href="/addresses" type="button" class="btn btn-secondary mr-2" id="goback">Go back</a>
         <button type="button" class="btn btn-primary ml-2" id="checkout-btn" data-toggle="modal"
                 data-target="#paymentModal">
