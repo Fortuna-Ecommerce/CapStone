@@ -28,12 +28,12 @@ span{
     color: #007bff;
 }
 #name, #price{
-    font-weight: bold;
     display: table;
     margin: 0 auto;
     font-size: x-large;
     /*border-bottom: black solid 1px;*/
     /*border-top: black solid 1px;*/
+
 
 
 }
