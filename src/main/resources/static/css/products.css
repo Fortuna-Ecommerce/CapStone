@@ -4,8 +4,8 @@
     display: table;
     margin: 0 auto;
     /*font-size: x-large;*/
-    border-bottom: black solid 1px;
-    border-top: black solid 1px;
+    /*border-bottom: black solid 1px;*/
+    /*border-top: black solid 1px;*/
     background: white;
     font-size: 80px;
 
@@ -32,8 +32,8 @@ span{
     display: table;
     margin: 0 auto;
     font-size: x-large;
-    border-bottom: black solid 1px;
-    border-top: black solid 1px;
+    /*border-bottom: black solid 1px;*/
+    /*border-top: black solid 1px;*/
 
 
 }
