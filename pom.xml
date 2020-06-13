@@ -126,16 +126,16 @@
 
 
     </dependencies>
-    <property>
-        <jvm.options>-Xmx256M</jvm.options>
-    </property>
+<!--    <property>-->
+<!--        <jvm.options>-Xmx256M</jvm.options>-->
+<!--    </property>-->
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <arguments>${jvm.options}</arguments>
+<!--                    <arguments>${jvm.options}</arguments>-->
                 </configuration>
             </plugin>
         </plugins>
