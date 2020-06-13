@@ -1,0 +1,39 @@
+#productsButtonLabel{
+    font-family: sans-serif;
+    font-weight: bold;
+    display: table;
+    margin: 0 auto;
+    /*font-size: x-large;*/
+    /*border-bottom: black solid 1px;*/
+    /*border-top: black solid 1px;*/
+    background: white;
+    font-size: 80px;
+
+
+}
+
+#productsButtonDiv{
+    font-family: sans-serif;
+    font-size: xx-large;
+    font-weight:bold;
+    margin-bottom: 3%;
+    /*border-bottom: #007bff solid 1px;*/
+    /*border-top: #007bff solid 2px;*/
+}
+.productsButtons{
+    color:#2e2e43;
+    border-radius: 4px;
+}
+span{
+    color: #007bff;
+}
+#name, #price{
+    display: table;
+    margin: 0 auto;
+    font-size: x-large;
+    /*border-bottom: black solid 1px;*/
+    /*border-top: black solid 1px;*/
+
+
+
+}

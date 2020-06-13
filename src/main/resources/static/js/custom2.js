@@ -1,4 +1,5 @@
-//COURASEL
+
+
 const slides=document.querySelector(".slider").children;
 const prev=document.querySelector(".prev");
 const next=document.querySelector(".next");
@@ -10,14 +11,14 @@ prev.addEventListener("click",function(){
     prevSlide();
     updateCircleIndicator();
     resetTimer();
-});
+})
 
 next.addEventListener("click",function(){
     nextSlide();
     updateCircleIndicator();
     resetTimer();
 
-});
+})
 
 // create circle indicators
 function circleIndicator(){
@@ -89,7 +90,11 @@ function autoPlay(){
     nextSlide();
     updateCircleIndicator();
 }
-autoPlay();
 
 let timer=setInterval(autoPlay,4000);
+
+
+
+
+
 

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Coat">
+    <div class="item">
+        <a href="item.html">
+            <div class="ribon-container">
+                <div class="ribon">
+                    SALE!
+                </div>
+                <div class="ribon-arrow"></div>
+            </div>
+            <div class="picture">
+                <img src="../static/images/products/product1/item1.jpg" alt="item" />
+            </div>
+            <div class="category">Coat</div>
+            <div class="title">Atelier R</div>
+            <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Mauris efficitur leo vel feugiat ullamcorper. Nulla suscipit a nunc nec congue.
+                Maecenas dignissim tempus est ut commodo. Suspendisse eget lorem efficitur,
+                blandit erat et, efficitur quam.
+            </div>
+            <div class="actions">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="price">
+                            52.00 $
+                            <div class="refund">
+                                129.99 $
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <i class="fa fa-cart-plus" data-toggle="tooltip"
+                           title="Add to cart"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="card-columns" style="margin-left: 13%">
+    <div class="card border-0 shadow-none" th:each="product : ${showProducts}">
+        <img th:src="${product.productImage}" class="card-img-top" alt="..." style="height: 300px;width: 300px">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${product.name}"></h5>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="${product.type}"></h6>
+            <h4 th:text="${'$'+product.price}"></h4>
+            <div class="d-inline-flex">
+
+                <div class="card-text">
+
+                    <p>Available in - <span class="minidot" style="background-color: #808080;"></span> <span
+                            class="minidot"
+                            style="background-color: #000000"></span> <span class="minidot" style="background-color: #FFFFFF;"></span></p>
+                    <a th:href="@{'/products/'+${product.id}}" class="btn btn-primary">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt" th:each="product : ${showProducts}">
+    <div class="item">
+        <a th:href="@{'/products/'+${product.id}}">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" data-category="Shirt"
+                 th:each="product : ${product}">
+                <div class="item">
+                    <a th:href="@{'/products/'+${product.id}}">
+                        <div class="ribon-container">
+                            <div class="ribon">
+                                ON SALE!
+                            </div>
+                            <div class="ribon-arrow"></div>
+                        </div>
+                        <div class="picture">
+                            <img th:src="${product.productImage}" alt="The product's image">
+                        </div>
+                        <div class="category">T-Shirt</div>
+                        <div class="title" th:text="${product.name}"></div>
+                        <img th:src="${product.productImage}" alt="The product's image">
+                </div>
+                <div class="category">T-Shirt</div>
+                <div class="title" th:text="${product.name}"></div>
+                <div class="description">
+                </div>
+                <div class="actions">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="price">
+                                <p th:text="${product.price}"></p>
+                                <p th:text="${product.price}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

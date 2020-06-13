@@ -1,21 +1,9 @@
-<!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<div th:replace="partials :: head"></div>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="partials :: head" /></div>
+<body>
+<nav th:replace="partials :: navbar"></nav>
 <head>
-
-    <title>About Us</title>
-
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900' rel='stylesheet' type='text/css'>
-    <link rel="icon" href="../static/images/favicon.png">
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="../static/css/app-blue.css" rel="stylesheet" type="text/css"/>
-    <link href="../static/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?ver=4.0.3">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto%3A400%2C400italic%2C700%2C300%2C100%7CRoboto+Condensed%3A300%7CRoboto+Slab%3A300&#038;ver=1.0.1" type="text/css" media="screen" />
     <style>
         #main-jumbotron{
             /*background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url("");*/
@@ -35,15 +23,16 @@
             object-fit: cover;
         }
 
-
+        #dev-title {
+            margin-left: 40px;
+        }
     </style>
-</head>
+<!--</head>-->
 <body>
-<nav th:replace="partials :: navbar"></nav>
 <!--JUMBOTRON START-->
 <div class="jumbotron jumbotron-fluid" id="main-jumbotron">
     <div class="container" id="jumbotron-container">
-        <h1 class="display-4 text-focus-in">Meet the Developers!</h1>
+        <h1 class="display-4 text-focus-in montserrat" style="color: #0f0f0f" id="dev-title">Meet the Developers!</h1>
     </div>
 </div>
 <!--	JUMBOTRON END -->
@@ -53,7 +42,7 @@
     <div class="row">
 
         <!--Start of card-->
-        <div class="col-12 col-md-3 scale-in-center">
+        <div class="col-12 col-md-3 scale-in-center col-sm-12 col-xs-12">
             <div class="card shadow p-3 mb-5 bg-white justify-content-sm-center card h-100">
                 <div class="embed-responsive embed-responsive-4by3">
                     <a href="https://alumni.codeup.com/students/802">
@@ -61,8 +50,10 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title focus-in-expand-fwd">Jeremy Telhiard</h5>
-                    <p class="card-text"></p>
+
+                    <h5 class="card-title focus-in-expand-fwd montserrat">Jeremy Telhiard</h5>
+                    <p class="card-text montserrat">An enthusiastic and dedicated individual that solves problems and continually strives to learn and excel.</p>
+
                 </div>
                 <div class="row social">
                     <div class="col-md-3 col-xs-3">
@@ -90,9 +81,9 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title focus-in-expand-fwd">Michael Greenburg</h5>
+                    <h5 class="card-title focus-in-expand-fwd montserrat">Michael Greenburg</h5>
                     <div>
-                    <p class="card-text"></p>
+                    <p class="card-text montserrat">A catalyst for motivation; a technical problem solver who loves to think outside the box. Finding solutions to complex problems, while helping others realize their potential is my forte.</p>
                     </div>
                 </div>
                 <div class="row social">
@@ -121,8 +112,10 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title focus-in-expand-fwd">Ruben Trevino</h5>
-                    <p class="card-text"></p>
+
+                    <h5 class="card-title focus-in-expand-fwd montserrat">Ruben Trevino</h5>
+                    <p class="card-text montserrat">Full-stack Software Developer with a passion for design and back end integration. Effective with the ability to adapt and learn quick</p>
+
                 </div>
                 <div class="row social">
                     <div class="col-md-3 col-xs-3">
@@ -148,9 +141,9 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title focus-in-expand-fwd">Victor Jaimes-Puente</h5>
+                    <h5 class="card-title focus-in-expand-fwd montserrat">Victor Jaimes-Puente</h5>
                     <div>
-                    <p class="card-text"></p>
+                    <p class="card-text montserrat">Full stack software developer with a military background who possess extensive leadership skills, the ability to adapt to any situation, and strives for excellence.</p>
                     </div>
                 </div>
                 <div class="row social">
@@ -160,6 +153,7 @@
                     <div class="col-md-3 col-xs-3 flicker-5">
                         <a href="https://github.com/victor-jaimes-puente"> <i class="fa fa-github"></i></a>
                     </div>
+
                     <div class="col-md-3 col-xs-3">
                         <a href="https://www.linkedin.com/in/victor-jaimes-puente-3aa0421a6/"> <i class="fa fa-linkedin"></i></a>
                     </div>
