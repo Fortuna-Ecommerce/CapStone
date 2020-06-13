@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="partials :: head" /></div>
-
+<head>
+    <title></title>
+    <link th:href="@{/css/addressescss.css}" rel="stylesheet">
+</head>
 <body>
 <nav th:replace="partials :: navbar" />
-<div class="container mt-4">
+<div class="container mt-4 mx-auto w-75" style="text-align: center">
 
 
 <h1 style="text-align: center">Please enter your billing information</h1>
@@ -21,7 +24,7 @@
     <br>
 
 
-            <div class="container w-75">
+            <div class="container">
         <input type="hidden" th:value="${bill_address.addresstype}" name="Baddresstype"/>
             <input type="hidden" th:value="${bill_address.id}" name="Baddressid"/>
         <div class="form-row">
@@ -72,7 +75,7 @@
 
         <br>
 
-    <div class="container w-75" id="shippingInfo">
+    <div class="container" id="shippingInfo">
             <input type="hidden" th:value="${ship_address.addresstype}" id="Saddresstype">
             <input type="hidden" th:value="${ship_address.id}" name="Saddressid"/>
             <div class="form-row">
@@ -114,8 +117,12 @@
                     <input type="text" class="form-control shipping-info" name="Szip" id="Szip" th:value="${ship_address.zipcode}" maxlength="5" required>
                 </div>
             </div>
-    </div><div style="text-align: center" class="mt-2 mb3">
-            <button value="submit" class="btn-link btn text-white btn-secondary align-center" id="AddressSubmit">Continue to
+    </div>
+
+        <div style=" box-shadow: none" class="mt-2 mb-5 btn-group">
+        <a href="/cart" type="button" class="btn btn-secondary mr-2" id="goback">Go back</a>
+            <button value="submit" class="ml-2 btn-link btn text-white btn-primary"
+                    id="AddressSubmit">Continue to
                 Checkout</button>
         </div>
         </form>
