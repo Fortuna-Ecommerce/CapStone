@@ -9,7 +9,7 @@
 <nav th:replace="partials :: navbar"/>
 <!--VJP: Reformatting cart-->
 <!--/* Content of this page will be decorated by the elements of layout.html (task/layout) */-->
-<div class="container mt-4 mx-auto">
+<div class="container mt-4 mx-auto montserrat">
 
     <h1 style="text-align: center;">Current Cart</h1>
     <br>
@@ -20,7 +20,7 @@
     <br>
 </div>
 <th:block th:unless="${products.size()==0}">
-<div class="container mt-4 w-75">
+<div class="container mt-4 w-75 montserrat">
     <table class="table table-bordered table-striped" style="box-shadow: none; border: none">
         <thead>
             <tr>
@@ -53,19 +53,19 @@
             </tr>
             <tr>
                 <td colspan="7"
-                    style="text-align: right; background-color: #ebebeb; box-shadow: none; border: NONE">Your
+                    style="text-align: right; background-color: #f5f5f5; box-shadow: none; border: NONE">Your
                     order
                     subtotal: </td>
                 <td colspan="1" th:text="${'$'+total}"></td>
             </tr>
             <tr>
                 <td th:colspan="7"
-                    style="text-align: right; background-color: #ebebeb; box-shadow: none; border:none">Shipping
+                    style="text-align: right; background-color: #f5f5f5; box-shadow: none; border:none">Shipping
                     costs:</td>
                 <td th:colspan="1">Only $5.00 for a limited time!</td>
             </tr>
             <tr>
-                <td th:colspan="7" style="text-align: right; background-color: #ebebeb; box-shadow: none;
+                <td th:colspan="7" style="text-align: right; background-color: #f5f5f5; box-shadow: none;
                 border: none">Total with
                     sales tax
                     (8.25%)
@@ -79,7 +79,7 @@
     </table>
 </div>
 <!--    <div style="text-align: center"><h3>Total: $<span style="color: green"></span></h3></div>-->
-    <div style="text-align: center">
+    <div style="text-align: center" class="montserrat">
         <br>
         <form th:action="@{/addresses}" th:method="get">
             <button class="btn-link btn text-white btn-primary btn-lg">Start checkout</button>
@@ -87,7 +87,7 @@
         <br>
     </div>
         </th:block>
-    <div style="text-align: center" class="mb-5">
+    <div style="text-align: center" class="mb-5 montserrat">
         <form th:action="@{/}" th:method="get">
             <button class="btn-link btn text-white btn-secondary">Continue shopping</button>
         </form>

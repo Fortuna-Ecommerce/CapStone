@@ -62,13 +62,13 @@ public class HomeController {
 //        Product calls for featured eight products on home page
 
         Product product3 = productRepo.getOne(3L);
-        Product product4 = productRepo.getOne(16L);
-        Product product5 = productRepo.getOne(32L);
-        Product product6 = productRepo.getOne(48L);
-        Product product7 = productRepo.getOne(61L);
-        Product product8 = productRepo.getOne(76L);
-        Product product9 = productRepo.getOne(95L);
-        Product product10 = productRepo.getOne(10L);
+        Product product4 = productRepo.getOne(117L);
+        Product product5 = productRepo.getOne(259L);
+        Product product6 = productRepo.getOne(592L);
+        Product product7 = productRepo.getOne(159L);
+        Product product8 = productRepo.getOne(592L);
+        Product product9 = productRepo.getOne(600L);
+        Product product10 = productRepo.getOne(80L);
 
         model.addAttribute("product3", product3);
         model.addAttribute("product4", product4);

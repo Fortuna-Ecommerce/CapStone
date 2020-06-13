@@ -41,8 +41,12 @@ public class ProductsController {
         }
 
         List<Product> showProducts = productRepo.findbySizeandColor("MD", "000000");
+        List<Product> showProducts2 = productRepo.findbySizeandColor("MD", "808080");
+        List<Product> showProducts3 = productRepo.findbySizeandColor("MD", "FFFFFF");
         List<Product> hatProducts = productRepo.findbySizeandColor("OSFM", "000000");
         showProducts.addAll(hatProducts);
+        showProducts.addAll(showProducts2);
+        showProducts.addAll(showProducts3);
 
 
         Collections.shuffle(showProducts);
@@ -70,12 +74,19 @@ public class ProductsController {
             model.addAttribute("category", category);
         }
 //        List<Product> allProducts = productRepo.findAll();
-        List<Product> chosenProducts = productRepo.findbySizeandColor("XS", "000000");
-//        for (Product product : allProducts) {
+        List<Product> allProducts1 = productRepo.findbySizeandColor("XS", "808080");
+        List<Product> allProducts2 = productRepo.findbySizeandColor("XS", "000000");
+        List<Product> allProducts3 = productRepo.findbySizeandColor("XS", "FFFFFF");
+        //        for (Product product : allProducts) {
 //            if (product.getType().equals("Shirt")) {
 //                chosenProducts.add(product);
 //            }
 //        }
+
+        List<Product> chosenProducts = new ArrayList<>(allProducts1);
+        chosenProducts.addAll(allProducts2);
+        chosenProducts.addAll(allProducts3);
+        Collections.shuffle(chosenProducts);
 
 //
         Product product27 = productRepo.getOne(27L);
@@ -95,13 +106,28 @@ public class ProductsController {
             String category = "";
             model.addAttribute("category", category);
         }
-        List<Product> allProducts = productRepo.findbySizeandColor("MD", "000000");
+
+        List<Product> allProducts1 = productRepo.findbySizeandColor("MD", "000000");
+        List<Product> allProducts2 = productRepo.findbySizeandColor("MD", "808080");
+        List<Product> allProducts3 = productRepo.findbySizeandColor("MD", "FFFFFF");
         List<Product> chosenProducts = new ArrayList<>();
-        for (Product product : allProducts) {
+        for (Product product : allProducts1) {
             if (product.getType().equals("Pullover")) {
                 chosenProducts.add(product);
             }
         }
+        for (Product product : allProducts2) {
+            if (product.getType().equals("Pullover")) {
+                chosenProducts.add(product);
+            }
+        }
+        for (Product product : allProducts3) {
+            if (product.getType().equals("Pullover")) {
+                chosenProducts.add(product);
+            }
+        }
+
+        Collections.shuffle(chosenProducts);
 
 //
         Product product27 = productRepo.getOne(27L);
@@ -121,7 +147,7 @@ public class ProductsController {
             String category = "";
             model.addAttribute("category", category);
         }
-        List<Product> chosenProducts = productRepo.findbySizeandColor("OSFM", "000000");
+        List<Product> chosenProducts = productRepo.findBySize("OSFM");
 //        List<Product> chosenProducts = new ArrayList<>();
 //        for (Product product : allProducts) {
 //            if (product.getType().equals("Hat")) {
@@ -135,7 +161,7 @@ public class ProductsController {
         model.addAttribute("product27", product27);
         model.addAttribute("product28", product28);
 //
-
+        Collections.shuffle(chosenProducts);
         model.addAttribute("showProducts", chosenProducts);
         return "products/products";
     }
@@ -203,12 +229,13 @@ public class ProductsController {
                                 RedirectAttributes redirectAttributes) {
 //        List<Product> chosenProducts = new ArrayList<>();
 //            chosenProducts = productRepo.findByNameContaining(keyword);
-            List<Product> chosenProducts = productRepo.findBySizeAndColorAndNameContaining("MD", "FFFFFF", keyword);
-            List<Product> foundHats = productRepo.findBySizeAndColorAndNameContaining("OSFM", "FFFFFF", keyword);
+            List<Product> chosenProducts = productRepo.findBySizeAndNameContaining("MD", keyword);
+            List<Product> foundHats = productRepo.findBySizeAndNameContaining("OSFM", keyword);
             chosenProducts.addAll(foundHats);
 //        LinkedHashSet<Product> theChosen = new LinkedHashSet<>(chosenProducts);
 //        chosenProducts.clear();
 //        chosenProducts.addAll(theChosen);
+
         redirectAttributes.addFlashAttribute("showProducts", chosenProducts);
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             User user = new User();

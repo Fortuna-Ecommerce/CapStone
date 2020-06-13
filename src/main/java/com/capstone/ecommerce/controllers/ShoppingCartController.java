@@ -76,7 +76,7 @@ public class ShoppingCartController {
     public String addToCart(
             Model model,
             @ModelAttribute("products") ShoppingCart products,
-            @RequestParam("productId") long id,
+            @RequestParam("cartAddId") long id,
             @RequestParam(value = "sizeSelect", required = false) String size,
             @RequestParam(value = "color", required = false) String color,
             @RequestParam("productName") String name,
