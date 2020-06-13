@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class OrdersProduct {
+public class OrdersItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,7 +55,7 @@ public class OrdersProduct {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OrdersProduct that = (OrdersProduct) o;
+        OrdersItem that = (OrdersItem) o;
         return quantity == that.quantity &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(transaction, that.transaction) &&

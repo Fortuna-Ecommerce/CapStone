@@ -1,11 +1,13 @@
 package com.capstone.ecommerce.repositories;
 
+import com.capstone.ecommerce.model.Order;
+import com.capstone.ecommerce.model.OrdersItem;
 import com.capstone.ecommerce.model.Product;
 import com.capstone.ecommerce.model.Transactions_Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrderItemRepository extends JpaRepository<Transactions_Product, Long> {
-
+public interface OrdersItemRepository extends JpaRepository<Transactions_Product, Long> {
+    void save(OrdersItem OrdersItem);
     void deleteByProduct(Product product);
 
 //    @Modifying

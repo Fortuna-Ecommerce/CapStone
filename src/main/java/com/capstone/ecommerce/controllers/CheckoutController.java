@@ -30,13 +30,21 @@ public class CheckoutController{
     private final AddressRepository addressRepo;
     private final ProductRepository productRepo;
     private final TransactionProductRepository transProdRepo;
+    private final OrdersItemRepository ordersItemRepo;
+    private final OrderRepository orderRepo;
 
-    public CheckoutController(UserRepository userRepo, TransactionRepository transactionRepo, AddressRepository addressRepo, ProductRepository productRepo, TransactionProductRepository transProdRepo) {
+
+    public CheckoutController(UserRepository userRepo, TransactionRepository transactionRepo,
+                              AddressRepository addressRepo, ProductRepository productRepo,
+                              TransactionProductRepository transProdRepo, OrdersItemRepository ordersItemRepo,
+                              OrderRepository orderRepo ) {
         this.userRepo = userRepo;
         this.transactionRepo = transactionRepo;
         this.addressRepo = addressRepo;
         this.productRepo = productRepo;
         this.transProdRepo = transProdRepo;
+        this.ordersItemRepo = ordersItemRepo;
+        this.orderRepo = orderRepo;
     }
 
     public List<Product> comparison(List<Product> purchasableProducts) {
@@ -276,6 +284,8 @@ public class CheckoutController{
         boolean isError = false;
         String errMessage = "";
         Transaction newTransaction = new Transaction();
+        OrdersItem ordersItem = new OrdersItem();
+        Order newOrder = new Order();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date saleDate = new Date();
         User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -305,6 +315,16 @@ public class CheckoutController{
                 TransProd.setQuantity(product.getQuantity());
                 this.transProdRepo.save(TransProd);
             }
+            newOrder.setUser(testShopper);
+            newOrder.setStripeTransID(id);
+            newOrder.setCreated_at(formatter.format(saleDate));
+            newOrder.setTransactionStatus("Paid - Pending shipment");
+            newOrder.setTransactionType("Sale");
+            newOrder.setFinalAmount(saveTotal);
+            this.orderRepo.save(newOrder);
+
+
+
 //            for(int i = 0; i < originals.size(); i++){
 //                originals.get(i).setQuantity(originals.get(i).getQuantity() - products.get(i).getQuantity());
 //                this.productRepo.save(originals.get(i));
