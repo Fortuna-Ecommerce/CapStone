@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.swing.text.NumberFormatter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +39,24 @@ public class ShoppingCartController {
     public String getCart(Model model,
                           @ModelAttribute("products") ShoppingCart products,
                           @ModelAttribute("error") String error) {
+//        NumberFormatter formatter = new NumberFormatter(0.00);
+        List<Double> originalPrices = new ArrayList<>();
+        List<String> colors = new ArrayList<>();
         double total = 0.00;
         if (products != null) {
             for (Product product : products) {
+                double originalPrice = 0.00;
+                originalPrice = (this.productRepo.findById(product.getId())).getPrice();
+                originalPrices.add(originalPrice);
+                String color = "";
+                if(product.getColor().equals("FFFFFF")){
+                    color = "White";
+                } else if (product.getColor().equals("000000")){
+                    color = "Black";
+                } else if (product.getColor().equals("808080")){
+                    color = "Grey";
+                }
+                colors.add(color);
                 total = total + product.getPrice();
             }
             total = Math.round(total * 100.00) / 100.00;
@@ -50,6 +67,8 @@ public class ShoppingCartController {
         model.addAttribute("grandTotal", grandTotal);
         model.addAttribute("total", total);
         model.addAttribute("error", error);
+        model.addAttribute("prices", originalPrices);
+        model.addAttribute("colors", colors);
         return "purchases/cart";
     }
 
@@ -58,63 +77,34 @@ public class ShoppingCartController {
             Model model,
             @ModelAttribute("products") ShoppingCart products,
             @RequestParam("productId") long id,
-            @RequestParam("sizeSelect") String size,
-            @RequestParam("color") String color,
+            @RequestParam(value = "sizeSelect", required = false) String size,
+            @RequestParam(value = "color", required = false) String color,
             @RequestParam("productName") String name,
             @RequestParam("cartAddQuantity") Integer quantity,
             @RequestParam("price") String price,
             @RequestParam("type") String type,
             RedirectAttributes redir) {
+        String error1 = "";
+        String error2 = "";
+        String error3 = "";
+        if(quantity == 0){
+            error1 = "Sorry, you can't buy 0 of anything!";
+            redir.addFlashAttribute("error1", error1);
+            return "redirect:/products/"+id;
+        }
+
         double setPrice = Double.parseDouble(price);
-        String error = "";
         Product currentProduct = new Product();
         Product newProduct = new Product();
-//        if(this.productRepo.findByNameAndSizeAndColor(name, size, color) == null){
-//            Product tempProduct = new Product();
-//           tempProduct.setColor(color);
-//            tempProduct.setName(name);
-//            tempProduct.setSize(size);
-//            tempProduct.setDescription("Brand new meme shirt!");
-//            tempProduct.setQuantity(300);
-//            tempProduct.setType(type);
-//            tempProduct.setSpecial(false);
-//            tempProduct.setPrice(setPrice);
-//            this.productRepo.save(tempProduct);
-//           newProduct = this.productRepo.findByNameAndSizeAndColor(name, size, color);
-//           newProduct.setName(name);
-//            System.out.println(newProduct.getName());
-//            error = "Sorry, out of stock on that!";
-//            redir.addFlashAttribute("error", error);
-////            model.addAttribute("product", this.productRepo.findById(id));
-//            model.addAttribute("products", products);
-//            return "redirect:products/"+id;
-//        } else {
-            currentProduct = this.productRepo.findByNameAndSizeAndColorAndType(name, size, color, type);
-//        }
 
-//        if(quantity == null || quantity == 0){
-//            error = "Can't order nothing! Please put in a number!";
-//            redir.addFlashAttribute("error", error);
-//            model.addAttribute("product", currentProduct);
-//            model.addAttribute("products", products);
-//            return "redirect:products/"+id;
-//        }
-//
-//
-//
-//        if(currentProduct.getQuantity() < (long)quantity){
-//            error = "You can't order that many, sorry! Try a lower number please!";
-//            redir.addFlashAttribute("error", error);
-//            model.addAttribute("product", currentProduct);
-//            model.addAttribute("products", products);
-//            return "redirect:products/"+currentProduct.getId();
-//        }
+            currentProduct = this.productRepo.findByNameAndSizeAndColorAndType(name, size, color, type);
 
 
 
         double total = 0.00;
         boolean found = false;
         Product addProduct = currentProduct;
+
 
         if (quantity != null) {
             addProduct.setQuantity(quantity);
@@ -194,28 +184,6 @@ public class ShoppingCartController {
         boolean found = false;
         if (products.size() > 0) {
 
-//
-//                for (Product product : products) {
-//                    if (product.getId() == addProduct.getId()) {
-//                        product.setQuantity(quantity + product.getQuantity());
-//                        product.setPrice(product.getPrice() + addProduct.getPrice());
-//                        found = true;
-//                    }
-//                }
-//                    updatedCart.add(addProduct);
-//                    found=true;
-//                } else {
-//                    updatedCart.add(product);
-//                }
-//                if (!found) {
-//                    products.add(addProduct);
-//                    found = true;
-//                }
-//            else{
-//                products.add(addProduct);
-//            }
-//            products=updatedCart;
-
         }
             for (Product product : products) {
                 total = total + product.getPrice();
@@ -225,15 +193,7 @@ public class ShoppingCartController {
             model.addAttribute("products", products);
             return "redirect:cart";
         }
-//    @PostMapping("/checkout")
-//    public RedirectView create(
-//            @ModelAttribute Product product,
-//            @ModelAttribute("products") ShoppingCart products,
-//            RedirectAttributes attributes) {
-//        products.add(product);
-//        attributes.addFlashAttribute("products", products);
-//        return new RedirectView("/sessionattributes/todos.html");
-//    }
+
 
 
     }

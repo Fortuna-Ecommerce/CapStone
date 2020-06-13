@@ -33,7 +33,7 @@
         })
     });
     $(document).ready(function () {
-        $("#white").on('click', function(){
+        $("#white1").on('click', function(){
             $("#originalImage").css("display", "none");
             $("#000000").css("display", "none");
             $("#808080").css("display", "none");
@@ -41,7 +41,7 @@
         })
     });
     $(document).ready(function () {
-        $("#black").on('click', function(){
+        $("#black1").on('click', function(){
             $("#originalImage").css("display", "none");
             $("#808080").css("display", "none");
             $("#FFFFFF").css("display", "none");
@@ -49,7 +49,55 @@
         })
     });
     $(document).ready(function () {
-        $("#gray").on('click', function(){
+        $("#gray1").on('click', function(){
+            $("#originalImage").css("display", "none");
+            $("#000000").css("display", "none");
+            $("#FFFFFF").css("display", "none");
+            $("#808080").css("display", "inline");
+        })
+    });
+    $(document).ready(function () {
+        $("#white2").on('click', function(){
+            $("#originalImage").css("display", "none");
+            $("#000000").css("display", "none");
+            $("#808080").css("display", "none");
+            $("#FFFFFF").css("display", "inline");
+        })
+    });
+    $(document).ready(function () {
+        $("#black2").on('click', function(){
+            $("#originalImage").css("display", "none");
+            $("#808080").css("display", "none");
+            $("#FFFFFF").css("display", "none");
+            $("#000000").css("display", "inline");
+        })
+    });
+    $(document).ready(function () {
+        $("#gray2").on('click', function(){
+            $("#originalImage").css("display", "none");
+            $("#000000").css("display", "none");
+            $("#FFFFFF").css("display", "none");
+            $("#808080").css("display", "inline");
+        })
+    });
+    $(document).ready(function () {
+        $("#white3").on('click', function(){
+            $("#originalImage").css("display", "none");
+            $("#000000").css("display", "none");
+            $("#808080").css("display", "none");
+            $("#FFFFFF").css("display", "inline");
+        })
+    });
+    $(document).ready(function () {
+        $("#black3").on('click', function(){
+            $("#originalImage").css("display", "none");
+            $("#808080").css("display", "none");
+            $("#FFFFFF").css("display", "none");
+            $("#000000").css("display", "inline");
+        })
+    });
+    $(document).ready(function () {
+        $("#gray3").on('click', function(){
             $("#originalImage").css("display", "none");
             $("#000000").css("display", "none");
             $("#FFFFFF").css("display", "none");
