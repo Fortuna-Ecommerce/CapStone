@@ -4,141 +4,116 @@
 <head><title></title></head>
 <body>
 <nav th:replace="partials :: navbar" />
-<div class="container" id="productContainer">
+
+<div class="container card montserrat" id="productContainer">
 
     
-    <div id="originalImage" class="productImg mr-5"><img th:src="${product.productImage}" alt="The product's image"
-                                                         height="500px" width="500px"></div>
-    <div id="FFFFFF" class="productImg mr-5" style="display: none"><img th:src="${white}" alt="The product's image"
-                                                                        height="500px" width="500px"></div>
-    <div id="000000" class="productImg mr-5" style="display: none"><img th:src="${black}" alt="The product's image"
-                                                                        height="500px" width="500px"></div>
-    <div id="808080" class="productImg mr-5" style="display: none"><img th:src="${gray}" alt="The product's image"
-                                                                        height="500px" width="500px"></div>
-    <div class="ml-5">
-    <form th:action="@{/addToCart}" th:method="post">
-        <input type="hidden" name="productName" id="name" th:value="${product.name}">
-        <input type="hidden" name="type" th:value="${product.type}">
-        <input type="hidden" name="productId" th:value="${product.id}">
-    <h1 style="font-weight: bold" th:text="${product.name}"></h1>
-    <h3>Type: <span th:text="${product.type}"></span></h3>
-        <div th:if="${product.color} == 'FFFFFF'">
-        <div style="display:inline-block"><h3 style="float:left">Color: </h3><div class="form-check">
-            <input class="form-check-input" type="radio" name="color" id="white1" value="FFFFFF" checked>
-            <label class="form-check-label" for="white1">
-                <span class="dot" style="background-color: #FFFFFF;"></span>
-            </label>
-        </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="color" id="black1" value="000000">
-                <label class="form-check-label" for="black1">
-                    <span class="dot" style="background-color: #000000"></span>
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="color" id="gray1" value="808080">
-                <label class="form-check-label" for="gray1">
-                    <th:block th:if="${product.type} == Hat">
-                    <span class="dot" style="background-color: #808080"></span>
-                    </th:block>
-                    <th:block th:unless="${product.type} == Hat">
-                        <span class="dot" style="background-color: #E6E6E6"></span>
-                    </th:block>
-                </label>
-            </div></div>
-        </div>
-        <div th:if="${product.color} == '000000'">
-            <div style="display:inline-block"><h3 style="float:left">Color: </h3><div class="form-check">
-                <input class="form-check-input" type="radio" name="color" id="white2" value="FFFFFF">
-                <label class="form-check-label" for="white2">
-                    <span class="dot" style="background-color: #FFFFFF;"></span>
-                </label>
-            </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="color" id="black2" value="000000" checked>
-                    <label class="form-check-label" for="black2">
-                        <span class="dot" style="background-color: #000000"></span>
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="color" id="gray2" value="808080">
-                    <label class="form-check-label" for="gray2">
-                        <th:block th:if="${product.type} == Hat">
-                            <span class="dot" style="background-color: #808080"></span>
-                        </th:block>
-                        <th:block th:unless="${product.type} == Hat">
-                            <span class="dot" style="background-color: #E6E6E6"></span>
-                        </th:block>
-                    </label>
-                </div></div>
-        </div>
-        <div th:if="${product.color} == '808080'">
-            <div style="display:inline-block"><h3 style="float:left">Color: </h3><div class="form-check">
-                <input class="form-check-input" type="radio" name="color" id="white3" value="FFFFFF">
-                <label class="form-check-label" for="white3">
-                    <span class="dot" style="background-color: #FFFFFF;"></span>
-                </label>
-            </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="color" id="black3" value="000000">
-                    <label class="form-check-label" for="black3">
-                        <span class="dot" style="background-color: #000000"></span>
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="color" id="gray3" value="808080" checked>
-                    <label class="form-check-label" for="gray3">
-                        <th:block th:if="${product.type} == Hat">
-                            <span class="dot" style="background-color: #808080"></span>
-                        </th:block>
-                        <th:block th:unless="${product.type} == Hat">
-                            <span class="dot" style="background-color: #E6E6E6"></span>
-                        </th:block>
-                    </label>
-                </div></div>
-        </div>
-
-        <div th:if="${product.type}  == 'Shirt'">
-        <h3>Size: </h3><h3><label for="sizeSelect1"><select class="btn btn-mini" id="sizeSelect1" name="sizeSelect">
-
-        <option value="XS">X-Small</option>
-        <option value="SM">Small</option>
-        <option value="MD" >Medium</option>
-        <option value="LG">Large</option>
-        <option value="XL">X-Large</option>
-    </select></label></h3>
-        </div>
-        <div th:if="${product.type}  == 'Pullover'">
-        <h3>Size: </h3><h3><label for="sizeSelect2"><select class="btn btn-mini" id="sizeSelect2" name="sizeSelect">
-
-        <option value="SM">Small</option>
-        <option value="MD" >Medium</option>
-        <option value="LG">Large</option>
-    </select></label></h3>
+    <div id="originalImage" class="productImg mr-5 col-md-8">
+        <img th:src="${product.productImage}" alt="The product's image" height="500px" width="500px">
     </div>
-        <div th:if="${product.type}  == 'Hat'">
-            <h3>Size: </h3><h3><label for="sizeSelect3"><select class="btn btn-mini" id="sizeSelect3" name="sizeSelect">
-            <option value="OSFM" selected>OSFM</option>
-        </select></label></h3>
+
+    <div id="FFFFFF" class="productImg mr-5" style="display: none">
+        <img th:src="${white}" alt="The product's image" height="500px" width="500px">
+    </div>
+
+    <div id="000000" class="productImg mr-5" style="display: none">
+        <img th:src="${black}" alt="The product's image" height="500px" width="500px">
+    </div>
+
+    <div id="808080" class="productImg mr-5" style="display: none">
+        <img th:src="${gray}" alt="The product's image" height="500px" width="500px">
+    </div>
+
+
+
+    <div class="ml-5 col-md-8">
+    <form th:action="@{/addToCart}" th:method="post">
+
+            <input type="hidden" name="productName" id="name" th:value="${product.name}">
+
+            <input type="hidden" name="type" th:value="${product.type}">
+
+            <input type="hidden" name="productId" th:value="${product.id}">
+
+        <h1 style="font-weight: bold" th:text="${product.name}"></h1>
+
+
+        <h3>Type:
+            <span th:text="${product.type}" style="color: black"></span>
+        </h3>
+
+
+        <h3>Color:</h3>
+            <div class="row" style="display:inline-block">
+
+                <ul id="r-list">
+                    <li class="l-list">
+                        <input class="form-check-input i-input" type="radio" name="color" id="white" value="FFFFFF" checked>
+                        <label class="form-check-label l-label" for="white">
+                            <span class="dot" style="background-color: #FFFFFF;"></span>
+                        </label>
+                    </li>
+                    <li class="l-list">
+                        <input class="form-check-input i-input" type="radio" name="color" id="black" value="000000">
+                        <label class="form-check-label l-label" for="black">
+                            <span class="dot" style="background-color: #000000"></span>
+                        </label>
+                    </li>
+                    <li class="l-list">
+                        <input class="form-check-input i-input" type="radio" name="color" id="gray" value="808080">
+                        <label class="form-check-label l-label" for="gray">
+                            <th:block th:if="${product.type} == Hat">
+                            <span class="dot" style="background-color: #808080"></span>
+                            </th:block>
+                            <th:block th:unless="${product.type} == Hat">
+                                <span class="dot" style="background-color: #E6E6E6"></span>
+                            </th:block>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <h3>
+            <span style="color: black">Size:
+                <label for="sizeSelect">
+                    <select class="btn btn-mini" id="sizeSelect" name="sizeSelect">
+            <option value="XS">X-Small</option>
+            <option value="SM">Small</option>
+            <option value="MD" selected>Medium</option>
+            <option value="LG">Large</option>
+            <option value="XL">X-Large</option>
+                    </select>
+                </label>
+            </span>
+            </h3>
+
+        <div th:if="${product.special} == true">
+            <input type="hidden" name="price" th:value="${salePrice}" id="priceGet1" style="color: black">
+
+            <input type="hidden" name="priceOriginal" th:value="${product.price}" id="priceGet3" style="color: black">
+
+            <h3>On Sale Price (42% off!): <strike>
+                <span th:text="${'$'+product.price}" id="priceInput3"></span></strike>
+                <span th:text="${'$'+salePrice}" id="priceInput1"></span>
+            </h3>
         </div>
 
-    <div th:if="${product.special} == true">
-        <input type="hidden" name="price" th:value="${salePrice}" id="priceGet1">
-        <input type="hidden" name="priceOriginal" th:value="${product.price}" id="priceGet3">
-        <h3>On Sale Price (42% off!): <strike><span th:text="${'$'+product.price}" id="priceInput3"></span></strike>
-            <span th:text="${'$'+salePrice}" id="priceInput1"></span></h3></div>
-    <div th:unless="${product.special} == true"><h3>Price:
-        <span th:text="${'$'+product.price}" id="priceInput2"></span></h3>
-        <input type="hidden" name="price" th:value="${product.price}" id="priceGet2"></div>
+        <div th:unless="${product.special} == true">
+            <h3>Price:
+            <span th:text="${'$'+product.price}" id="priceInput2"></span>
+            </h3>
+            <input type="hidden" name="price" th:value="${product.price}" id="priceGet2">
+        </div>
 
-    <p style="" th:text="${product.description}"> </p>
-    <p style="color:red" id="error1" th:text="${error1}"></p>
-        <input type="hidden" th:name="cartAddId" th:value="${product.id}">
-        <label>Quantity:
-            <input type="text" name="cartAddQuantity" value="1" id="amountOrdered" required maxlength="4">
-        </label>
-        <div class="total"></div>
-        <button class="btn-link btn text-white btn-primary" id="addProduct">Add to Cart</button>
+        <p style="" th:text="${product.description}"></p>
+        <p style="color:red" id="error" th:text="${error}"></p>
+            <input type="hidden" th:name="cartAddId" th:value="${product.id}">
+            <label>Quantity:
+                <input type="text" name="cartAddQuantity" value="1" id="amountOrdered" required maxlength="4">
+            </label>
+            <div class="total">
+
+            </div>
+            <button class="btn-link btn text-white btn-primary" id="addProduct">Add to Cart</button>
     </form>
     </div>
 </div>

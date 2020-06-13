@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="partials :: head" /></div>
@@ -57,11 +55,9 @@
 
 <!--CARDS-->
 
-<!--<h2 style="padding-left: 75px">Featured Products</h2>-->
 <div class="container" style="margin-top: 50px">
     <div class="row">
-<!--        <div class="col-xs-6">-->
-            <div class="card border-0 shadow-none scale-up-center" th:each="product : ${product3}" style="width: 18rem; height: 25rem">
+            <div class="card border-0 shadow-none scale-up-center" th:each="product : ${product3}" style="width: 18rem;">
                 <a th:href="@{'/products/'+ ${product3.id}}">
                 <img th:src="${product3.productImage}" class="card-img-top homeImage" alt="..."
                      style="width: 300px;height: 300px">
@@ -69,12 +65,10 @@
                 <div class="card-body montserrat">
                     <h5 class="card-title" th:text="${product3.name}"></h5>
                     <div class="d-inline-flex">
-                        <span>$</span><p class="card-text" th:text="${product3.price}">$</p>
-<!--                        <a th:href="@{'/products/'+ ${product3.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>-->
+                        <span style="color: black">$</span><p class="card-text" th:text="${product3.price}"></p>
                     </div>
                 </div>
             </div>
-<!--        </div>-->
         <div class="card border-0 shadow-none scale-up-center" th:each="product : ${product4}" style="width: 18rem;">
             <a th:href="@{'/products/'+ ${product4.id}}">
             <img th:src="${product4.productImage}" class="card-img-top" alt="...">
@@ -82,9 +76,7 @@
             <div class="card-body montserrat">
                 <h5 class="card-title" th:text="${product4.name}"></h5>
                 <div class="d-inline-flex">
-                    <span>$</span><p class="card-text" th:text="${product4.price}"></p>
-<!--                    <a th:href="@{'/products/'+ ${product4.id}}" class="btn btn-primary" style="margin-left: 80px">-->
-<!--                        View</a>-->
+                    <span style="color: black">$</span><p class="card-text" th:text="${product4.price}"></p>
                 </div>
             </div>
         </div>
@@ -96,9 +88,7 @@
             <div class="card-body montserrat">
                 <h5 class="card-title" th:text="${product5.name}"></h5>
                 <div class="d-inline-flex">
-                    <span>$</span><p class="card-text" th:text="${product5.price}"></p>
-<!--                    <a th:href="@{'/products/'+ ${product5.id}}" class="btn btn-primary" style="margin-left: 80px">-->
-<!--                        View</a>-->
+                    <span style="color: black">$</span><p class="card-text" th:text="${product5.price}"></p>
                 </div>
             </div>
         </div>
@@ -110,9 +100,7 @@
             <div class="card-body montserrat">
                 <h5 class="card-title" th:text="${product6.name}"></h5>
                 <div class="d-inline-flex">
-                    <span>$</span><p class="card-text" th:text="${product6.price}"></p>
-<!--                    <a th:href="@{'/products/'+ ${product6.id}}" class="btn btn-primary" style="margin-left: 80px">-->
-<!--                        View</a>-->
+                    <span style="color: black">$</span><p class="card-text" th:text="${product6.price}">$</p>
                 </div>
             </div>
         </div>
@@ -126,7 +114,7 @@
         <div class="card-body montserrat">
             <h5 class="card-title" th:text="${product7.name}"></h5>
             <div class="d-inline-flex">
-                <span>$</span><p class="card-text" th:text="${product7.price}"></p>
+                <span style="color: black">$</span><p class="card-text" th:text="${product7.price}"></p>
             </div>
         </div>
     </div>
@@ -138,8 +126,7 @@
         <div class="card-body montserrat">
             <h5 class="card-title" th:text="${product8.name}"></h5>
             <div class="d-inline-flex">
-                <span>$</span><p class="card-text" th:text="${product8.price}"></p>
-<!--                <a th:href="@{'/products/'+ ${product8.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>-->
+                <span style="color: black">$</span><p class="card-text" th:text="${product8.price}"></p>
             </div>
         </div>
     </div>
@@ -150,8 +137,7 @@
         <div class="card-body montserrat">
             <h5 class="card-title" th:text="${product9.name}"></h5>
             <div class="d-inline-flex">
-                <span>$</span><p class="card-text" th:text="${product9.price}"></p>
-<!--                <a th:href="@{'/products/'+ ${product9.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>-->
+                <span style="color: black">$</span><p class="card-text" th:text="${product9.price}"></p>
             </div>
         </div>
     </div>
@@ -163,8 +149,7 @@
         <div class="card-body montserrat">
             <h5 class="card-title" th:text="${product10.name}"></h5>
             <div class="d-inline-flex">
-                <span>$</span><p class="card-text" th:text="${product10.price}"></p>
-<!--                <a th:href="@{'/products/'+ ${product10.id}}" class="btn btn-primary" style="margin-left: 80px">View</a>-->
+                <span style="color: black">$</span><p class="card-text" th:text="${product10.price}"></p>
             </div>
         </div>
     </div>
@@ -202,88 +187,6 @@
         </a>
     </div>
 </section>
-
-
-<!--FOOTER-->
-<footer id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h4>Our conditions</h4>
-                <div class="justify">
-                    The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: “Client”, “You” and “Your” refers to you, the person log on this website and compliant to the Company's terms and conditions.
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <h4>Latest news</h4>
-                <blockquote>
-                    <p>Check out our latest collection and browse from multiple styles!</p>
-                </blockquote>
-            </div>
-            <div class="col-sm-4 social-network">
-                <h4>Social Network</h4>
-                <div class="row margin-top-20">
-                    <div class="col-sm-12">
-                        <a href="#">
-                            <i class="fa fa-facebook-square fa-2x blue-fb pull-left"></i>
-                            <div>
-                                Add us on Facebook to see what memes are trending!
-                            </div>
-                            <div class="clearfix"></div>
-                        </a>
-                    </div>
-                </div>
-                <div class="row margin-top-10">
-                    <div class="col-sm-12">
-                        <a href="#">
-                            <i class="fa fa-linkedin-square fa-2x blue-tt pull-left"></i>
-                            <div>
-                                Connect with us on linked in
-                            </div>
-                            <div class="clearfix"></div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr/>
-        <div class="row line-50">
-            <div class="col-sm-8">
-                <nav class="navbar navbar-default navbar-transparent">
-                    <div class="container-fluid">
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li>
-                                    <a href="home.html">Home</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Account
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Favorites
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Cart
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-            <div class="col-sm-4 text-right">
-                <strong>
-                    Created by Fortuna eCommerce Developers
-                </strong>
-            </div>
-        </div>
-    </div>
-</footer>
 
 
 <footer th:replace="partials :: footer" />
