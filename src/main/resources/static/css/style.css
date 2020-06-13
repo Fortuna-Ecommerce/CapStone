@@ -1814,6 +1814,7 @@ body{
         animation-timing-function: ease-out;
         opacity: 1;
     }
+
 }
 
 #f-footer {
@@ -1824,3 +1825,4 @@ body{
 #footer-container {
     background: #0f0f0f;
 }
+

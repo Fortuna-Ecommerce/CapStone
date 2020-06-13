@@ -48,6 +48,7 @@ public class ProductsController {
         Collections.shuffle(showProducts);
 
 
+
         model.addAttribute("showProducts", showProducts);
 
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
