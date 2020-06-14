@@ -16,6 +16,14 @@ public class OrdersItem {
     @JoinColumn(name = "transaction_id")
     Transaction transaction;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @ManyToOne
             (cascade = {
             CascadeType.MERGE
