@@ -1816,11 +1816,14 @@ body{
     }
 }
 
-#f-footer {
-    background: black;
-    margin-top: 40px;
+    /*FOOTER*/
+@media (min-width: 992px) {
+    footer {
+        color: whitesmoke;
+        height: 1000px;
+        padding: 30px;
+        background: rgba(21, 21, 21, 0.9);
+    }
+
 }
 
-#footer-container {
-    background: #0f0f0f;
-}
