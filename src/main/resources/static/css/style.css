@@ -1,5 +1,5 @@
 body{
-    background-color: #d1d1d1;
+    background: rgba(209, 209, 209, 0.56);
 }
 
 .color-box {
@@ -326,7 +326,7 @@ body{
     margin: 0 auto; /* Added */
     /*float: none; !* Added *!*/
     margin-bottom: 10px; /* Added */
-    background: #d1d1d1;
+    background: rgba(209, 209, 209, 0.56);
 }
 .scale-up-center {
     -webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
@@ -1821,12 +1821,14 @@ body{
 
 }
 
-#f-footer {
-    background: black;
-    margin-top: 40px;
-}
+    /*FOOTER*/
+@media (min-width: 992px) {
+    footer {
+        color: whitesmoke;
+        height: 1000px;
+        padding: 30px;
+        background: rgba(21, 21, 21, 0.9);
+    }
 
-#footer-container {
-    background: #0f0f0f;
 }
 
