@@ -96,7 +96,9 @@
                 <span th:text="${'$'+salePrice}" id="priceInput1"></span>
             </h3>
         </div>
+        <p th:text="${product27}" >
 
+        </p>
         <div th:unless="${product.special} == true">
             <h3>Price:
             <span th:text="${'$'+product.price}" id="priceInput2"></span>
