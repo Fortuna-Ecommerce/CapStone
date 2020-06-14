@@ -93,18 +93,20 @@ public class ShoppingCartController {
             return "redirect:/products/"+id;
         }
 
+        System.out.println(id);
         double setPrice = Double.parseDouble(price);
         Product currentProduct = new Product();
         Product newProduct = new Product();
 
             currentProduct = this.productRepo.findByNameAndSizeAndColorAndType(name, size, color, type);
 
-
+        System.out.println(currentProduct.getName());
 
         double total = 0.00;
         boolean found = false;
         Product addProduct = currentProduct;
 
+        System.out.println(addProduct.getName());
 
         if (quantity != null) {
             addProduct.setQuantity(quantity);

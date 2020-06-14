@@ -16,19 +16,48 @@
         <h4>Please verify all of your information, then click the button to submit payment information and complete the transaction.</h4>
     </div>
 
-<div class="container">
-    <div class="row">
-        <div th:each="product, iter : ${products}" class="col-md-6 col-lg-3">
-            <h1 style="font-weight: bold" th:text="${product.name}"></h1>
-            <h5> <span th:text="${colors.get(iter.index)}" style="color: black"></span> - <span
-                    th:text="${product.size}" style="color: black" ></span> - <span
-                    th:text="${product.type}" style="color: black"></span></h5>
-            <h3>Quantity: <span th:text="${product.quantity}"></span></h3>
-            <h3>Price: $<span th:text="${product.price}"></span></h3>
-            <br>
-        </div>
+
+    <div class="container mt-4 w-75 montserrat">
+        <table class="table" style="box-shadow: none; border: none;">
+            <thead>
+            <tr>
+                <th>Image view</th>
+                <th>Item name</th>
+                <th>Size</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            <tr th:each="product, iStat : ${products}">
+                <td><img th:src="${product.productImage}" alt="The product's image" height="115px" width="115px"></td>
+                <td th:text="${product.name}" style="font-weight: bold" class="align-middle"></td>
+                <td th:text="${product.size}" class="align-middle"> </td>
+                <td th:text="${product.quantity}" class="align-middle"></td>
+                <td class="align-middle">$<span th:text="${#numbers.formatDecimal(product.price,0,'COMMA',2,'POINT')}"
+                                style="color:
+                #007BFF"></span></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-</div>
+
+
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div th:each="product, iter : ${products}" class="col-md-6 col-lg-3">-->
+<!--            <h1 style="font-weight: bold" th:text="${product.name}"></h1>-->
+<!--            <h5> <span th:text="${colors.get(iter.index)}" style="color: black"></span> - <span-->
+<!--                    th:text="${product.size}" style="color: black" ></span> - <span-->
+<!--                    th:text="${product.type}" style="color: black"></span></h5>-->
+<!--            <h3>Quantity: <span th:text="${product.quantity}"></span></h3>-->
+<!--            <h3>Price: $<span th:text="${product.price}"></span></h3>-->
+<!--            <br>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
     <div class="container">
 <div class="container mt-4" style="text-align: center">

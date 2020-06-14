@@ -42,10 +42,19 @@
 </div>
 <!--This works for a dynamic generation of cards that looks okay - take a look at some point - JT-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h2 th:if="${showProducts.isEmpty()}" style="text-align: center; color: orangered;" class="montserrat mb-5">Seems like
+    there's nothing here!
+    Try again or
+    go 
+    and see <a href="/products/all" style="color: #007BFF; font-weight: bold; text-decoration: none">everything
+    </a> we have to
+    offer!</h2>
 
     <div class="row">
-        <div id="cardBackground" class="card shadow-none" th:each="product : ${showProducts}" style="background: white">
-            <div id="productsCardDiv" class="card-body d-inline-block justify-content-around" style="margin: auto;background: white">
+        <div id="cardBackground" class="card shadow-none" th:each="product : ${showProducts}" style="background:
+        #d1d1d1">
+            <div id="productsCardDiv" class="card-body d-inline-block justify-content-around"
+                 style="margin: auto;background: #e9ecef">
                 <p id="name" class="card-title text montserrat" th:text="${product.name}"></p>
 
             <a th:href="@{'/products/'+${product.id}}">
