@@ -1,6 +1,6 @@
-body{
-    background: rgba(209, 209, 209, 0.56);
-}
+/*body{*/
+/*    background: whitesmoke;*/
+/*}*/
 
 .color-box {
     height: 25px;
@@ -74,6 +74,7 @@ body{
     margin-left: 18%;
     box-shadow: none;
     border: none;
+    /*background: rgba(209, 209, 209, 0.56)*/
 }
 
 #addProduct {
@@ -326,7 +327,7 @@ body{
     margin: 0 auto; /* Added */
     /*float: none; !* Added *!*/
     margin-bottom: 10px; /* Added */
-    background: rgba(209, 209, 209, 0.56);
+    /*background: rgba(209, 209, 209, 0.56);*/
 }
 .scale-up-center {
     -webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;

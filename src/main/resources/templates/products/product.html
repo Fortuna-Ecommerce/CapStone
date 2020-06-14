@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:pth="http://www.w3.org/1999/html">
 <div th:replace="partials :: head" /></div>
 <head><title></title></head>
-<body>
+<body style="background: lightgray">
 <nav th:replace="partials :: navbar" />
 
-<div class="container card montserrat" id="productContainer">
+<div class="container card montserrat" id="productContainer" style="background: lightgray;">
 
     
     <div id="originalImage" class="productImg mr-5 col-md-8">
@@ -29,17 +29,17 @@
     <div class="ml-5 col-md-8">
     <form th:action="@{/addToCart}" th:method="post">
 
-            <input type="hidden" name="productName" id="name" th:value="${product.name}">
+            <input type="hidden" name="productName" id="name" class="montserrat" th:value="${product.name}">
 
-            <input type="hidden" name="type" th:value="${product.type}">
+            <input type="hidden" name="type" class="montserrat" th:value="${product.type}">
 
-            <input type="hidden" name="productId" th:value="${product.id}">
+            <input type="hidden" name="productId" class="montserrat" th:value="${product.id}">
 
-        <h1 style="font-weight: bold" th:text="${product.name}"></h1>
+        <h1 style="font-weight: bold" class="montserrat" th:text="${product.name}"></h1>
 
 
         <h3>Type:
-            <span th:text="${product.type}" style="color: black"></span>
+            <span th:text="${product.type}" class="montserrat" style="color: black"></span>
         </h3>
 
 
