@@ -13,13 +13,15 @@ input[type="text"]:disabled{
 
 }
 
+table{
+    font-size: 20px;
+}
+
 /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows
  * how you can use CSS to style your Element's container.
  */
-body{
-    background-color:#ebebeb;
-}
+
 .StripeElement {
     box-sizing: border-box;
 

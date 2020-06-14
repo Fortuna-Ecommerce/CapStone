@@ -216,15 +216,7 @@ public class CheckoutController{
              temp_ship_address.setZipcode(bZip);
             ship_address = addressRepo.save(temp_ship_address);
         }
-         products.add(this.productRepo.getOne(25L));
-        products.add(this.productRepo.getOne(45L));
-        products.add(this.productRepo.getOne(85L));
-        products.add(this.productRepo.getOne(96L));
-        products.add(this.productRepo.getOne(74L));
-        products.add(this.productRepo.getOne(156L));
-        products.add(this.productRepo.getOne(42L));
-        products.add(this.productRepo.getOne(233L));
-        products.add(this.productRepo.getOne(178L));
+
 
 
         for (Product product : products) {

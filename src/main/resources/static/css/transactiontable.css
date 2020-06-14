@@ -3,6 +3,6 @@
 /*    margin-right: 5%;*/
 /*}*/
 
-td, th{
-    width: 300px;
+table{
+    font-size: 25px;
 }

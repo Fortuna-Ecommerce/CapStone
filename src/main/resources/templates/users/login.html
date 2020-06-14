@@ -3,10 +3,11 @@
 
 <div th:replace="partials :: head" /></div>
 
+
 <body>
 <nav th:replace="partials :: navbar" />
 
-<div class="container">
+<div class="container mt-3" style="min-height: 55vh">
 
 <h1>Log In</h1>
 <div th:if="${param.error}">
