@@ -41,6 +41,7 @@
             <tr th:each="product, iStat : ${products}">
                 <td><form th:action="@{/deleteFromCart}" th:method="get">
                     <input type="hidden" name="cartDeleteId" th:value="${product.id}">
+
                     <button type="submit" class="btn btn-sm btn-danger" id="deleteImage" th:name="delete">Delete</button>
                 </form></td>
                 <td th:text="${product.name}"></td>
@@ -82,6 +83,7 @@
     <div style="text-align: center">
         <br>
         <form th:action="@{/addresses}" th:method="get">
+            <input type="hidden" name="pre_tax_total" th:value="${total}">
             <button class="btn-link btn text-white btn-primary btn-lg">Start checkout</button>
         </form>
         <br>

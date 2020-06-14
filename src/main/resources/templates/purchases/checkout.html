@@ -100,6 +100,7 @@
                             </p>
 
                             <form action="/charge" id="payment-form" method="post">
+                                <input type="hidden" th:name="pre_tax_total" th:value="${pre_tax_total}" >
                                 <input type="hidden" th:value="${total+5.00}" name="total" id="total">
                                 <input id="api-key" type="hidden" th:value="${stripePublicKey}" name="token">
                                 <div class="form-group">
@@ -130,6 +131,7 @@
                 <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
             </div>
         </div>
+
     </div>
 </div>
 

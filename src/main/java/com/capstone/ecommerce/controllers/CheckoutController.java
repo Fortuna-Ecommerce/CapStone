@@ -118,7 +118,7 @@ public class CheckoutController{
 
 
     @GetMapping("/addresses")
-    public String goToAddressEntryCheckout(Model model) {
+    public String goToAddressEntryCheckout(Model model, @RequestParam (name = "pre_tax_total")String pre_tax_total) {
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             return "home";
         }
@@ -144,7 +144,8 @@ public class CheckoutController{
             model.addAttribute("bill_address", bill_address);
         }
 
-
+        double fixed_pre_tax_total = Double.parseDouble(pre_tax_total);
+        model.addAttribute("pre_tax_total", fixed_pre_tax_total);
         return "purchases/addresses";
 
     }
@@ -168,6 +169,7 @@ public class CheckoutController{
                                   @RequestParam(name = "Saddress2", required = false) String sAdd2,
                                   @RequestParam(name = "Sstate", required = false) String sState,
                                   @RequestParam(name = "Szip", required = false) Integer sZip,
+                                  @RequestParam (name = "pre_tax_total")String pre_tax_total,
                                   @ModelAttribute("products") ShoppingCart products) {
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             return "home";
@@ -247,7 +249,7 @@ public class CheckoutController{
             }
             colors.add(color);
         }
-
+        double fixed_pre_tax_total = Double.parseDouble(pre_tax_total);
         double tempGrandTotal = (total * 0.0825);
         double grandTotal = tempGrandTotal + total + 5.00;
         grandTotal = Math.round(grandTotal * 100.00) / 100.00;
@@ -259,6 +261,8 @@ public class CheckoutController{
         model.addAttribute("stripePublicKey", stripePublicKey);
         model.addAttribute("currency", "USD");
         model.addAttribute("email", user.getEmail());
+        model.addAttribute("pre_tax_total", fixed_pre_tax_total);
+        System.out.println(pre_tax_total);
         return "purchases/checkout";
     }
 
@@ -274,10 +278,12 @@ public class CheckoutController{
                          Address ship_address,
                          @ModelAttribute("products") ShoppingCart products,
                          @RequestParam (name= "total") double total,
+                         @RequestParam (name = "pre_tax_total")String pre_tax_total,
                         @RequestParam (name = "token") String token) throws Exception {
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             return "home";
         }
+        System.out.println(pre_tax_total);
         double saveTotal = Math.round(total * 100.00) / 100.00;
         List<Product> originals = new ArrayList<>();
         originals = comparison(products);
@@ -321,6 +327,7 @@ public class CheckoutController{
             newOrder.setTransactionStatus("Paid - Pending shipment");
             newOrder.setTransactionType("Sale");
             newOrder.setFinalAmount(saveTotal);
+            newOrder.setPre_tax_total(Double.parseDouble(pre_tax_total));
             this.orderRepo.save(newOrder);
 
 
