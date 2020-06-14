@@ -9,9 +9,15 @@
 <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="../static/css/app-blue.css" rel="stylesheet" type="text/css"/>
 <link href="../static/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+    body{
+        background: lightgray;
+        opacity: 90%;
+
+    }
+</style>
 <body>
 
 <nav th:replace="partials :: navbar"></nav>
@@ -29,7 +35,7 @@
         <h1 style="text-align: center"><a href='/transactions'>Check on Transactions</a></h1></div>
 </div>
 <!--CATEGORY BUTTONS :VJP-->
-<div class="jumbotron jumbotron-fluid col-12 text-center" style="height: 150px">
+<div class="jumbotron jumbotron-fluid col-12 text-center" style="height: 150px; background: lightgray">
     <div class="container">
         <p class="display-4 montserrat slide-left" style="margin-left: 200px">Collection</p>
     </div>
@@ -50,11 +56,11 @@
     </a> we have to
     offer!</h2>
 
-    <div class="row">
-        <div id="cardBackground" class="card shadow-none" th:each="product : ${showProducts}" style="background:
-        #d1d1d1">
+    <div class="row d-flex justify-content-center">
+        <div id="cardBackground" class=" shadow-none" th:each="product : ${showProducts}" style="background:
+        lightgray">
             <div id="productsCardDiv" class="card-body d-inline-block justify-content-around"
-                 style="margin: auto;background: #e9ecef">
+                 style="margin: auto; background: lightgray">
                 <p id="name" class="card-title text montserrat" th:text="${product.name}"></p>
 
             <a th:href="@{'/products/'+${product.id}}">
