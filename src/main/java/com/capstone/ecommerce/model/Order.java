@@ -58,8 +58,6 @@ public class Order {
 //    @ManyToMany(fetch = FetchType.LAZY)
 //    private List<Product> product;
 
-    @OneToMany(mappedBy = "transaction")
-    Set<Transactions_Product> transactions_products;
 
     public Order() {
     }
@@ -146,11 +144,7 @@ public class Order {
 //        this.product = product;
 //    }
 
-    public Set<Transactions_Product> getTransactions_products() {
-        return transactions_products;
-    }
 
-    public void setTransactions_products(Set<Transactions_Product> transactions_products) {
-        this.transactions_products = transactions_products;
-    }
+
+
 }
