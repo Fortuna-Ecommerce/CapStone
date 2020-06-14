@@ -24,7 +24,7 @@
 </head>
 
 <body>
-<nav th:replace="partials :: navbar" />
+<nav th:replace="partials :: navbar"></nav>
 <div class="table-responsive" layout:fragment="content">
 
 
@@ -71,9 +71,6 @@
 <!--                <button class="btn-link btn text-white btn-secondary">Return to the product listings</button>-->
 <!--            </form>-->
 <!--    -->
-
-
-
     <h1 style="text-align: center">Transaction History</h1>
     <table class="table table-hover table-bordered table-striped">
         <thead>
@@ -112,9 +109,7 @@
         </tr>
         </tbody>
     </table>
-
-
 </div>
-<footer th:replace="partials :: footer" />
+<footer th:replace="partials :: footer"></footer>
 </body>
 </html>

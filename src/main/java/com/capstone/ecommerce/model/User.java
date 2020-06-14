@@ -72,7 +72,7 @@ public class User {
     // Getters and Setters for User Model
 
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
