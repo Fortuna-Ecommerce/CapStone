@@ -29,6 +29,28 @@ public class Order {
     @Column(nullable = true, columnDefinition = "DATETIME")
     private String modified_at;
 
+    @Column(nullable = false)
+    private double pre_tax_total;
+
+    @Column(nullable = false)
+    private double grand_total;
+
+    public double getPre_tax_total() {
+        return pre_tax_total;
+    }
+
+    public void setPre_tax_total(double pre_tax_total) {
+        this.pre_tax_total = pre_tax_total;
+    }
+
+    public double getGrand_total() {
+        return grand_total;
+    }
+
+    public void setGrand_total(double grand_total) {
+        this.grand_total = grand_total;
+    }
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;

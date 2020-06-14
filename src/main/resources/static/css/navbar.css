@@ -1,0 +1,67 @@
+@media screen and (max-width: 1020px) {
+    section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    section>* {
+        display: inline-block;
+    }
+    hr {
+        display: block;
+    }
+    article {
+        margin: 10px 0;
+    }
+}
+@media screen and (min-width:1020px) and (max-width:1200px) {
+    .small-title {
+        display: block;
+    }
+    .big-title, .smallest-title {
+        display: none;
+    }
+}
+@media screen and (min-width:900px) and (max-width:1020px) {
+    main h2 {
+        font-size: 3em;
+    }
+    .smallest-title {
+        display: block;
+    }
+    .small-title, .big-title {
+        display: none;
+    }
+}
+@media screen and (min-width: 720px) and (max-width:900px) {
+    main h2 {
+        font-size: 2.5em;
+    }
+
+}
+@media screen and (max-width:900px) {
+    .small-title, .big-title, .smallest-title {
+        display: none;
+    }
+    #to-what {
+        display: none;
+    }
+    main h2:after {
+        content: "Stegosaurus Rx!";
+    }
+}
+@media screen and (max-width:720px) {
+    main h2 {
+        font-size: 1.76em;
+    }
+    nav>ul:last-child {
+        display: none;
+    }
+    nav {
+        justify-content: center;
+    }
+    article {
+        height: 178px;
+    }
+}
