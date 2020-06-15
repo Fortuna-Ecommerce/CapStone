@@ -2,34 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 
-<div th:replace="partials :: head" /></div>
+<div th:replace="partials :: head"/>
+</div>
 
-<body>
-<nav th:replace="partials :: navbar" />
-<div class="container">
+<body class="montserrat" style="background-color: lightgray">
+<nav th:replace="partials :: navbar"/>
+<div class="container mt-3" style="min-height: 62vh">
+    <div class="col-sm-12 col-md-4 mx-auto p-4 rounded-lg my-5">
+        <h1>Create an Account</h1>
+        <p style="color:red" id="error" th:text="${error}"></p>
+        <form th:action="@{/register}" method="POST" th:object="${user}">
+            <div class="form-group my-4">
+                <input type="text" id="username" name="username" placeholder="Username" class="form-control"
+                       th:field="*{username}" required style="background-color: #f8f9fa"/>
+            </div>
+            <div class="form-group my-4">
+                <input type="email" id="email" name="email" placeholder="Email" class="form-control"
+                       th:field="*{email}" required style="background-color: #f8f9fa"/>
+            </div>
+            <div class="form-group my-4">
+                <input type="password" id="password" name="password" placeholder="Password" class="form-control"
+                       th:field="*{password}" required style="background-color: #f8f9fa"/>
+            </div>
 
-<h1>Create an account</h1>
-    <p style="color:red" id="error" th:text="${error}"></p>
-<form th:action="@{/register}" method="POST" th:object="${user}">
-    <div class="form-group">
-    <label for="username">Username</label>
-    <input id="username" type="text" th:field="*{username}" />
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
-    <div class="form-group">
-    <label for="email">Email</label>
-    <input id="email" type="email" th:field="*{email}" />
-    </div>
-    <div class="form-group">
-    <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}" />
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
 </div>
 
 
-
-<footer th:replace="partials :: footer" />
+<footer th:replace="partials :: footer"/>
 </body>
 </html>
-

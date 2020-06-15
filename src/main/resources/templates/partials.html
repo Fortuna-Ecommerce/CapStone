@@ -68,25 +68,17 @@
                             </li>
 
                 <li class="nav-item navitem" sec:authorize="isAuthenticated()">
-                    <form th:action="@{/cart}" th:method="get">
-                        <button class="btn-link btn">Go to cart</button>
-                    </form>
+                    <a class="nav-link" href="/cart">Cart</a>
                 </li>
                 <li class="nav-item navitem"sec:authorize="isAnonymous()">
-                    <form th:action="@{/register}" th:method="get">
-                        <button class="btn-link btn">Register</button>
-                    </form>
+                    <a class="nav-link" href="/register">Register</a>
                 </li>
                 <li class="nav-item navitem"sec:authorize="isAnonymous()">
-                    <form th:action="@{/login}" th:method="get">
-                        <button class="btn-link btn">Login</button>
-                    </form>
+                    <a class="nav-link" href="/login">Login</a>
                 </li>
 
             <li class="nav-item navitem" sec:authorize="isAuthenticated()">
-                <form th:action="@{/logout}" th:method="post">
-                    <button class="btn-link btn">Logout</button>
-                </form>
+                <a class="nav-link" href="/logout">Logout</a>
             </li>
             <li class="navitem nav-item">
 
@@ -107,7 +99,8 @@
     </div>
 </nav>
 
-<div th:fragment="footer" style="background: rgba(21, 21, 21, 0.9); height: 175px; padding: 20px; margin-top: 305px" id="f-footer">
+<div th:fragment="footer" style="background: rgba(21, 21, 21, 0.9); height: 175px; padding: 20px; margin-top: 55px"
+     id="f-footer">
     <div class="row montserrat">
         <div class="col-md-4">
             <ul>

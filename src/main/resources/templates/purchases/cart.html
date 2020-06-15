@@ -3,23 +3,23 @@
 
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
 <div th:replace="partials :: head"/>
-<body>
+<body class="montserrat" style="background-color: lightgray">
 <nav th:replace="partials :: navbar"/>
 <!--VJP: Reformatting cart-->
 <!--/* Content of this page will be decorated by the elements of layout.html (task/layout) */-->
-<div class="container mt-4 mx-auto montserrat">
+<div class="container mt-4 mx-auto">
 
     <h1 style="text-align: center;">Current Cart</h1>
     <br>
         <th:block th:if="${products.size()==0}">
-            <h1 style="color: orangered; text-align: center">There's nothing in your cart right now!</h1>
+            <h1 style="color: orangered; text-align: center; height: 38vh">There's nothing in your cart right now!</h1>
         </th:block>
 
     <br>
 </div>
 <th:block th:unless="${products.size()==0}">
 <div class="container mt-4 w-75 montserrat">
-    <table class="table table-bordered table-striped" style="box-shadow: none; border: none; font-size: 20px">
+    <table class="table table-bordered table-striped" style="box-shadow: none; border: none; font-size: 22px">
         <thead>
             <tr>
 <!--                <th>Preview</th>-->
@@ -51,19 +51,19 @@
             </tr>
             <tr>
                 <td colspan="7"
-                    style="text-align: right; background-color: #d1d1d1; box-shadow: none; border: NONE">Your
+                    style="text-align: right; background-color: lightgray; box-shadow: none; border: NONE">Your
                     order
                     subtotal: </td>
                 <td colspan="1" th:text="${'$'+total}"></td>
             </tr>
             <tr>
                 <td th:colspan="7"
-                    style="text-align: right; background-color: #d1d1d1; box-shadow: none; border:none">Shipping
+                    style="text-align: right; background-color: lightgray; box-shadow: none; border:none">Shipping
                     costs:</td>
                 <td th:colspan="1">Only $5.00 for a limited time!</td>
             </tr>
             <tr>
-                <td th:colspan="7" style="text-align: right; background-color: #d1d1d1; box-shadow: none;
+                <td th:colspan="7" style="text-align: right; background-color: lightgray; box-shadow: none;
                 border: none">Total with
                     sales tax
                     (8.25%)

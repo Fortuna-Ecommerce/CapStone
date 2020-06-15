@@ -18,7 +18,7 @@
 
     }
 </style>
-<body>
+<body class="montserrat">
 
 <nav th:replace="partials :: navbar"></nav>
 
@@ -29,11 +29,6 @@
 <!--        <h1 style="text-align: center"><a href='/transactions'>Check on Transactions</a></h1></div>-->
 <!--</div>-->
 
-<div style="text-align: center" th:if="${user.getAdmin() != null}">
-    <div style="text-align: center;" th:if="${user.getAdmin() == true}">
-        <h1 style="text-align: center"><a href='/products/productInventory'>Check on the Inventory</a></h1>
-        <h1 style="text-align: center"><a href='/transactions'>Check on Transactions</a></h1></div>
-</div>
 <!--CATEGORY BUTTONS :VJP-->
 <div class="jumbotron jumbotron-fluid col-12 text-center" style="height: 150px; background: lightgray">
     <div class="container">
@@ -41,17 +36,19 @@
     </div>
 </div>
 
-<div class="d-flex justify-content-around" id="productsButtonDiv">
+<div class="d-flex justify-content-around bg-light" id="productsButtonDiv">
     <a class="productsButtons montserrat" href="/products/t-shirts"> T-Shirts </a>
     <a class="productsButtons montserrat" href="/products/hats"> Hats </a>
     <a class="productsButtons montserrat" href="/products/pullovers"> Pullovers </a>
 </div>
 <!--This works for a dynamic generation of cards that looks okay - take a look at some point - JT-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<h2 th:if="${showProducts.isEmpty()}" style="text-align: center; color: orangered;" class="montserrat mb-5">Seems like
+<h2 th:if="${showProducts.isEmpty()}" style="text-align: center; color: orangered; height: 18vh"
+    class="montserrat mb-5 mt-5">Seems
+    like
     there's nothing here!
     Try again or
-    go 
+    go
     and see <a href="/products/all" style="color: #007BFF; font-weight: bold; text-decoration: none">everything
     </a> we have to
     offer!</h2>

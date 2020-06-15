@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="partials :: head" /></div>
 
-<body style="background: lightgray">
+<body style="background: lightgray; width: 100%; height: 100%; margin: 0">
 <nav th:replace="partials :: navbar" />
 
 <div style="text-align: center" th:if="${user.getAdmin() != null}">
@@ -34,7 +34,7 @@
             <div class="container">
                 <div class="caption">
                     <h1 class="c-title montserrat">Fall Collection 2020</h1>
-                    <p class="c-title montserrat">Show now while supplies last</p>
+                    <p class="c-title montserrat">Shop now while supplies last</p>
                     <a class="c-title c-button" href="/products/all">Shop Now</a>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                 <img th:src="${product3.productImage}" class="card-img-top homeImage" alt="..."
                      style="width: 300px;height: 300px">
                 </a>
-                <div class="card-body montserrat">
+                <div class="card-body montserrat text-center">
                     <h5 class="card-title" th:text="${product3.name}"></h5>
                     <div class="d-inline-flex">
                         <span style="color: black">$</span><p class="card-text" th:text="${product3.price}"></p>
@@ -73,7 +73,7 @@
             <a th:href="@{'/products/'+ ${product4.id}}">
             <img th:src="${product4.productImage}" class="card-img-top" alt="...">
             </a>
-            <div class="card-body montserrat">
+            <div class="card-body montserrat text-center">
                 <h5 class="card-title" th:text="${product4.name}"></h5>
                 <div class="d-inline-flex">
                     <span style="color: black">$</span><p class="card-text" th:text="${product4.price}"></p>
@@ -85,7 +85,7 @@
             <a th:href="@{'/products/'+ ${product5.id}}">
             <img th:src="${product5.productImage}" class="card-img-top" alt="...">
             </a>
-            <div class="card-body montserrat">
+            <div class="card-body montserrat text-center">
                 <h5 class="card-title" th:text="${product5.name}"></h5>
                 <div class="d-inline-flex">
                     <span style="color: black">$</span><p class="card-text" th:text="${product5.price}"></p>
@@ -97,7 +97,7 @@
             <a th:href="@{'/products/'+ ${product6.id}}">
             <img th:src="${product6.productImage}" class="card-img-top" alt="...">
             </a>
-            <div class="card-body montserrat">
+            <div class="card-body montserrat text-center">
                 <h5 class="card-title" th:text="${product6.name}"></h5>
                 <div class="d-inline-flex">
                     <span style="color: black">$</span><p class="card-text" th:text="${product6.price}">$</p>
@@ -111,7 +111,7 @@
         <a th:href="@{'/products/'+ ${product7.id}}">
         <img th:src="${product7.productImage}" class="card-img-top" alt="...">
         </a>
-        <div class="card-body montserrat">
+        <div class="card-body montserrat text-center">
             <h5 class="card-title" th:text="${product7.name}"></h5>
             <div class="d-inline-flex">
                 <span style="color: black">$</span><p class="card-text" th:text="${product7.price}"></p>
@@ -123,7 +123,7 @@
         <a th:href="@{'/products/'+ ${product8.id}}">
         <img th:src="${product8.productImage}" class="card-img-top" alt="...">
         </a>
-        <div class="card-body montserrat">
+        <div class="card-body montserrat text-center">
             <h5 class="card-title" th:text="${product8.name}"></h5>
             <div class="d-inline-flex">
                 <span style="color: black">$</span><p class="card-text" th:text="${product8.price}"></p>
@@ -134,7 +134,7 @@
         <a th:href="@{'/products/'+ ${product9.id}}">
         <img th:src="${product9.productImage}" class="card-img-top" alt="...">
         </a>
-        <div class="card-body montserrat">
+        <div class="card-body montserrat text-center">
             <h5 class="card-title" th:text="${product9.name}"></h5>
             <div class="d-inline-flex">
                 <span style="color: black">$</span><p class="card-text" th:text="${product9.price}"></p>
@@ -146,7 +146,7 @@
         <a th:href="@{'/products/'+ ${product10.id}}">
         <img th:src="${product10.productImage}" class="card-img-top" alt="...">
         </a>
-        <div class="card-body montserrat">
+        <div class="card-body montserrat text-center">
             <h5 class="card-title" th:text="${product10.name}"></h5>
             <div class="d-inline-flex">
                 <span style="color: black">$</span><p class="card-text" th:text="${product10.price}"></p>
@@ -156,7 +156,7 @@
 </div>
 
 
-<section class="categories container">
+<section class="categories container" style="margin-bottom: -45px">
 
     <div class="category-item" style="background-image: url('images/img-col1.png');">
         <a href="products/t-shirts">
