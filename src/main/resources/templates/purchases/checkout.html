@@ -37,7 +37,7 @@
                 <td th:text="${product.name}" style="font-weight: bold" class="align-middle"></td>
                 <td th:text="${product.size}" class="align-middle"> </td>
                 <td th:text="${product.quantity}" class="align-middle"></td>
-                <td class="align-middle">$<span th:text="${product.price}"
+                <td class="align-middle">$<span th:text="${prices.get(iStat.index)}"
                                 style="color:
                 #007BFF"></span></td>
             </tr>

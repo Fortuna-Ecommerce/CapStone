@@ -7,17 +7,22 @@
 <nav th:replace="partials :: navbar"/>
 <!--VJP: Reformatting cart-->
 <!--/* Content of this page will be decorated by the elements of layout.html (task/layout) */-->
-<div class="container mt-4 mx-auto">
+<div class="container mx-auto">
 
-    <h1 style="text-align: center;">Current Cart</h1>
+    <h1 class="mt-5" style="text-align: center;">Current Cart</h1>
     <br>
-        <th:block th:if="${products.size()==0}">
-            <h1 style="color: orangered; text-align: center; height: 38vh">There's nothing in your cart right now!</h1>
-        </th:block>
+        <div th:if="${products.size()==0}" style="height: 55vh">
+            <h1 style="color: orangered; text-align: center;">There's nothing in your cart right now!</h1>
+            <br><br><br><br>
+            <div style="text-align: center" class="mb-5 montserrat">
+                <form th:action="@{/}" th:method="get">
+                    <button class="btn-link btn text-white btn-secondary">Continue shopping</button>
+                </form>
+            </div>
+        </div>
 
-    <br>
 </div>
-<th:block th:unless="${products.size()==0}">
+<div th:unless="${products.size()==0}">
 <div class="container mt-4 w-75 montserrat">
     <table class="table table-bordered table-striped" style="box-shadow: none; border: none; font-size: 22px">
         <thead>
@@ -84,13 +89,13 @@
         </form>
         <br>
     </div>
-        </th:block>
-    <div style="text-align: center" class="mb-5 montserrat">
+
+    <div style="text-align: center; height: 6vh" class="mb-5 montserrat">
         <form th:action="@{/}" th:method="get">
             <button class="btn-link btn text-white btn-secondary">Continue shopping</button>
         </form>
     </div>
-
+</div>
 
     <footer th:replace="partials :: footer"/>
 </body>

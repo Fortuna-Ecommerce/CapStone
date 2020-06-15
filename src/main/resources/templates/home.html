@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="partials :: head" /></div>
 
-<body style="background: lightgray; width: 100%; height: 100%; margin: 0">
+<body class="montserrat" style="background: lightgray; width: 100%; height: 100%; margin: 0">
 <nav th:replace="partials :: navbar" />
 
 <div style="text-align: center" th:if="${user.getAdmin() != null}">

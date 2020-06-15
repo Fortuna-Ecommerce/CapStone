@@ -178,7 +178,6 @@ public class ProductsController {
         double salePrice = 0;
         Product aProduct = productRepo.getOne(id);
         model.addAttribute("product", aProduct);
-        System.out.println(aProduct.getName());
         String black = "";
         String white = "";
         String gray = "";

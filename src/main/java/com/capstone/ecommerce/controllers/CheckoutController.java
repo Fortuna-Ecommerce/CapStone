@@ -169,7 +169,7 @@ public class CheckoutController{
             return "home";
         }
         List<String> colors = new ArrayList<>();
-
+        List<String> formattedPrices = new ArrayList<>();
         double total = 0.00;
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User shopper = this.userRepo.findByUsername(user.getUsername());
@@ -234,6 +234,7 @@ public class CheckoutController{
                 color = "Grey";
             }
             colors.add(color);
+            formattedPrices.add(currencyFormat.format(product.getPrice()));
         }
 
         double tempGrandTotal = (total * 0.0825);
@@ -253,6 +254,7 @@ public class CheckoutController{
         model.addAttribute("stripePublicKey", stripePublicKey);
         model.addAttribute("currency", "USD");
         model.addAttribute("email", user.getEmail());
+        model.addAttribute("prices", formattedPrices);
         return "purchases/checkout";
     }
 
