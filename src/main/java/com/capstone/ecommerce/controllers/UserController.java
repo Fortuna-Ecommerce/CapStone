@@ -29,6 +29,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @Controller
@@ -38,6 +40,8 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
     private AddressRepository addressRepository;
 
+    private final String userNameRegex="[A-Za-z0-9]+";
+    private final Pattern usernamePattern=Pattern.compile(userNameRegex);
 
     //Stores info in variable so it can be used elsewhere, allows information to be malleable
 
@@ -60,6 +64,19 @@ public class UserController {
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
         String error = "";
+        if(user.getUsername()==null){
+            error = "No value provided for username!";
+            redirectAttributes.addFlashAttribute("error", error);
+
+            return "redirect:register";
+        }
+        Matcher usernameMatcher=usernamePattern.matcher(user.getUsername());
+        if(!usernameMatcher.matches()){
+            error = "Bad characters in username. Value may only be comprised of letters and numbers.";
+            redirectAttributes.addFlashAttribute("error", error);
+
+            return "redirect:register";
+        }
         if(this.users.findByUsername(user.getUsername()) != null){
             error = "That username is already in use!";
             redirectAttributes.addFlashAttribute("error", error);
@@ -68,6 +85,11 @@ public class UserController {
         }
         if(this.users.findByEmail(user.getEmail()) != null){
             error = "That email is already in use!";
+            redirectAttributes.addFlashAttribute("error", error);
+            return "redirect:register";
+        }
+        if(user.getPassword().length() <= 4){
+            error = "Passwords must longer than four characters!";
             redirectAttributes.addFlashAttribute("error", error);
             return "redirect:register";
         }
