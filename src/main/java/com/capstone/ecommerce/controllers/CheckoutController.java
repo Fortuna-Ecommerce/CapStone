@@ -15,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,6 +32,8 @@ public class CheckoutController{
     private final AddressRepository addressRepo;
     private final ProductRepository productRepo;
     private final TransactionProductRepository transProdRepo;
+    private final NumberFormat currencyFormat=new DecimalFormat("#0.00");
+    private final double shippingCost=5.00;
 
     public CheckoutController(UserRepository userRepo, TransactionRepository transactionRepo, AddressRepository addressRepo, ProductRepository productRepo, TransactionProductRepository transProdRepo) {
         this.userRepo = userRepo;
@@ -235,8 +239,14 @@ public class CheckoutController{
         double tempGrandTotal = (total * 0.0825);
         double grandTotal = tempGrandTotal + total + 5.00;
         grandTotal = Math.round(grandTotal * 100.00) / 100.00;
+        double addShippingToGrandTotal=grandTotal+shippingCost;
+//        NumberFormat currencyFormat=new DecimalFormat("#0.00");
+//        String totalFormatted=currencyFormat.format(total);
+        String grandTotalFormatted=currencyFormat.format(grandTotal);
+        String grandTotalShippingFormatted=currencyFormat.format(addShippingToGrandTotal);
         model.addAttribute("colors", colors);
-        model.addAttribute("total", grandTotal);
+        model.addAttribute("totalShipping", addShippingToGrandTotal);
+        model.addAttribute("total", grandTotalFormatted);
         model.addAttribute("bill_address", bill_address);
         model.addAttribute("ship_address", ship_address);
         model.addAttribute("products", products);
@@ -257,11 +267,14 @@ public class CheckoutController{
                          Address bill_address,
                          Address ship_address,
                          @ModelAttribute("products") ShoppingCart products,
-                         @RequestParam (name= "total") double total,
+                         @RequestParam (name= "total") String totalIncoming,
                         @RequestParam (name = "token") String token) throws Exception {
+        double total=0.00;
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             return "home";
         }
+
+        total=Double.parseDouble(totalIncoming);
         double saveTotal = Math.round(total * 100.00) / 100.00;
         List<Product> originals = new ArrayList<>();
         originals = comparison(products);
@@ -274,7 +287,8 @@ public class CheckoutController{
         User testShopper = this.userRepo.getOne(shopper.getId());
         String name = ship_address.getFirstname() + " " + ship_address.getLastname();
         String email = shopper.getEmail();
-        model.addAttribute("total", total);
+        String totalFormatted=currencyFormat.format(total);
+        model.addAttribute("total", totalFormatted);
         if(testShopper.getStripeToken() == null){
             String customerId = stripeService.createCustomer(token, email);
             testShopper.setStripeToken(customerId);

@@ -37,7 +37,7 @@
                 <td th:text="${product.name}" style="font-weight: bold" class="align-middle"></td>
                 <td th:text="${product.size}" class="align-middle"> </td>
                 <td th:text="${product.quantity}" class="align-middle"></td>
-                <td class="align-middle">$<span th:text="${#numbers.formatDecimal(product.price,0,'COMMA',2,'POINT')}"
+                <td class="align-middle">$<span th:text="${product.price}"
                                 style="color:
                 #007BFF"></span></td>
             </tr>
@@ -63,7 +63,7 @@
     <div class="container">
 <div class="container mt-4" style="text-align: center">
 
-    <h2>Total with tax and shipping: $<span th:text="${#numbers.formatDecimal(total,0,'COMMA',2,'POINT')}"></span></h2>
+    <h2>Total with tax and shipping: $<span th:text="${total}"></span></h2>
 </div>
     </div>
 
@@ -130,7 +130,8 @@
                             </p>
 
                             <form action="/charge" id="payment-form" method="post">
-                                <input type="hidden" th:value="${total+5.00}" name="total" id="total">
+<!--                                <input type="hidden" th:value="${total+5.00}" name="total" id="total">-->
+                                <input type="hidden" th:value="${totalShipping}" name="total" id="total">
                                 <input id="api-key" type="hidden" th:value="${stripePublicKey}" name="token">
                                 <div class="form-group">
                                     <label class="font-weight-medium" for="card-element">

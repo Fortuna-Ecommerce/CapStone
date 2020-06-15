@@ -11,12 +11,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.swing.text.NumberFormatter;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//2 shopping cart, 2 checkout
 @Controller
 @SessionAttributes("products")
 public class ShoppingCartController {
+
+    private final   NumberFormat currencyFormat=new DecimalFormat("#0.00");
 
     private ProductRepository productRepo;
 
@@ -64,8 +69,13 @@ public class ShoppingCartController {
         double tempGrandTotal = (total * 0.0825);
         double grandTotal = tempGrandTotal + total + 5.00;
         grandTotal = Math.round(grandTotal * 100.00) / 100.00;
-        model.addAttribute("grandTotal", grandTotal);
-        model.addAttribute("total", total);
+//        NumberFormat currencyFormat=new DecimalFormat("#0.00");
+        String totalFormatted=currencyFormat.format(total);
+        String grandTotalFormatted=currencyFormat.format(grandTotal);
+//        model.addAttribute("grandTotal", grandTotal);
+//        model.addAttribute("total", total);
+        model.addAttribute("grandTotal", grandTotalFormatted);
+        model.addAttribute("total", totalFormatted);
         model.addAttribute("error", error);
         model.addAttribute("prices", originalPrices);
         model.addAttribute("colors", colors);
@@ -143,10 +153,15 @@ public class ShoppingCartController {
 
 
         total = Math.round(total * 100.00) / 100.00;
-        redir.addFlashAttribute("total", total);
+//        NumberFormat currencyFormat=new DecimalFormat("#0.00");
+        String totalFormatted=currencyFormat.format(total);
+        String grandTotalFormatted=currencyFormat.format(grandTotal);
+//        redir.addFlashAttribute("total", total);
+        redir.addFlashAttribute("total", totalFormatted);
         model.addAttribute("products", products);
         model.addAttribute("originals", originals);
-        redir.addFlashAttribute("grandTotal", grandTotal);
+//        redir.addFlashAttribute("grandTotal", grandTotal);
+        redir.addFlashAttribute("grandTotal", grandTotalFormatted);
 
         return "redirect:cart";
     }
