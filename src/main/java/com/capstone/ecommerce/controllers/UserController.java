@@ -103,6 +103,12 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/profile")
+    public String displayProfile(Model model){
+
+    }
+
+
     private void authenticate(User user) {
         // Notice how we're using an empty list for the roles
         UserDetails userDetails = new UserWithRoles(user);

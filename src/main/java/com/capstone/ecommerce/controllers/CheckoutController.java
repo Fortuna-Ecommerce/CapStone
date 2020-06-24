@@ -238,13 +238,15 @@ public class CheckoutController{
         }
 
         double tempGrandTotal = (total * 0.0825);
+        String stringTempGrandTotal = currencyFormat.format(tempGrandTotal);
         double grandTotal = tempGrandTotal + total + 5.00;
         grandTotal = Math.round(grandTotal * 100.00) / 100.00;
         double addShippingToGrandTotal=grandTotal+shippingCost;
 //        NumberFormat currencyFormat=new DecimalFormat("#0.00");
 //        String totalFormatted=currencyFormat.format(total);
         String grandTotalFormatted=currencyFormat.format(grandTotal);
-        String grandTotalShippingFormatted=currencyFormat.format(addShippingToGrandTotal);
+        String subtotal = currencyFormat.format(total);
+
         model.addAttribute("colors", colors);
         model.addAttribute("totalShipping", addShippingToGrandTotal);
         model.addAttribute("total", grandTotalFormatted);
@@ -255,6 +257,8 @@ public class CheckoutController{
         model.addAttribute("currency", "USD");
         model.addAttribute("email", user.getEmail());
         model.addAttribute("prices", formattedPrices);
+        model.addAttribute("taxes", stringTempGrandTotal);
+        model.addAttribute("subtotal", subtotal);
         return "purchases/checkout";
     }
 

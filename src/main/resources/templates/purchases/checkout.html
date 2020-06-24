@@ -41,36 +41,27 @@
                                 style="color:
                 #007BFF"></span></td>
             </tr>
+            <tr><td colspan="5"></td></tr>
             </tbody>
         </table>
     </div>
 
 
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <div th:each="product, iter : ${products}" class="col-md-6 col-lg-3">-->
-<!--            <h1 style="font-weight: bold" th:text="${product.name}"></h1>-->
-<!--            <h5> <span th:text="${colors.get(iter.index)}" style="color: black"></span> - <span-->
-<!--                    th:text="${product.size}" style="color: black" ></span> - <span-->
-<!--                    th:text="${product.type}" style="color: black"></span></h5>-->
-<!--            <h3>Quantity: <span th:text="${product.quantity}"></span></h3>-->
-<!--            <h3>Price: $<span th:text="${product.price}"></span></h3>-->
-<!--            <br>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
     <div class="container">
 <div class="container mt-4" style="text-align: center">
-
-    <h2>Total with tax and shipping: $<span th:text="${total}"></span></h2>
+    <h3>All item subtotal: $<span style="color: #007BFF; text-decoration: underline" th:text="${subtotal}"></span></h3>
+    <h3>Shipping cost: $<span style="color:#007BFF; text-decoration: underline">5.00</span></h3>
+    <h3>Tax applied (8.25%):
+        $<span style="color: #007BFF; text-decoration: underline" th:text="${taxes}"></span></h3><br>
+    <h2 style="text-decoration: underline; font-weight: bold">Grand Total:<span style="text-decoration: none"> $</span><span style="color:#007BFF;
+    text-decoration: underline" th:text="${total}"></span></h2>
 </div>
-    </div>
+    </div><br>
 
 <div id="addressInfo" class="container w-75 col-12">
     <div class="row">
 <div class="container mt-4 checkout mx-auto text-center col-md-6 col-sm-12">
-    <h1 style="text-align: center; border: 1px black">Billing information</h1>
+    <h1 style="text-align: center; border: 1px black; font-weight: bold">Billing information</h1>
 <div class="shippingColoring">
     <h2><span th:text="${bill_address.firstname}"></span> <span th:text="${bill_address.lastname}"></span></h2>
     <h2><span th:text="${bill_address.street1}"> </span></h2>
@@ -82,7 +73,7 @@
 </div></div>
 
 <div class="container mt-4 mx-auto text-center col-md-6 col-sm-12">
-    <h1 style="text-align: center">Shipping information</h1>
+    <h1 style="text-align: center; font-weight: bold">Shipping information</h1>
 
     <div class="shippingColoring">
     <h2><span th:text="${ship_address.firstname}"></span> <span th:text="${ship_address.lastname}"></span></h2>
