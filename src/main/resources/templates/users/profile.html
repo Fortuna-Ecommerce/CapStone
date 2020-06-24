@@ -16,8 +16,51 @@
                                             <h1 class="profile-username mt-3" style="text-align: center; font-weight: bold"
                                                 th:text="'Welcome, ' + ${#authentication.name}"></h1><br>
 
+            <div id="addressInfo" class="container w-75 col-12 my-4">
+                <div class="row">
+                    <div class="container mt-4 checkout mx-auto text-center col-md-6 col-sm-12">
+                        <h1 style="text-align: center; border: 1px black; font-weight: bold">Billing information</h1>
+                        <div th:if="${bill_address.firstname != null}">
+                            <div class="shippingColoring">
+                                <h2><span th:text="${bill_address.firstname}"></span> <span th:text="${bill_address.lastname}"></span></h2>
+                                <h2><span th:text="${bill_address.street1}"> </span></h2>
+                                <div th:if="${!bill_address.street2.isEmpty()}">
+                                    <h2><span th:text="${bill_address.street2}"> </span></h2>
+                                </div>
+                                <h2><span th:text="${bill_address.city}"> </span>, <span th:text="${bill_address.state}"></span> <span
+                                        th:text="${bill_address.zipcode}"></span></h2>
+                            </div></div>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary mt-2 mb-5" data-toggle="modal"
+                                data-target="#billingModal">
+                            Add/Edit Billing Address
+                        </button>
+                    </div>
+
+                    <div class="container mt-4 mx-auto text-center col-md-6 col-sm-12">
+                        <h1 style="text-align: center; font-weight: bold">Shipping information</h1>
+                        <div th:if="${ship_address.firstname != null}">
+                            <div class="shippingColoring">
+                                <h2><span th:text="${ship_address.firstname}"></span> <span th:text="${ship_address.lastname}"></span></h2>
+                                <h2><span th:text="${ship_address.street1}"> </span></h2>
+                                <div th:if="${!ship_address.street2.isEmpty()}">
+                                    <h2><span th:text="${bill_address.street2}"> </span></h2>
+                                </div>
+                                <h2><span th:text="${ship_address.city}"></span>, <span th:text="${ship_address.state}"></span> <span
+                                        th:text="${ship_address.zipcode}"></span></h2>
+                            </div></div>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary mt-2 mb-5" data-toggle="modal"
+                                data-target="#shippingModal">
+                            Add/Edit Shipping Address
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
                     <h1 style="text-align: center; font-weight: bold" class="mb-4">Order history</h1>
-            <div th:if="${transactions.size()==0}" style="height: 22vh">
+            <div th:if="${transactions.size()==0}" style="height: 18vh">
                 <h1 style="text-align: center">Haven't bought anything yet? Time to get shopping!</h1>
             </div>
             <div th:unless="${transactions.size()==0}">
@@ -56,48 +99,7 @@
         </div>
 
 
-                    <div id="addressInfo" class="container w-75 col-12 mt-4">
-                        <div class="row">
-                            <div class="container mt-4 checkout mx-auto text-center col-md-6 col-sm-12">
-                                <h1 style="text-align: center; border: 1px black; font-weight: bold">Billing information</h1>
-                                <div th:if="${bill_address.firstname != null}">
-                                <div class="shippingColoring">
-                                    <h2><span th:text="${bill_address.firstname}"></span> <span th:text="${bill_address.lastname}"></span></h2>
-                                    <h2><span th:text="${bill_address.street1}"> </span></h2>
-                                    <div th:if="${!bill_address.street2.isEmpty()}">
-                                        <h2><span th:text="${bill_address.street2}"> </span></h2>
-                                    </div>
-                                    <h2><span th:text="${bill_address.city}"> </span>, <span th:text="${bill_address.state}"></span> <span
-                                            th:text="${bill_address.zipcode}"></span></h2>
-                                </div></div>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary my-2" data-toggle="modal"
-                                        data-target="#billingModal">
-                                    Add/Edit Billing Address
-                                </button>
-                            </div>
 
-                            <div class="container mt-4 mx-auto text-center col-md-6 col-sm-12">
-                                <h1 style="text-align: center; font-weight: bold">Shipping information</h1>
-                                <div th:if="${ship_address.firstname != null}">
-                                <div class="shippingColoring">
-                                    <h2><span th:text="${ship_address.firstname}"></span> <span th:text="${ship_address.lastname}"></span></h2>
-                                    <h2><span th:text="${ship_address.street1}"> </span></h2>
-                                    <div th:if="${!ship_address.street2.isEmpty()}">
-                                        <h2><span th:text="${bill_address.street2}"> </span></h2>
-                                    </div>
-                                    <h2><span th:text="${ship_address.city}"></span>, <span th:text="${ship_address.state}"></span> <span
-                                            th:text="${ship_address.zipcode}"></span></h2>
-                                </div></div>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary my-2" data-toggle="modal"
-                                        data-target="#shippingModal">
-                                    Add/Edit Shipping Address
-                                </button>
-                            </div>
-
-                        </div>
-                    </div>
 
 
 
@@ -147,7 +149,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="Bzip">Zip</label>
-                                                <input type="number" class="form-control" id="Bzip"
+                                                <input type="text" class="form-control" id="Bzip"
                                                        th:field="*{zipcode}" maxlength="5">
                                             </div>
                                         </div>
@@ -208,7 +210,7 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="Szip">Zip</label>
-                                                    <input type="number" class="form-control" id="Szip"
+                                                    <input type="text" class="form-control" id="Szip"
                                                            th:field="*{zipcode}" maxlength="5">
                                                 </div>
                                             </div>

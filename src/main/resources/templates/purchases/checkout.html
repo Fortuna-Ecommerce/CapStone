@@ -53,8 +53,8 @@
     <h3>Shipping cost: $<span style="color:#007BFF; text-decoration: underline">5.00</span></h3>
     <h3>Tax applied (8.25%):
         $<span style="color: #007BFF; text-decoration: underline" th:text="${taxes}"></span></h3><br>
-    <h2 style="text-decoration: underline; font-weight: bold">Grand Total:<span style="text-decoration: none"> $</span><span style="color:#007BFF;
-    text-decoration: underline" th:text="${total}"></span></h2>
+    <h1 style="font-weight: bold">Grand Total: $<span style="color:#007BFF;
+    text-decoration: underline" th:text="${total}"></span></h1>
 </div>
     </div><br>
 
@@ -125,8 +125,9 @@
                                 <input type="hidden" th:value="${totalShipping}" name="total" id="total">
                                 <input id="api-key" type="hidden" th:value="${stripePublicKey}" name="token">
                                 <div class="form-group">
-                                    <label class="font-weight-medium" for="card-element">
-                                        Enter credit or debit card below
+                                    <label class="font-weight-medium text-center" for="card-element">
+                                        - <span style="font-weight: bold">4242 4242 4242 4242</span> is the successful
+                                        card number -<br>Please do not use a real one! <br><br>Enter credit or debit card below
                                     </label>
                                     <div class="w-100" id="card-element">
                                         <!-- A Stripe Element will be inserted here. -->
