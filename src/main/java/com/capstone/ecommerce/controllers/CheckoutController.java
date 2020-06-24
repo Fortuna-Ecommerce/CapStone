@@ -155,7 +155,7 @@ public class CheckoutController{
                                   @RequestParam(name = "Baddress1") String bAdd1,
                                   @RequestParam(name = "Baddress2", required = false) String bAdd2,
                                   @RequestParam(name = "Bstate") String bState,
-                                  @RequestParam(name = "Bzip") Integer bZip,
+                                  @RequestParam(name = "Bzip") String bZip,
                                   @RequestParam(name = "Saddressid") Integer sId,
                                   @RequestParam(name="Sfirst_name", required = false) String sFN,
                                   @RequestParam(name="Slast_name", required = false) String sLN,
@@ -163,7 +163,7 @@ public class CheckoutController{
                                   @RequestParam(name = "Saddress1", required = false) String sAdd1,
                                   @RequestParam(name = "Saddress2", required = false) String sAdd2,
                                   @RequestParam(name = "Sstate", required = false) String sState,
-                                  @RequestParam(name = "Szip", required = false) Integer sZip,
+                                  @RequestParam(name = "Szip", required = false) String sZip,
                                   @ModelAttribute("products") ShoppingCart products) {
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             return "home";

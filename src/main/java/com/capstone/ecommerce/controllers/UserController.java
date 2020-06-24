@@ -38,7 +38,7 @@ import java.util.regex.Pattern;
 public class UserController {
     private UserRepository users;
     private PasswordEncoder passwordEncoder;
-    private AddressRepository addressRepository;
+    private AddressRepository addressRepo;
 
     private final String userNameRegex="[A-Za-z0-9]+";
     private final Pattern usernamePattern=Pattern.compile(userNameRegex);
@@ -48,7 +48,7 @@ public class UserController {
     public UserController(UserRepository users, PasswordEncoder passwordEncoder, AddressRepository addyRepo) {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
-        this.addressRepository = addyRepo;
+        this.addressRepo = addyRepo;
     }
 
     @GetMapping("/register")
@@ -89,7 +89,7 @@ public class UserController {
             return "redirect:register";
         }
         if(user.getPassword().length() <= 4){
-            error = "Passwords must longer than four characters!";
+            error = "Passwords must be longer than four characters!";
             redirectAttributes.addFlashAttribute("error", error);
             return "redirect:register";
         }
@@ -105,8 +105,67 @@ public class UserController {
 
     @GetMapping("/profile")
     public String displayProfile(Model model){
-
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "redirect:/";
+        }
+        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User profileOwner = this.users.getOne(shopper.getId());
+        Address ship_address = this.addressRepo.findByUserAndAddresstype(profileOwner, "Shipping");
+        if(ship_address == null){
+            ship_address = new Address();
+            ship_address.setStreet2("");
+        }
+        Address bill_address = this.addressRepo.findByUserAndAddresstype(profileOwner, "Billing");
+        if(bill_address == null){
+            bill_address = new Address();
+            bill_address.setStreet2("");
+        }
+        model.addAttribute("bill_address", bill_address);
+        model.addAttribute("ship_address", ship_address);
+        return "users/profile";
     }
+
+
+
+
+    @PostMapping("/addressUpdate1")
+    public String editBillAddress(Address bill_address) {
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "redirect:/";
+        }
+        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User profileOwner = this.users.getOne(shopper.getId());
+//      ;
+//        if (bill_address.getId() > 0) {
+//            this.addressRepo.save(bill_address);
+//        } else {
+            bill_address.setUser(profileOwner);
+            bill_address.setAddresstype("Billing");
+            this.addressRepo.save(bill_address);
+//        }
+        return "redirect:/profile";
+    }
+
+    @PostMapping("/addressUpdate2")
+    public String editShipAddress(Address ship_address) {
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "redirect:/";
+        }
+        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User profileOwner = this.users.getOne(shopper.getId());
+//        if (ship_address.getId() > 0) {
+//            this.addressRepo.save(ship_address);
+//        } else {
+            ship_address.setUser(profileOwner);
+        ship_address.setAddresstype("Shipping");
+            this.addressRepo.save(ship_address);
+//        }
+        return "redirect:/profile";
+    }
+
+
+
+
 
 
     private void authenticate(User user) {
