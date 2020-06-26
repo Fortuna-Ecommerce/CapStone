@@ -8,6 +8,10 @@
             $("#Bstate").css('border', 'none');
             $("#Bzip").css('border', 'none');
             $("#Bcity").css('border', 'none');
+            if(!$("#Bzip").val() || !$("#Bcity").val() || !$("#Bstate").val() || !$("#Baddress1").val() || !$("#Bfirst_name").val() || !$("#Blast_name").val()){
+                $("#errorB").text("Some fields may be missing data - please double check and try again!");
+                return false;
+            }
             if(!/^[a-zA-Z][a-zA-Z]*$/.test($("#Bstate").val())){
                 $("#Bstate").css('border', '3px solid #FFB6C1');
                 wrong = true;
@@ -16,7 +20,7 @@
                 $("#Bzip").css('border', '3px solid #FFB6C1');
                 wrong = true;
             }
-            if(!(/^[a-zA-Z][a-zA-Z\s\-]*$/.test($("#Bcity").val().trim()))){
+            if(!(/^[a-zA-Z][a-zA-Z\s\-]*$/.test($("#Bcity").val()))){
                 $("#Bcity").css('border', '3px solid #FFB6C1');
                 wrong = true;
             }
@@ -37,6 +41,10 @@
             $("#Sstate").css('border', 'none');
             $("#Szip").css('border', 'none');
             $("#Scity").css('border', 'none');
+            if(!$("#Szip").val() || !$("#Scity").val() || !$("#Sstate").val() || !$("#Saddress1").val() || !$("#Sfirst_name").val() || !$("#Slast_name").val()){
+                $("#errorS").text("Some fields may be missing data - please double check and try again!");
+                return false;
+            }
                 if(!/^[a-zA-Z][a-zA-Z]*$/.test($("#Sstate").val())){
                     $("#Sstate").css('border', '3px solid #FFB6C1');
                     wrong = true;

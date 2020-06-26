@@ -115,13 +115,19 @@ public class ShoppingCartController {
         Product currentProduct = new Product();
         Product newProduct = new Product();
 
-            currentProduct = this.productRepo.findByNameAndSizeAndColorAndType(name, size, color, type);
+        System.out.println(name);
+        System.out.println(color);
+        System.out.println(type);
+        System.out.println(size);
+
+        currentProduct = this.productRepo.findByNameAndSizeAndColorAndType(name, size, color, type);
 
 
         double total = 0.00;
         boolean found = false;
         Product addProduct = currentProduct;
 
+        System.out.println(addProduct);
 
         if (quantity != null) {
             addProduct.setQuantity(quantity);

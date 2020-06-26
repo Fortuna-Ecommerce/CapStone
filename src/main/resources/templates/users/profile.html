@@ -77,7 +77,6 @@
                     <th scope="col">Created on</th>
                     <th scope="col">Modified on</th>
                     <th scope="col">Order Status</th>
-                    <th scope="col">Order Type</th>
                     <th scope="col">Items Ordered</th>
                     <th scope="col">Final Amount</th>
                 </tr>
@@ -88,7 +87,6 @@
                     <td th:text="${transaction.created_at}"></td>
                     <td th:text="${transaction.modified_at}"></td>
                     <td th:text="${transaction.status}"></td>
-                    <td th:text="${transaction.type}"></td>
                     <td><th:block th:each="product, stats : ${transaction.product}">
                         <span
                                 th:text="${transaction.quantity.get(stats.index)}"></span> x <span

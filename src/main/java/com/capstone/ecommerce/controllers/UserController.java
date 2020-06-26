@@ -46,9 +46,9 @@ public class UserController {
     private final Pattern zipPattern=Pattern.compile(zipRegex);
     private final String stateRegex="[a-zA-Z]+";
     private final Pattern statePattern=Pattern.compile(stateRegex);
-    private final String cityRegex="[a-zA-Z]+";
+    private final String cityRegex="[\\-A-Za-z\\s]+";
     private final Pattern cityPattern=Pattern.compile(cityRegex);
-    private final String userNameRegex="[A-Za-z0-9]+";
+    private final String userNameRegex="[A-Za-z0-9\\s]+";
     private final Pattern usernamePattern=Pattern.compile(userNameRegex);
 
 

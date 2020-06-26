@@ -25,6 +25,11 @@
             $("#Szip").css('border', 'none');
             $("#Bcity").css('border', 'none');
             $("#Scity").css('border', 'none');
+            if(!$("#Bzip").val() || !$("#Bcity").val() || !$("#Bstate").val() || !$("#Baddress1").val() || !$("#Bfirst_name").val() || !$("#Blast_name").val() || !$("#Szip").val() || !$("#Scity").val() || !$("#Sstate").val() || !$("#Saddress1").val() || !$("#Sfirst_name").val() || !$("#Slast_name").val()){
+                $("#error").text("Some fields may be missing data - please double check and try again!");
+                $("html, body").scrollTop(0);
+                return false;
+            }
             if(!/^[a-zA-Z][a-zA-Z]*$/.test($("#Bstate").val())){
                 $("#Bstate").css('border', '3px solid #FFB6C1');
                 wrong = true;

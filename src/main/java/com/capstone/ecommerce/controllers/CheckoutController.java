@@ -34,7 +34,7 @@ public class CheckoutController{
     private final Pattern zipPattern=Pattern.compile(zipRegex);
     private final String stateRegex="[a-zA-Z]+";
     private final Pattern statePattern=Pattern.compile(stateRegex);
-    private final String cityRegex="/[A-Za-z\\s\\-]+/";
+    private final String cityRegex="[\\-A-Za-z\\s]+";
     private final Pattern cityPattern=Pattern.compile(cityRegex);
 
     private final UserRepository userRepo;
