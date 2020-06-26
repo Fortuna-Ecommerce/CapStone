@@ -176,15 +176,12 @@
 
             <input type="hidden" name="priceOriginal" th:value="${product.price}" id="priceGet3" style="color: black">
 
-            <h3>On Sale Price (42% off!): <strike>
-                <span th:text="${'$'+product.price}" id="priceInput3"></span></strike>
-                <span th:text="${'$'+salePrice}" id="priceInput1"></span>
+            <h3>On Sale Price (42% off!): <strike>$<span th:text="${#numbers.formatDecimal(realPrice,0,'COMMA',2,'POINT')}" id="priceInput3"></span></strike> $<span th:text="${#numbers.formatDecimal(salePrice,0,'COMMA',2,'POINT')}" id="priceInput1"></span>
             </h3>
         </div>
 
         <div th:unless="${product.special} == true">
-            <h3>Price:
-            <span th:text="${'$'+product.price}" id="priceInput2"></span>
+            <h3>Price: $<span th:text="${#numbers.formatDecimal(realPrice,0,'COMMA',2,'POINT')}" id="priceInput2"></span>
             </h3>
             <input type="hidden" name="price" th:value="${product.price}" id="priceGet2">
         </div>

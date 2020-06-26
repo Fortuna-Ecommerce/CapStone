@@ -42,8 +42,15 @@ public class UserController {
     private TransactionProductRepository transProdRepo;
 
 
+    private final String zipRegex="[0-9]+";
+    private final Pattern zipPattern=Pattern.compile(zipRegex);
+    private final String stateRegex="[a-zA-Z]+";
+    private final Pattern statePattern=Pattern.compile(stateRegex);
+    private final String cityRegex="[a-zA-Z]+";
+    private final Pattern cityPattern=Pattern.compile(cityRegex);
     private final String userNameRegex="[A-Za-z0-9]+";
     private final Pattern usernamePattern=Pattern.compile(userNameRegex);
+
 
     //Stores info in variable so it can be used elsewhere, allows information to be malleable
 
@@ -151,15 +158,7 @@ public class UserController {
                 if(transaction == transproduct.getTransaction()){
                     quantities.add(transproduct.getQuantity());
                     products.add(transproduct.getProduct());
-                    String color = "";
-                    if(transproduct.getProduct().getColor().equals("FFFFFF")){
-                        color = "White";
-                    } else if (transproduct.getProduct().getColor().equals("000000")){
-                        color = "Black";
-                    } else if (transproduct.getProduct().getColor().equals("808080")){
-                        color = "Grey";
-                    }
-                    colors.add(color);
+                    System.out.println(transproduct.getProduct().getColor());
                 }
             }
             saveFull.setQuantity(quantities);
@@ -180,37 +179,75 @@ public class UserController {
 
 
     @PostMapping("/addressUpdate1")
-    public String editBillAddress(Address bill_address) {
+    public String editBillAddress(Address bill_address, RedirectAttributes redir) {
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             return "redirect:/";
         }
         User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User profileOwner = this.users.getOne(shopper.getId());
-//      ;
-//        if (bill_address.getId() > 0) {
-//            this.addressRepo.save(bill_address);
-//        } else {
-            bill_address.setUser(profileOwner);
+
+        String error1 = "";
+        Matcher zipMatcher = zipPattern.matcher(bill_address.getZipcode());
+        if(!zipMatcher.matches()){
+            error1 = "You can only use numbers for the billing zipcode!";
+            redir.addFlashAttribute("error1", error1);
+            return "redirect:/profile";
+        }
+        Matcher stateMatcher = statePattern.matcher(bill_address.getState());
+        if(!stateMatcher.matches()) {
+            error1 = "You can only use letters for the billing state!";
+            redir.addFlashAttribute("error1", error1);
+            return "redirect:/profile";
+        }
+        Matcher cityMatcher = cityPattern.matcher(bill_address.getCity());
+        if(!cityMatcher.matches()) {
+            error1 = "You can only use letters for the billing city!";
+            redir.addFlashAttribute("error1", error1);
+            return "redirect:/profile";
+        }
+
+        bill_address.setState(bill_address.getState().toUpperCase());
+
+        bill_address.setUser(profileOwner);
             bill_address.setAddresstype("Billing");
             this.addressRepo.save(bill_address);
-//        }
         return "redirect:/profile";
     }
 
     @PostMapping("/addressUpdate2")
-    public String editShipAddress(Address ship_address) {
+    public String editShipAddress(Address ship_address, RedirectAttributes redir) {
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             return "redirect:/";
         }
         User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User profileOwner = this.users.getOne(shopper.getId());
-//        if (ship_address.getId() > 0) {
-//            this.addressRepo.save(ship_address);
-//        } else {
-            ship_address.setUser(profileOwner);
+
+        String error2 = "";
+        Matcher zipMatcher = zipPattern.matcher(ship_address.getZipcode());
+        if(!zipMatcher.matches()){
+            error2 = "You can only use numbers for the shipping zipcode!";
+            redir.addFlashAttribute("error2", error2);
+            return "redirect:/profile";
+        }
+        Matcher stateMatcher = statePattern.matcher(ship_address.getState());
+        if(!stateMatcher.matches()) {
+            error2 = "You can only use letters for the shipping state!";
+            redir.addFlashAttribute("error2", error2);
+            return "redirect:/profile";
+        }
+        Matcher cityMatcher = cityPattern.matcher(ship_address.getCity());
+        if(!cityMatcher.matches()) {
+            error2 = "You can only use letters for the billing city!";
+            redir.addFlashAttribute("error2", error2);
+            return "redirect:/profile";
+        }
+
+        ship_address.setState(ship_address.getState().toUpperCase());
+
+        ship_address.setUser(profileOwner);
         ship_address.setAddresstype("Shipping");
-            this.addressRepo.save(ship_address);
-//        }
+        this.addressRepo.save(ship_address);
+
         return "redirect:/profile";
     }
 

@@ -19,7 +19,9 @@
             <div id="addressInfo" class="container w-75 col-12 my-4">
                 <div class="row">
                     <div class="container mt-4 checkout mx-auto text-center col-md-6 col-sm-12">
-                        <h1 style="text-align: center; border: 1px black; font-weight: bold">Billing information</h1>
+                        <h4 style="color:red" id="error1" th:text="${error1}" class="mb-3"> </h4>
+                        <h1 style="text-align: center; border: 1px black; font-weight: bold" class="mt-1">Billing
+                            information</h1>
                         <div th:if="${bill_address.firstname != null}">
                             <div class="shippingColoring">
                                 <h2><span th:text="${bill_address.firstname}"></span> <span th:text="${bill_address.lastname}"></span></h2>
@@ -38,7 +40,8 @@
                     </div>
 
                     <div class="container mt-4 mx-auto text-center col-md-6 col-sm-12">
-                        <h1 style="text-align: center; font-weight: bold">Shipping information</h1>
+                        <h4 style="color:red" id="error2" th:text="${error2}" class="mb-3"> </h4>
+                        <h1 style="text-align: center; font-weight: bold" class="mt-1">Shipping information</h1>
                         <div th:if="${ship_address.firstname != null}">
                             <div class="shippingColoring">
                                 <h2><span th:text="${ship_address.firstname}"></span> <span th:text="${ship_address.lastname}"></span></h2>
@@ -61,7 +64,8 @@
 
                     <h1 style="text-align: center; font-weight: bold" class="mb-4">Order history</h1>
             <div th:if="${transactions.size()==0}" style="height: 18vh">
-                <h1 style="text-align: center">Haven't bought anything yet? Time to get shopping!</h1>
+                <h1 style="text-align: center">Haven't bought anything yet? Time to get <a href="/products/all">
+                    shopping</a>!</h1>
             </div>
             <div th:unless="${transactions.size()==0}">
             <div class="align-center" style="text-align: center"></div>
@@ -88,10 +92,15 @@
                     <td><th:block th:each="product, stats : ${transaction.product}">
                         <span
                                 th:text="${transaction.quantity.get(stats.index)}"></span> x <span
-                            th:text="${product.getName()}"></span> <span th:text="${colors.get(stats.index)}"></span>
+                            th:text="${product.getName()}"></span> <span
+                            th:if="${product.getColor().equals('FFFFFF')}">White</span><span
+                            th:if="${product.getColor().equals('000000')}">Black</span><span
+                            th:if="${product.getColor().equals('808080')}">Grey</span>
                         <span th:text="${product.getSize()}"></span> <span th:text="${product.getType()}"></span>
                         <br></th:block></td>
-                    <td>$<span th:text="${transaction.total}"></span></td>
+                    <td>$
+                        <span
+                                th:text="${#numbers.formatDecimal(transaction.total,0,'COMMA',2,'POINT')}"></span></td>
                 </tr>
                 </tbody>
             </table>
@@ -118,6 +127,7 @@
                                     <form th:action="@{/addressUpdate1}" th:object="${bill_address}" method="POST">
                                         <input type="hidden" th:field="*{addresstype}" id="Baddresstype"/>
                                         <input type="hidden" th:field="*{id}" id="Baddressid"/>
+                                        <h4 style="text-align: center; color: red" th:text="${error}" id="errorB"></h4>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="Bfirst_name">First name</label>
@@ -153,7 +163,8 @@
                                                        th:field="*{zipcode}" maxlength="5">
                                             </div>
                                         </div>
-                                        <button class="btn-link btn text-white btn-primary text-center">Update this
+                                        <button class="btn-link btn text-white btn-primary text-center"
+                                                id="billSubmit">Update this
                                             address!</button>
                                         <button type="button" class="btn btn-secondary text-center" data-dismiss="modal">Close
                                         </button>
@@ -180,6 +191,8 @@
                                         <form th:action="@{/addressUpdate2}" th:object="${ship_address}" method="POST">
                                             <input type="hidden" th:field="*{addresstype}" id="Saddresstype">
                                             <input type="hidden" th:field="*{id}" id="Saddressid"/>
+                                            <h4 style="text-align: center; color: red" th:text="${error}"
+                                                id="errorS"></h4>
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="Sfirst_name">First name</label>
@@ -214,7 +227,9 @@
                                                            th:field="*{zipcode}" maxlength="5">
                                                 </div>
                                             </div>
-                                            <button class="btn-link btn text-white btn-primary text-center">Update this
+                                            <button class="btn-link btn text-white btn-primary text-center"
+                                                    id="shipSubmit">Update
+                                                this
                                                 address!</button>
                                             <button type="button" class="btn btn-secondary text-center" data-dismiss="modal">Close
                                             </button>
@@ -230,6 +245,7 @@
 
 
     <footer th:replace="partials :: footer"></footer>
+<script type="text/javascript" src="/js/profilejs.js"></script>
 </body>
 </html>
 

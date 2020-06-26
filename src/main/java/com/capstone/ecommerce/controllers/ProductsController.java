@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.*;
 
 //import com.capstone.ecommerce.repositories.CategoriesRepository;
@@ -21,6 +23,7 @@ import java.util.*;
 public class ProductsController {
     private UserRepository userRepo;
     private ProductRepository productRepo;
+    private final NumberFormat currencyFormat=new DecimalFormat("#0.00");
 
     //  CONSTRUCTOR
     public ProductsController(ProductRepository productRepo, UserRepository userRepo) {
@@ -175,9 +178,12 @@ public class ProductsController {
             model.addAttribute("products", blankProducts);
         }
         String imageColor = "";
-        double salePrice = 0;
+        double tempSalePrice;
+        String salePrice = "";
+
         Product aProduct = productRepo.getOne(id);
         model.addAttribute("product", aProduct);
+        String realPrice = currencyFormat.format(aProduct.getPrice());
         String black = "";
         String white = "";
         String gray = "";
@@ -214,9 +220,12 @@ public class ProductsController {
         }
 
         if (aProduct.getSpecial() != null && aProduct.getSpecial()) {
-            salePrice = aProduct.getPrice() - (aProduct.getPrice() * 0.42);
-            salePrice = Math.round(salePrice * 100.00) / 100.00;
+            tempSalePrice = aProduct.getPrice() - (aProduct.getPrice() * 0.42);
+            tempSalePrice = Math.round(tempSalePrice * 100.00) / 100.00;
+            salePrice = currencyFormat.format(tempSalePrice);
+
         }
+        model.addAttribute("realPrice", realPrice);
         model.addAttribute("salePrice", salePrice);
         model.addAttribute("imageColor", imageColor);
         return "products/product";
