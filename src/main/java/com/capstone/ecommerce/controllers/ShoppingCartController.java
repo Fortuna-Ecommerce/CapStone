@@ -14,6 +14,8 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 //2 shopping cart, 2 checkout
@@ -21,6 +23,8 @@ import java.util.List;
 @SessionAttributes("products")
 public class ShoppingCartController {
 
+    private final String quantityRegex="[0-9]+";
+    private final Pattern quantityPattern=Pattern.compile(quantityRegex);
     private final   NumberFormat currencyFormat=new DecimalFormat("#0.00");
 
     private ProductRepository productRepo;
@@ -90,30 +94,40 @@ public class ShoppingCartController {
             @RequestParam(value = "sizeSelect", required = false) String size,
             @RequestParam(value = "color", required = false) String color,
             @RequestParam("productName") String name,
-            @RequestParam("cartAddQuantity") Integer quantity,
+            @RequestParam("cartAddQuantity") String takenQuantity,
             @RequestParam("price") String price,
             @RequestParam("type") String type,
             RedirectAttributes redir) {
-        String error1 = "";
-        String error2 = "";
-        String error3 = "";
-        if(quantity == 0){
-            error1 = "Sorry, you can't buy 0 of anything!";
-            redir.addFlashAttribute("error1", error1);
+        String error = "";
+        Matcher quantityMatcher=quantityPattern.matcher(takenQuantity);
+        if(!quantityMatcher.matches()){
+            error = "You can only use numbers for quantity desired!";
+            redir.addFlashAttribute("error", error);
             return "redirect:/products/"+id;
         }
-
+        Integer quantity = Integer.parseInt(takenQuantity);
+        if(Integer.parseInt(takenQuantity) == 0){
+            error = "Sorry, you can't buy 0 of anything!";
+            redir.addFlashAttribute("error", error);
+            return "redirect:/products/"+id;
+        }
         double setPrice = Double.parseDouble(price);
         Product currentProduct = new Product();
         Product newProduct = new Product();
 
-            currentProduct = this.productRepo.findByNameAndSizeAndColorAndType(name, size, color, type);
+        System.out.println(name);
+        System.out.println(color);
+        System.out.println(type);
+        System.out.println(size);
+
+        currentProduct = this.productRepo.findByNameAndSizeAndColorAndType(name, size, color, type);
 
 
         double total = 0.00;
         boolean found = false;
         Product addProduct = currentProduct;
 
+        System.out.println(addProduct);
 
         if (quantity != null) {
             addProduct.setQuantity(quantity);

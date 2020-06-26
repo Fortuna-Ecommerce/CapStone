@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -21,11 +22,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @Controller
 @SessionAttributes("products")
 public class CheckoutController{
+
+    private final String zipRegex="[0-9]+";
+    private final Pattern zipPattern=Pattern.compile(zipRegex);
+    private final String stateRegex="[a-zA-Z]+";
+    private final Pattern statePattern=Pattern.compile(stateRegex);
+    private final String cityRegex="[\\-A-Za-z\\s]+";
+    private final Pattern cityPattern=Pattern.compile(cityRegex);
 
     private final UserRepository userRepo;
     private final TransactionRepository transactionRepo;
@@ -55,62 +65,6 @@ public class CheckoutController{
 //    @Value("${STRIPE_PUBLIC_KEY}")
     private String stripePublicKey = "pk_test_B1PgkqwpndJUHJCdlY0I9leL00c395TbE5";
 
-
-//    @PostMapping("/baddress")
-//    public String submitBillAddress(Model model,
-//                                    Address bill_address) {
-//        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
-//            return "home";
-//        }
-//        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-////        if (bill_address.getId() > 0) {
-////            this.addressRepo.save(bill_address);
-////        } else {
-////            bill_address.setUser(shopper);
-//            this.addressRepo.save(bill_address);
-////        }
-//        model.addAttribute("bill_address", bill_address);
-//        Address ship_address = this.addressRepo.findByUserAndAddresstype(shopper, "Shipping");
-//        if (ship_address != null) {
-//            model.addAttribute("ship_address", ship_address);
-//        } else {
-//            ship_address = new Address();
-//            ship_address.setAddresstype("Shipping");
-//            ship_address.setUser(shopper);
-//            model.addAttribute("ship_address", ship_address);
-//        }
-//        return "purchases/saddress";
-//    }
-
-//    @PostMapping("/saddress")
-//    public String submitShipAddress(Model model,
-//                                    Address ship_address,
-//                                    @ModelAttribute("products") ShoppingCart products) {
-//        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
-//            return "home";
-//        }
-//        double total = 0.00;
-//        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-////        if (ship_address.getId() > 0) {
-////            this.addressRepo.save(ship_address);
-////        } else {
-//            this.addressRepo.save(ship_address);
-////        }
-//
-//        Address bill_address = this.addressRepo.findByUserAndAddresstype(shopper, "Billing");
-//        for (Product product : products) {
-//            total = total + product.getPrice();
-//        }
-//        total = Math.round(total * 100.00) / 100.00;
-//        model.addAttribute("total", total);
-//        model.addAttribute("bill_address", bill_address);
-//        model.addAttribute("ship_address", ship_address);
-//        model.addAttribute("products", products);
-//        model.addAttribute("stripePublicKey", stripePublicKey);
-//        model.addAttribute("currency", "USD");
-//        model.addAttribute("email", shopper.getEmail());
-//        return "purchases/checkout";
-//    }
 
 
     @GetMapping("/addresses")
@@ -155,7 +109,7 @@ public class CheckoutController{
                                   @RequestParam(name = "Baddress1") String bAdd1,
                                   @RequestParam(name = "Baddress2", required = false) String bAdd2,
                                   @RequestParam(name = "Bstate") String bState,
-                                  @RequestParam(name = "Bzip") Integer bZip,
+                                  @RequestParam(name = "Bzip") String bZip,
                                   @RequestParam(name = "Saddressid") Integer sId,
                                   @RequestParam(name="Sfirst_name", required = false) String sFN,
                                   @RequestParam(name="Slast_name", required = false) String sLN,
@@ -163,11 +117,58 @@ public class CheckoutController{
                                   @RequestParam(name = "Saddress1", required = false) String sAdd1,
                                   @RequestParam(name = "Saddress2", required = false) String sAdd2,
                                   @RequestParam(name = "Sstate", required = false) String sState,
-                                  @RequestParam(name = "Szip", required = false) Integer sZip,
-                                  @ModelAttribute("products") ShoppingCart products) {
+                                  @RequestParam(name = "Szip", required = false) String sZip,
+                                  @ModelAttribute("products") ShoppingCart products,
+                                  RedirectAttributes redir) {
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             return "home";
         }
+        System.out.println(sCity);
+        System.out.println(sZip);
+        String error = "";
+        Matcher zipMatcher = zipPattern.matcher(bZip);
+        if(!zipMatcher.matches()){
+            error = "You can only use numbers for the billing zipcode!";
+            redir.addFlashAttribute("error", error);
+            return "redirect:/addresses";
+        }
+        if(!sZip.isEmpty()) {
+            zipMatcher = zipPattern.matcher(sZip);
+            if (!zipMatcher.matches()) {
+                error = "You can only use numbers for the shipping zipcode!";
+                redir.addFlashAttribute("error", error);
+                return "redirect:/addresses";
+            }
+        }
+        Matcher stateMatcher = statePattern.matcher(bState);
+        if(!stateMatcher.matches()){
+            error = "You can only use letters for the billing state!";
+            redir.addFlashAttribute("error", error);
+            return "redirect:/addresses";
+        }
+        if(!sState.isEmpty()) {
+            stateMatcher = statePattern.matcher(sState);
+            if (!stateMatcher.matches()) {
+                error = "You can only use letters for the shipping state!";
+                redir.addFlashAttribute("error", error);
+                return "redirect:/addresses";
+            }
+        }
+        Matcher cityMatcher = cityPattern.matcher(bCity);
+        if(!cityMatcher.matches()){
+            error = "You can only use letters for the billing city!";
+            redir.addFlashAttribute("error", error);
+            return "redirect:/addresses";
+        }
+        if(!sCity.isEmpty()) {
+            cityMatcher = cityPattern.matcher(sCity);
+            if (!cityMatcher.matches()) {
+                error = "You can only use letters for the shipping city!";
+                redir.addFlashAttribute("error", error);
+                return "redirect:/addresses";
+            }
+        }
+
         List<String> colors = new ArrayList<>();
         List<String> formattedPrices = new ArrayList<>();
         double total = 0.00;
@@ -188,7 +189,7 @@ public class CheckoutController{
         temp_bill_address.setLastname(bLN);
         temp_bill_address.setStreet1(bAdd1);
         temp_bill_address.setStreet2(bAdd2);
-        temp_bill_address.setState(bState);
+        temp_bill_address.setState(bState.toUpperCase());
         temp_bill_address.setZipcode(bZip);
 
         Address bill_address = this.addressRepo.save(temp_bill_address);
@@ -207,7 +208,7 @@ public class CheckoutController{
             temp_ship_address.setLastname(sLN);
             temp_ship_address.setStreet1(sAdd1);
             temp_ship_address.setStreet2(sAdd2);
-            temp_ship_address.setState(sState);
+            temp_ship_address.setState(sState.toUpperCase());
             temp_ship_address.setZipcode(sZip);
             ship_address = addressRepo.save(temp_ship_address);
          } else if (check.equals("on")) {
@@ -216,7 +217,7 @@ public class CheckoutController{
              temp_ship_address.setLastname(bLN);
              temp_ship_address.setStreet1(bAdd1);
              temp_ship_address.setStreet2(bAdd2);
-             temp_ship_address.setState(bState);
+             temp_ship_address.setState(bState.toUpperCase());
              temp_ship_address.setZipcode(bZip);
             ship_address = addressRepo.save(temp_ship_address);
         }
@@ -238,13 +239,16 @@ public class CheckoutController{
         }
 
         double tempGrandTotal = (total * 0.0825);
+
         double grandTotal = tempGrandTotal + total + 5.00;
         grandTotal = Math.round(grandTotal * 100.00) / 100.00;
         double addShippingToGrandTotal=grandTotal+shippingCost;
 //        NumberFormat currencyFormat=new DecimalFormat("#0.00");
 //        String totalFormatted=currencyFormat.format(total);
         String grandTotalFormatted=currencyFormat.format(grandTotal);
-        String grandTotalShippingFormatted=currencyFormat.format(addShippingToGrandTotal);
+        String subtotal = currencyFormat.format(total);
+        String stringTempGrandTotal = currencyFormat.format(tempGrandTotal);
+
         model.addAttribute("colors", colors);
         model.addAttribute("totalShipping", addShippingToGrandTotal);
         model.addAttribute("total", grandTotalFormatted);
@@ -255,6 +259,8 @@ public class CheckoutController{
         model.addAttribute("currency", "USD");
         model.addAttribute("email", user.getEmail());
         model.addAttribute("prices", formattedPrices);
+        model.addAttribute("taxes", stringTempGrandTotal);
+        model.addAttribute("subtotal", subtotal);
         return "purchases/checkout";
     }
 

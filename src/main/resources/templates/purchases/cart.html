@@ -59,7 +59,7 @@
                     style="text-align: right; background-color: lightgray; box-shadow: none; border: NONE">Your
                     order
                     subtotal: </td>
-                <td colspan="1" th:text="${'$'+total}"></td>
+                <td colspan="1" th:text="${'$'+#numbers.formatDecimal(total,0,'COMMA',2,'POINT')}"></td>
             </tr>
             <tr>
                 <td th:colspan="7"
@@ -74,7 +74,7 @@
                     (8.25%)
                 comes
                 to:</td>
-                <td th:colspan="1" th:text="${'$'+grandTotal}"></td>
+                <td th:colspan="1" th:text="${'$'+#numbers.formatDecimal(grandTotal,0,'COMMA',2,'POINT')}"></td>
             </tr>
 
 

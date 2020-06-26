@@ -32,7 +32,7 @@ public class Address {
         private String state;
 
         @Column(nullable = false, length = 5, name = "zip_code")
-        private int zipcode;
+        private String zipcode;
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "user_id")
@@ -43,7 +43,7 @@ public class Address {
 
         public Address(String address_type, String first_name, String last_name, String street1, String street2,
                        String city,
-                       String state, int zipCode) {
+                       String state, String zipCode) {
                 this.addresstype = address_type;
                 this.firstname = first_name;
                 this.lastname = last_name;
@@ -118,12 +118,12 @@ public class Address {
                 this.state = state;
         }
 
-        public int getZipcode() {
+        public String getZipcode() {
                 return zipcode;
         }
 
-        public void setZipcode(int zipCode) {
-                this.zipcode = zipCode;
+        public void setZipcode(String zipcode) {
+                this.zipcode = zipcode;
         }
 
         public User getUser() {

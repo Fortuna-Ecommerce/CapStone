@@ -10,11 +10,11 @@
                 let total2 = quantity * price2;
                 let finalTotal = Math.round((total + Number.EPSILON) * 100) / 100;
                 let finalTotal2 = Math.round((total2 + Number.EPSILON) * 100) / 100;
-                $("#priceInput1").text('$'+finalTotal);
-                $("#priceInput3").text('$'+finalTotal2);
+                $("#priceInput1").text(finalTotal.toLocaleString('en'));
+                $("#priceInput3").text(finalTotal2.toLocaleString('en'));
             } else if (quantity === ""){
-                $("#priceInput1").text('$'+price);
-                $("#priceInput3").text('$'+price2);
+                $("#priceInput1").text(parseFloat(price).toLocaleString('en'));
+                $("#priceInput3").text(parseFloat(price2).toLocaleString('en'));
             }
         })
     });
@@ -26,9 +26,9 @@
             if (quantity > 0) {
                 let total = quantity * price;
                 let finalTotal = Math.round((total + Number.EPSILON) * 100) / 100;
-                $("#priceInput2").text('$'+finalTotal);
+                $("#priceInput2").text(finalTotal.toLocaleString('en'));
             } else if (quantity === ""){
-                $("#priceInput2").text('$'+price);
+                $("#priceInput2").text(parseFloat(price).toLocaleString('en'));
             }
         })
     });

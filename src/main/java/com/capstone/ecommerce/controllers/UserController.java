@@ -1,11 +1,9 @@
 package com.capstone.ecommerce.controllers;
-import com.capstone.ecommerce.model.ShoppingCart;
+import com.capstone.ecommerce.model.*;
 
-import com.capstone.ecommerce.model.Address;
-
-import com.capstone.ecommerce.model.User;
-import com.capstone.ecommerce.model.UserWithRoles;
 import com.capstone.ecommerce.repositories.AddressRepository;
+import com.capstone.ecommerce.repositories.TransactionProductRepository;
+import com.capstone.ecommerce.repositories.TransactionRepository;
 import com.capstone.ecommerce.repositories.UserRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -38,17 +37,31 @@ import java.util.regex.Pattern;
 public class UserController {
     private UserRepository users;
     private PasswordEncoder passwordEncoder;
-    private AddressRepository addressRepository;
+    private AddressRepository addressRepo;
+    private TransactionRepository transactionRepo;
+    private TransactionProductRepository transProdRepo;
 
-    private final String userNameRegex="[A-Za-z0-9]+";
+
+    private final String zipRegex="[0-9]+";
+    private final Pattern zipPattern=Pattern.compile(zipRegex);
+    private final String stateRegex="[a-zA-Z]+";
+    private final Pattern statePattern=Pattern.compile(stateRegex);
+    private final String cityRegex="[\\-A-Za-z\\s]+";
+    private final Pattern cityPattern=Pattern.compile(cityRegex);
+    private final String userNameRegex="[A-Za-z0-9\\s]+";
     private final Pattern usernamePattern=Pattern.compile(userNameRegex);
+
 
     //Stores info in variable so it can be used elsewhere, allows information to be malleable
 
-    public UserController(UserRepository users, PasswordEncoder passwordEncoder, AddressRepository addyRepo) {
+    public UserController(UserRepository users, PasswordEncoder passwordEncoder,
+                          AddressRepository addyRepo, TransactionRepository transactionRepo,
+                          TransactionProductRepository transProdRepo) {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
-        this.addressRepository = addyRepo;
+        this.addressRepo = addyRepo;
+        this.transactionRepo = transactionRepo;
+        this.transProdRepo = transProdRepo;
     }
 
     @GetMapping("/register")
@@ -89,7 +102,7 @@ public class UserController {
             return "redirect:register";
         }
         if(user.getPassword().length() <= 4){
-            error = "Passwords must longer than four characters!";
+            error = "Passwords must be longer than four characters!";
             redirectAttributes.addFlashAttribute("error", error);
             return "redirect:register";
         }
@@ -102,6 +115,146 @@ public class UserController {
         authenticate(authenticator);
         return "redirect:/";
     }
+
+    @GetMapping("/profile")
+    public String displayProfile(Model model){
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "redirect:/";
+        }
+        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User profileOwner = this.users.getOne(shopper.getId());
+        Address ship_address = this.addressRepo.findByUserAndAddresstype(profileOwner, "Shipping");
+        if(ship_address == null){
+            ship_address = new Address();
+            ship_address.setStreet2("");
+        }
+        Address bill_address = this.addressRepo.findByUserAndAddresstype(profileOwner, "Billing");
+        if(bill_address == null){
+            bill_address = new Address();
+            bill_address.setStreet2("");
+        }
+
+        ArrayList<TransactionTieup> finalSend = new ArrayList<>();
+        List<Transaction> baseTransactions = transactionRepo.findByUser(profileOwner);
+        List<Transactions_Product> transProds = transProdRepo.findAll();
+        List<String> colors = new ArrayList<>();
+        for(Transaction transaction : baseTransactions){
+            List<Long> quantities = new ArrayList<>();
+            List<Product> products = new ArrayList<>();
+            TransactionTieup saveFull = new TransactionTieup();
+            saveFull.setId(transaction.getId());
+            saveFull.setCreated_at(transaction.getCreated_at());
+            saveFull.setModified_at(transaction.getModified_at());
+            saveFull.setStripeId(transaction.getStripeTransID());
+            saveFull.setStatus(transaction.getTransactionStatus());
+            saveFull.setType(transaction.getTransactionType());
+            saveFull.setUsername(transaction.getUser().getUsername());
+            saveFull.setEmail(transaction.getUser().getEmail());
+            saveFull.setStripeCustomer(transaction.getUser().getStripeToken());
+            saveFull.setShipping(addressRepo.findByUserAndAddresstype(transaction.getUser(), "Shipping"));
+            saveFull.setBilling(addressRepo.findByUserAndAddresstype(transaction.getUser(), "Billing"));
+            saveFull.setTotal(transaction.getFinalAmount());
+            for(Transactions_Product transproduct : transProds){
+                if(transaction == transproduct.getTransaction()){
+                    quantities.add(transproduct.getQuantity());
+                    products.add(transproduct.getProduct());
+                    System.out.println(transproduct.getProduct().getColor());
+                }
+            }
+            saveFull.setQuantity(quantities);
+            saveFull.setProduct(products);
+            finalSend.add(saveFull);
+        }
+
+
+        model.addAttribute("transactions", finalSend);
+        model.addAttribute("colors", colors);
+
+        model.addAttribute("bill_address", bill_address);
+        model.addAttribute("ship_address", ship_address);
+        return "users/profile";
+    }
+
+
+
+
+    @PostMapping("/addressUpdate1")
+    public String editBillAddress(Address bill_address, RedirectAttributes redir) {
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "redirect:/";
+        }
+        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User profileOwner = this.users.getOne(shopper.getId());
+
+        String error1 = "";
+        Matcher zipMatcher = zipPattern.matcher(bill_address.getZipcode());
+        if(!zipMatcher.matches()){
+            error1 = "You can only use numbers for the billing zipcode!";
+            redir.addFlashAttribute("error1", error1);
+            return "redirect:/profile";
+        }
+        Matcher stateMatcher = statePattern.matcher(bill_address.getState());
+        if(!stateMatcher.matches()) {
+            error1 = "You can only use letters for the billing state!";
+            redir.addFlashAttribute("error1", error1);
+            return "redirect:/profile";
+        }
+        Matcher cityMatcher = cityPattern.matcher(bill_address.getCity());
+        if(!cityMatcher.matches()) {
+            error1 = "You can only use letters for the billing city!";
+            redir.addFlashAttribute("error1", error1);
+            return "redirect:/profile";
+        }
+
+        bill_address.setState(bill_address.getState().toUpperCase());
+
+        bill_address.setUser(profileOwner);
+            bill_address.setAddresstype("Billing");
+            this.addressRepo.save(bill_address);
+        return "redirect:/profile";
+    }
+
+    @PostMapping("/addressUpdate2")
+    public String editShipAddress(Address ship_address, RedirectAttributes redir) {
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "redirect:/";
+        }
+        User shopper = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User profileOwner = this.users.getOne(shopper.getId());
+
+        String error2 = "";
+        Matcher zipMatcher = zipPattern.matcher(ship_address.getZipcode());
+        if(!zipMatcher.matches()){
+            error2 = "You can only use numbers for the shipping zipcode!";
+            redir.addFlashAttribute("error2", error2);
+            return "redirect:/profile";
+        }
+        Matcher stateMatcher = statePattern.matcher(ship_address.getState());
+        if(!stateMatcher.matches()) {
+            error2 = "You can only use letters for the shipping state!";
+            redir.addFlashAttribute("error2", error2);
+            return "redirect:/profile";
+        }
+        Matcher cityMatcher = cityPattern.matcher(ship_address.getCity());
+        if(!cityMatcher.matches()) {
+            error2 = "You can only use letters for the billing city!";
+            redir.addFlashAttribute("error2", error2);
+            return "redirect:/profile";
+        }
+
+        ship_address.setState(ship_address.getState().toUpperCase());
+
+        ship_address.setUser(profileOwner);
+        ship_address.setAddresstype("Shipping");
+        this.addressRepo.save(ship_address);
+
+        return "redirect:/profile";
+    }
+
+
+
+
+
 
     private void authenticate(User user) {
         // Notice how we're using an empty list for the roles
